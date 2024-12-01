@@ -33,6 +33,8 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
+  documentation.nixos.enable = false;
+
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
@@ -79,7 +81,9 @@
     geary
     epiphany
   ]);
-
+  
+  programs.steam.enable = true;
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lioma = {
     isNormalUser = true;
@@ -89,12 +93,13 @@
     #  thunderbird
       equibop
       github-desktop
-      vscode
+      unstable.vscode
       obs-studio
       lutris
       unstable.osu-lazer-bin
       peazip
       atlauncher
+      bitwarden-desktop
       
       fastfetch
     ];
@@ -109,6 +114,8 @@
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    fira-code
+    nasin-nanpa
   ];
 
   # List packages installed in system profile. To search, run:
@@ -133,9 +140,13 @@
     gnomeExtensions.gnome-40-ui-improvements
     gnomeExtensions.just-perfection
     gnomeExtensions.dash-to-dock
+    gnomeExtensions.appindicator
     
     dconf-editor
     dconf2nix
+    
+    virt-manager
+    qemu
   ];
   
   services.flatpak = {

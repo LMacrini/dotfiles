@@ -19,6 +19,7 @@
   # plain files is through 'home.file'.
   
   home.file = {
+    ".config/starship.toml".source = ./.config/starship.toml;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -56,9 +57,13 @@
       experimental-features = ["scale-monitor-framebuffer"];
     };
     "org/gnome/shell" = {
-      enabled-extensions = ["caffeine@patapon.info" "blur-my-shell@aunetx" "gnome-ui-tune@itstime.tech" "user-theme@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com"];
+      enabled-extensions = ["caffeine@patapon.info" "blur-my-shell@aunetx" "gnome-ui-tune@itstime.tech" "user-theme@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com" "appindicatorsupport@rgcjonas.gmail.com"];
       favorite-apps = ["equibop.desktop" "org.gnome.Console.desktop" "floorp.desktop" "org.gnome.Nautilus.desktop"];
       allow-extensions-installation = true;
+    };
+    
+    "org/gnome/shell/keybindings" = {
+      show-screenshot-ui = [ "<Ctrl><Shift><Alt>S" "Print" ];
     };
     
     "org/gnome/shell/extensions/dash-to-dock" = {
@@ -71,8 +76,6 @@
       height-fraction = 0.9;
       intellihide = false;
       intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
-      preferred-monitor = -2;
-      preferred-monitor-by-connector = "DP-1";
       running-indicator-style = "BINARY";
       transparency-mode = "DEFAULT";
     };
@@ -92,6 +95,11 @@
       window-picker-icon = true;
       workspace-switcher-should-show = true;
       world-clock = false;
+    };
+    
+    "org/gnome/shell/extensions/appindicator" = {
+      icon-size = 20;
+      legacy-tray-enabled = false;
     };
     
     "org/gnome/desktop/wm/preferences" = {
@@ -117,7 +125,7 @@
     alias cd="z"
     alias ls="lsd"
     
-    alias update-nix="sudo nixos-rebuild switch --flake /etc/nixos#default"
+    alias upd-nix-conf="sudo nixos-rebuild switch --flake /etc/nixos#default"
 
     # eval "$(oh-my-posh init bash --config /home/lioma/.config/oh-my-posh/catppuccin_macchiato.omp.json)"
     eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
