@@ -52,10 +52,29 @@
   };
   
   dconf.settings = {
+    "org/gnome/mutter" = {
+      experimental-features = ["scale-monitor-framebuffer"];
+    };
     "org/gnome/shell" = {
-      enabled-extensions = ["caffeine@patapon.info" "blur-my-shell@aunetx" "gnome-ui-tune@itstime.tech" "user-theme@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection"];
-      favorite-apps = ["floorp.desktop" "org.gnome.Nautilus.desktop"];
+      enabled-extensions = ["caffeine@patapon.info" "blur-my-shell@aunetx" "gnome-ui-tune@itstime.tech" "user-theme@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com"];
+      favorite-apps = ["equibop.desktop" "org.gnome.Console.desktop" "floorp.desktop" "org.gnome.Nautilus.desktop"];
       allow-extensions-installation = true;
+    };
+    
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      apply-custom-theme = false;
+      background-opacity = 0.8;
+      custom-background-color = false;
+      dash-max-icon-size = 48;
+      dock-fixed = false;
+      dock-position = "BOTTOM";
+      height-fraction = 0.9;
+      intellihide = false;
+      intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
+      preferred-monitor = -2;
+      preferred-monitor-by-connector = "DP-1";
+      running-indicator-style = "BINARY";
+      transparency-mode = "DEFAULT";
     };
     
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
@@ -78,6 +97,32 @@
     "org/gnome/desktop/wm/preferences" = {
       button-layout = ":minimize,maximize,close";
     };
+  };
+  
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+    [[ $- != *i* ]] && return
+
+    export NO_POINTER_VIEWPORT=1
+
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    PS1='[\u@\h \W]\$ '
+
+    alias pipinit="source ~/Documents/Python/venv/bin/activate"
+
+    eval "$(zoxide init bash)"
+
+    alias cd="z"
+    alias ls="lsd"
+    
+    alias update-nix="sudo nixos-rebuild switch --flake /etc/nixos#default"
+
+    # eval "$(oh-my-posh init bash --config /home/lioma/.config/oh-my-posh/catppuccin_macchiato.omp.json)"
+    eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
+    source "$(blesh-share)/ble.sh"
+    '';
   };
   
   # Let Home Manager install and manage itself.

@@ -33,21 +33,26 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    # Enable the X11 windowing system.
+    enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "symbolic";
+    excludePackages = [ pkgs.xterm ];
+
+    # Configure keymap in X11
+    xkb = {
+      layout = "us";
+      variant = "symbolic";
+    };
   };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  
+  nixpkgs.config.allowUnfree = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -68,6 +73,13 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-tour
+    totem
+    geary
+    epiphany
+  ]);
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lioma = {
     isNormalUser = true;
@@ -77,6 +89,14 @@
     #  thunderbird
       equibop
       github-desktop
+      vscode
+      obs-studio
+      lutris
+      unstable.osu-lazer-bin
+      peazip
+      atlauncher
+      
+      fastfetch
     ];
   };
   
@@ -87,11 +107,16 @@
     };
   };
 
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    zig
     git
     neovim
     zoxide
@@ -107,10 +132,31 @@
     gnomeExtensions.caffeine
     gnomeExtensions.gnome-40-ui-improvements
     gnomeExtensions.just-perfection
+    gnomeExtensions.dash-to-dock
     
     dconf-editor
     dconf2nix
   ];
+  
+  services.flatpak = {
+    enable = true;
+    remotes = [
+      { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
+      { name = "launcher.moe"; location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo"; }
+    ];
+    packages = [
+      { flatpakref = "https://sober.vinegarhq.org/sober.flatpakref"; sha256="1pj8y1xhiwgbnhrr3yr3ybpfis9slrl73i0b1lc9q89vhip6ym2l"; }
+      { appId = "moe.launcher.an-anime-game-launcher"; origin = "launcher.moe"; }
+      # { appId = "moe.launcher.the-honkers-railway-launcher"; origin = "launcher.moe"; }
+      # { appId = "moe.launcher.honkers-launcher"; origin = "launcher.moe"; }
+      # { appId = "moe.launcher.sleepy-launcher"; origin = "launcher.moe"; }
+      "com.usebottles.bottles"
+      # "net.bartkessels.getit"
+      # "it.mijorus.gearlever"
+      # "org.gnome.Showtime"
+      # "org.gnome.Decibels"
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
