@@ -121,6 +121,11 @@
     "org/gnome/desktop/wm/preferences" = {
       button-layout = ":minimize,maximize,close";
     };
+
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-to-workspace-left = [ "<Ctrl><Super>Left" ];
+      switch-to-workspace-right = [ "<Ctrl><Super>Right" ];
+    };
   };
   
   programs.bash = {
