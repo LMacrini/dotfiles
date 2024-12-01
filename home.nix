@@ -57,6 +57,12 @@
     "org/gnome/mutter" = {
       experimental-features = ["scale-monitor-framebuffer"];
     };
+    
+    "org/gnome/desktop/background" = {
+      picture-uri = "file:///home/lioma/.config/background";
+      picture-uri-dark = "file:///home/lioma/.config/background";
+    };
+    
     "org/gnome/shell" = {
       enabled-extensions = ["caffeine@patapon.info" "blur-my-shell@aunetx" "gnome-ui-tune@itstime.tech" "user-theme@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com" "appindicatorsupport@rgcjonas.gmail.com"];
       favorite-apps = ["equibop.desktop" "org.gnome.Console.desktop" "floorp.desktop" "org.gnome.Nautilus.desktop"];
