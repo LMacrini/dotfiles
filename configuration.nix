@@ -144,9 +144,6 @@
     
     dconf-editor
     dconf2nix
-    
-    virt-manager
-    qemu
   ];
   
   services.flatpak = {
