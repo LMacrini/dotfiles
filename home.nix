@@ -63,9 +63,16 @@
       picture-uri-dark = "file:///home/lioma/.config/background";
     };
     
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "adw-gtk3-dark";
+      color-scheme = "prefer-dark";
+      clock-format = "24h";
+      accent-color = "blue";
+    };
+
     "org/gnome/shell" = {
       enabled-extensions = ["caffeine@patapon.info" "blur-my-shell@aunetx" "gnome-ui-tune@itstime.tech" "user-theme@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com" "appindicatorsupport@rgcjonas.gmail.com"];
-      favorite-apps = ["equibop.desktop" "org.gnome.Console.desktop" "floorp.desktop" "org.gnome.Nautilus.desktop"];
+      favorite-apps = ["equibop.desktop" "org.gnome.Ptyxis.desktop" "floorp.desktop" "org.gnome.Nautilus.desktop"];
       allow-extensions-installation = true;
     };
     

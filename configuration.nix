@@ -77,9 +77,11 @@
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
+    gnome-console
     totem
     geary
     epiphany
+    yelp
   ]);
   
   programs.steam.enable = true;
@@ -134,7 +136,9 @@
     blesh
     starship
     floorp
+    celluloid
     
+    adw-gtk3
     gnome-tweaks
     gnomeExtensions.blur-my-shell
     gnomeExtensions.rounded-window-corners-reborn
