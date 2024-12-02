@@ -10,4 +10,6 @@ You can then switch your configuration with
 sudo nixos-rebuild switch --flake /etc/nixos#default
 ```
 
-**Do not try this, it has not been tested yet**
+**Do not try this, it has not been tested yet**\
+(Also this is my config for the sake of my convenience,
+please don't use it unless you're one of my friends)
