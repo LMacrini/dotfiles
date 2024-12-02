@@ -126,6 +126,11 @@
       switch-to-workspace-left = [ "<Ctrl><Super>Left" ];
       switch-to-workspace-right = [ "<Ctrl><Super>Right" ];
     };
+
+    "wildmouse/urn" = {
+      global-hotkeys = false;
+      theme = "live-split";
+    };
   };
   
   programs.bash = {

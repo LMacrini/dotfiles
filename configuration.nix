@@ -106,6 +106,8 @@
       bitwarden-desktop
       
       fastfetch
+
+      urn-timer
     ];
   };
   
@@ -165,6 +167,7 @@
       # { appId = "moe.launcher.the-honkers-railway-launcher"; origin = "launcher.moe"; }
       # { appId = "moe.launcher.honkers-launcher"; origin = "launcher.moe"; }
       # { appId = "moe.launcher.sleepy-launcher"; origin = "launcher.moe"; }
+      "io.github.divverent.aaaaxy"
       "com.usebottles.bottles"
       # "net.bartkessels.getit"
       # "it.mijorus.gearlever"
