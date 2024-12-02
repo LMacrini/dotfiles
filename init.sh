@@ -14,7 +14,7 @@ mv nixos-main/.config ./
 rm -r nixos-main init.sh
 
 if [[ -z "$(<section.tmp)" ]]; then
-  printf "No bootloader found in source file, \e[1;33mPlease be careful\e[0m\n"
+  printf "No bootloader found in source file, \e[1;33mplease be careful\e[0m\n"
 else
 
 gsed -i '$!s@$@\\@g' section.tmp
