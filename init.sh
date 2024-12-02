@@ -2,9 +2,10 @@
 
 cd /etc/nixos
 
-curl -L -o nixos.zip "https://github.com/LMacrini/nixos/archive/refs/heads/main.zip"
-unzip nixos.zip
-rm nixos.zip
+curl -L -o nixos.tar.gz "https://github.com/LMacrini/nixos/archive/refs/heads/main.tar.gz"
+gunzip nixos.tar.gz
+sudo tar -xf nixos.tar
+rm nixos.tar
 
 # Extract the section from the source file
 awk '/# Bootloader\./ {print_line=1} print_line && /^[[:space:]]*$/ {print_line=0} print_line {print}' configuration.nix > section.tmp
