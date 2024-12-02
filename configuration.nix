@@ -81,6 +81,7 @@
     geary
     epiphany
     yelp
+    gnome-system-monitor
   ]);
   
   programs.steam.enable = true;
@@ -143,6 +144,8 @@
     floorp
     celluloid
     
+    mission-center
+
     adw-gtk3
     gnome-tweaks
     gnomeExtensions.blur-my-shell
