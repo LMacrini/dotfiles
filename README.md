@@ -2,7 +2,7 @@
 
 You can automatically install this configuration on a new NixOS system by running
 ```bash
-curl https://raw.githubusercontent.com/LMacrini/nixos/refs/heads/main/init.sh | sudo bash
+curl https://raw.githubusercontent.com/LMacrini/nixos/refs/heads/main/init.sh | bash
 ```
 
 You can then switch your configuration with
