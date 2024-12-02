@@ -13,6 +13,12 @@ mv nixos-main/* ./
 mv nixos-main/.config ./
 rm -r nixos-main init.sh README.md
 
+if sed --version >/dev/null 2>&1; then
+    sed -i "s/lioma/$USER/g" configuration.nix home.nix
+else
+    sed -i '' "s/lioma/$USER/g" configuration.nix home.nix
+fi
+
 if [[ -z "$(<section.tmp)" ]]; then
   printf "No bootloader found in source file, \e[1;33mplease be careful\e[0m\n"
 else
