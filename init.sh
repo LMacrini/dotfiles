@@ -34,6 +34,6 @@ else
     gsed -i "/# Bootloader\./,/^[[:space:]]*$/c\\$(<section.tmp)\n" configuration.nix
 fi
 
-echo "Bootloader section replaced successfully.\n"
+echo "Bootloader section replaced successfully."
 fi
 rm section.tmp
