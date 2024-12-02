@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# cd /etc/nixos
+cd /etc/nixos
 
 curl -L -o nixos.zip "https://github.com/LMacrini/nixos/archive/refs/heads/main.zip"
 unzip nixos.zip
