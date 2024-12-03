@@ -84,7 +84,6 @@
     gnome-system-monitor
   ]);
   
-  programs.steam.enable = true;
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
   
@@ -99,10 +98,7 @@
       github-desktop
       unstable.vscode
       obs-studio
-      lutris
-      unstable.osu-lazer-bin
       peazip
-      atlauncher
       bitwarden-desktop
       mediawriter
       
@@ -110,8 +106,6 @@
 
       urn-timer
       keymapp
-
-      aaaaxy
     ];
   };
   

@@ -26,6 +26,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./configuration.nix
+        ./games.nix
         inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.home-manager.nixosModules.default
         ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })

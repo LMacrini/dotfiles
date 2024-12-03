@@ -1,6 +1,7 @@
-{ config }
+{ config, ... }:
 
 {
+  services.power-profiles-daemon = false;
   services.tlp = {
       enable = true;
       settings = {
