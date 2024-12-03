@@ -106,6 +106,8 @@
 
       urn-timer
       keymapp
+	
+      aaaaxy
     ];
   };
   
@@ -164,11 +166,6 @@
       { name = "launcher.moe"; location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo"; }
     ];
     packages = [
-      { flatpakref = "https://sober.vinegarhq.org/sober.flatpakref"; sha256="1pj8y1xhiwgbnhrr3yr3ybpfis9slrl73i0b1lc9q89vhip6ym2l"; }
-      { appId = "moe.launcher.an-anime-game-launcher"; origin = "launcher.moe"; }
-      # { appId = "moe.launcher.the-honkers-railway-launcher"; origin = "launcher.moe"; }
-      # { appId = "moe.launcher.honkers-launcher"; origin = "launcher.moe"; }
-      # { appId = "moe.launcher.sleepy-launcher"; origin = "launcher.moe"; }
       "com.usebottles.bottles"
       # "net.bartkessels.getit"
       "it.mijorus.gearlever"
