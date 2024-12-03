@@ -32,4 +32,4 @@ sudo rm section.tmp
 read -p "Please enter your host [default: default]: " host
 host=${host:-default}
 eval "sudo nixos-rebuild switch --flake /etc/nixos#$host"
-sudo reboot now
+# sudo reboot now
