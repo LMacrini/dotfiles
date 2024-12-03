@@ -31,5 +31,15 @@
         ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
       ];
     };
+    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./configuration.nix
+        ./laptop.nix
+        inputs.nix-flatpak.nixosModules.nix-flatpak
+        inputs.home-manager.nixosModules.default
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+      ];
+    };
   };
 }
