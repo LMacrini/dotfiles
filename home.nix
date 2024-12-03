@@ -72,6 +72,10 @@
       accent-color = "blue";
     };
 
+    "org/gnome/desktop/peripherals/mouse" = {
+        accel-profile = "flat";
+    };
+
     "org/gnome/shell" = {
       enabled-extensions = ["caffeine@patapon.info" "blur-my-shell@aunetx" "gnome-ui-tune@itstime.tech" "user-theme@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com" "appindicatorsupport@rgcjonas.gmail.com"];
       favorite-apps = ["equibop.desktop" "org.gnome.Ptyxis.desktop" "floorp.desktop" "org.gnome.Nautilus.desktop"];
