@@ -159,6 +159,8 @@
     
     dconf-editor
     dconf2nix
+
+    helvum
   ];
   
   services.flatpak = {
