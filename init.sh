@@ -29,5 +29,7 @@ else
   echo "Bootloader section replaced successfully."
 fi
 sudo rm section.tmp
-sudo nixos-rebuild switch --flake /etc/nixos#default
+read -p "Please enter your host [default: default]: " host
+host=${name:-default}
+sudo nixos-rebuild switch --flake /etc/nixos#$host
 sudo reboot now
