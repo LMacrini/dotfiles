@@ -31,4 +31,4 @@ fi
 sudo rm section.tmp
 host="${1:-${host:-default}}"
 sudo nixos-rebuild switch --flake "/etc/nixos#$host"
-# sudo reboot now
+sudo reboot now
