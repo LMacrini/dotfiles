@@ -25,3 +25,5 @@ else
   echo "Bootloader section replaced successfully."
 fi
 sudo rm section.tmp
+sudo nixos-rebuild switch --flake /etc/nixos#default
+sudo reboot now
