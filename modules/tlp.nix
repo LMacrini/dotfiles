@@ -1,8 +1,12 @@
-{ config, ... }:
+{ config, lib, ... }: {
 
-{
-  services.power-profiles-daemon.enable = false;
-  services.tlp = {
+  options = {
+    tlp.enable = lib.mkEnableOption "Enables tlp";
+  };
+
+  config = lib.mkIf config.tlp.enable {
+    services.power-profiles-daemon.enable = false;
+    services.tlp = {
       enable = true;
       settings = {
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
@@ -16,5 +20,7 @@
         CPU_MIN_PERF_ON_BAT = 0;
         CPU_MAX_PERF_ON_BAT = 20;
       };
+    };
   };
+  
 }
