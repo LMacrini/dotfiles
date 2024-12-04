@@ -4,7 +4,7 @@
 	../../modules
 	];
   
-  networking.hostName = "Ordinateur de Lionel";
+  networking.hostName = "Ordinateur-de-Lionel";
 
   lightGames.enable = true;
 

@@ -3,5 +3,5 @@
 		../../modules
 	];
 
-	networking.hostName = "Virtual Machine";
+	networking.hostName = "Virtual-Machine";
 }
