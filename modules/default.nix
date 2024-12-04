@@ -13,6 +13,7 @@ in
       ../hardware-configuration.nix
       ./games
       ./tlp.nix
+      ./bootloader.nix
       inputs.home-manager.nixosModules.default
     ];
 
