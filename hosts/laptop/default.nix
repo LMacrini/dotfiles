@@ -7,6 +7,7 @@
   networking.hostName = "Ordinateur-de-Lionel";
 
   lightGames.enable = true;
+  greentimer.enable = false;
 
   tlp.enable = true;
 
