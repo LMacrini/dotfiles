@@ -9,4 +9,5 @@
   games.enable = true;
   launchers.enable = true;
   lightGames.enable = true;
+  greetimer.enable = true;
 }
