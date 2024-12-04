@@ -86,6 +86,7 @@ in
     epiphany
     yelp
     gnome-system-monitor
+    gnome-software
   ]);
   
   obs.enable = lib.mkDefault false;
