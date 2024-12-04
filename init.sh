@@ -14,6 +14,7 @@ sudo rm nixos.tar
 sudo mv nixos-main/* ./
 sudo mv nixos-main/.config ./
 sudo rm -r nixos-main init.sh README.md
+sudo nixos-generate-config
 
 host="${1:-${host:-default}}"
 sudo nixos-rebuild switch --flake "/etc/nixos#$host"
