@@ -5,7 +5,7 @@ cd /etc/nixos
 sudo rm -r backups/*
 sudo mkdir .backups
 sudo mv ./* ./.backups
-sudo cp ./.backups/hardware-configuration ./
+sudo mv ./.backups/hardware-configuration ./
 
 sudo curl -L -o nixos.tar.gz "https://github.com/LMacrini/nixos/archive/refs/heads/main.tar.gz"
 sudo gunzip nixos.tar.gz
