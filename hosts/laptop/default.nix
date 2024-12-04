@@ -9,4 +9,6 @@
   lightGames.enable = true;
 
   tlp.enable = true;
+
+  libreoffice.enable = true;
 }
