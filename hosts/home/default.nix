@@ -9,5 +9,8 @@
   games.enable = true;
   launchers.enable = true;
   lightGames.enable = true;
-  greetimer.enable = true;
+  greentimer.enable = true;
+  obs.enable = true;
+
+  vms.enable = true;
 }

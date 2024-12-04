@@ -14,6 +14,8 @@ in
       ./games
       ./tlp.nix
       ./bootloader.nix
+      ./obs.nix
+      ./vms.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -86,20 +88,19 @@ in
     gnome-system-monitor
   ]);
   
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-  
+  obs.enable = lib.mkDefault false;
+  vms.enable = lib.mkDefault false;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lioma = {
     isNormalUser = true;
     description = "Lionel Macrini";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
+      thunderbird
       equibop
       github-desktop
       unstable.vscode
-      obs-studio
       peazip
       bitwarden-desktop
       mediawriter
