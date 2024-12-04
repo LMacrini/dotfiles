@@ -4,7 +4,7 @@
     libreoffice.enable = mkEnableOption "Enable libreoffice";
   };
 
-  config = mkIf config.libreoffice.enable {
+  config = lib.mkIf config.libreoffice.enable {
     environment.systemPackages = with pkgs; [
       libreoffice-still
       hunspell
