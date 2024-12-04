@@ -31,10 +31,21 @@
         ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
       ];
     };
+
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/laptop
+        inputs.nix-flatpak.nixosModules.nix-flatpak
+        inputs.home-manager.nixosModules.default
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+      ];
+    };
+
+    nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/vm
         inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.home-manager.nixosModules.default
         ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })

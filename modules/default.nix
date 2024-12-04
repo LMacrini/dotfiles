@@ -106,10 +106,7 @@ in
       
       fastfetch
 
-      urn-timer
       keymapp
-	
-      aaaaxy
     ];
   };
   
