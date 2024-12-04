@@ -69,6 +69,7 @@
       color-scheme = "prefer-dark";
       clock-format = "24h";
       accent-color = "blue";
+      show-battery-percentage = true;
     };
 
     "org/gnome/desktop/peripherals/mouse" = {
