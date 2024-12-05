@@ -154,10 +154,11 @@
 
     alias cd="z"
     alias ls="lsd"
-    
+
     upd-nix-conf() {
-      local config=$(1:-default)
-      sudo nixos-rebuild switch --flake "/etc/nixos#$config"
+      local config=''${1:-default}
+      local type=''${2:-switch}
+      sudo nixos-rebuild $type --flake "/etc/nixos#$config"
     }
     # eval "$(oh-my-posh init bash --config /home/lioma/.config/oh-my-posh/catppuccin_macchiato.omp.json)"
     eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
