@@ -16,6 +16,7 @@ sudo mv nixos-main/* ./
 sudo mv nixos-main/.config ./
 sudo rm -r nixos-main init.sh README.md
 
-host="${1:-${host:-default}}"
-sudo nixos-rebuild switch --flake "/etc/nixos#$host"
+host=${1:-default}
+rebuild_type=${2:-switch}
+sudo nixos-rebuild $2 --flake "/etc/nixos#$host"
 sudo reboot now
