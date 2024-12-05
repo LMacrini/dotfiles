@@ -17,6 +17,7 @@ in
       ./obs.nix
       ./vms.nix
       ./libreoffice.nix
+      ./config-apps.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -94,6 +95,8 @@ in
   obs.enable = lib.mkDefault false;
   vms.enable = lib.mkDefault false;
   libreoffice.enable = lib.mkDefault false;
+  configapps.enable = lib.mkDefault false;
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lioma = {
@@ -138,6 +141,8 @@ in
   #  wget
     zig
     git
+    nixfmt-rfc-style
+    uv
     ptyxis
     neovim
     zoxide
@@ -160,9 +165,6 @@ in
     gnomeExtensions.dash-to-dock
     gnomeExtensions.appindicator
     
-    dconf-editor
-    dconf2nix
-
     helvum
   ];
   

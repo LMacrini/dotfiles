@@ -69,6 +69,7 @@
       color-scheme = "prefer-dark";
       clock-format = "24h";
       accent-color = "blue";
+      monospace-font-name = "FiraCode Nerd Font Mono 10";
       show-battery-percentage = powerIcon;
     };
 
