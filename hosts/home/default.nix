@@ -10,4 +10,6 @@
   obs.enable = true;
 
   vms.enable = true;
+
+  libreoffice.enable = true;
 }
