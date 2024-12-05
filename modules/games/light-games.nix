@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...} : {
 
   options = {
-	lightGames.enable = lib.mkEnableOption "Enables light games";
+	games.light.enable = lib.mkEnableOption "Enables light games";
   };
 
-  config = lib.mkIf config.lightGames.enable {
+  config = lib.mkIf config.games.light.enable {
 	users.users.lioma.packages = with pkgs; [
 	  aaaaxy
 	];

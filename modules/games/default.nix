@@ -6,12 +6,21 @@
     ./greentimer.nix
   ];
 
-  games.enable = lib.mkDefault false;
-  launchers.enable = lib.mkDefault false;
-  lightGames.enable = lib.mkDefault false;
-  greentimer.enable = lib.mkDefault (
-    config.games.enable
-    || config.launchers.enable
-    || config.lightGames.enable
-  );
+  options = {
+    games.enable = lib.mkEnableOption "Enables games";
+  };
+  
+
+  config = {
+    games.standalone.enable = lib.mkDefault config.games.enable;
+    games.launchers.enable = lib.mkDefault config.games.enable;
+    games.light.enable = lib.mkDefault config.games.enable;
+  
+    games.greentimer.enable = lib.mkDefault (
+      config.games.standalone.enable
+      || config.games.launchers.enable
+      || config.games.light.enable
+    );
+  };
+  
 }

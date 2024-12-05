@@ -89,7 +89,8 @@ in
     gnome-system-monitor
     gnome-software
   ]);
-  
+
+  games.enable = lib.mkDefault false;
   obs.enable = lib.mkDefault false;
   vms.enable = lib.mkDefault false;
   libreoffice.enable = lib.mkDefault false;

@@ -1,10 +1,10 @@
 {pkgs, config, lib, ...}: {
 
 	options = {
-		games.enable = lib.mkEnableOption "Enables standalone games";
+		games.standalone.enable = lib.mkEnableOption "Enables standalone games";
 	};
 
-	config = lib.mkIf config.games.enable {
+	config = lib.mkIf config.games.standalone.enable {
 		users.users.lioma.packages = with pkgs; [
 			unstable.osu-lazer-bin
 		];

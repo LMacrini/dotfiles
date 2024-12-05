@@ -1,9 +1,9 @@
 {lib, config, pkgs, ...}: {
 	options = {
-		greentimer.enable = lib.mkEnableOption "Enables green timer";
+		games.greentimer.enable = lib.mkEnableOption "Enables green timer";
 	};
 
-	config = lib.mkIf config.greentimer.enable {
+	config = lib.mkIf config.games.greentimer.enable {
 		users.users.lioma.packages = with pkgs; [
 			urn-timer
 		];

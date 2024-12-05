@@ -1,10 +1,10 @@
 {pkgs, lib, config, ...}: {
 
   options = {
-	launchers.enable = lib.mkEnableOption "Enables game launchers";
+	  games.launchers.enable = lib.mkEnableOption "Enables game launchers";
   };
 
-  config = lib.mkIf config.launchers.enable {
+  config = lib.mkIf config.games.launchers.enable {
 	programs.steam.enable = true;
 
     users.users.lioma.packages = with pkgs; [
