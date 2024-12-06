@@ -132,6 +132,10 @@
       switch-to-workspace-right = [ "<Ctrl><Super>Right" ];
     };
 
+    "org/gtk/gtk4/settings/file-chooser" = {
+      show-hidden = true;
+    };
+
     "wildmouse/urn" = {
       global-hotkeys = false;
       theme = "live-split";
