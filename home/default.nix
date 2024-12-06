@@ -83,6 +83,7 @@
         (lib.gvariant.mkTuple [ "xkb" "us+altgr-intl" ])
       ];
       show-all-sources = true;
+      xkb-options = ["terminate:ctrl_alt_bksp" "nbsp:zwnj2nb3zwj4"];
     };
 
     "org/gnome/shell" = {
@@ -93,6 +94,7 @@
     
     "org/gnome/shell/keybindings" = {
       show-screenshot-ui = [ "<Ctrl><Shift><Alt>S" "Print" ];
+      toggle-application = [ "<Alt>space" ];
     };
     
     "org/gnome/shell/extensions/dash-to-dock" = {
@@ -138,6 +140,7 @@
     "org/gnome/desktop/wm/keybindings" = {
       switch-to-workspace-left = [ "<Ctrl><Super>Left" ];
       switch-to-workspace-right = [ "<Ctrl><Super>Right" ];
+      activate-window-menu = [];
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {
