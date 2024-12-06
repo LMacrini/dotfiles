@@ -12,6 +12,7 @@ in
     [ # Include the results of the hardware scan.
       ../hardware-configuration.nix
       ./games
+      ./browsers
       ./tlp.nix
       ./bootloader.nix
       ./obs.nix
@@ -90,7 +91,8 @@ in
     gnome-system-monitor
     gnome-software
   ]);
-
+  
+  browsers.all.enable = lib.mkDefault false;
   games.enable = lib.mkDefault false;
   obs.enable = lib.mkDefault false;
   vms.enable = lib.mkDefault false;
@@ -149,7 +151,6 @@ in
     lsd
     blesh
     starship
-    floorp
     celluloid
     
     mission-center
