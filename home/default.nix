@@ -191,8 +191,6 @@
       alias grep='grep --color=auto'
       PS1='[\u@\h \W]\$ '
 
-      alias pipinit="source ~/Documents/Python/venv/bin/activate"
-
       eval "$(zoxide init bash)"
 
       alias cd="z"
