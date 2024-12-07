@@ -1,9 +1,10 @@
-{...}: {
-	imports = [
-		../../modules
-	];
+{ ... }:
+{
+  imports = [
+    ../../modules
+  ];
 
-	networking.hostName = "Virtual-Machine";
+  networking.hostName = "Virtual-Machine";
 
-	browsers.floorp.enable = false;
+  browsers.floorp.enable = false;
 }

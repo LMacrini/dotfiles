@@ -1,9 +1,15 @@
-{config, lib, pkgs, ...} : {
-  
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+
   imports = [
-	../../modules
-	];
-  
+    ../../modules
+  ];
+
   networking.hostName = "Ordinateur-de-Lionel";
 
   games.light.enable = true;

@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
 
   options = {
     tlp.enable = lib.mkEnableOption "Enables tlp";
@@ -22,5 +23,5 @@
       };
     };
   };
-  
+
 }

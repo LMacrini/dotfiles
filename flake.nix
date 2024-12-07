@@ -12,44 +12,61 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.5.0";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: 
-  let
-    system = "x86_64-linux";
+  outputs =
+    { self, nixpkgs, ... }@inputs:
+    let
+      system = "x86_64-linux";
       overlay-unstable = final: prev: {
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
         };
       };
-  in {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/home
-        inputs.nix-flatpak.nixosModules.nix-flatpak
-        inputs.home-manager.nixosModules.default
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
-      ];
-    };
+    in
+    {
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/home
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.home-manager.nixosModules.default
+          (
+            { config, pkgs, ... }:
+            {
+              nixpkgs.overlays = [ overlay-unstable ];
+            }
+          )
+        ];
+      };
 
-    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/laptop
-        inputs.nix-flatpak.nixosModules.nix-flatpak
-        inputs.home-manager.nixosModules.default
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
-      ];
-    };
+      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/laptop
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.home-manager.nixosModules.default
+          (
+            { config, pkgs, ... }:
+            {
+              nixpkgs.overlays = [ overlay-unstable ];
+            }
+          )
+        ];
+      };
 
-    nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/vm
-        inputs.nix-flatpak.nixosModules.nix-flatpak
-        inputs.home-manager.nixosModules.default
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
-      ];
+      nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/vm
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.home-manager.nixosModules.default
+          (
+            { config, pkgs, ... }:
+            {
+              nixpkgs.overlays = [ overlay-unstable ];
+            }
+          )
+        ];
+      };
     };
-  };
 }

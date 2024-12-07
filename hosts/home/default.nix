@@ -1,9 +1,15 @@
-{config, lib, pkgs, ...} : {
-  
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+
   imports = [
-	../../modules
-	];
-  
+    ../../modules
+  ];
+
   networking.hostName = "DESKTOP-VKFSNVPI"; # Define your hostname.
 
   configapps.enable = true;

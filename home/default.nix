@@ -1,4 +1,5 @@
-{ lib, powerIcon, ... }: {
+{ lib, powerIcon, ... }:
+{
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -16,7 +17,7 @@
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  
+
   home.file = {
     ".config/starship.toml".source = ../.config/starship.toml;
     ".config/background".source = ../.config/background;
@@ -51,19 +52,19 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-  
+
   dconf.settings = {
     "org/gnome/mutter" = {
-      experimental-features = ["scale-monitor-framebuffer"];
+      experimental-features = [ "scale-monitor-framebuffer" ];
       dynamic-workspaces = true;
       workspaces-only-on-primary = true;
     };
-    
+
     "org/gnome/desktop/background" = {
       picture-uri = "file:///home/lioma/.config/background";
       picture-uri-dark = "file:///home/lioma/.config/background";
     };
-    
+
     "org/gnome/desktop/interface" = {
       gtk-theme = "adw-gtk3-dark";
       color-scheme = "prefer-dark";
@@ -74,29 +75,55 @@
     };
 
     "org/gnome/desktop/peripherals/mouse" = {
-        accel-profile = "flat";
+      accel-profile = "flat";
     };
 
     "org/gnome/desktop/input-sources" = {
       sources = [
-        (lib.gvariant.mkTuple [ "xkb" "us+symbolic" ])
-        (lib.gvariant.mkTuple [ "xkb" "us+altgr-intl" ])
+        (lib.gvariant.mkTuple [
+          "xkb"
+          "us+symbolic"
+        ])
+        (lib.gvariant.mkTuple [
+          "xkb"
+          "us+altgr-intl"
+        ])
       ];
       show-all-sources = true;
-      xkb-options = ["terminate:ctrl_alt_bksp" "nbsp:zwnj2nb3zwj4"];
+      xkb-options = [
+        "terminate:ctrl_alt_bksp"
+        "nbsp:zwnj2nb3zwj4"
+      ];
     };
 
     "org/gnome/shell" = {
-      enabled-extensions = ["caffeine@patapon.info" "blur-my-shell@aunetx" "gnome-ui-tune@itstime.tech" "user-theme@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection" "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com" "appindicatorsupport@rgcjonas.gmail.com"];
-      favorite-apps = ["equibop.desktop" "org.gnome.Ptyxis.desktop" "floorp.desktop" "org.gnome.Nautilus.desktop"];
+      enabled-extensions = [
+        "caffeine@patapon.info"
+        "blur-my-shell@aunetx"
+        "gnome-ui-tune@itstime.tech"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "just-perfection-desktop@just-perfection"
+        "places-menu@gnome-shell-extensions.gcampax.github.com"
+        "dash-to-dock@micxgx.gmail.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
+      ];
+      favorite-apps = [
+        "equibop.desktop"
+        "org.gnome.Ptyxis.desktop"
+        "floorp.desktop"
+        "org.gnome.Nautilus.desktop"
+      ];
       allow-extensions-installation = true;
     };
-    
+
     "org/gnome/shell/keybindings" = {
-      show-screenshot-ui = [ "<Ctrl><Shift><Alt>S" "Print" ];
+      show-screenshot-ui = [
+        "<Ctrl><Shift><Alt>S"
+        "Print"
+      ];
       toggle-application = [ "<Alt>space" ];
     };
-    
+
     "org/gnome/shell/extensions/dash-to-dock" = {
       apply-custom-theme = false;
       background-opacity = 0.8;
@@ -110,11 +137,11 @@
       running-indicator-style = "BINARY";
       transparency-mode = "DEFAULT";
     };
-    
+
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
       static-blur = false;
     };
-    
+
     "org/gnome/shell/extensions/just-perfection" = {
       accessibility-menu = false;
       events-button = false;
@@ -127,12 +154,12 @@
       workspace-switcher-should-show = true;
       world-clock = false;
     };
-    
+
     "org/gnome/shell/extensions/appindicator" = {
       icon-size = 20;
       legacy-tray-enabled = false;
     };
-    
+
     "org/gnome/desktop/wm/preferences" = {
       button-layout = ":minimize,maximize,close";
     };
@@ -140,7 +167,7 @@
     "org/gnome/desktop/wm/keybindings" = {
       switch-to-workspace-left = [ "<Ctrl><Super>Left" ];
       switch-to-workspace-right = [ "<Ctrl><Super>Right" ];
-      activate-window-menu = [];
+      activate-window-menu = [ ];
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {
@@ -152,37 +179,37 @@
       theme = "live-split";
     };
   };
-  
+
   programs.bash = {
     enable = true;
     initExtra = ''
-    [[ $- != *i* ]] && return
+      [[ $- != *i* ]] && return
 
-    export NO_POINTER_VIEWPORT=1
+      export NO_POINTER_VIEWPORT=1
 
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    PS1='[\u@\h \W]\$ '
+      alias ls='ls --color=auto'
+      alias grep='grep --color=auto'
+      PS1='[\u@\h \W]\$ '
 
-    alias pipinit="source ~/Documents/Python/venv/bin/activate"
+      alias pipinit="source ~/Documents/Python/venv/bin/activate"
 
-    eval "$(zoxide init bash)"
+      eval "$(zoxide init bash)"
 
-    alias cd="z"
-    alias ls="lsd"
-    alias pyvenv="source ./venv/bin/activate"
+      alias cd="z"
+      alias ls="lsd"
+      alias pyvenv="source ./venv/bin/activate"
 
-    upd-nix-conf() {
-      local host=''${1:-default}
-      local rebuild_type=''${2:-switch}
-      sudo nixos-rebuild $rebuild_type --flake "/etc/nixos#$host"
-    }
-    # eval "$(oh-my-posh init bash --config /home/lioma/.config/oh-my-posh/catppuccin_macchiato.omp.json)"
-    eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
-    source "$(blesh-share)/ble.sh"
+      upd-nix-conf() {
+        local host=''${1:-default}
+        local rebuild_type=''${2:-switch}
+        sudo nixos-rebuild $rebuild_type --flake "/etc/nixos#$host"
+      }
+      # eval "$(oh-my-posh init bash --config /home/lioma/.config/oh-my-posh/catppuccin_macchiato.omp.json)"
+      eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
+      source "$(blesh-share)/ble.sh"
     '';
   };
-  
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

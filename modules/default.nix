@@ -2,28 +2,36 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   powerIcon = config.tlp.enable;
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ../hardware-configuration.nix
-      ./games
-      ./browsers
-      ./tlp.nix
-      ./bootloader.nix
-      ./obs.nix
-      ./vms.nix
-      ./libreoffice.nix
-      ./config-apps.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ../hardware-configuration.nix
+    ./games
+    ./browsers
+    ./tlp.nix
+    ./bootloader.nix
+    ./obs.nix
+    ./vms.nix
+    ./libreoffice.nix
+    ./config-apps.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
-
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -60,7 +68,7 @@ in
   };
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  
+
   nixpkgs.config.allowUnfree = true;
 
   # Enable sound with pipewire.
@@ -82,16 +90,19 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-tour
-    totem
-    geary
-    epiphany
-    yelp
-    gnome-system-monitor
-    gnome-software
-  ]);
-  
+  environment.gnome.excludePackages = (
+    with pkgs;
+    [
+      gnome-tour
+      totem
+      geary
+      epiphany
+      yelp
+      gnome-system-monitor
+      gnome-software
+    ]
+  );
+
   browsers.all.enable = lib.mkDefault false;
   games.enable = lib.mkDefault false;
   obs.enable = lib.mkDefault false;
@@ -99,12 +110,14 @@ in
   libreoffice.enable = lib.mkDefault false;
   configapps.enable = lib.mkDefault false;
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lioma = {
     isNormalUser = true;
     description = "Lionel Macrini";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       thunderbird
       equibop
@@ -113,22 +126,24 @@ in
       peazip
       bitwarden-desktop
       mediawriter
-      
+
       fastfetch
 
       keymapp
     ];
   };
-  
+
   tlp.enable = lib.mkDefault false;
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; inherit powerIcon; };
+    extraSpecialArgs = {
+      inherit inputs;
+      inherit powerIcon;
+    };
     users = {
       "lioma" = import ../home;
     };
   };
-
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
@@ -139,8 +154,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     zig
     git
     nixfmt-rfc-style
@@ -152,7 +167,7 @@ in
     blesh
     starship
     celluloid
-    
+
     mission-center
 
     adw-gtk3
@@ -165,15 +180,21 @@ in
     gnomeExtensions.just-perfection
     gnomeExtensions.dash-to-dock
     gnomeExtensions.appindicator
-    
+
     helvum
   ];
-  
+
   services.flatpak = {
     enable = true;
     remotes = [
-      { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
-      { name = "launcher.moe"; location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo"; }
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+      {
+        name = "launcher.moe";
+        location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
+      }
     ];
     packages = [
       "com.usebottles.bottles"
