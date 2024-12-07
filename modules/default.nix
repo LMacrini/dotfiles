@@ -130,6 +130,10 @@ in
       fastfetch
 
       keymapp
+
+      fortune
+      cowsay
+      lolcat
     ];
   };
 
