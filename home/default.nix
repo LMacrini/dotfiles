@@ -206,7 +206,7 @@
       eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
       source "$(blesh-share)/ble.sh"
 
-      fortune | cowsay -f stegosaurus | lolcat
+      fortune | cowsay -rC | lolcat
     '';
   };
 
