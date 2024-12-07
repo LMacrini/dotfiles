@@ -170,6 +170,7 @@
 
     alias cd="z"
     alias ls="lsd"
+    alias pyvenv="source ./venv/bin/activate"
 
     upd-nix-conf() {
       local host=''${1:-default}

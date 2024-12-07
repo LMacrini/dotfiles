@@ -144,7 +144,7 @@ in
     zig
     git
     nixfmt-rfc-style
-    uv
+    python313
     ptyxis
     neovim
     zoxide
