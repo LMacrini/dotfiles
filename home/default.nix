@@ -109,7 +109,7 @@
         "floorp.desktop"
         "org.gnome.Nautilus.desktop"
       ];
-      allow-extensions-installation = true;
+      allow-extension-installation = true;
     };
 
     "org/gnome/shell/keybindings" = {
