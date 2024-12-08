@@ -15,7 +15,7 @@
 
     users.users.lioma.packages = with pkgs; [
       lutris
-      atlauncher
+      unstable.atlauncher
       unstable.heroic
     ];
 
