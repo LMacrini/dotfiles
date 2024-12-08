@@ -171,6 +171,7 @@ in
     blesh
     starship
     celluloid
+    skim
 
     mission-center
 
