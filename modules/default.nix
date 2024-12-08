@@ -63,7 +63,7 @@ in
     # Configure keymap in X11
     xkb = {
       layout = "us";
-      variant = "symbolic";
+      variant = "mac";
     };
   };
   # Enable CUPS to print documents.
@@ -186,6 +186,8 @@ in
     gnomeExtensions.appindicator
 
     helvum
+
+    goodvibes
   ];
 
   services.flatpak = {

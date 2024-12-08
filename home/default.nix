@@ -82,11 +82,7 @@
       sources = [
         (lib.gvariant.mkTuple [
           "xkb"
-          "us+symbolic"
-        ])
-        (lib.gvariant.mkTuple [
-          "xkb"
-          "us+altgr-intl"
+          "us+mac"
         ])
       ];
       show-all-sources = true;
