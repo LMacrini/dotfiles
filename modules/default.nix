@@ -17,6 +17,7 @@ in
   imports = [
     # Include the results of the hardware scan.
     ../hardware-configuration.nix
+    ./development
     ./games
     ./browsers
     ./tlp.nix
@@ -102,7 +103,8 @@ in
       gnome-software
     ]
   );
-
+  
+  dev.enable = lib.mkDefault false;
   browsers.all.enable = lib.mkDefault false;
   games.enable = lib.mkDefault false;
   obs.enable = lib.mkDefault false;
@@ -122,7 +124,6 @@ in
       thunderbird
       equibop
       github-desktop
-      unstable.vscode
       peazip
       bitwarden-desktop
       mediawriter
@@ -160,12 +161,9 @@ in
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
-    zig
     git
     nixfmt-rfc-style
-    python313
     ptyxis
-    neovim
     zoxide
     lsd
     blesh

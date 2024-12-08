@@ -13,6 +13,7 @@
   networking.hostName = "DESKTOP-VKFSNVPI"; # Define your hostname.
 
   configapps.enable = true;
+  dev.enable = true;
 
   games.enable = true;
   obs.enable = true;
