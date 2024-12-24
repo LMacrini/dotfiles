@@ -10,7 +10,7 @@
     ../../modules
   ];
 
-  networking.hostName = "DESKTOP-VKFSNVPI"; # Define your hostname.
+  networking.hostName = "DESKTOP-VKFSNVPI";
 
   configapps.enable = true;
   dev.enable = true;
