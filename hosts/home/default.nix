@@ -14,6 +14,7 @@
 
   configapps.enable = true;
   dev.enable = true;
+  dev.unity.enable = true;
 
   games.enable = true;
   obs.enable = true;
