@@ -14,8 +14,9 @@
     programs.steam.enable = true;
 
     users.users.lioma.packages = with pkgs; [
-      lutris
-      unstable.atlauncher
+      unstable.lutris
+      wine
+      prismlauncher
       unstable.heroic
     ];
 
