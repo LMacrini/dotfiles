@@ -124,6 +124,10 @@
       toggle-application = [ "<Alt>space" ];
     };
 
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      screenreader = [];
+    };
+
     "org/gnome/shell/extensions/dash-to-dock" = {
       apply-custom-theme = false;
       background-opacity = 0.8;
