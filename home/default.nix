@@ -84,6 +84,10 @@
           "xkb"
           "us+mac"
         ])
+        (lib.gvariant.mkTuple [
+          "xkb"
+          "gr"
+        ])
       ];
       show-all-sources = true;
       xkb-options = [
