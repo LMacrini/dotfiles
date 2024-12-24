@@ -12,6 +12,7 @@
   config = lib.mkIf config.obs.enable {
     users.users.lioma.packages = with pkgs; [
       obs-studio
+      kdenlive
     ];
   };
 }
