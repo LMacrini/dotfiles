@@ -172,6 +172,7 @@ in
     skim
 
     mission-center
+    gimp
 
     adw-gtk3
     gnome-tweaks
