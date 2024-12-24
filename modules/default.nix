@@ -135,6 +135,7 @@ in
       fortune
       cowsay
       lolcat
+      pipes
     ];
   };
 
