@@ -206,6 +206,9 @@
 
       alias cd="z"
       alias ls="lsd"
+      alias la="ls -a"
+      alias ll="ls -l"
+      alias lla="ls -la"
       alias pyvenv="source ./venv/bin/activate"
 
       upd-nix-conf() {
