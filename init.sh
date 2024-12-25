@@ -7,7 +7,7 @@ sudo mkdir .backups
 sudo mv ./* ./.backups
 sudo mv ./.backups/hardware-configuration.nix ./
 
-nix-shell -p git --run "
+sudo nix-shell -p git --run "
 git clone https://github.com/lmacrini/nixos --recursive
 "
 
