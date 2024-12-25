@@ -11,7 +11,7 @@ sudo nix-shell -p git --run "
 git clone https://github.com/lmacrini/nixos --recursive
 "
 
-mv nixos/* .
+sudo mv nixos/* .
 sudo rm -r nixos init.sh README.md
 
 host=${1:-default}
