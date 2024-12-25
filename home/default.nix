@@ -196,6 +196,7 @@
       [[ $- != *i* ]] && return
 
       export NO_POINTER_VIEWPORT=1
+      export DO_NOT_TRACK=1
 
       alias ls='ls --color=auto'
       alias grep='grep --color=auto'
