@@ -216,6 +216,13 @@
         local rebuild_type=''${2:-switch}
         sudo nixos-rebuild $rebuild_type --flake "/etc/nixos#$host"
       }
+      upd-nix-flake() {
+        local dir=''${pwd} 
+	cd /etc/nixos
+	sudo nix flake update
+	cd ''$dir
+      }
+
       # eval "$(oh-my-posh init bash --config /home/lioma/.config/oh-my-posh/catppuccin_macchiato.omp.json)"
       eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
       source "$(blesh-share)/ble.sh"
