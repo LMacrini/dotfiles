@@ -19,8 +19,10 @@
   # plain files is through 'home.file'.
 
   home.file = {
-    ".config/starship.toml".source = ../.config/starship.toml;
-    ".config/background".source = ../.config/background;
+    ".config" = {
+      source = ./Home/.config;
+      recursive = true;
+    };
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
