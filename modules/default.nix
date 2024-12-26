@@ -166,7 +166,7 @@ in
     #  wget
     git
     nixfmt-rfc-style
-    ptyxis
+    inputs.ghostty.packages.x86_64-linux.default
     zoxide
     lsd
     blesh

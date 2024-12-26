@@ -1,0 +1,4 @@
+shell-integration = bash
+theme = catppuccin-macchiato
+window-decoration = true
+window-theme = ghostty

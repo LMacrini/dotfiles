@@ -85,7 +85,7 @@
       ];
       favorite-apps = [
         "equibop.desktop"
-        "org.gnome.Ptyxis.desktop"
+        "com.mitchellh.ghostty.desktop"
         "floorp.desktop"
         "org.gnome.Nautilus.desktop"
       ];
