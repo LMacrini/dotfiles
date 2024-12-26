@@ -188,9 +188,9 @@
       }
       upd-nix-flake() {
         local dir=''${pwd} 
-	cd /etc/nixos
-	sudo nix flake update
-	cd ''$dir
+        cd /etc/nixos
+        sudo nix flake update
+        cd ''$dir
       }
 
       # eval "$(oh-my-posh init bash --config /home/lioma/.config/oh-my-posh/catppuccin_macchiato.omp.json)"
