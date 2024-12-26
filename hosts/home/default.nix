@@ -13,6 +13,8 @@
   networking.hostName = "DESKTOP-VKFSNVPI";
 
   configapps.enable = true;
+  appimages.enable = true;
+
   dev.enable = true;
   dev.unity.enable = true;
 

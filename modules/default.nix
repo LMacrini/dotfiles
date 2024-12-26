@@ -26,6 +26,7 @@ in
     ./vms.nix
     ./libreoffice.nix
     ./config-apps.nix
+    ./appimages.nix
     inputs.home-manager.nixosModules.default
   ];
 
@@ -111,6 +112,7 @@ in
   vms.enable = lib.mkDefault false;
   libreoffice.enable = lib.mkDefault false;
   configapps.enable = lib.mkDefault false;
+  appimages.enable = lib.mkDefault false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lioma = {
@@ -206,7 +208,6 @@ in
     packages = [
       "com.usebottles.bottles"
       # "net.bartkessels.getit"
-      "it.mijorus.gearlever"
       # "org.gnome.Showtime"
       # "org.gnome.Decibels"
     ];
