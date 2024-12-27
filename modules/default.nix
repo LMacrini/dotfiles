@@ -22,7 +22,7 @@ in
     ./browsers
     ./tlp.nix
     ./bootloader.nix
-    ./obs.nix
+    ./videos.nix
     ./vms.nix
     ./libreoffice.nix
     ./config-apps.nix
@@ -108,7 +108,7 @@ in
   dev.enable = lib.mkDefault false;
   browsers.all.enable = lib.mkDefault false;
   games.enable = lib.mkDefault false;
-  obs.enable = lib.mkDefault false;
+  videos.enable = lib.mkDefault false;
   vms.enable = lib.mkDefault false;
   libreoffice.enable = lib.mkDefault false;
   configapps.enable = lib.mkDefault false;

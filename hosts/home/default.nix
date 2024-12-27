@@ -19,7 +19,7 @@
   dev.unity.enable = true;
 
   games.enable = true;
-  obs.enable = true;
+  videos.enable = true;
 
   vms.enable = true;
 
