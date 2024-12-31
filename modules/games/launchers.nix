@@ -17,7 +17,7 @@
       unstable.lutris
       wine
       prismlauncher
-      unstable.heroic
+      heroic
     ];
 
     services.flatpak = {
