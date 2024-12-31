@@ -174,6 +174,7 @@
 
       eval "$(zoxide init bash)"
 
+      alias cls="clear"
       alias cd="z"
       alias ls="lsd"
       alias la="ls -a"
