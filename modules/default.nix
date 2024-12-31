@@ -211,6 +211,7 @@ in
       # "org.gnome.Showtime"
       # "org.gnome.Decibels"
     ];
+    update.onActivation = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
