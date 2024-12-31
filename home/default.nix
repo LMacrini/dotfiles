@@ -145,9 +145,9 @@
     };
 
     "org/gnome/desktop/wm/keybindings" = {
+      activate-window-menu = [ "<Shift><Control><Alt>1" ];
       switch-to-workspace-left = [ "<Ctrl><Super>Left" ];
       switch-to-workspace-right = [ "<Ctrl><Super>Right" ];
-      activate-window-menu = [ ];
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {
