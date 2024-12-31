@@ -9,7 +9,7 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.5.0";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     ghostty.url = "github:ghostty-org/ghostty";
   };
