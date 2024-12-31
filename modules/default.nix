@@ -114,6 +114,8 @@ in
   configapps.enable = lib.mkDefault false;
   appimages.enable = lib.mkDefault false;
 
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lioma = {
     isNormalUser = true;
