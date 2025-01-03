@@ -10,8 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-
-    ghostty.url = "github:ghostty-org/ghostty";
   };
 
   outputs =

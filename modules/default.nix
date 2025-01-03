@@ -168,7 +168,7 @@ in
     #  wget
     git
     nixfmt-rfc-style
-    inputs.ghostty.packages.x86_64-linux.default
+    unstable.ghostty
     zoxide
     lsd
     blesh
