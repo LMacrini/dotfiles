@@ -10,6 +10,8 @@
     ../../modules
   ];
 
+  gpu.amd.enable = true;
+
   networking.hostName = "DESKTOP-VKFSNVPI";
 
   configapps.enable = true;
