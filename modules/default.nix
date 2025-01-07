@@ -177,7 +177,7 @@ in
     celluloid
     skim
 
-    mission-center
+    resources
     gimp
 
     adw-gtk3
