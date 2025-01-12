@@ -3,7 +3,7 @@
 		dev.editors.neovim.enable = lib.mkEnableOption "Enables neovim";
 	};
 
-	config = lib.mkIf config.dev.editors.enable {
+	config = lib.mkIf config.dev.editors.neovim.enable {
 		environment.systemPackages = [
 			inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default
 		];
