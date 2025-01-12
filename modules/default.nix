@@ -216,7 +216,13 @@ in
       # "org.gnome.Showtime"
       # "org.gnome.Decibels"
     ];
-    update.onActivation = true;
+    update = {
+      onActivation = true;
+      auto = {
+        enable = true;
+        onCalendar = "weekly";
+      };
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
