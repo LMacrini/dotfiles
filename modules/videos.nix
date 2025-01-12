@@ -12,7 +12,7 @@
   config = lib.mkIf config.videos.enable {
     environment.systemPackages = with pkgs; [
       obs-studio
-      kdenlive
+      davinci-resolve
     ];
   };
 }

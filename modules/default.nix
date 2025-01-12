@@ -190,10 +190,12 @@ in
     gnomeExtensions.just-perfection
     gnomeExtensions.dash-to-dock
     gnomeExtensions.appindicator
+    gnomeExtensions.arcmenu
 
     helvum
 
     goodvibes
+    eartag
   ];
 
   services.flatpak = {

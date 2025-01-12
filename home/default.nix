@@ -36,6 +36,10 @@
       workspaces-only-on-primary = true;
     };
 
+    "org/gnome/applications/terminal" = {
+      exec = "ghostty";
+    };
+
     "org/gnome/desktop/background" = {
       picture-uri = "file:///home/lioma/.config/background";
       picture-uri-dark = "file:///home/lioma/.config/background";
@@ -82,6 +86,7 @@
         "places-menu@gnome-shell-extensions.gcampax.github.com"
         "dash-to-dock@micxgx.gmail.com"
         "appindicatorsupport@rgcjonas.gmail.com"
+        "arcmenu@arcmenu.com"
       ];
       favorite-apps = [
         "equibop.desktop"
@@ -140,6 +145,15 @@
       legacy-tray-enabled = false;
     };
 
+    "org/gnome/shell/extensions/arcmenu" = {
+      arcmenu-hotkey = ["<Super>t"];
+      menu-button-appearance = "None";
+      menu-layout = "Runner";
+      runner-position = "Centered";
+      runner-search-display-style = "Grid";
+      search-provider-recent-files = true;
+    };
+
     "org/gnome/desktop/wm/preferences" = {
       button-layout = ":minimize,maximize,close";
     };
@@ -148,6 +162,13 @@
       activate-window-menu = [ "<Shift><Control><Alt>1" ];
       switch-to-workspace-left = [ "<Ctrl><Super>Left" ];
       switch-to-workspace-right = [ "<Ctrl><Super>Right" ];
+    };
+
+    "org/gnome/desktop/privacy" = {
+      old-files-age = 30;
+      recent-files-age = 30;
+      remove-old-temp-files = true;
+      remove-old-trash-files = true;
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {

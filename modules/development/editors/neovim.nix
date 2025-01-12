@@ -1,11 +1,11 @@
-{lib, config, pkgs, ...}: {
+{lib, config, inputs, pkgs, ...}: {
 	options = {
 		dev.editors.neovim.enable = lib.mkEnableOption "Enables neovim";
 	};
 
 	config = lib.mkIf config.dev.editors.enable {
-		environment.systemPackages = with pkgs; [
-			neovim
+		environment.systemPackages = [
+			inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default
 		];
 	};
 }
