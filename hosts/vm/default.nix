@@ -4,7 +4,7 @@
     ../../modules
   ];
 
-  networking.hostName = "Virtual-Machine";
+  networking.hostName = "vm";
 
   browsers.floorp.enable = false;
 

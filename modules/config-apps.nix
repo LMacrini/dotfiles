@@ -12,7 +12,6 @@
   config = lib.mkIf config.configapps.enable {
     environment.systemPackages = with pkgs; [
       dconf-editor
-      dconf2nix
     ];
   };
 }

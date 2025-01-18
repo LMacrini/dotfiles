@@ -21,6 +21,7 @@ in
     ./development
     ./games
     ./browsers
+    ./de
     ./tlp.nix
     ./bootloader.nix
     ./videos.nix
@@ -129,7 +130,7 @@ in
       thunderbird
       equibop
       github-desktop
-      peazip
+      # peazip
       bitwarden-desktop
       mediawriter
 
@@ -169,6 +170,8 @@ in
     #  wget
     git
     nixfmt-rfc-style
+    distrobox
+    podman-compose
     unstable.ghostty
     zoxide
     lsd

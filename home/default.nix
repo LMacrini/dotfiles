@@ -204,12 +204,11 @@
       alias pyvenv="source ./venv/bin/activate"
 
       upd-nix-conf() {
-        local host=''${1:-default}
-        local rebuild_type=''${2:-switch}
-        sudo nixos-rebuild $rebuild_type --flake "/etc/nixos#$host"
+        local rebuild_type=''${1:-switch}
+        sudo nixos-rebuild $rebuild_type --flake "/etc/nixos#$2"
       }
       upd-nix-flake() {
-        local dir=''${pwd} 
+        local dir=''$(pwd) 
         cd /etc/nixos
         sudo nix flake update
         cd ''$dir

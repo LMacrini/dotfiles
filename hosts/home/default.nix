@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
+{...}: {
 
   imports = [
     ../../modules
@@ -26,4 +20,6 @@
   vms.enable = true;
 
   libreoffice.enable = true;
+
+  de.hyprland.enable = true;
 }
