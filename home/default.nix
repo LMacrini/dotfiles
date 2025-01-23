@@ -41,8 +41,8 @@
     };
 
     "org/gnome/desktop/background" = {
-      picture-uri = "file:///home/lioma/.config/background";
-      picture-uri-dark = "file:///home/lioma/.config/background";
+      picture-uri = "file:///home/lioma/.config/background.jpg";
+      picture-uri-dark = "file:///home/lioma/.config/background.jpg";
     };
 
     "org/gnome/desktop/interface" = {

@@ -15,11 +15,11 @@
   dev.unity.enable = true;
 
   games.enable = true;
+  games.emulators.enable = true;
+
   videos.enable = true;
 
   vms.enable = true;
 
   libreoffice.enable = true;
-
-  de.hyprland.enable = true;
 }

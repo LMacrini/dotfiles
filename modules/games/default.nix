@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }:
@@ -11,6 +10,7 @@
     ./light-games.nix
     ./tools.nix
     ./greentimer.nix
+    ./emulators
   ];
 
   options = {
@@ -27,6 +27,8 @@
     games.greentimer.enable = lib.mkDefault (
       config.games.standalone.enable || config.games.launchers.enable || config.games.light.enable
     );
+
+    games.emulators.enable = lib.mkDefault false;
   };
 
 }

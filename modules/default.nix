@@ -179,6 +179,7 @@ in
     starship
     celluloid
     skim
+    wl-clipboard
 
     resources
     gimp
