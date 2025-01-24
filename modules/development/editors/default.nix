@@ -10,6 +10,6 @@
 
 	config = {
 		dev.editors.vscode.enable = lib.mkDefault config.dev.editors.enable;
-		dev.editors.neovim.enable = lib.mkDefault config.dev.editors.enable;
+		dev.editors.neovim.enable = lib.mkDefault false;
 	};
 }
