@@ -15,6 +15,7 @@ git clone https://github.com/lmacrini/nixos --recursive .
 "
 
 echo 'nix run github:lmacrini/nvf-config --extra-experimental-features "nix-command flakes"' > vim.sh
+chmod +x vim.sh
 
 cat << 'EOF' > build.sh
 nix-shell -p nh nom --run "
@@ -28,5 +29,6 @@ else
 fi
 "
 EOF
+chmod +x build.sh
 
-echo "Setup succesful, run 'sh vim.sh' to open neovim for editing or run 'sh build.sh host' to build specified host"
+echo "Setup succesful, run 'vim.sh' to open neovim for editing or run 'build.sh host' to build specified host"
