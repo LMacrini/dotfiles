@@ -1,20 +1,34 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-cd /etc/nixos
+if [ -d "~/dotfiles" ]; then
+  echo "dotfiles directory found, making backup..."
+  TIMESTAMP=$(date +"%FT%H%M%S")
+  mv ~/dotfiles "~/dotfiles_$TIMESTAMP"
+  echo "Backup complete, proceeding"
+fi
 
-sudo rm -r backups/*
-sudo mkdir .backups
-sudo mv ./* ./.backups
-sudo mv ./.backups/hardware-configuration.nix ./
+mkdir ~/dotfiles
+cd dotfiles
 
-sudo nix-shell -p git --run "
-git clone https://github.com/lmacrini/nixos --recursive
+nix-shell -p git --run "
+git clone https://github.com/lmacrini/nixos --recursive .
 "
 
-sudo mv nixos/* .
-sudo rm -r nixos init.sh README.md
+echo 'nix run github:lmacrini/nvf-config --extra-experimental-features "nix-command flakes"' > vim.sh
+chmod +x vim.sh
 
-host=${1:-default}
-rebuild_type=${2:-switch}
-sudo nixos-rebuild $rebuild_type --flake "/etc/nixos#$host"
-sudo reboot now
+cat << 'EOF' > build.sh
+nix-shell -p nh nom --run "
+if nh os boot .#\$1; then
+    echo Build successful, rebooting in 5 seconds...
+    sleep 5
+    rm build.sh vim.sh
+    reboot
+else
+    echo Build unsuccessful, not rebooting
+fi
+"
+EOF
+chmod +x build.sh
+
+echo "Setup succesful, run 'vim.sh' to open neovim for editing or run 'build.sh host' to build specified host"

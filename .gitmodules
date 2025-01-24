@@ -1,3 +1,0 @@
-[submodule "home/Home/.config/nvim"]
-	path = home/Home/.config/nvim
-	url = https://www.github.com/lmacrini/nvim
