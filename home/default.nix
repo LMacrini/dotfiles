@@ -155,7 +155,7 @@
     };
 
     "org/gnome/desktop/wm/preferences" = {
-      button-layout = ":minimize,maximize,close";
+      button-layout = ":close";
     };
 
     "org/gnome/desktop/wm/keybindings" = {
