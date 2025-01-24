@@ -20,11 +20,11 @@
 
   home.file = {
     ".config" = {
-      source = ./Home/.config;
+      source = ./home/.config;
       recursive = true;
     };
     "Templates" = {
-      source = ./Home/Templates;
+      source = ./home/Templates;
       recursive = true;
     };
   };
