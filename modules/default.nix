@@ -16,7 +16,6 @@ in
 {
   imports = [
     # Include the results of the hardware scan.
-    ../hardware-configuration.nix
     ./gpu
     ./development
     ./games
@@ -176,10 +175,8 @@ in
     nasin-nanpa
   ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.sessionVariables = {
-    FLAKE = "/etc/nixos";
+    FLAKE = "/home/lioma/dotfiles";
     NH_NOM = 1;
   };
 

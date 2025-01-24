@@ -2,6 +2,7 @@
 
   imports = [
     ../../modules
+    ./hardware-configuration.nix
   ];
 
   gpu.amd.enable = true;
@@ -22,4 +23,21 @@
   vms.enable = true;
 
   libreoffice.enable = true;
+
+  users.users.lioma = {
+    extraGroups = [
+      "podman"
+    ];
+  };
+
+  virtualisation = {
+    containers.enable = true;
+    oci-containers.backend = "podman";
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
 }
