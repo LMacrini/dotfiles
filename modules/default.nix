@@ -178,6 +178,11 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  environment.sessionVariables = {
+    FLAKE = "/etc/nixos";
+    NH_NOM = 1;
+  };
+
   environment.systemPackages = with pkgs; [
     nh
     nix-output-monitor
