@@ -29,7 +29,7 @@ cat << 'EOF' > build.sh
 if sudo nixos-rebuild boot --flake ./#\$1; then
   echo Build successful, rebooting in 5 seconds...
   sleep 5
-  rm build.sh vim.sh
+  rm build.sh vim.sh hdw.sh
   reboot
 else
     echo Build unsuccessful, not rebooting
