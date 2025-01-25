@@ -23,7 +23,7 @@ cp /etc/nixos/hardware-configuration.nix ./hosts/$1
 git add ./hosts/$1/hardware-configuration.nix
 "
 EOF
-chmod +x hwd.sh
+chmod +x hdw.sh
 
 cat << 'EOF' > build.sh
 if sudo nixos-rebuild boot --flake ./#$1; then
