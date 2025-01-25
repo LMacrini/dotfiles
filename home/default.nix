@@ -78,6 +78,7 @@
 
     "org/gnome/shell" = {
       enabled-extensions = [
+        "arcmenu@arcmenu.com"
         "caffeine@patapon.info"
         "blur-my-shell@aunetx"
         "gnome-ui-tune@itstime.tech"
@@ -86,7 +87,6 @@
         "places-menu@gnome-shell-extensions.gcampax.github.com"
         "dash-to-dock@micxgx.gmail.com"
         "appindicatorsupport@rgcjonas.gmail.com"
-        "arcmenu@arcmenu.com"
       ];
       favorite-apps = [
         "equibop.desktop"
