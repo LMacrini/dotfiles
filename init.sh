@@ -27,7 +27,7 @@ chmod +x hdw.sh
 
 cat << 'EOF' > build.sh
 nix-shell -p nh nom nvd fira-code-nerdfont --run "
-if nh os boot . -H #1 -- --extra-experimental-features "nix-command flakes"; then
+if nh os boot . -H $1 -- --extra-experimental-features 'nix-command flakes'; then
   echo Build successful, rebooting in 5 seconds...
   sleep 5
   rm build.sh vim.sh hdw.sh
