@@ -150,6 +150,7 @@
       arcmenu-hotkey = ["<Super>t"];
       menu-button-appearance = "None";
       menu-layout = "Runner";
+      position-in-panel = "Center";
       runner-position = "Centered";
       runner-search-display-style = "Grid";
       search-provider-recent-files = true;
