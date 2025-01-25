@@ -95,7 +95,7 @@
         "org.gnome.Nautilus.desktop"
       ];
       allow-extension-installation = true;
-      disable-user-extension = false;
+      disable-user-extensions = false;
     };
 
     "org/gnome/shell/keybindings" = {
