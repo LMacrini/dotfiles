@@ -26,14 +26,16 @@ EOF
 chmod +x hdw.sh
 
 cat << 'EOF' > build.sh
-if sudo nixos-rebuild boot --flake ./#$1; then
+nix-shell -p nh nom nvd fira-code-nerdfont --run "
+if nh os boot . -H #1 -- --extra-experimental-features "nix-command flakes"; then
   echo Build successful, rebooting in 5 seconds...
   sleep 5
   rm build.sh vim.sh hdw.sh
   reboot
 else
-    echo Build unsuccessful, not rebooting
+  echo Build unsuccessful, not rebooting
 fi
+"
 EOF
 chmod +x build.sh
 
