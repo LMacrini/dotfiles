@@ -95,6 +95,7 @@
         "org.gnome.Nautilus.desktop"
       ];
       allow-extension-installation = true;
+      disable-user-extension = false;
     };
 
     "org/gnome/shell/keybindings" = {
@@ -152,6 +153,7 @@
       runner-position = "Centered";
       runner-search-display-style = "Grid";
       search-provider-recent-files = true;
+      show-activities-button = true;
     };
 
     "org/gnome/desktop/wm/preferences" = {
