@@ -4,6 +4,7 @@
     ../../modules
     ./hardware-configuration.nix
   ];
+  dev.editors.enable = true;
 
   networking.hostName = "vm";
 
