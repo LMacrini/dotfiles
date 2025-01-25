@@ -19,14 +19,14 @@ chmod +x vim.sh
 
 cat << 'EOF' > hdw.sh
 nix-shell -p git --run "
-cp /etc/nixos/hardware-configuration.nix ./hosts/\$1
-git add ./hosts/\$1/hardware-configuration.nix
+cp /etc/nixos/hardware-configuration.nix ./hosts/$1
+git add ./hosts/$1/hardware-configuration.nix
 "
 EOF
 chmod +x hwd.sh
 
 cat << 'EOF' > build.sh
-if sudo nixos-rebuild boot --flake ./#\$1; then
+if sudo nixos-rebuild boot --flake ./#$1; then
   echo Build successful, rebooting in 5 seconds...
   sleep 5
   rm build.sh vim.sh hdw.sh
