@@ -17,17 +17,23 @@ git clone https://github.com/lmacrini/nixos --recursive .
 echo 'nix run github:lmacrini/nvf-config --extra-experimental-features "nix-command flakes"' > vim.sh
 chmod +x vim.sh
 
+cat << 'EOF' > hdw.sh
+nix-shell -p git --run "
+cp /etc/nixos/hardware-configuration.nix ./hosts/\$1
+git add ./hosts/\$1/hardware-configuration.nix
+"
+EOF
+chmod +x hwd.sh
+
 cat << 'EOF' > build.sh
-nix-shell -p nh nom --run "
-if nh os boot .#\$1; then
-    echo Build successful, rebooting in 5 seconds...
-    sleep 5
-    rm build.sh vim.sh
-    reboot
+if sudo nixos-rebuild boot --flake ./#\$1; then
+  echo Build successful, rebooting in 5 seconds...
+  sleep 5
+  rm build.sh vim.sh
+  reboot
 else
     echo Build unsuccessful, not rebooting
 fi
-"
 EOF
 chmod +x build.sh
 

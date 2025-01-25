@@ -2,6 +2,7 @@
 {
   imports = [
     ../../modules
+    ./hardware-configuration.nix
   ];
 
   networking.hostName = "vm";
