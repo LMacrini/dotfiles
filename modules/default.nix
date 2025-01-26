@@ -50,22 +50,6 @@
 
   documentation.nixos.enable = false;
 
-  services.xserver = {
-    # Enable the X11 windowing system.
-    enable = true;
-
-    # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-
-    excludePackages = [ pkgs.xterm ];
-
-    # Configure keymap in X11
-    xkb = {
-      layout = "us";
-      variant = "mac";
-    };
-  };
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
@@ -100,22 +84,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  environment.gnome.excludePackages = (
-    with pkgs;
-    [
-      gnome-tour
-      totem
-      geary
-      epiphany
-      yelp
-      gnome-system-monitor
-      gnome-software
-    ]
-  );
-  
   dev.enable = lib.mkDefault false;
   browsers.all.enable = lib.mkDefault false;
   games.enable = lib.mkDefault false;
