@@ -1,5 +1,8 @@
-{ lib, powerIcon, ... }:
+{ lib, cfg, ... }:
 {
+  imports = [
+    ./de
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -51,7 +54,7 @@
       clock-format = "24h";
       accent-color = "blue";
       monospace-font-name = "FiraCode Nerd Font Mono 10";
-      show-battery-percentage = powerIcon;
+      show-battery-percentage = cfg.tlp.enable;
     };
 
     "org/gnome/desktop/peripherals/mouse" = {
@@ -132,7 +135,7 @@
       accessibility-menu = false;
       events-button = false;
       panel-notification-icon = true;
-      power-icon = powerIcon;
+      power-icon = cfg.tlp.enable;
       quick-settings = true;
       window-demands-attention-focus = true;
       window-menu-take-screenshot-button = true;

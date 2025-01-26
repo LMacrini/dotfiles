@@ -10,9 +10,6 @@
   ...
 }:
 
-let
-  powerIcon = config.tlp.enable;
-in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -160,9 +157,11 @@ in
   tlp.enable = lib.mkDefault false;
 
   home-manager = {
-    extraSpecialArgs = {
+    extraSpecialArgs = let
+      cfg = config;
+    in {
       inherit inputs;
-      inherit powerIcon;
+      inherit cfg;
     };
     users = {
       "lioma" = import ../home;

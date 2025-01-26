@@ -12,4 +12,6 @@
 
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
+
+  de.sway.enable = true;
 }
