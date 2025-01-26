@@ -1,6 +1,7 @@
 {lib, ...}: {
   imports = [
     ./hyprland.nix
+    ./sway.nix
   ];
   
   de.hyprland.enable = lib.mkDefault false;
