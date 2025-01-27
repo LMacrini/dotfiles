@@ -37,6 +37,7 @@ if nh os boot . -H $1 -- --extra-experimental-features 'nix-command flakes'; the
   reboot
 else
   echo Build unsuccessful, not rebooting
+  exit 1
 fi
 "
 EOF
