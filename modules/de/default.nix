@@ -3,6 +3,7 @@
     ./dm.nix
     ./gnome.nix
     ./sway.nix
+    ./budgie.nix
   ];
   
   de.gnome.enable = lib.mkDefault true;
