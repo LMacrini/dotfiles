@@ -105,9 +105,9 @@
     ];
     packages = with pkgs; [
       thunderbird
-      equibop
+      unstable.equibop
       github-desktop
-      # peazip
+      unstable.peazip
       bitwarden-desktop
       mediawriter
 
