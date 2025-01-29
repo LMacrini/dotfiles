@@ -42,9 +42,15 @@
     in
     {
       nixosConfigurations = {
-        DESKTOP-VKFSNVPI = mkHost "home";
-        lionels-laptop = mkHost "laptop";
+        DESKTOP-VKFSNVPI = mkHost "DESKTOP-VKFSNVPI";
+        lionels-laptop = mkHost "lionels-laptop";
         vm = mkHost "vm";
+        live = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/liveiso
+          ];
+        };
       };
     };
 }
