@@ -36,59 +36,70 @@ else
   exit 1
 fi
 
-echo ""
-lsblk
-echo ""
+yorn manualdrives "n" "Do you want to partition drives manually? [n]"
+if manualdrives; then
+  echo "Just run 'exit' when you're done to proceed"
+  sudo -i
+else
+  echo ""
+  lsblk
+  echo ""
 
-while true; do
-  read -p "Please choose which drive you want to install nix on: " drive
+  while true; do
+    read -p "Please choose which drive you want to install nix on: " drive
 
-  if [[ -e /dev/$drive ]]; then
-    break
-  else
-    echo "invalid drive, please try again"
-  fi
-done
-
-yorn swap "n" "Do you want a swap file? [n]"
-if $swap; then
-  default_ram=$(free -g | awk '/^Mem:/ {print $2}')
-  read -p "How big do you want your swap file? (in GiB, default=$default_ram): " swapsize
-  swapsize=${swapsize:=default_ram}
-  while [[ $swapsize -gt 32 ]] || [[ $swapsize -gt $((default_ram*2)) ]]; do
-    read -p "Invalid input, please try again " swapsize
-    swapsize=${swapsize:=default_ram}
+    if [[ -e /dev/$drive ]]; then
+      yorn sure "n" "Are you sure you want to continue? This will wipe all information on the drive [n]"
+      if $sure; then
+        break
+      fi
+    else
+      echo "invalid drive, please try again"
+    fi
   done
 
-  sudo parted /dev/$drive -- mklabel gpt
-  sudo parted /dev/$drive -- mkpart root ext4 512MB -${swapsize}GB
-  sudo parted /dev/$drive -- mkpart swap linux-swap -${swapsize}GB 100%
-  sudo parted /dev/$drive -- mkpart ESP fat32 1MB 512MB
-  sudo parted /dev/$drive -- set 3 esp on
 
-  sudo mkfs.ext4 -L nixos /dev/${drive}1
-  sudo mkswap -L swap /dev/${drive}2
-  sudo mkfs.fat -F 32 -n boot /dev/${drive}3
-else
-  sudo parted /dev/$drive -- mklabel gpt
-  sudo parted /dev/$drive -- mkpart root ext4 512MB 100%
-  sudo parted /dev/$drive -- mkpart ESP fat32 1MB 512MB
-  sudo parted /dev/$drive -- set 2 esp on
+  yorn swap "n" "Do you want a swap file? [n]"
+  if $swap; then
+    default_ram=$(free -g | awk '/^Mem:/ {print $2}')
+    read -p "How big do you want your swap file? (in GiB, default=$default_ram): " swapsize
+    swapsize=${swapsize:=default_ram}
+    while [[ $swapsize -gt 32 ]] || [[ $swapsize -gt $((default_ram*2)) ]]; do
+      read -p "Invalid input, please try again " swapsize
+      swapsize=${swapsize:=default_ram}
+    done
 
-  sudo mkfs.ext4 -L nixos /dev/${drive}1
-  sudo mkfs.fat -F 32 -n boot /dev/${drive}2
-fi
+    sudo parted /dev/$drive -- mklabel gpt
+    sudo parted /dev/$drive -- mkpart root ext4 512MB -${swapsize}GB
+    sudo parted /dev/$drive -- mkpart swap linux-swap -${swapsize}GB 100%
+    sudo parted /dev/$drive -- mkpart ESP fat32 1MB 512MB
+    sudo parted /dev/$drive -- set 3 esp on
 
-sudo mount /dev/disk/by-label/nixos /mnt
-sudo mkdir -p /mnt/boot
-sudo mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
+    sudo mkfs.ext4 -L nixos /dev/${drive}1
+    sudo mkswap -L swap /dev/${drive}2
+    sudo mkfs.fat -F 32 -n boot /dev/${drive}3
+  else
+    sudo parted /dev/$drive -- mklabel gpt
+    sudo parted /dev/$drive -- mkpart root ext4 512MB 100%
+    sudo parted /dev/$drive -- mkpart ESP fat32 1MB 512MB
+    sudo parted /dev/$drive -- set 2 esp on
 
-echo "/dev/${drive}"
-if [[ $swap = true ]]; then
-  yorn swapon "n" "Do you want to enable swap now? (recommended on lower end devices) [n]"
-  if $swapon; then
-    sudo swapon /dev/${drive}2
+    sudo mkfs.ext4 -L nixos /dev/${drive}1
+    sudo mkfs.fat -F 32 -n boot /dev/${drive}2
   fi
+
+  sudo mount /dev/disk/by-label/nixos /mnt
+  sudo mkdir -p /mnt/boot
+  sudo mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
+
+  echo "/dev/${drive}"
+  if [[ $swap = true ]]; then
+    yorn swapon "n" "Do you want to enable swap now? (recommended on lower end devices) [n]"
+    if $swapon; then
+      sudo swapon /dev/${drive}2
+    fi
+  fi
+
 fi
 
 sudo nixos-generate-config --root /mnt
