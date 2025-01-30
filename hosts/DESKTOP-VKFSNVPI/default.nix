@@ -4,10 +4,11 @@
     ../../modules
     ./hardware-configuration.nix
   ];
-
   gpu.amd.enable = true;
 
   networking.hostName = "DESKTOP-VKFSNVPI";
+
+  kb.cmk-dh.enable = false;
 
   configapps.enable = true;
   appimages.enable = true;

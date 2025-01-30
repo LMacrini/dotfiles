@@ -25,6 +25,7 @@
     ./libreoffice.nix
     ./config-apps.nix
     ./appimages.nix
+    ./keyboards.nix
     inputs.home-manager.nixosModules.default
   ];
 
