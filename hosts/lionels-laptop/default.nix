@@ -13,4 +13,6 @@
   tlp.enable = true;
 
   libreoffice.enable = true;
+  
+  dev.editors.enable = true;
 }

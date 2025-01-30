@@ -154,6 +154,7 @@
     nvd
 
     git
+    gh
     nixfmt-rfc-style
     distrobox
     podman-compose
