@@ -114,6 +114,11 @@ echo ""
 while true; do
   read -p "Which host do you want to build? " host
 
+  if [[ $host == "new" ]]; then
+    sudo -i
+    continue
+  fi
+
   if [[ -f "./hosts/$host/hardware-configuration.nix" ]]; then
     yorn replacehardware "n" "hardware-configuration.nix found in this host, do you wish to replace it? [n]"
   else
