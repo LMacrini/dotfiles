@@ -32,6 +32,8 @@
     "colors"
   ],
   "logo": {
-    "source": "$HOME/.config/fastfetch/icon.png"
+    "source": "$HOME/.config/fastfetch/icon.png",
+    "type": "kitty",
+    "height": 24
   }
 }
