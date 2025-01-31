@@ -79,11 +79,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1738023399,
-        "narHash": "sha256-K/xeHSclj5wSKUYkGdKoIgeJs9CcgNfbusXaBuAO9ZU=",
+        "lastModified": 1738349074,
+        "narHash": "sha256-sEtAW5WdtEv6AuvR3dqSqRdLd7fDj/JbKPCWcKcR824=",
         "owner": "lmacrini",
         "repo": "nvf-config",
-        "rev": "bea542d76d1c8715bf4451f422e3e8e2b04a4692",
+        "rev": "d305f11afe2016bca05ff36f0fc5ae31354f050f",
         "type": "github"
       },
       "original": {
