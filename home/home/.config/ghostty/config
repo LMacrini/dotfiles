@@ -2,3 +2,9 @@ shell-integration = bash
 theme = catppuccin-macchiato
 window-decoration = true
 window-theme = ghostty
+
+window-width = 1280
+window-height = 720
+
+background-opacity = 0.8
+# background-blur = true
