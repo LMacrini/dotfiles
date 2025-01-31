@@ -4,6 +4,7 @@
     ../../modules
     ./hardware-configuration.nix
   ];
+  gpu.nvidia.enable = true;
 
   networking.hostName = "lionels-laptop";
 
