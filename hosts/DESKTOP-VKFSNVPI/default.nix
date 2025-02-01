@@ -25,6 +25,8 @@
 
   libreoffice.enable = true;
 
+  ghosttyflake.enable = true;
+
   users.users.lioma = {
     extraGroups = [
       "podman"

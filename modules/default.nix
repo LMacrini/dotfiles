@@ -19,6 +19,7 @@
     ./browsers
     ./de
     ./laptop
+    ./ghostty.nix
     ./bootloader.nix
     ./videos.nix
     ./vms.nix
@@ -85,6 +86,7 @@
     #media-session.enable = true;
   };
 
+  ghosttyflake.enable = lib.mkDefault false;
   dev.enable = lib.mkDefault false;
   browsers.all.enable = lib.mkDefault false;
   games.enable = lib.mkDefault false;
@@ -155,7 +157,6 @@
     nixfmt-rfc-style
     distrobox
     podman-compose
-    unstable.ghostty
     zoxide
     lsd
     blesh
