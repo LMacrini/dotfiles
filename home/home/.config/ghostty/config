@@ -1,5 +1,6 @@
 shell-integration = bash
 theme = catppuccin-macchiato
+font-family = FiraCode Nerd Font Mono
 window-decoration = true
 window-theme = ghostty
 
