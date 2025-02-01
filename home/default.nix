@@ -101,7 +101,6 @@
         "equibop.desktop"
         "com.mitchellh.ghostty.desktop"
         "floorp.desktop"
-        "org.gnome.Nautilus.desktop"
       ];
       allow-extension-installation = true;
       disable-user-extensions = false;
