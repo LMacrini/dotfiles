@@ -11,7 +11,10 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
-    ghostty.url = "github:ghostty-org/ghostty";
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
 
     neovim.url = "github:lmacrini/nvf-config";
   };
