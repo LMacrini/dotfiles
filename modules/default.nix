@@ -116,9 +116,6 @@
 
       keymapp
 
-      fortune
-      cowsay
-      lolcat
       pipes
     ];
   };
