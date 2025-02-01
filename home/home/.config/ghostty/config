@@ -9,3 +9,5 @@ window-height = 720
 
 background-opacity = 0.8
 # background-blur = true
+
+cursor-invert-fg-bg = true
