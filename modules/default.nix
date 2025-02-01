@@ -18,7 +18,7 @@
     ./games
     ./browsers
     ./de
-    ./tlp.nix
+    ./laptop
     ./bootloader.nix
     ./videos.nix
     ./vms.nix
@@ -120,7 +120,7 @@
     ];
   };
 
-  tlp.enable = lib.mkDefault false;
+  laptop.enable = lib.mkDefault false;
 
   home-manager = {
     extraSpecialArgs = let

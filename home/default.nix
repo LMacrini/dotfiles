@@ -54,7 +54,7 @@
       clock-format = "24h";
       accent-color = "blue";
       monospace-font-name = "FiraCode Nerd Font Mono 10";
-      show-battery-percentage = cfg.tlp.enable;
+      show-battery-percentage = cfg.laptop.enable;
     };
 
     "org/gnome/desktop/peripherals/mouse" = {
@@ -141,7 +141,7 @@
       accessibility-menu = false;
       events-button = false;
       panel-notification-icon = true;
-      power-icon = cfg.tlp.enable;
+      power-icon = cfg.laptop.enable;
       quick-settings = true;
       window-demands-attention-focus = true;
       window-menu-take-screenshot-button = true;

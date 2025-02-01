@@ -2,10 +2,10 @@
 {
 
   options = {
-    tlp.enable = lib.mkEnableOption "Enables tlp";
+    laptop.tlp.enable = lib.mkEnableOption "Enable tlp";
   };
 
-  config = lib.mkIf config.tlp.enable {
+  config = lib.mkIf config.laptop.tlp.enable {
     services.power-profiles-daemon.enable = false;
     services.tlp = {
       enable = true;
