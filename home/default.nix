@@ -50,6 +50,7 @@
 
     "org/gnome/desktop/interface" = {
       gtk-theme = "adw-gtk3-dark";
+      icon-theme = "rose-pine";
       color-scheme = "prefer-dark";
       clock-format = "24h";
       accent-color = "blue";
