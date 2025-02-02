@@ -163,6 +163,7 @@
     celluloid
     skim
     wl-clipboard
+    yazi
 
     _7zz-rar
     unstable.peazip
