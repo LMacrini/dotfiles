@@ -171,6 +171,7 @@
     "org/gnome/desktop/wm/preferences" = {
       button-layout = ":close";
       focus-mode = "sloppy";
+      resize-with-right-button = true;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
