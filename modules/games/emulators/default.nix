@@ -1,6 +1,7 @@
 {lib, config, ...}: {
   imports = [
     ./ryujinx.nix
+    ./torzu.nix
     ./dolphin.nix
   ];
 
@@ -10,10 +11,11 @@
 
   config = {
     games.emulators = let
-        default = config.games.emulators.enable;
-      in {
-      ryujinx.enable = lib.mkDefault default;
+      default = config.games.emulators.enable;
+    in {
       dolphin.enable = lib.mkDefault default;
+      torzu.enable = lib.mkDefault default;
+      ryujinx.enable = lib.mkDefault false;
     };
   };
 }
