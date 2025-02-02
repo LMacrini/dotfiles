@@ -110,7 +110,6 @@
       thunderbird
       unstable.equibop
       github-desktop
-      unstable.peazip
       bitwarden-desktop
       mediawriter
 
@@ -164,6 +163,9 @@
     celluloid
     skim
     wl-clipboard
+
+    _7zz-rar
+    unstable.peazip
 
     resources
     gimp
