@@ -11,3 +11,5 @@ background-opacity = 0.8
 # background-blur = true
 
 cursor-invert-fg-bg = true
+
+keybind = ctrl+shift+w=close_surface
