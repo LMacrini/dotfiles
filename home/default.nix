@@ -129,6 +129,8 @@
       intellihide = false;
       intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
       running-indicator-style = "BINARY";
+      show-mounts = false;
+      show-trash = false;
       transparency-mode = "DEFAULT";
     };
 
