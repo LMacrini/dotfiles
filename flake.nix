@@ -19,7 +19,10 @@
       };
     };
 
-    neovim.url = "github:lmacrini/nvf-config";
+    neovim = {
+      url = "github:lmacrini/nvf-config";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
