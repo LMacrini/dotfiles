@@ -170,18 +170,6 @@
     resources
     gimp
 
-    adw-gtk3
-    gnome-tweaks
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.rounded-window-corners-reborn
-    gnomeExtensions.user-themes
-    gnomeExtensions.caffeine
-    gnomeExtensions.gnome-40-ui-improvements
-    gnomeExtensions.just-perfection
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.appindicator
-    gnomeExtensions.arcmenu
-
     helvum
 
     goodvibes
