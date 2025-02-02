@@ -170,6 +170,7 @@
 
     "org/gnome/desktop/wm/preferences" = {
       button-layout = ":close";
+      focus-mode = "sloppy";
     };
 
     "org/gnome/desktop/wm/keybindings" = {
