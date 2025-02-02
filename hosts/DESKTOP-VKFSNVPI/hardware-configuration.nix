@@ -55,4 +55,6 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.xone.enable = true;
+
+  hardware.opentabletdriver.enable = true;
 }
