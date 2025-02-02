@@ -11,7 +11,7 @@
   games.light.enable = true;
   games.greentimer.enable = false;
 
-  laptop.tlp.enable = true;
+  laptop.enable = true;
 
   libreoffice.enable = true;
   
