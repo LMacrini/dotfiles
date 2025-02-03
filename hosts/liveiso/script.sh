@@ -106,7 +106,7 @@ sudo nixos-generate-config --root /mnt
 
 cd /mnt/etc/nixos
 
-sudo git clone https://github.com/lmacrini/nixos
+sudo git clone https://github.com/lmacrini/dotfiles
 cd nixos
 
 echo ""

@@ -12,7 +12,7 @@ mkdir ~/dotfiles
 cd dotfiles
 
 nix-shell -p git --run "
-git clone https://github.com/lmacrini/nixos --recursive .
+git clone https://github.com/lmacrini/dotfiles --recursive .
 "
 
 echo 'nix run github:lmacrini/nvf-config --extra-experimental-features "nix-command flakes"' > vim.sh
