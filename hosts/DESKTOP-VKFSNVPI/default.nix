@@ -26,21 +26,4 @@
   libreoffice.enable = true;
 
   ghosttyflake.enable = true;
-
-  users.users.lioma = {
-    extraGroups = [
-      "podman"
-    ];
-  };
-
-  virtualisation = {
-    containers.enable = true;
-    oci-containers.backend = "podman";
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
-
 }
