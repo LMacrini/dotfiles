@@ -1,9 +1,13 @@
-{config, pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
   services = {
     displayManager.sddm.enable = !config.de.gnome.enable;
-      xserver = {
+    xserver = {
       enable = true;
       xkb = {
         layout = "us";

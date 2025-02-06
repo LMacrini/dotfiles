@@ -3,9 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-
-{
+}: {
   options = {
     appimages.enable = lib.mkEnableOption "Enables appimages support";
   };

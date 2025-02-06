@@ -3,8 +3,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   options = {
     games.greentimer.enable = lib.mkEnableOption "Enables green timer";
   };

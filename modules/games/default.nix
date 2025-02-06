@@ -2,8 +2,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     ./games.nix
     ./launchers.nix
@@ -30,5 +29,4 @@
 
     games.emulators.enable = lib.mkDefault false;
   };
-
 }

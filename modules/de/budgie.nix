@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     de.budgie.enable = lib.mkEnableOption "Enable budgie";
   };

@@ -1,7 +1,6 @@
-{lib, ...}:
-{
+{lib, ...}: {
   imports = [
-	./amd.nix
+    ./amd.nix
     ./nvidia.nix
   ];
 

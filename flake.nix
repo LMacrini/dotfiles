@@ -25,43 +25,48 @@
     };
   };
 
-  outputs =
-    { self, nixpkgs, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      overlay-unstable = final: prev: {
-        unstable = import inputs.nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    overlay-unstable = final: prev: {
+      unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
       };
+    };
 
-      mkHost = path: nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+    mkHost = path:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
         modules = [
           ./hosts/${path}
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.home-manager.nixosModules.default
           (
-            { config, pkgs, ... }:
             {
-              nixpkgs.overlays = [ overlay-unstable ];
+              config,
+              pkgs,
+              ...
+            }: {
+              nixpkgs.overlays = [overlay-unstable];
             }
           )
         ];
       };
-    in
-    {
-      nixosConfigurations = {
-        DESKTOP-VKFSNVPI = mkHost "DESKTOP-VKFSNVPI";
-        lionels-laptop = mkHost "lionels-laptop";
-        vm = mkHost "vm";
-        live = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/liveiso
-          ];
-        };
+  in {
+    nixosConfigurations = {
+      DESKTOP-VKFSNVPI = mkHost "DESKTOP-VKFSNVPI";
+      lionels-laptop = mkHost "lionels-laptop";
+      vm = mkHost "vm";
+      live = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/liveiso
+        ];
       };
     };
+  };
 }

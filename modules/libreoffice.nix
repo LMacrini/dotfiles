@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-{
-
+}: {
   options = {
     libreoffice.enable = lib.mkEnableOption "Enable libreoffice";
   };

@@ -1,11 +1,16 @@
-{lib, config, pkgs, ...}: {
-	options = {
-		dev.nix.enable = lib.mkEnableOption "Enables nix";
-	};
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  options = {
+    dev.nix.enable = lib.mkEnableOption "Enables nix";
+  };
 
-	config = lib.mkIf config.dev.nix.enable {
-		environment.systemPackages = with pkgs; [
-			nixd
-		];
-	};
+  config = lib.mkIf config.dev.nix.enable {
+    environment.systemPackages = with pkgs; [
+      nixd
+    ];
+  };
 }

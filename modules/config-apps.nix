@@ -3,8 +3,7 @@
   config,
   lib,
   ...
-}:
-{
+}: {
   options = {
     configapps.enable = lib.mkEnableOption "Enables apps for configuring";
   };

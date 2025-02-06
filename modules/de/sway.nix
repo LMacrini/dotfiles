@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     de.sway.enable = lib.mkEnableOption "Enable sway";
   };
@@ -11,7 +16,7 @@
       mako # notification system developed by swaywm maintainer
     ];
 
-    # Enable the gnome-keyring secrets vault. 
+    # Enable the gnome-keyring secrets vault.
     # Will be exposed through DBus to programs willing to store secrets.
     services.gnome.gnome-keyring.enable = true;
 

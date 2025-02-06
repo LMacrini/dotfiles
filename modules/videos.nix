@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-{
+}: {
   options = {
     videos.enable = lib.mkEnableOption "Enable video tools";
   };

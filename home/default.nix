@@ -1,5 +1,8 @@
-{ lib, cfg, ... }:
 {
+  lib,
+  cfg,
+  ...
+}: {
   imports = [
     ./de
   ];
@@ -34,7 +37,7 @@
 
   dconf.settings = {
     "org/gnome/mutter" = {
-      experimental-features = [ "scale-monitor-framebuffer" ];
+      experimental-features = ["scale-monitor-framebuffer"];
       dynamic-workspaces = true;
       workspaces-only-on-primary = true;
     };
@@ -63,17 +66,20 @@
     };
 
     "org/gnome/desktop/input-sources" = {
-      sources = builtins.filter (x: !isNull x) [
+      sources = builtins.filter (x: x != null) [
         (lib.gvariant.mkTuple [
           "xkb"
           "us+mac"
         ])
-        (if cfg.kb.cmk-dh.enable then
-          (lib.gvariant.mkTuple [
-            "xkb"
-            "us+colemak_dh"
-          ]) 
-        else null)
+        (
+          if cfg.kb.cmk-dh.enable
+          then
+            (lib.gvariant.mkTuple [
+              "xkb"
+              "us+colemak_dh"
+            ])
+          else null
+        )
         (lib.gvariant.mkTuple [
           "xkb"
           "gr"
@@ -112,7 +118,7 @@
         "<Ctrl><Shift><Alt>S"
         "Print"
       ];
-      toggle-application = [ "<Alt>space" ];
+      toggle-application = ["<Alt>space"];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -175,9 +181,9 @@
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      activate-window-menu = [ "<Shift><Control><Alt>1" ];
-      switch-to-workspace-left = [ "<Ctrl><Super>Left" ];
-      switch-to-workspace-right = [ "<Ctrl><Super>Right" ];
+      activate-window-menu = ["<Shift><Control><Alt>1"];
+      switch-to-workspace-left = ["<Ctrl><Super>Left"];
+      switch-to-workspace-right = ["<Ctrl><Super>Right"];
     };
 
     "org/gnome/desktop/privacy" = {
@@ -224,7 +230,7 @@
         sudo nixos-rebuild $rebuild_type --flake "/etc/nixos#$2"
       }
       upd-nix-flake() {
-        local dir=''$(pwd) 
+        local dir=''$(pwd)
         cd /etc/nixos
         sudo nix flake update
         cd ''$dir

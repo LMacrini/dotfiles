@@ -1,5 +1,8 @@
-{ config, lib, ... }:
 {
+  config,
+  lib,
+  ...
+}: {
   options = {
     vms.enable = lib.mkEnableOption "Enable virtual machines";
   };

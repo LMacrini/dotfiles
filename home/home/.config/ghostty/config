@@ -4,6 +4,7 @@ font-family = FiraCode Nerd Font Mono
 window-decoration = true
 window-theme = ghostty
 
+maximize = false
 window-width = 1280
 window-height = 720
 

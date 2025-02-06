@@ -1,5 +1,4 @@
-{ ... }: {
-
+{...}: {
   imports = [
     ../../modules
     ./hardware-configuration.nix
@@ -14,6 +13,6 @@
   laptop.enable = true;
 
   libreoffice.enable = true;
-  
+
   dev.editors.enable = true;
 }

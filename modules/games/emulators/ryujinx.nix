@@ -1,4 +1,9 @@
-{lib, config, pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   options = {
     games.emulators.ryujinx.enable = lib.mkEnableOption "Enable emulators";
   };

@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-{
+}: {
   options = {
     browsers.floorp.enable = lib.mkEnableOption "Enables the Floorp browser";
   };
