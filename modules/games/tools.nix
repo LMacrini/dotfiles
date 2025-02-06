@@ -12,5 +12,9 @@
     users.users.lioma.packages = with pkgs; [
       blockbench
     ];
+
+    services.flatpak.packages = [
+      "com.github.Matoking.protontricks"
+    ];
   };
 }
