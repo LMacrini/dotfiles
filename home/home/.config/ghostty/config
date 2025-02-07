@@ -8,9 +8,6 @@ maximize = false
 window-width = 1280
 window-height = 720
 
-background-opacity = 0.8
-# background-blur = true
-
 cursor-invert-fg-bg = true
 
 keybind = ctrl+shift+w=close_surface
