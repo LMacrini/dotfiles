@@ -117,6 +117,10 @@
     packages = with pkgs; [
       thunderbird
       equibop
+      (discord.override {
+        withOpenASAR = true;
+        withVencord = true;
+      })
       github-desktop
       bitwarden-desktop
       mediawriter
