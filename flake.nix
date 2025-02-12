@@ -21,7 +21,7 @@
 
     neovim = {
       url = "github:lmacrini/nvf-config";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
