@@ -28,7 +28,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-      davinci-resolve
+      unstable.davinci-resolve
     ];
   };
 }
