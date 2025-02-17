@@ -108,6 +108,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lioma = {
+    hashedPassword = "$6$DuDKsmXNZ0IBeQRk$QDXClqL6ryJ58EsQgfph71HZuNUKRH/BaXksEVkc/lIY2fd.trKorNB72ojne.1akMrcKgvgjqxBiS2fsIXS5/";
     isNormalUser = true;
     description = "Lionel Macrini";
     extraGroups = [
