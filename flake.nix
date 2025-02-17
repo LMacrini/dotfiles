@@ -25,13 +25,9 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
+  outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
-    overlay-unstable = final: prev: {
+    overlay-unstable = _: _: {
       unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
@@ -46,11 +42,7 @@
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.home-manager.nixosModules.default
           (
-            {
-              config,
-              pkgs,
-              ...
-            }: {
+            _: {
               nixpkgs.overlays = [overlay-unstable];
             }
           )
@@ -65,6 +57,14 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/liveiso
+          ./modules
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.home-manager.nixosModules.default
+          (
+            _: {
+              nixpkgs.overlays = [overlay-unstable];
+            }
+          )
         ];
       };
     };

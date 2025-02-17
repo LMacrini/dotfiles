@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   modulesPath,
+  lib,
   ...
 }: let
   nixinstall = pkgs.writeTextFile {
@@ -17,12 +18,22 @@ in {
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  networking.wireless.enable = false;
+
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "lioma";
+  };
+
+  laptop = {
+    enable = true;
+    tlp.enable = false;
+  };
+
+  ghosttyflake.enable = true;
+
   environment.systemPackages = with pkgs; [
     git
-    iwd
-    # inputs.install-script.packages.x86_64-linux.nixinstall
     nixinstall
   ];
-
-  nix.settings.experimental-features = ["nix-command" "flakes"];
 }
