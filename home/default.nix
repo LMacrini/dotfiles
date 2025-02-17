@@ -103,6 +103,7 @@
         "places-menu@gnome-shell-extensions.gcampax.github.com"
         "dash-to-dock@micxgx.gmail.com"
         "appindicatorsupport@rgcjonas.gmail.com"
+        "quick-settings-audio-panel@rayzeq.github.io"
       ];
       favorite-apps = [
         "equibop.desktop"
