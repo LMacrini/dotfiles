@@ -3,6 +3,8 @@
     ../../modules
     ./hardware-configuration.nix
   ];
+  de.hyprland.enable = true;
+
   gpu.amd.enable = true;
 
   networking.hostName = "DESKTOP-VKFSNVPI";
