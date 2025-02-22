@@ -40,6 +40,7 @@
           appId = "moe.launcher.sleepy-launcher";
           origin = "launcher.moe";
         }
+        "io.github.everestapi.Olympus"
       ];
     };
   };
