@@ -116,7 +116,7 @@
 
     "org/gnome/shell/keybindings" = {
       show-screenshot-ui = [
-        "<Ctrl><Shift><Alt>S"
+        "<Shift><Super>S"
         "Print"
       ];
       toggle-application = ["<Alt>space"];
