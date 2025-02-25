@@ -31,7 +31,10 @@ lib.mkIf cfg.de.hyprland.enable {
 
       "exec-once" = "hyprpaper";
 
-      monitor = cfg.de.hyprland.monitor;
+      monitor = cfg.de.hyprland.monitor 
+        ++ [
+        ", preffered, auto, 1"
+      ];
 
       bind = [
         "$mod, T, exec, wofi --show drun"
