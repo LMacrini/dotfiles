@@ -17,6 +17,10 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
+  de.hyprland.monitor = [
+    "eDP-1, 1920x1080@144.00200, 0x0, 1"
+  ];
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/adb0ac11-2f2b-4ce0-b0ee-65d6634d008a";
     fsType = "ext4";
