@@ -1,9 +1,9 @@
 {pkgs, cfg, lib, ...}:
 lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
-    # waybar
     swaynotificationcenter
     wofi
+    # waybar
     # hyprpaper
   ];
 
