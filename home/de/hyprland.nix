@@ -36,6 +36,13 @@ lib.mkIf cfg.de.hyprland.enable {
         ", preffered, auto, 1"
       ];
 
+      env = [
+        "HYPRCURSOR_THEME,catppuccin-macchiato-dark-cursors"
+        "HYPRCURSOR_SIZE,32"
+        "XCURSOR_THEME,catppuccin-macchiato-dark-cursors"
+        "XCURSOR_THEME,32"
+      ];
+
       bind = [
         "$mod, T, exec, wofi --show drun"
         "$mod, Q, exec, ghostty"

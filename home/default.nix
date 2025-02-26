@@ -1,6 +1,7 @@
 {
   lib,
   cfg,
+  pkgs,
   ...
 }: {
   imports = [
@@ -24,6 +25,10 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
 
+  home.packages = with pkgs; [
+    pkgs.catppuccin-cursors.macchiatoDark
+  ];
+
   home.file = {
     ".config" = {
       source = ./home/.config;
@@ -32,6 +37,10 @@
     "Templates" = {
       source = ./home/Templates;
       recursive = true;
+    };
+    ".icons/catppuccin-macchiato-dark-cursors" = {
+      recursive = true;
+      source = "${pkgs.catppuccin-cursors.macchiatoDark}/share/icons/catppuccin-macchiato-dark-cursors";
     };
   };
 
@@ -56,6 +65,7 @@
       icon-theme = "rose-pine";
       color-scheme = "prefer-dark";
       clock-format = "24h";
+      cursor-theme = "catppuccin-macchiato-dark-cursors";
       accent-color = "blue";
       monospace-font-name = "FiraCode Nerd Font Mono 10";
       show-battery-percentage = cfg.laptop.enable;
