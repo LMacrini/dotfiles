@@ -3,7 +3,15 @@
     ../../modules
     ./hardware-configuration.nix
   ];
-  de.hyprland.enable = true;
+  de = {
+    hyprland = {
+      enable = true;
+      monitor = [
+        "DP-1,2560x1440@144,0x0,1"
+        "HDMI-A-2,1920x1080@144,2560x180,1"
+      ];
+    };
+  };
 
   gpu.amd.enable = true;
 
