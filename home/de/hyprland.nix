@@ -7,7 +7,12 @@ lib.mkIf cfg.de.hyprland.enable {
     # hyprpaper
   ];
 
-  # programs.waybar.enable = true;
+  programs.waybar = {
+    enable = true;
+    settings = {
+      modules-left = [ "hyprland/workspaces" ];
+    };
+  };
 
   services.hyprpaper = {
     enable = true;
