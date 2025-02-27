@@ -62,6 +62,12 @@ lib.mkIf cfg.de.hyprland.enable {
         ", preffered, auto, 1"
       ];
 
+      input = {
+        kb_layout = "us,us,gr";
+        kb_variant = "mac,colemak_dh,";
+        kb_options = "grp:win_space_toggle";
+      };
+
       env = [
         "HYPRCURSOR_THEME,catppuccin-macchiato-dark-cursors"
         "HYPRCURSOR_SIZE,32"
