@@ -7,7 +7,6 @@
   config = lib.mkIf config.de.hyprland.enable {
     programs = {
       hyprland.enable = true;
-      waybar.enable = true;
     };
 
     environment.systemPackages = with pkgs; [

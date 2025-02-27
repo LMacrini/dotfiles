@@ -3,14 +3,31 @@ lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
     swaynotificationcenter
     wofi
-    # waybar
-    # hyprpaper
   ];
 
-  programs.waybar = {
-    enable = true;
-    settings = {
-      modules-left = [ "hyprland/workspaces" ];
+  programs = {
+    wlogout.enable = true;
+    waybar = {
+      enable = true;
+      settings = {
+        mainbar = {
+          modules-left = [ "hyprland/workspaces" ];
+          modules-center = [ "clock" ];
+          modules-right = [ 
+            "custom/power"
+          ];
+
+          "hyprland/workspaces" = {
+            all-outputs = true;
+          };
+
+          "custom/power" = {
+            format = " ⏻ ";
+            tooltip = false;
+            on-click = "wlogout";
+          };
+        };
+      };
     };
   };
 
@@ -31,10 +48,14 @@ lib.mkIf cfg.de.hyprland.enable {
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.variables = ["--all"];
     settings = {
       "$mod" = "SUPER";
 
-      "exec-once" = "hyprpaper";
+      "exec-once" = [
+        "hyprpaper"
+        "waybar"
+      ];
 
       monitor = cfg.de.hyprland.monitor 
         ++ [
