@@ -15,4 +15,16 @@
   libreoffice.enable = true;
 
   dev.editors.enable = true;
+
+  de.hyprland = {
+    enable = true;
+    monitor = [
+      "eDPI1,1920x1080,0x0,1"
+    ];
+  };
+
+  hardware.nvidia.prime = {
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 }
