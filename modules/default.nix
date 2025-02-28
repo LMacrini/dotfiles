@@ -114,6 +114,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "uinput"
     ];
     packages = with pkgs; [
       thunderbird

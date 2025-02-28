@@ -1,0 +1,26 @@
+(defcfg
+  linux-dev-names-exclude (
+    "zsa-technology-labs-ergodox-ez"
+  )
+  linux-continue-if-no-devs-found yes
+)
+
+(defsrc
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  z x c v b n m caps rctl
+)
+
+
+
+(deflayer cmkdh
+  q w f p b j l u y ;
+  a r s t g m n e i o
+  x c d v z k h bspc (layer-switch qwerty)
+)
+
+(deflayer qwerty
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  z x c v b n m bspc (layer-switch cmkdh)
+)
