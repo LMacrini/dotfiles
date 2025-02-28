@@ -79,7 +79,10 @@
   nixpkgs.config.allowUnfree = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  hardware = {
+    pulseaudio.enable = false;
+    uinput.enable = true;
+  };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
