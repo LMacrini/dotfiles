@@ -66,11 +66,18 @@ lib.mkIf cfg.de.hyprland.enable {
           modules-right = [ 
             "pulseaudio"
             "battery"
+            "custom/kbd"
             "custom/power"
           ];
 
           "hyprland/workspaces" = {
             all-outputs = true;
+          };
+
+          "custom/kbd" = {
+            format = " 󰌌 ";
+            tooltip = false;
+            on-click = ''hyprctl dispatch exec "pkill kanata && kanata"'';
           };
 
           "custom/power" = {
