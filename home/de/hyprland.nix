@@ -194,7 +194,7 @@ lib.mkIf cfg.de.hyprland.enable {
     settings = {
       "$mod" = "SUPER";
 
-      "exec-once" = [
+      exec-once = [
         "hyprpaper"
         "waybar"
         "kanata"
