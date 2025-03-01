@@ -70,7 +70,6 @@ lib.mkIf cfg.de.hyprland.enable {
           modules-right = [ 
             "pulseaudio"
             "battery"
-            "custom/kbd"
             "custom/power"
           ];
 
@@ -89,13 +88,6 @@ lib.mkIf cfg.de.hyprland.enable {
               "󰂂"
               "󰁹"
             ];
-          };
-
-
-          "custom/kbd" = {
-            format = "󰌌";
-            tooltip = false;
-            on-click = ''hyprctl dispatch exec "pkill kanata && kanata"'';
           };
 
           "custom/power" = {
@@ -244,6 +236,7 @@ lib.mkIf cfg.de.hyprland.enable {
         "ALT, Space, exec, pkill wofi || wofi --show drun"
         "$mod, Q, exec, ghostty"
         "$mod, C, killactive"
+        "$mod ALT, K, exec, pkill kanata && kanata"
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
