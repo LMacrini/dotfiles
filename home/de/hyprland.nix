@@ -91,9 +91,6 @@ lib.mkIf cfg.de.hyprland.enable {
             ];
           };
 
-          "hyprland/workspaces" = {
-            all-outputs = true;
-          };
 
           "custom/kbd" = {
             format = "󰌌";
