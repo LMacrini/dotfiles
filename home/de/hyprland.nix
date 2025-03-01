@@ -10,13 +10,44 @@ lib.mkIf cfg.de.hyprland.enable {
   programs = {
     wlogout = {
       enable = true;
-      # layout = [
-      #   {
-      #     label = "lock";
-      #     action = "hyprlock";
-      #     text = "Lock";
-      #   }
-      # ];
+      layout = [
+        {
+          label = "lock";
+          action = "hyprlock";
+          text = "Lock";
+          keybind = "l";
+        }
+        {
+          label = "hibernate";
+          action = "systemctl hibernate";
+          text = "Hibernate";
+          keybind = "h";
+        }
+        {
+          label = "logout";
+          action = "hyprctl exec exit";
+          text = "Logout";
+          keybind = "e";
+        }
+        {
+          label = "shutdown";
+          action = "systemctl poweroff";
+          text = "Shutdown";
+          keybind = "s";
+        }
+        {
+          label = "suspend";
+          action = "systemctl suspend";
+          text = "Suspend";
+          keybind = "u";
+        }
+        {
+          label = "reboot";
+          action = "systemctl reboot";
+          text = "Reboot";
+          keybind = "r";
+        }
+      ];
     };
 
     hyprlock = {
@@ -118,35 +149,26 @@ lib.mkIf cfg.de.hyprland.enable {
         }
         /* Make the workspace module rounded */
         #workspaces {
-            /* background: rgba(0, 0, 0, 0.2); */ /* Transparent when not hovered */
-            border-radius: 12px;
-            padding: 5px 10px;
-            transition: background 0.3s ease-in-out;
+          border-radius: 12px;
+          padding: 5px 10px;
+          transition: background 0.3s ease-in-out;
         }
 
-        /* Style individual workspaces */
         #workspaces button {
-            border-radius: 8px;
-            padding: 0px 10px;
-            color: white;
-            background: transparent;
-            /* background: rgba(0, 0, 0, 0.2); */
-            transition: background 0.3s;
+          border-radius: 8px;
+          padding: 0px 10px;
+          color: white;
+          background: transparent;
+          transition: background 0.3s;
         }
 
         #workspaces button:hover {
           background: rgba(0, 0, 0, 0.7);
         }
 
-        /* Highlight active workspace */
         #workspaces button.active {
-            background: rgba(255, 255, 255, 0.3);
+          background: rgba(255, 255, 255, 0.3);
         }
-
-        /* Change appearance on hover */
-        /* #workspaces:hover {
-            background: rgba(0, 0, 0, 0.7); */ /* Fully visible when hovered */ /*
-        } */
       '';
     };
   };
