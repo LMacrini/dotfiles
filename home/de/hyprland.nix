@@ -23,8 +23,8 @@ lib.mkIf cfg.de.hyprland.enable {
       enable = true;
       settings = {
         general = {
-          disable_loading_bar = true;
-          grace = 300;
+          # disable_loading_bar = true;
+          grace = 10;
           hide_cursor = true;
           no_fade_in = false;
         };
@@ -61,6 +61,10 @@ lib.mkIf cfg.de.hyprland.enable {
       enable = true;
       settings = {
         mainbar = {
+          margin-top = 10;
+          margin-right = 10;
+          margin-left = 10;
+
           modules-left = [ "hyprland/workspaces" ];
           modules-center = [ "clock" ];
           modules-right = [ 
@@ -70,23 +74,91 @@ lib.mkIf cfg.de.hyprland.enable {
             "custom/power"
           ];
 
+          "battery" = {
+            format = "{icon} {capacity}%";
+            format-charging = "󱐋{icon} {capacity}%";
+            format-icons = [
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
+          };
+
           "hyprland/workspaces" = {
             all-outputs = true;
           };
 
           "custom/kbd" = {
-            format = " 󰌌 ";
+            format = "󰌌";
             tooltip = false;
             on-click = ''hyprctl dispatch exec "pkill kanata && kanata"'';
           };
 
           "custom/power" = {
-            format = " ⏻ ";
+            format = "⏻";
             tooltip = false;
             on-click = "wlogout";
           };
         };
       };
+      style = ''
+        * {
+          border: none;
+          border-radius: 0;
+          font-family: FiraCode Nerd Font Mono;
+        }
+        window#waybar {
+          /* background: alpha(#1C3981, 0.6); */
+          background: rgba(0, 0, 0, 0.5);
+          border-radius: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .module {
+          margin-left: 5px;
+          margin-right: 5px;
+        }
+        #custom-power.module {
+          margin-right: 10px;
+        }
+        /* Make the workspace module rounded */
+        #workspaces {
+            /* background: rgba(0, 0, 0, 0.2); */ /* Transparent when not hovered */
+            border-radius: 12px;
+            padding: 5px 10px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        /* Style individual workspaces */
+        #workspaces button {
+            border-radius: 8px;
+            padding: 0px 10px;
+            color: white;
+            background: transparent;
+            /* background: rgba(0, 0, 0, 0.2); */
+            transition: background 0.3s;
+        }
+
+        #workspaces button:hover {
+          background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Highlight active workspace */
+        #workspaces button.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Change appearance on hover */
+        /* #workspaces:hover {
+            background: rgba(0, 0, 0, 0.7); */ /* Fully visible when hovered */ /*
+        } */
+      '';
     };
   };
 
@@ -121,6 +193,8 @@ lib.mkIf cfg.de.hyprland.enable {
         ++ [
         ", preffered, auto, 1"
       ];
+
+      layerrule = "blur,waybar";
 
       decoration = {
         rounding = 10;
