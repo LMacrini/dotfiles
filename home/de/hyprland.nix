@@ -223,14 +223,6 @@ lib.mkIf cfg.de.hyprland.enable {
         };
       };
 
-      device = [
-        {
-          name = "zsa-technology-labs-ergodox-ez";
-          kb_layout = "us,gr";
-          kb_variant = "mac,";
-        }
-      ];
-
       gestures = {
         workspace_swipe = true;
       };
