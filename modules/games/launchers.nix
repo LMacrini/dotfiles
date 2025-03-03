@@ -12,7 +12,6 @@
     programs.steam.enable = true;
 
     users.users.lioma.packages = with pkgs; [
-      unstable.lutris
       wine
       prismlauncher
       heroic
@@ -41,6 +40,7 @@
           origin = "launcher.moe";
         }
         "io.github.everestapi.Olympus"
+        "net.lutris.Lutris"
       ];
     };
   };
