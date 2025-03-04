@@ -5,6 +5,8 @@ lib.mkIf cfg.de.hyprland.enable {
     wofi
     hyprpaper
     kanata
+    grim
+    slurp
   ];
 
   programs = {
@@ -263,6 +265,7 @@ lib.mkIf cfg.de.hyprland.enable {
         "$mod, Q, exec, ghostty"
         "$mod, C, killactive"
         "$mod ALT, K, exec, pkill kanata && kanata"
+        ''SUPER SHIFT, S, exec, grim -g "$(slurp -dw 0)" - | wl-copy''
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
