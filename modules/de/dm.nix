@@ -7,7 +7,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
   services = {
-    displayManager.sddm.enable = lib.mkDefault (!config.de.gnome.enable);
     xserver = {
       enable = true;
       xkb = {
@@ -15,7 +14,7 @@
         variant = "mac";
       };
 
-      displayManager.gdm.enable = lib.mkDefault config.de.gnome.enable;
+      displayManager.gdm.enable = lib.mkDefault true;
     };
   };
 
