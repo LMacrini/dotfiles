@@ -246,8 +246,8 @@ lib.mkIf cfg.de.hyprland.enable {
       ];
 
       bind = [
-        "$mod, T, exec, pkill wofi || wofi --show drun"
-        "ALT, Space, exec, pkill wofi || wofi --show drun"
+        "$mod, T, exec, pkill wofi || wofi --show drun -i"
+        "ALT, Space, exec, pkill wofi || wofi --show drun -i"
         "$mod, Q, exec, ghostty"
         "$mod, C, killactive"
         "$mod ALT, K, exec, pkill kanata && kanata"
