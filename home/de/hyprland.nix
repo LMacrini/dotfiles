@@ -8,6 +8,18 @@ lib.mkIf cfg.de.hyprland.enable {
   ];
 
   programs = {
+    wofi = {
+      enable = true;
+      settings = {
+        allow_images = true;
+        gtk_dark = true;
+        insensitive = true;
+        key_expand = "Shift-Return";
+        prompt = ":3";
+        show = "drun";
+      };
+    };
+
     wlogout = {
       enable = true;
       layout = [
@@ -246,8 +258,8 @@ lib.mkIf cfg.de.hyprland.enable {
       ];
 
       bind = [
-        "$mod, T, exec, pkill wofi || wofi --show drun -i"
-        "ALT, Space, exec, pkill wofi || wofi --show drun -i"
+        "$mod, T, exec, pkill wofi || wofi"
+        "ALT, Space, exec, pkill wofi || wofi"
         "$mod, Q, exec, ghostty"
         "$mod, C, killactive"
         "$mod ALT, K, exec, pkill kanata && kanata"
