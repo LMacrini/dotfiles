@@ -51,6 +51,18 @@
       package = pkgs.rose-pine-icon-theme;
       name = "rose-pine";
     };
+
+    gtk2.extraConfig = ''
+      gtk-application-prefer-dark-theme = 1
+    '';
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
   };
 
   home.file = {
