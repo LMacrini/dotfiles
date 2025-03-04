@@ -26,8 +26,32 @@
   # plain files is through 'home.file'.
 
   home.packages = with pkgs; [
-    pkgs.catppuccin-cursors.macchiatoDark
+    catppuccin-cursors.macchiatoDark
   ];
+
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.catppuccin-cursors.macchiatoDark;
+    name = "catppuccin-macchiato-dark-cursors";
+    size = 24;
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.adw-gtk3;
+      name = "adw-gtk3-dark";
+    };
+    iconTheme = {
+      package = pkgs.rose-pine-icon-theme;
+      name = "rose-pine";
+    };
+  };
 
   home.file = {
     ".config" = {
