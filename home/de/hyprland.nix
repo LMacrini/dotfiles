@@ -2,11 +2,11 @@
 lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
     swaynotificationcenter
-    wofi
     hyprpaper
     kanata
     grim
     slurp
+    playerctl
   ];
 
   programs = {
@@ -93,7 +93,7 @@ lib.mkIf cfg.de.hyprland.enable {
             inner_color = "rgb(91, 96, 120)";
             outer_color = "rgb(24, 25, 38)";
             outline = 5;
-            # placeholder_text = '\'<span foreground="##cad3f5">Password...</span>'\';
+            placeholder_text = ''<span foreground="##cad3f5">Enter password...</span>'';
             shadow_passes = 2;
           }
         ];
@@ -127,9 +127,14 @@ lib.mkIf cfg.de.hyprland.enable {
       "$mod" = "SUPER";
 
       exec-once = [
+        ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
         "hyprpaper"
         "waybar"
         "kanata"
+      ];
+      
+      exec-shutdown = [
+        ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)''
       ];
 
       monitor = cfg.de.hyprland.monitor 
@@ -165,6 +170,7 @@ lib.mkIf cfg.de.hyprland.enable {
       };
 
       env = [
+        "NIXOS_OZONE_WL,1"
         "HYPRCURSOR_THEME,catppuccin-macchiato-dark-cursors"
         "HYPRCURSOR_SIZE,32"
         "XCURSOR_THEME,catppuccin-macchiato-dark-cursors"
@@ -172,9 +178,17 @@ lib.mkIf cfg.de.hyprland.enable {
         "XDG_CONFIG_HOME,/home/lioma/.config"
       ];
 
-      binde = [
+      bindel = [
         ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ];
+
+      bindl = [
+        ", XF86PowerOff, exec, systemctl suspend"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioNext, exec, playerctl next"
       ];
 
       bind = [
@@ -182,6 +196,7 @@ lib.mkIf cfg.de.hyprland.enable {
         "ALT, Space, exec, pkill wofi || wofi"
         "$mod, Q, exec, ghostty"
         "$mod, C, killactive"
+        "$mod, F, togglefloating"
         "$mod ALT, K, exec, pkill kanata && kanata"
         ''SUPER SHIFT, S, exec, grim -g "$(slurp -dw 0)" - | wl-copy''
       ] ++ (
