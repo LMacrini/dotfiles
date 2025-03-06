@@ -1,8 +1,9 @@
 shell-integration = bash
 theme = catppuccin-macchiato
 font-family = FiraCode Nerd Font Mono
-window-decoration = true
+window-decoration = auto
 window-theme = ghostty
+title = "ghostty"
 
 maximize = false
 window-width = 1280
