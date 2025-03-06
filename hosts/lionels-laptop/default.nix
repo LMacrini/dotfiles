@@ -24,6 +24,7 @@
   };
 
   de.gnome.enable = false;
+  dm = "ly";
 
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";
