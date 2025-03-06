@@ -7,6 +7,7 @@ lib.mkIf cfg.de.hyprland.enable {
     grim
     slurp
     playerctl
+    pavucontrol
   ];
 
   programs = {

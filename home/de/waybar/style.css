@@ -3,23 +3,31 @@
   border-radius: 0;
   font-family: FiraCode Nerd Font Mono;
 }
-window#waybar {
+
+#waybar {
   /* background: alpha(#1C3981, 0.6); */
   background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  /*padding: 0px 10px;*/
 }
+
+#waybar > * {
+  padding: 0px 10px;
+}
+
 .module {
   margin-left: 5px;
   margin-right: 5px;
 }
+
 #custom-power.module {
   margin-right: 10px;
 }
 
 #workspaces {
   border-radius: 12px;
-  padding: 5px 10px;
+  padding: 5px 0px;
   transition: background 0.3s ease-in-out;
 }
 

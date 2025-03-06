@@ -8,7 +8,7 @@
       margin-right = 10;
       margin-left = 10;
 
-      modules-left = [ "hyprland/workspaces" ];
+      modules-left = [ "hyprland/workspaces" "hyprland/window"];
       modules-center = [ "clock" ];
       modules-right = [ 
         "tray"
@@ -40,12 +40,19 @@
         on-click = "wlogout";
       };
 
+      "hyprland/window" = {
+        format = " {title}";
+        separate-outputs = true;
+      };
+
       "pulseaudio" = {
         on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        on-click-right = "pavucontrol";
       };
 
       "tray" = {
         show-passive-items = true;
+        spacing = 10;
       };
     };
   };
