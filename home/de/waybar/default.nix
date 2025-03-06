@@ -11,6 +11,7 @@
       modules-left = [ "hyprland/workspaces" ];
       modules-center = [ "clock" ];
       modules-right = [ 
+        "tray"
         "pulseaudio"
         "battery"
         "custom/power"
@@ -37,6 +38,14 @@
         format = "⏻";
         tooltip = false;
         on-click = "wlogout";
+      };
+
+      "pulseaudio" = {
+        on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+      };
+
+      "tray" = {
+        show-passive-items = true;
       };
     };
   };
