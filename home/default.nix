@@ -29,10 +29,6 @@
     catppuccin-cursors.macchiatoDark
   ];
 
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
-
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
