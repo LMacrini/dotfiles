@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: FiraCode Nerd Font Mono;
+  font-family: FiraCode Nerd Font;
 }
 
 #waybar {
@@ -21,7 +21,12 @@
   margin-right: 5px;
 }
 
-#custom-power.module {
+#tray,
+#pulseaudio {
+  margin-right: 15px;
+}
+
+#custom-power {
   margin-right: 10px;
 }
 

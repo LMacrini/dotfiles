@@ -34,6 +34,9 @@
         ];
       };
 
+      "clock" = {
+      };
+
       "custom/power" = {
         format = "⏻";
         tooltip = false;
@@ -43,11 +46,27 @@
       "hyprland/window" = {
         format = " {title}";
         separate-outputs = true;
+
+        rewrite = {
+          " (.*) — Ablaze Floorp" = "  $1";
+        };
       };
 
       "pulseaudio" = {
         on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         on-click-right = "pavucontrol";
+
+        format = "{icon} {volume}%";
+        format-icons = {
+          default = [ "󰕿" "󰖀" "󰕾" ];
+          default-muted = "󰖁";
+          headphone = "󰋋";
+          headphone-muted = "󰟎";
+          headset = "󰋎";
+          headset-muted = "󰋐";
+          "alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo" = "󰋎";
+          "alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo-muted" = "󰋐";
+        };
       };
 
       "tray" = {
