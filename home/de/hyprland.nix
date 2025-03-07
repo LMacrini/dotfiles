@@ -3,6 +3,8 @@ lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
     swaynotificationcenter
     hyprpaper
+    hypridle
+    brightnessctl
     kanata
     grim
     slurp
@@ -52,7 +54,7 @@ lib.mkIf cfg.de.hyprland.enable {
         }
         {
           label = "suspend";
-          action = "systemctl suspend";
+          action = "loginctl lock-session && systemctl suspend";
           text = "Suspend";
           keybind = "u";
         }
@@ -101,23 +103,54 @@ lib.mkIf cfg.de.hyprland.enable {
       };
     };
 
-    # hypridle.enable = true;
-
     waybar = import ./waybar;
   };
 
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      ipc = "on";
+  services = {
+    hyprpaper = {
+      enable = true;
+      settings = {
+        ipc = "on";
 
-      preload = [
-        "~/.config/background.jpg"
-      ];
+        preload = [
+          "~/.config/background.jpg"
+        ];
 
-      wallpaper = [
-        ",~/.config/background.jpg"
-      ];
+        wallpaper = [
+          ",~/.config/background.jpg"
+        ];
+      };
+    };
+    hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd = "pidof hyprlock || hyprlock";
+          before_sleep_command = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+        };
+
+        listener = [
+          {
+            timeout = 150;
+            on-timeout = "brightnessctl -s set 10";
+            on-resume = "brightnessctl -r";
+          }
+          {
+            timeout = 300;
+            on-timeout = "loginctl lock-session";
+          }
+          {
+            timeout = 330;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+          {
+            timeout = 1800;
+            on-timeout = "systemctl suspend";
+          }
+        ];
+      };
     };
   };
 
@@ -130,6 +163,7 @@ lib.mkIf cfg.de.hyprland.enable {
       exec-once = [
         ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
         "hyprpaper"
+        "hypridle"
         "waybar"
         "kanata"
       ];
@@ -185,7 +219,7 @@ lib.mkIf cfg.de.hyprland.enable {
       ];
 
       bindl = [
-        ", XF86PowerOff, exec, systemctl suspend"
+        ", XF86PowerOff, exec, loginctl lock-session && systemctl suspend"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
