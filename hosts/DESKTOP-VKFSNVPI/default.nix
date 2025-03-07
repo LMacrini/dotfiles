@@ -3,6 +3,8 @@
     ../../modules
     ./hardware-configuration.nix
   ];
+
+  dm = "ly";
   de = {
     hyprland = {
       enable = true;
