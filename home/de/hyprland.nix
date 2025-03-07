@@ -234,6 +234,18 @@ lib.mkIf cfg.de.hyprland.enable {
         "$mod, F, togglefloating"
         "$mod ALT, K, exec, pkill kanata && kanata"
         ''SUPER SHIFT, S, exec, grim -g "$(slurp -dw 0)" - | wl-copy''
+        "$mod, right, movefocus, r"
+        "$mod, left, movefocus, l"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, down, movewindow, d"
+        "$mod SHIFT, up, movewindow, u"
+        "SUPER CONTROL, right, workspace, +1"
+        "SUPER CONTROL, left, workspace, -1"
+        "SUPER SHIFT CONTROL, right, movecurrentworkspacetomonitor, +1"
+        "SUPER SHIFT CONTROL, left, movecurrentworkspacetomonitor, -1"
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
