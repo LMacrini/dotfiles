@@ -35,6 +35,9 @@
       };
 
       "clock" = {
+        format = "{:%F %H:%M}";
+        interval = 1;
+        tooltip-format = "{:%a %b %d %H:%M:%S %Y}";
       };
 
       "custom/power" = {
@@ -48,7 +51,8 @@
         separate-outputs = true;
 
         rewrite = {
-          " (.*) — Ablaze Floorp" = "  $1";
+          "(.*) - YouTube — Ablaze Floorp" = "  $1";
+          "(.*) — Ablaze Floorp" = "  $1";
         };
       };
 
@@ -72,6 +76,7 @@
       "tray" = {
         show-passive-items = true;
         spacing = 10;
+        reverse-direction = true;
       };
     };
   };
