@@ -217,7 +217,7 @@ lib.mkIf cfg.de.hyprland.enable {
         "HYPRCURSOR_THEME,catppuccin-macchiato-dark-cursors"
         "HYPRCURSOR_SIZE,32"
         "XCURSOR_THEME,catppuccin-macchiato-dark-cursors"
-        "XCURSOR_THEME,24"
+        "XCURSOR_SIZE,24"
         "XDG_CONFIG_HOME,/home/lioma/.config"
       ];
 
