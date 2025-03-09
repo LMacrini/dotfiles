@@ -37,6 +37,38 @@
     size = 24;
   };
 
+  xdg = {
+    portal = {
+      enable = true;
+      config = {
+        common = {
+          default = [
+            "gtk"
+          ];
+        };
+
+        gnome = {
+          default = [
+            "gnome"
+            "gtk"
+          ];
+        };
+
+        hyprland = {
+          default = [
+            "hyprland"
+            "gtk"
+          ];
+        };
+      };
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gnome
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ];
+    };
+  };
+
   gtk = {
     enable = true;
     theme = {
