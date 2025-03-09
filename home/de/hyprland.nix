@@ -1,15 +1,17 @@
 {pkgs, cfg, lib, ...}:
 lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
-    swaynotificationcenter
+    blueman
+    brightnessctl
+    grim
     hyprpaper
     hypridle
-    brightnessctl
     kanata
-    grim
-    slurp
-    playerctl
+    networkmanagerapplet
     pavucontrol
+    playerctl
+    slurp
+    swaynotificationcenter
   ];
 
   programs = {
@@ -126,7 +128,7 @@ lib.mkIf cfg.de.hyprland.enable {
       settings = {
         general = {
           lock_cmd = "pidof hyprlock || hyprlock";
-          before_sleep_command = "loginctl lock-session";
+          before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch dpms on";
         };
 
@@ -156,7 +158,11 @@ lib.mkIf cfg.de.hyprland.enable {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.variables = ["--all"];
+    systemd = {
+      enable = true;
+      variables = ["--all"];
+      enableXdgAutostart = true;
+    };
     settings = {
       "$mod" = "SUPER";
 
@@ -166,6 +172,8 @@ lib.mkIf cfg.de.hyprland.enable {
         "hypridle"
         "waybar"
         "kanata"
+        "nm-applet"
+        "blueman-applet"
       ];
       
       exec-shutdown = [
