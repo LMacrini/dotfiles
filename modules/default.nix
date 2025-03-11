@@ -154,7 +154,7 @@
       inherit cfg;
     };
     users = {
-      "lioma" = import ../home;
+      "lioma" = import ../home-manager/lioma;
     };
   };
 

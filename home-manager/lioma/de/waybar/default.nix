@@ -52,6 +52,7 @@
 
         rewrite = {
           "(.*) - YouTube — Ablaze Floorp" = "  $1";
+          " NixOS Search - (.*) — Ablaze Floorp" = " 󱄅 $1";
           "(.*) — Ablaze Floorp" = "  $1";
         };
       };

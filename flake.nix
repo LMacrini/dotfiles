@@ -30,6 +30,23 @@
       };
     };
 
+    utils = {
+      # mkUser = args: let
+      #   user = 
+      #     if builtins.typeOf args == "string" then { name = args; follows = args; }
+      #     else if builtins.typeOf args == "set" then with args; {
+      #       name = if builtins.typeOf name == "string" then name else abort "name must be a string";
+      #       follows = 
+      #         if (builtins.tryEval follows).success then
+      #           if builtins.typeOf follows == "string" then follows
+      #           else abort "follows must be a string"
+      #         else name;
+      #     }
+      #     else abort "invalid argument for mkUser";
+      #   in import ./home-manager/${user.follows};
+      mkUser = name: import ./home-manager/${name};
+    };
+
     mkHost = path:
       nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
@@ -44,11 +61,18 @@
           )
         ];
       };
+
+    mkHosts = hosts:
+      builtins.listToAttrs (map (host: {
+        name = host;
+        value = mkHost host; 
+      }) hosts);
   in {
-    nixosConfigurations = {
-      DESKTOP-VKFSNVPI = mkHost "DESKTOP-VKFSNVPI";
-      lionels-laptop = mkHost "lionels-laptop";
-      vm = mkHost "vm";
+    nixosConfigurations = mkHosts [
+      "DESKTOP-VKFSNVPI"
+      "lionels-laptop"
+      "vm"
+    ] // {
       live = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [

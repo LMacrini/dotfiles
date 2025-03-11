@@ -130,6 +130,7 @@
       color-scheme = "prefer-dark";
       clock-format = "24h";
       cursor-theme = "catppuccin-macchiato-dark-cursors";
+      cursor-size = 24;
       accent-color = "blue";
       monospace-font-name = "FiraCode Nerd Font Mono 10";
       show-battery-percentage = cfg.laptop.enable;
