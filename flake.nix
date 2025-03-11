@@ -32,11 +32,11 @@
 
     utils = {
       # mkUser = args: let
-      #   user = 
+      #   user =
       #     if builtins.typeOf args == "string" then { name = args; follows = args; }
       #     else if builtins.typeOf args == "set" then with args; {
       #       name = if builtins.typeOf name == "string" then name else abort "name must be a string";
-      #       follows = 
+      #       follows =
       #         if (builtins.tryEval follows).success then
       #           if builtins.typeOf follows == "string" then follows
       #           else abort "follows must be a string"
@@ -64,29 +64,32 @@
 
     mkHosts = hosts:
       builtins.listToAttrs (map (host: {
-        name = host;
-        value = mkHost host; 
-      }) hosts);
+          name = host;
+          value = mkHost host;
+        })
+        hosts);
   in {
-    nixosConfigurations = mkHosts [
-      "DESKTOP-VKFSNVPI"
-      "lionels-laptop"
-      "vm"
-    ] // {
-      live = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/liveiso
-          ./modules
-          inputs.nix-flatpak.nixosModules.nix-flatpak
-          inputs.home-manager.nixosModules.default
-          (
-            _: {
-              nixpkgs.overlays = [overlay-unstable];
-            }
-          )
-        ];
+    nixosConfigurations =
+      mkHosts [
+        "DESKTOP-VKFSNVPI"
+        "lionels-laptop"
+        "vm"
+      ]
+      // {
+        live = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [
+            ./hosts/liveiso
+            ./modules
+            inputs.nix-flatpak.nixosModules.nix-flatpak
+            inputs.home-manager.nixosModules.default
+            (
+              _: {
+                nixpkgs.overlays = [overlay-unstable];
+              }
+            )
+          ];
+        };
       };
-    };
   };
 }

@@ -78,11 +78,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  boot.kernelModules = [ "uinput" ];
+  boot.kernelModules = ["uinput"];
   services.udev.extraRules = ''
     KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
   '';
-  
+
   # Enable sound with pipewire.
   hardware = {
     pulseaudio.enable = false;

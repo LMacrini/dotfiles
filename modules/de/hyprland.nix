@@ -1,9 +1,14 @@
-{pkgs, lib, config, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = with lib; {
     de.hyprland.enable = mkEnableOption "Enable hyprland";
-    de.hyprland.monitor = mkOption { 
+    de.hyprland.monitor = mkOption {
       default = [];
-      type = with types; listOf str; 
+      type = with types; listOf str;
     };
   };
 

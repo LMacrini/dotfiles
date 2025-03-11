@@ -8,9 +8,9 @@
       margin-right = 10;
       margin-left = 10;
 
-      modules-left = [ "hyprland/workspaces" "hyprland/window"];
-      modules-center = [ "clock" ];
-      modules-right = [ 
+      modules-left = ["hyprland/workspaces" "hyprland/window"];
+      modules-center = ["clock"];
+      modules-right = [
         "tray"
         "pulseaudio"
         "battery"
@@ -63,7 +63,7 @@
 
         format = "{icon} {volume}%";
         format-icons = {
-          default = [ "󰕿" "󰖀" "󰕾" ];
+          default = ["󰕿" "󰖀" "󰕾"];
           default-muted = "󰖁";
           headphone = "󰋋";
           headphone-muted = "󰟎";

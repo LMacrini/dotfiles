@@ -1,4 +1,9 @@
-{pkgs, cfg, lib, ...}:
+{
+  pkgs,
+  cfg,
+  lib,
+  ...
+}:
 lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
     blueman
@@ -175,15 +180,16 @@ lib.mkIf cfg.de.hyprland.enable {
         "nm-applet"
         "blueman-applet"
       ];
-      
+
       exec-shutdown = [
         ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)''
       ];
 
-      monitor = cfg.de.hyprland.monitor 
+      monitor =
+        cfg.de.hyprland.monitor
         ++ [
-        ", preffered, auto, 1"
-      ];
+          ", preffered, auto, 1"
+        ];
 
       layerrule = "blur,waybar";
 
@@ -234,38 +240,41 @@ lib.mkIf cfg.de.hyprland.enable {
         ", XF86AudioNext, exec, playerctl next"
       ];
 
-      bind = [
-        "$mod, T, exec, pkill wofi || wofi"
-        "ALT, Space, exec, pkill wofi || wofi"
-        "$mod, Q, exec, ghostty"
-        "$mod, C, killactive"
-        "$mod, F, togglefloating"
-        "$mod ALT, K, exec, pkill kanata && kanata"
-        ''SUPER SHIFT, S, exec, grim -g "$(slurp -dw 0)" - | wl-copy''
-        "$mod, right, movefocus, r"
-        "$mod, left, movefocus, l"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-        "$mod SHIFT, right, movewindow, r"
-        "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, down, movewindow, d"
-        "$mod SHIFT, up, movewindow, u"
-        "SUPER CONTROL, right, workspace, +1"
-        "SUPER CONTROL, left, workspace, -1"
-        "SUPER SHIFT CONTROL, right, movecurrentworkspacetomonitor, +1"
-        "SUPER SHIFT CONTROL, left, movecurrentworkspacetomonitor, -1"
-      ] ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (builtins.genList (i:
-            let ws = i + 1;
-            in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          )
-        9)
-      );
+      bind =
+        [
+          "$mod, T, exec, pkill wofi || wofi"
+          "ALT, Space, exec, pkill wofi || wofi"
+          "$mod, Q, exec, ghostty"
+          "$mod, C, killactive"
+          "$mod, F, togglefloating"
+          "$mod ALT, K, exec, pkill kanata && kanata"
+          ''SUPER SHIFT, S, exec, grim -g "$(slurp -dw 0)" - | wl-copy''
+          "$mod, right, movefocus, r"
+          "$mod, left, movefocus, l"
+          "$mod, up, movefocus, u"
+          "$mod, down, movefocus, d"
+          "$mod SHIFT, right, movewindow, r"
+          "$mod SHIFT, left, movewindow, l"
+          "$mod SHIFT, down, movewindow, d"
+          "$mod SHIFT, up, movewindow, u"
+          "SUPER CONTROL, right, workspace, +1"
+          "SUPER CONTROL, left, workspace, -1"
+          "SUPER SHIFT CONTROL, right, movecurrentworkspacetomonitor, +1"
+          "SUPER SHIFT CONTROL, left, movecurrentworkspacetomonitor, -1"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+          builtins.concatLists (builtins.genList (
+              i: let
+                ws = i + 1;
+              in [
+                "$mod, code:1${toString i}, workspace, ${toString ws}"
+                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              ]
+            )
+            9)
+        );
 
       bindm = [
         "$mod, mouse:272, movewindow"
