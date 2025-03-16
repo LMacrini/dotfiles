@@ -40,6 +40,11 @@
         "nix-command"
         "flakes"
       ];
+      trusted-users = [
+        "root"
+        "lioma"
+        "@wheel"
+      ];
     };
   };
 
@@ -176,6 +181,8 @@
 
     git
     gh
+    unstable.devenv
+    direnv
     alejandra
     zoxide
     lsd

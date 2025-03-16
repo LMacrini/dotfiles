@@ -292,6 +292,7 @@
       PS1='[\u@\h \W]\$ '
 
       eval "$(zoxide init bash)"
+      eval "$(direnv hook bash)"
 
       alias cls="clear"
       alias cd="z"
