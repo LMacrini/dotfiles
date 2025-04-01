@@ -133,10 +133,6 @@
     packages = with pkgs; [
       thunderbird
       equibop
-      (discord.override {
-        withOpenASAR = true;
-        withVencord = true;
-      })
       github-desktop
       bitwarden-desktop
       mediawriter
@@ -161,6 +157,7 @@
     users = {
       "lioma" = import ../home-manager/lioma;
     };
+    useGlobalPkgs = true;
   };
 
   fonts.packages = with pkgs; [

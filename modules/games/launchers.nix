@@ -15,6 +15,8 @@
       wine
       prismlauncher
       heroic
+      unstable.lutris
+      protonplus
     ];
 
     services.flatpak = {
@@ -40,7 +42,7 @@
           origin = "launcher.moe";
         }
         "io.github.everestapi.Olympus"
-        "net.lutris.Lutris"
+        # "net.lutris.Lutris"
       ];
     };
   };

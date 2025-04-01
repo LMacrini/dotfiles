@@ -17,8 +17,10 @@
 
     neovim = {
       url = "github:lmacrini/nvf-config";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    nixcord.url = "github:kaylorben/nixcord";
   };
 
   outputs = {nixpkgs, ...} @ inputs: let

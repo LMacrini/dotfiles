@@ -174,7 +174,7 @@ lib.mkIf cfg.de.hyprland.enable {
       exec-once = [
         ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
         "hyprpaper"
-        "hypridle"
+        # "hypridle"
         "waybar"
         "kanata"
         "nm-applet"
@@ -217,6 +217,10 @@ lib.mkIf cfg.de.hyprland.enable {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
       };
+
+      windowrule = [
+        "float, title:Gambling Game"
+      ];
 
       env = [
         "NIXOS_OZONE_WL,1"
