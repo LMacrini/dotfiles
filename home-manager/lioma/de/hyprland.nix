@@ -147,11 +147,11 @@ lib.mkIf cfg.de.hyprland.enable {
             timeout = 300;
             on-timeout = "loginctl lock-session";
           }
-          {
-            timeout = 330;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
-          }
+          # {
+          #   timeout = 330;
+          #   on-timeout = "hyprctl dispatch dpms off";
+          #   on-resume = "hyprctl dispatch dpms on";
+          # }
           {
             timeout = 1800;
             on-timeout = "systemctl suspend";
@@ -174,7 +174,7 @@ lib.mkIf cfg.de.hyprland.enable {
       exec-once = [
         ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
         "hyprpaper"
-        # "hypridle"
+        "hypridle"
         "waybar"
         "kanata"
         "nm-applet"
