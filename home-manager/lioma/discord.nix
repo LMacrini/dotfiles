@@ -266,7 +266,7 @@
 
         spotifyControls = {
           enable = true;
-          
+
           # TODO: figure out what this does
           hoverControls = false;
         };
