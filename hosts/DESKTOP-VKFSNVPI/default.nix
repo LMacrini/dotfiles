@@ -35,6 +35,4 @@
   vms.enable = true;
 
   libreoffice.enable = true;
-
-  ghosttyflake.enable = true;
 }

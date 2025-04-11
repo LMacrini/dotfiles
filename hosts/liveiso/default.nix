@@ -30,8 +30,6 @@ in {
     tlp.enable = false;
   };
 
-  ghosttyflake.enable = true;
-
   environment.systemPackages = with pkgs; [
     git
     nixinstall

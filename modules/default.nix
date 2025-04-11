@@ -107,7 +107,6 @@
     #media-session.enable = true;
   };
 
-  ghosttyflake.enable = lib.mkDefault false;
   dev.enable = lib.mkDefault false;
   browsers.all.enable = lib.mkDefault false;
   games.enable = lib.mkDefault false;
