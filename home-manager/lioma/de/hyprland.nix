@@ -9,8 +9,9 @@ lib.mkIf cfg.de.hyprland.enable {
     blueman
     brightnessctl
     grim
-    hyprpaper
     hypridle
+    hyprpaper
+    hyprpolkitagent
     kanata
     networkmanagerapplet
     pavucontrol
@@ -173,6 +174,7 @@ lib.mkIf cfg.de.hyprland.enable {
 
       exec-once = [
         ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
+        "systemctl --user start hyprpolkitagent"
         "hyprpaper"
         "hypridle"
         "waybar"
