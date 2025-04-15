@@ -228,6 +228,7 @@
       panel-notification-icon = true;
       power-icon = cfg.laptop.enable;
       quick-settings = true;
+      support-notifier-type = 0;
       window-demands-attention-focus = true;
       window-menu-take-screenshot-button = true;
       window-picker-icon = true;
