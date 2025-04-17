@@ -25,6 +25,15 @@ in {
     user = "lioma";
   };
 
+  de = {
+    gnome.enable = false;
+    hyprland = {
+      enable = true;
+      hyprlock.enable = false;
+    };
+  };
+  dm = "gdm";
+
   laptop = {
     enable = true;
     tlp.enable = false;
