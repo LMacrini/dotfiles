@@ -22,10 +22,6 @@
     services.flatpak = {
       packages = [
         {
-          flatpakref = "https://sober.vinegarhq.org/sober.flatpakref";
-          sha256 = "1pj8y1xhiwgbnhrr3yr3ybpfis9slrl73i0b1lc9q89vhip6ym2l";
-        }
-        {
           appId = "moe.launcher.an-anime-game-launcher";
           origin = "launcher.moe";
         }
@@ -42,6 +38,7 @@
           origin = "launcher.moe";
         }
         "io.github.everestapi.Olympus"
+        "org.vinegarhq.Sober"
         # "net.lutris.Lutris"
       ];
     };
