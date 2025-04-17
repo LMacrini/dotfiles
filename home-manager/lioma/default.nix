@@ -302,7 +302,6 @@
       alias la="ls -a"
       alias ll="ls -l"
       alias lla="ls -la"
-      alias pyvenv="source ./venv/bin/activate"
 
       upd-nix-conf() {
         local rebuild_type=''${1:-switch}
@@ -315,11 +314,9 @@
         cd ''$dir
       }
 
-      # eval "$(oh-my-posh init bash --config /home/lioma/.config/oh-my-posh/catppuccin_macchiato.omp.json)"
       eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
       source "$(blesh-share)/ble.sh"
 
-      clear
       fastfetch
     '';
   };
