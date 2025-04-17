@@ -222,6 +222,7 @@ lib.mkIf cfg.de.hyprland.enable {
 
       windowrule = [
         "float, title:Gambling Game"
+        "float, title:Bitwarden"
       ];
 
       env = [
