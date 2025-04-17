@@ -13,6 +13,7 @@ lib.mkIf cfg.de.hyprland.enable {
     hyprpaper
     hyprpolkitagent
     kanata
+    kitty
     networkmanagerapplet
     pavucontrol
     playerctl
@@ -251,7 +252,7 @@ lib.mkIf cfg.de.hyprland.enable {
         [
           "$mod, T, exec, pkill wofi || wofi"
           "ALT, Space, exec, pkill wofi || wofi"
-          "$mod, Q, exec, ghostty"
+          "$mod, Q, exec, kitty"
           "$mod, C, killactive"
           "$mod, F, togglefloating"
           "$mod ALT, K, exec, pkill kanata && kanata"
