@@ -16,7 +16,7 @@
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nixcord.url = "github:kaylorben/nixcord";
+    # nixcord.url = "github:kaylorben/nixcord";
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
