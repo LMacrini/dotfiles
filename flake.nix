@@ -5,6 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    flake-utils.url = "github:numtide/flake-utils";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,17 +18,25 @@
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     # nixcord.url = "github:kaylorben/nixcord";
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
-    system = "x86_64-linux";
-    overlay-unstable = _: _: {
+  outputs = {
+    nixpkgs,
+    flake-utils,
+    nix-darwin,
+    ...
+  } @ inputs: let
+    eachSystem = nixpkgs.lib.genAttrs flake-utils.lib.defaultSystems;
+    overlay-unstable = eachSystem (system: _: _: {
       unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
       };
-    };
+    });
 
     utils = {
       # mkUser = args: let
@@ -45,49 +55,83 @@
       mkUser = name: import ./home-manager/${name};
     };
 
-    mkHost = path:
-      nixpkgs.lib.nixosSystem {
+    hm-module = with inputs.home-manager; {
+      "x86_64-linux" = nixosModules.default;
+      "aarch64-darwin" = darwinModules.default;
+    };
+
+    mkLinuxHost = path:
+      nixpkgs.lib.nixosSystem
+      {
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/${path}
           inputs.nix-flatpak.nixosModules.nix-flatpak
-          inputs.home-manager.nixosModules.default
+          # inputs.home-manager.nixosModules.default
+          hm-module.x86_64-linux
           (
             _: {
-              nixpkgs.overlays = [overlay-unstable];
+              nixpkgs.overlays = [overlay-unstable.x86_64-linux];
             }
           )
         ];
       };
 
-    mkHosts = hosts:
+    mkDarwinHost = path:
+      nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/${path}
+          hm-module.aarch64-darwin
+          (_: {nixpkgs.overlays = [overlay-unstable.aarch64-darwin];})
+        ];
+      };
+
+    mkHost = system:
+      if system == "x86_64-linux"
+      then mkLinuxHost
+      else if system == "aarch64-darwin"
+      then mkDarwinHost
+      else abort "unsupported system";
+
+    mkHosts = system: hosts:
       builtins.listToAttrs (map (host: {
           name = host;
-          value = mkHost host;
+          value = mkHost system host;
         })
         hosts);
-  in {
-    nixosConfigurations =
-      mkHosts [
-        "DESKTOP-VKFSNVPI"
-        "lionels-laptop"
-        "vm"
-      ]
-      // {
-        live = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
-          modules = [
-            ./hosts/liveiso
-            ./modules
-            inputs.nix-flatpak.nixosModules.nix-flatpak
-            inputs.home-manager.nixosModules.default
-            (
-              _: {
-                nixpkgs.overlays = [overlay-unstable];
-              }
-            )
-          ];
+  in
+    {
+      nixosConfigurations =
+        mkHosts "x86_64-linux" [
+          "DESKTOP-VKFSNVPI"
+          "lionels-laptop"
+          "vm"
+        ]
+        // {
+          live = nixpkgs.lib.nixosSystem {
+            specialArgs = {inherit inputs;};
+            modules = [
+              ./hosts/liveiso
+              ./modules
+              inputs.nix-flatpak.nixosModules.nix-flatpak
+              inputs.home-manager.nixosModules.default
+              (
+                _: {
+                  nixpkgs.overlays = [overlay-unstable];
+                }
+              )
+            ];
+          };
         };
-      };
-  };
+
+      darwinConfigurations = mkHosts "aarch64-darwin" [
+        "Lionels-MacBook-Air"
+      ];
+    }
+    // flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import nixpkgs {inherit system;};
+    in {
+      formatter = pkgs.alejandra;
+    });
 }

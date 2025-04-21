@@ -36,44 +36,51 @@ lib.mkIf cfg.de.hyprland.enable {
 
     wlogout = {
       enable = true;
-      layout = (if cfg.liveSystem then [] else [{
-        label = "lock";
-        action = "hyprlock";
-        text = "Lock";
-        keybind = "l";
-      }]
-      ) ++ [
+      layout =
+        (
+          if cfg.liveSystem
+          then []
+          else [
+            {
+              label = "lock";
+              action = "hyprlock";
+              text = "Lock";
+              keybind = "l";
+            }
+          ]
+        )
+        ++ [
           {
             label = "hibernate";
-          action = "systemctl hibernate";
-          text = "Hibernate";
-          keybind = "h";
-        }
-        {
-          label = "logout";
-          action = "hyprctl exec exit";
-          text = "Logout";
-          keybind = "e";
-        }
-        {
-          label = "shutdown";
-          action = "systemctl poweroff";
-          text = "Shutdown";
-          keybind = "s";
-        }
-        {
-          label = "suspend";
-          action = "loginctl lock-session && systemctl suspend";
-          text = "Suspend";
-          keybind = "u";
-        }
-        {
-          label = "reboot";
-          action = "systemctl reboot";
-          text = "Reboot";
-          keybind = "r";
-        }
-      ];
+            action = "systemctl hibernate";
+            text = "Hibernate";
+            keybind = "h";
+          }
+          {
+            label = "logout";
+            action = "hyprctl exec exit";
+            text = "Logout";
+            keybind = "e";
+          }
+          {
+            label = "shutdown";
+            action = "systemctl poweroff";
+            text = "Shutdown";
+            keybind = "s";
+          }
+          {
+            label = "suspend";
+            action = "loginctl lock-session && systemctl suspend";
+            text = "Suspend";
+            keybind = "u";
+          }
+          {
+            label = "reboot";
+            action = "systemctl reboot";
+            text = "Reboot";
+            keybind = "r";
+          }
+        ];
     };
 
     hyprlock = {
@@ -173,16 +180,22 @@ lib.mkIf cfg.de.hyprland.enable {
     settings = {
       "$mod" = "SUPER";
 
-      exec-once = [
-        ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
-        "systemctl --user start hyprpolkitagent"
-        "hyprpaper"
-        "hypridle"
-        "waybar"
-        "kanata"
-        "nm-applet"
-        "blueman-applet"
-      ] ++ (if cfg.liveSystem then [ "kitty nmtui" ] else []);
+      exec-once =
+        [
+          ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
+          "systemctl --user start hyprpolkitagent"
+          "hyprpaper"
+          "hypridle"
+          "waybar"
+          "kanata"
+          "nm-applet"
+          "blueman-applet"
+        ]
+        ++ (
+          if cfg.liveSystem
+          then ["kitty nmtui"]
+          else []
+        );
 
       exec-shutdown = [
         ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)''
