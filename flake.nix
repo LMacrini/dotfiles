@@ -118,7 +118,7 @@
               inputs.home-manager.nixosModules.default
               (
                 _: {
-                  nixpkgs.overlays = [overlay-unstable];
+                  nixpkgs.overlays = [overlay-unstable.x86_64-linux];
                 }
               )
             ];
