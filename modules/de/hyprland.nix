@@ -11,11 +11,6 @@
         default = [];
         type = with types; listOf str;
       };
-      hyprlock.enable = mkOption {
-        default = true;
-        example = false;
-        type = types.bool;
-      };
     };
   };
 

@@ -36,15 +36,15 @@ lib.mkIf cfg.de.hyprland.enable {
 
     wlogout = {
       enable = true;
-      layout = builtins.filter (x: !builtins.isNull x) [
-        (lib.mkIf cfg.de.hyprland.hyprlock.enable {
-          label = "lock";
-          action = "hyprlock";
-          text = "Lock";
-          keybind = "l";
-        })
-        {
-          label = "hibernate";
+      layout = (if cfg.liveSystem then [] else [{
+        label = "lock";
+        action = "hyprlock";
+        text = "Lock";
+        keybind = "l";
+      }]
+      ) ++ [
+          {
+            label = "hibernate";
           action = "systemctl hibernate";
           text = "Hibernate";
           keybind = "h";
@@ -134,7 +134,7 @@ lib.mkIf cfg.de.hyprland.enable {
       enable = true;
       settings = {
         general = {
-          lock_cmd = lib.mkIf cfg.de.hyprland.hyprlock.enable "pidof hyprlock || hyprlock";
+          lock_cmd = lib.mkIf (!cfg.liveSystem) "pidof hyprlock || hyprlock";
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch dpms on";
         };
@@ -182,7 +182,7 @@ lib.mkIf cfg.de.hyprland.enable {
         "kanata"
         "nm-applet"
         "blueman-applet"
-      ];
+      ] ++ (if cfg.liveSystem then [ "kitty nmtui" ] else []);
 
       exec-shutdown = [
         ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)''

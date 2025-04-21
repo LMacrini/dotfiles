@@ -27,12 +27,11 @@ in {
 
   de = {
     gnome.enable = false;
-    hyprland = {
-      enable = true;
-      hyprlock.enable = false;
-    };
+    hyprland.enable = true;
   };
   dm = "gdm";
+
+  liveSystem = true;
 
   laptop = {
     enable = true;

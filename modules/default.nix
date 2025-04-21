@@ -24,6 +24,7 @@
     ./config-apps.nix
     ./appimages.nix
     ./keyboards.nix
+    ./extra-options.nix
     inputs.home-manager.nixosModules.default
   ];
 
