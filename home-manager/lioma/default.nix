@@ -23,6 +23,10 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
 
