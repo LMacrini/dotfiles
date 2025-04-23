@@ -19,6 +19,7 @@ lib.mkIf cfg.de.hyprland.enable {
     playerctl
     slurp
     swaynotificationcenter
+    xfce.thunar
   ];
 
   programs = {
