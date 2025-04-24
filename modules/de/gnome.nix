@@ -37,6 +37,8 @@
       gnomeExtensions.arcmenu
       gnomeExtensions.quick-settings-audio-panel
       gnomeExtensions.quick-settings-tweaker
+
+      ghostty
     ];
   };
 }

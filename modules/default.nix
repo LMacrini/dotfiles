@@ -16,7 +16,6 @@
     ./browsers
     ./de
     ./laptop
-    ./ghostty.nix
     ./bootloader.nix
     ./videos.nix
     ./vms.nix
