@@ -10,8 +10,14 @@
   };
 
   config = lib.mkIf config.dev.editors.neovim.enable {
+    programs.nano.enable = false;
+
+    environment.sessionVariables = {
+      EDITOR = "nvim";
+    };
+
     environment.systemPackages = [
-      inputs.neovim.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.neovim.packages.${pkgs.stdenv.system}.default
     ];
   };
 }
