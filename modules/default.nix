@@ -16,6 +16,7 @@
     ./browsers
     ./de
     ./laptop
+    ./kernel.nix
     ./bootloader.nix
     ./videos.nix
     ./vms.nix
@@ -47,9 +48,6 @@
       ];
     };
   };
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.supportedFilesystems.zfs = lib.mkForce false;
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
