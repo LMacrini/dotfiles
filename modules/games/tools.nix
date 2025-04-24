@@ -11,10 +11,7 @@
   config = lib.mkIf config.games.tools.enable {
     users.users.lioma.packages = with pkgs; [
       blockbench
-    ];
-
-    services.flatpak.packages = [
-      "com.github.Matoking.protontricks"
+      protontricks
     ];
   };
 }
