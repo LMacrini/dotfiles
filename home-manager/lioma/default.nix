@@ -302,6 +302,7 @@
       alias la="ls -a"
       alias ll="ls -l"
       alias lla="ls -la"
+      alias lg="lazygit"
 
       upd-nix-conf() {
         local rebuild_type=''${1:-switch}
