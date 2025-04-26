@@ -304,17 +304,6 @@
       alias lla="ls -la"
       alias lg="lazygit"
 
-      upd-nix-conf() {
-        local rebuild_type=''${1:-switch}
-        sudo nixos-rebuild $rebuild_type --flake "/etc/nixos#$2"
-      }
-      upd-nix-flake() {
-        local dir=''$(pwd)
-        cd /etc/nixos
-        sudo nix flake update
-        cd ''$dir
-      }
-
       eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
       source "$(blesh-share)/ble.sh"
 
