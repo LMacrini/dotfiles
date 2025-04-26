@@ -181,6 +181,7 @@
     nvd
 
     git
+    lazygit
     gh
     unstable.devenv
     direnv
