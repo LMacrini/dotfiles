@@ -28,6 +28,10 @@
     inputs.home-manager.nixosModules.default
   ];
 
+  system.nixos = {
+    variantName = "WamOS";
+  };
+
   nix = {
     gc = {
       automatic = true;
