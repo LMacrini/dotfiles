@@ -29,7 +29,7 @@
   ];
 
   system.nixos = {
-    variantName = "WamOS";
+    label = "WamOS-${config.system.nixos.release}";
   };
 
   nix = {
