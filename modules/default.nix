@@ -39,6 +39,8 @@
       options = "--delete-older-than 30d";
     };
 
+    channel.enable = false;
+
     settings = {
       auto-optimise-store = true;
       experimental-features = [
