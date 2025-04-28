@@ -10,7 +10,7 @@
     devenv
     direnv
     lazygit
-    nh
+    unstable.nh
     nom
   ];
 
