@@ -9,6 +9,9 @@
     inputs.neovim.packages.aarch64-darwin.default
     devenv
     direnv
+    lazygit
+    nh
+    nom
   ];
 
   # Necessary for using flakes on this system.
