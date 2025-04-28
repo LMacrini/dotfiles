@@ -17,8 +17,11 @@
     inputs.home-manager.nixosModules.default
   ];
 
-  system.nixos = {
-    label = "WamOS-${config.system.nixos.release}";
+  system = {
+    nixos = {
+      label = "WamOS-${config.system.nixos.release}";
+    };
+    stateVersion = config.stateVersion;
   };
 
   nix = {
@@ -121,7 +124,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    peazip
+    unstable.peazip
     resources
     unstable.gimp3
 
