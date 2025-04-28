@@ -200,7 +200,7 @@
     unstable.peazip
 
     resources
-    gimp
+    unstable.gimp3
 
     helvum
 
