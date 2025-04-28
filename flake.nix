@@ -63,11 +63,15 @@
     mkLinuxHost = path:
       nixpkgs.lib.nixosSystem
       {
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+            inherit inputs;
+            hmPath = ./home-manager;
+        };
         modules = [
           ./hosts/${path}
+          ./modules/linux
+          ./modules/universal
           inputs.nix-flatpak.nixosModules.nix-flatpak
-          # inputs.home-manager.nixosModules.default
           hm-module.x86_64-linux
           (
             _: {
@@ -79,9 +83,14 @@
 
     mkDarwinHost = path:
       nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+            inherit inputs;
+            hmPath = ./home-manager/darwin;
+          };
         modules = [
           ./hosts/${path}
+          ./modules/darwin
+          ./modules/universal
           hm-module.aarch64-darwin
           (_: {nixpkgs.overlays = [overlay-unstable.aarch64-darwin];})
         ];
@@ -110,7 +119,10 @@
         ]
         // {
           live = nixpkgs.lib.nixosSystem {
-            specialArgs = {inherit inputs;};
+            specialArgs = {
+                inherit inputs;
+                hmPath = ./home-manager;
+            };
             modules = [
               ./hosts/liveiso
               ./modules

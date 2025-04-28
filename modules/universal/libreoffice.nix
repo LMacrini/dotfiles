@@ -11,7 +11,6 @@
   config = lib.mkIf config.libreoffice.enable {
     environment.systemPackages = with pkgs; [
       libreoffice-still
-      teams-for-linux
     ];
   };
 }
