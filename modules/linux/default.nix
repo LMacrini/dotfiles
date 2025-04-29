@@ -55,6 +55,8 @@
 
   # Enable CUPS to print documents.
   services = {
+    gvfs.enable = true;
+
     printing = {
       enable = true;
       drivers = with pkgs; [
