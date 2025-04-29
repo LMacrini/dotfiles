@@ -34,6 +34,8 @@
     settings.auto-optimise-store = true;
   };
 
+  services.gnome.gnome-keyring.enable = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
 
