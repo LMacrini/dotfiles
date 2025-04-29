@@ -7,11 +7,6 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     inputs.neovim.packages.aarch64-darwin.default
-    devenv
-    direnv
-    lazygit
-    unstable.nh
-    nom
   ];
 
   # Necessary for using flakes on this system.
