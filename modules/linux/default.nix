@@ -121,7 +121,7 @@
   };
 
   environment.sessionVariables = {
-    FLAKE = "/home/${config.mainUser}/dotfiles";
+    NH_FLAKE = "/home/${config.mainUser}/dotfiles";
     NH_NOM = 1;
   };
 
