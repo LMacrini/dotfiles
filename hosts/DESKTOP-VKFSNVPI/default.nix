@@ -13,6 +13,21 @@
       ];
     };
     gnome.enable = false;
+    sway = {
+     enable = true;
+      output = {
+        "DP-1" = {
+          mode = "2560x1440@144Hz";
+          pos = "0 0";
+          scale = "1";
+        };
+        "HDMI-A-2" = {
+          mode = "1920x1080@144Hz";
+          pos = "2560 180";
+          scale = "1";
+        };
+      };
+    };
   };
 
   gpu.amd.enable = true;
