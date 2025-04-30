@@ -106,6 +106,7 @@
       "wheel"
       "input"
       "uinput"
+      "video"
     ];
     packages = with pkgs; [
       thunderbird
@@ -121,6 +122,8 @@
       pipes
     ];
   };
+
+  programs.light.enable = true;
 
   environment.sessionVariables = {
     NH_FLAKE = "/home/${config.mainUser}/dotfiles";
