@@ -12,6 +12,7 @@
     ./kernel.nix
     ./keyboards.nix
     ./laptop
+    ./plymouth
     ./videos.nix
     ./vms.nix
     inputs.home-manager.nixosModules.default
@@ -32,15 +33,6 @@
     };
 
     settings.auto-optimise-store = true;
-  };
-
-  boot.plymouth = {
-    enable = true;
-    logo = ./miracle-mallet-icon.png;
-    theme = "cross_hud";
-    themePackages = with pkgs; [
-      adi1090x-plymouth-themes
-    ];
   };
 
   services.gnome.gnome-keyring.enable = true;
