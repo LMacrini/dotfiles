@@ -1,5 +1,9 @@
-{pkgs, lib, config, ...}:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     latestKernel.enable = lib.mkOption {
       default = !config.gpu.nvidia.enable;

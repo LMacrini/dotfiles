@@ -19,9 +19,12 @@ lib.mkIf cfg.de.sway.enable {
 
       modifier = "Mod4"; # Mod4 is super, check man 5 sway for others
 
-      output = builtins.mapAttrs (_: x: x // {
-        bg = "${../home/.config/background.jpg} fill";
-      }) cfg.de.sway.output;
+      output = builtins.mapAttrs (_: x:
+        x
+        // {
+          bg = "${../home/.config/background.jpg} fill";
+        })
+      cfg.de.sway.output;
     };
   };
 }

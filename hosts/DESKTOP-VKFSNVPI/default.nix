@@ -14,7 +14,7 @@
     };
     gnome.enable = false;
     sway = {
-     enable = true;
+      enable = true;
       output = {
         "DP-1" = {
           mode = "2560x1440@144Hz";

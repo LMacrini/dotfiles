@@ -1,4 +1,9 @@
-{config, inputs, pkgs, ...}: {
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./appimages.nix
     ./bootloader.nix
@@ -73,8 +78,8 @@
       openFirewall = true;
     };
     udev.extraRules = ''
-    KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-  '';
+      KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+    '';
   };
   boot.kernelModules = ["uinput"];
 
