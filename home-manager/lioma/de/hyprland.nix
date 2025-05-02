@@ -59,7 +59,7 @@ lib.mkIf cfg.de.hyprland.enable {
           }
           {
             label = "logout";
-            action = "hyprctl exec exit";
+            action = "hyprctl dispatch exit";
             text = "Logout";
             keybind = "e";
           }
@@ -198,8 +198,13 @@ lib.mkIf cfg.de.hyprland.enable {
           else []
         );
 
-      exec-shutdown = [
-        ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)''
+      exec-shutdown = let 
+          pkill = n: "pkill ${n} || pkill -9 ${n}";
+        in [
+        ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)"''
+        (pkill "kanata")
+        (pkill "blueman-applet")
+        (pkill "nm-applet")
       ];
 
       monitor =
