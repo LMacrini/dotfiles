@@ -17,11 +17,13 @@
 
   dev.editors.enable = true;
 
-  de.hyprland = {
-    enable = true;
-    monitor = [
-      "eDPI1,1920x1080,0x0,1"
-    ];
+  de = {
+    hyprland = {
+      enable = true;
+      monitor = [
+        "eDPI1,1920x1080,0x0,1"
+      ];
+    };
   };
 
   de.gnome.enable = false;
