@@ -3,6 +3,7 @@
   pkgs,
   modulesPath,
   lib,
+  config,
   ...
 }: let
   nixinstall = pkgs.writeTextFile {
@@ -42,4 +43,6 @@ in {
     git
     nixinstall
   ];
+
+  stateVersion = config.system.nixos.release;
 }

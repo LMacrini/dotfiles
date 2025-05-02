@@ -125,7 +125,8 @@
             };
             modules = [
               ./hosts/liveiso
-              ./modules
+              ./modules/linux
+              ./modules/universal
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.home-manager.nixosModules.default
               (
