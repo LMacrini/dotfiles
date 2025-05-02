@@ -39,7 +39,12 @@
           enable = dm == "sddm";
           wayland.enable = true;
         };
-        ly.enable = dm == "ly";
+        ly = {
+          enable = dm == "ly";
+          settings = {
+            xinitrc = "null";
+          };
+        };
       };
     };
 
