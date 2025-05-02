@@ -50,7 +50,7 @@
 
   environment.systemPackages = with pkgs; [
     unstable.nh
-    nom
+    nix-output-monitor
     nvd
 
     git
