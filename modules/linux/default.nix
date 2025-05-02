@@ -34,6 +34,15 @@
     settings.auto-optimise-store = true;
   };
 
+  boot.plymouth = {
+    enable = true;
+    logo = ./miracle-mallet-icon.png;
+    theme = "cross_hud";
+    themePackages = with pkgs; [
+      adi1090x-plymouth-themes
+    ];
+  };
+
   services.gnome.gnome-keyring.enable = true;
 
   # Enable networking
