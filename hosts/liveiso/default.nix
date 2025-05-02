@@ -14,7 +14,7 @@
   };
 in {
   imports = [
-    "${modulesPath}/installer/cd-dvd/installation-cd-base.nix"
+    # "${modulesPath}/installer/cd-dvd/installation-cd-base.nix"
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
@@ -43,6 +43,9 @@ in {
     git
     nixinstall
   ];
+
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
 
   stateVersion = config.system.nixos.release;
 }
