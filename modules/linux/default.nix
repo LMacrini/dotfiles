@@ -136,6 +136,7 @@
     unstable.gimp3
 
     celluloid
+    eog
     wl-clipboard
 
     helvum
