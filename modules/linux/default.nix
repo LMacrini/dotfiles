@@ -140,6 +140,7 @@
     unstable.peazip
     resources
     unstable.gimp3
+    gnome-disk-utility
 
     celluloid
     eog
