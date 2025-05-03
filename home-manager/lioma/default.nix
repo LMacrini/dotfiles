@@ -144,7 +144,7 @@
     };
 
     "org/gnome/desktop/input-sources" = {
-      sources = builtins.filter (x: x != null) [
+      sources = builtins.filter (x: !isNull x) [
         (lib.gvariant.mkTuple [
           "xkb"
           "us+mac"
