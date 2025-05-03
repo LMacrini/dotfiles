@@ -2,7 +2,6 @@
   imports = [
     ./hardware-configuration.nix
   ];
-  plymouth.quietBoot = false;
 
   gpu.nvidia.enable = true;
 
