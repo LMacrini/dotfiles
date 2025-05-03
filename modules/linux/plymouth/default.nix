@@ -24,7 +24,7 @@
           logo = ./logo.png;
           theme = "breeze";
           themePackages = with pkgs; [
-            (plasma5Packages.breeze-plymouth.override {
+            (kdePackages.breeze-plymouth.override {
               logoFile = logo;
               logoName = "miracle-mallet";
               osName = "WamOS";
