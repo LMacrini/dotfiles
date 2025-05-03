@@ -13,10 +13,6 @@
     text = builtins.readFile ./script.sh;
   };
 in {
-  imports = [
-    # "${modulesPath}/installer/cd-dvd/installation-cd-base.nix"
-  ];
-
   nixpkgs.hostPlatform = "x86_64-linux";
 
   networking.wireless.enable = false;
@@ -41,6 +37,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     git
+    parted
     nixinstall
   ];
 
