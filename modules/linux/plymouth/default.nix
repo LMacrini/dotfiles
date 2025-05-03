@@ -19,12 +19,17 @@
   config = {
     boot = lib.mkMerge [
       {
-        plymouth = {
+        plymouth = rec {
           inherit (config.plymouth) enable;
           logo = ./logo.png;
-          theme = "cross_hud";
+          theme = "breeze";
           themePackages = with pkgs; [
-            adi1090x-plymouth-themes
+            (plasma5Packages.breeze-plymouth.override {
+              logoFile = logo;
+              logoName = "miracle-mallet";
+              osName = "WamOS";
+              osVersion = config.system.nixos.release;
+            })
           ];
         };
       }
