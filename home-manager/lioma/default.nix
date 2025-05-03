@@ -126,13 +126,15 @@
     };
 
     "org/gnome/desktop/interface" = {
+      accent-color = "blue";
+      clock-format = "24h";
+      color-scheme = "prefer-dark";
+      cursor-size = 24;
+      cursor-theme = "catppuccin-macchiato-dark-cursors";
+      document-font-name = "Noto Sans Medium 11";
+      font-name = "Noto Sans Medium 11";
       gtk-theme = "adw-gtk3-dark";
       icon-theme = "rose-pine";
-      color-scheme = "prefer-dark";
-      clock-format = "24h";
-      cursor-theme = "catppuccin-macchiato-dark-cursors";
-      cursor-size = 24;
-      accent-color = "blue";
       monospace-font-name = "FiraCode Nerd Font Mono 10";
       show-battery-percentage = cfg.laptop.enable;
     };
