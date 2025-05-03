@@ -275,7 +275,7 @@ lib.mkIf cfg.de.hyprland.enable {
           "$mod, C, killactive"
           "$mod, F, togglefloating"
           "$mod ALT, K, exec, pkill kanata && kanata"
-          ''SUPER SHIFT, S, exec, grim -g "$(slurp -dw 0)" - | wl-copy''
+          ''SUPER SHIFT, S, exec, pkill slurp || grim -g "$(slurp -dw 0)" - | wl-copy''
           "$mod, right, movefocus, r"
           "$mod, left, movefocus, l"
           "$mod, up, movefocus, u"
