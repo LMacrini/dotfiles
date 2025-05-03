@@ -8,8 +8,12 @@
     ./unity.nix
   ];
 
-  options = {
-    dev.enable = lib.mkEnableOption "Enables development tools";
+  options = with lib; {
+    dev.enable = mkOption {
+      default = true;
+      type = types.bool;
+      description = "Whether to enable dev options";
+    };
   };
 
   config = {
