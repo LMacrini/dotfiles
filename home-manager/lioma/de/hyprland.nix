@@ -178,8 +178,17 @@ lib.mkIf cfg.de.hyprland.enable {
       variables = ["--all"];
       enableXdgAutostart = true;
     };
+  
+    plugins = with pkgs.hyprlandPlugins; [
+      hypr-dynamic-cursors
+    ];
+
     settings = {
       "$mod" = "SUPER";
+
+      "plugin:dynamic-cursors" = {
+        shake.enabled = false;
+      };
 
       exec-once =
         [
