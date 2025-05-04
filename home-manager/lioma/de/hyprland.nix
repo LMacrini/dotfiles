@@ -275,7 +275,8 @@ lib.mkIf cfg.de.hyprland.enable {
           "ALT, Space, exec, pkill wofi || wofi"
           "$mod, Q, exec, kitty"
           "$mod, C, killactive"
-          "$mod, F, togglefloating"
+          "$mod, F, fullscreen"
+          "$mod SHIFT, F, togglefloating"
           "$mod ALT, K, exec, pkill kanata && kanata"
           ''SUPER SHIFT, S, exec, pkill slurp || grim -g "$(slurp -dw 0)" - | wl-copy''
           "$mod, right, movefocus, r"
