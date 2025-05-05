@@ -203,7 +203,7 @@ lib.mkIf cfg.de.hyprland.enable {
         ]
         ++ (
           if cfg.liveSystem
-          then ["kitty nmtui"]
+          then ["kitty --hold nmtui"]
           else []
         );
 
