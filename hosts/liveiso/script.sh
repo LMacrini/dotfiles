@@ -32,9 +32,12 @@ yorn() {
 if curl -s --head https://github.com | grep "200" > /dev/null; then
   echo "Connected to the internet!"
 else
-  echo "Please connect to the internet with iwd. If you are connected, github may be down. Please try again later."
+  echo "Please connect to the internet. If you are connected, github may be down. Please try again later."
   exit 1
 fi
+
+git clone https://github.com/lmacrini/dotfiles /tmp/config
+cd /tmp/config
 
 yorn manualdrives "n" "Do you want to partition drives manually? [n]"
 if manualdrives; then
@@ -69,45 +72,11 @@ else
       swapsize=${swapsize:=default_ram}
     done
 
-    sudo parted /dev/$drive -- mklabel gpt
-    sudo parted /dev/$drive -- mkpart root ext4 512MB -${swapsize}GB
-    sudo parted /dev/$drive -- mkpart swap linux-swap -${swapsize}GB 100%
-    sudo parted /dev/$drive -- mkpart ESP fat32 1MB 512MB
-    sudo parted /dev/$drive -- set 3 esp on
-
-    sudo mkfs.ext4 -L nixos /dev/${drive}1
-    sudo mkswap -L swap /dev/${drive}2
-    sudo mkfs.fat -F 32 -n boot /dev/${drive}3
+    sudo disko --mode zap_create_mount --arg disk "\"/dev/${drive}\"" --arg swap "\"${swapsize}\"" ./disko/swap.nix
   else
-    sudo parted /dev/$drive -- mklabel gpt
-    sudo parted /dev/$drive -- mkpart root ext4 512MB 100%
-    sudo parted /dev/$drive -- mkpart ESP fat32 1MB 512MB
-    sudo parted /dev/$drive -- set 2 esp on
-
-    sudo mkfs.ext4 -L nixos /dev/${drive}1
-    sudo mkfs.fat -F 32 -n boot /dev/${drive}2
+    sudo disko --mode zap_create_mount --arg disk "\"/dev/${drive}\"" ./disko/no-swap.nix
   fi
-
-  sudo mount /dev/disk/by-label/nixos /mnt
-  sudo mkdir -p /mnt/boot
-  sudo mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
-
-  echo "/dev/${drive}"
-  if [[ $swap = true ]]; then
-    yorn swapon "n" "Do you want to enable swap now? (recommended on lower end devices) [n]"
-    if $swapon; then
-      sudo swapon /dev/${drive}2
-    fi
-  fi
-
 fi
-
-sudo nixos-generate-config --root /mnt
-
-cd /mnt/etc/nixos
-
-sudo git clone https://github.com/lmacrini/dotfiles
-cd nixos
 
 echo ""
 
@@ -126,7 +95,7 @@ while true; do
   fi
 
   if $replacehardware; then
-    sudo cp ../hardware-configuration.nix "./hosts/$host"
+    nixos-generate-config --root /mnt --show-hardware-config > ./hosts/$host/hardware-configuration.nix
     sudo git add .
   fi
 
@@ -141,5 +110,9 @@ done
 echo ""
 echo "Setting up password for lioma: "
 sudo nixos-enter --root /mnt -c 'passwd lioma'
+
+cp . /home/lioma/dotfiles
+sudo chown -R lioma /home/lioma/dotfiles
+
 echo ""
 echo "Build complete, you may reboot"
