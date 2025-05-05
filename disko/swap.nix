@@ -1,4 +1,4 @@
-{disk, ...}: {
+{disk, swap ? 8, ...}: {
   disko.devices = {
     disk = {
       main = {
@@ -18,7 +18,7 @@
               };
             };
             root = {
-              end = "-1G";
+              end = "-${swap}G";
               content = {
                 type = "filesystem";
                 format = "ext4";
