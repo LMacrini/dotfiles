@@ -37,7 +37,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     git
-    parted
+    inputs.disko.packages.${pkgs.stdenv.system}.disko
     nixinstall
   ];
 
