@@ -178,7 +178,7 @@ lib.mkIf cfg.de.hyprland.enable {
       variables = ["--all"];
       enableXdgAutostart = true;
     };
-  
+
     plugins = with pkgs.hyprlandPlugins; [
       hypr-dynamic-cursors
     ];
@@ -207,9 +207,9 @@ lib.mkIf cfg.de.hyprland.enable {
           else []
         );
 
-      exec-shutdown = let 
-          pkill = n: "pkill ${n} || pkill -9 ${n}";
-        in [
+      exec-shutdown = let
+        pkill = n: "pkill ${n} || pkill -9 ${n}";
+      in [
         ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)"''
         (pkill "kanata")
         (pkill "blueman-applet")
@@ -324,7 +324,7 @@ lib.mkIf cfg.de.hyprland.enable {
       animations = {
         enabled = "yes, :3";
 
-        bezier = [ 
+        bezier = [
           "easeOutQuint,0.23,1,0.32,1"
           "easeInOutCubic,0.65,0.05,0.36,1"
           "linear,0,0,1,1"
