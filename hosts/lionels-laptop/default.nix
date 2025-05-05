@@ -3,6 +3,8 @@
     ./hardware-configuration.nix
   ];
 
+  vms.enable = true;
+
   gpu.nvidia.enable = true;
 
   networking.hostName = "lionels-laptop";
@@ -16,6 +18,7 @@
 
   dev.editors.enable = true;
 
+  dm = "ly";
   de = {
     hyprland = {
       enable = true;
@@ -24,9 +27,6 @@
       ];
     };
   };
-
-  de.gnome.enable = false;
-  dm = "ly";
 
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";

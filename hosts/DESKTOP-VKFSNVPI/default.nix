@@ -12,7 +12,6 @@
         "HDMI-A-2,1920x1080@144,2560x180,1"
       ];
     };
-    gnome.enable = false;
   };
 
   gpu.amd.enable = true;

@@ -13,7 +13,7 @@
         # "sddm"
         # "lightdm"
       ];
-      default = "gdm";
+      default = "ly";
     };
   };
 
