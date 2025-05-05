@@ -50,7 +50,6 @@
   environment.systemPackages = with pkgs; [
     unstable.nh
     nix-output-monitor
-    nvd
 
     git
     lazygit
