@@ -94,17 +94,10 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    jack.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lioma = {
-    hashedPassword = "$6$DuDKsmXNZ0IBeQRk$QDXClqL6ryJ58EsQgfph71HZuNUKRH/BaXksEVkc/lIY2fd.trKorNB72ojne.1akMrcKgvgjqxBiS2fsIXS5/";
     isNormalUser = true;
     description = "Lionel Macrini";
     extraGroups = [
