@@ -174,7 +174,7 @@ lib.mkIf cfg.de.hyprland.enable {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd = {
-      enable = true;
+      enable = false;
       variables = ["--all"];
       enableXdgAutostart = true;
     };
