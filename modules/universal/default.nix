@@ -54,7 +54,7 @@
     git
     lazygit
     gh
-    unstable.devenv
+    devenv
     direnv
     alejandra
     zoxide
