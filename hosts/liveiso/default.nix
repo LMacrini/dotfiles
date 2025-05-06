@@ -26,6 +26,8 @@ in {
 
   liveSystem = true;
 
+  security.sudo.wheelNeedsPassword = false;
+
   laptop = {
     enable = true;
     tlp.enable = false;
