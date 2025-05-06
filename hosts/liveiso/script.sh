@@ -111,7 +111,7 @@ echo ""
 echo "Setting up password for lioma: "
 sudo nixos-enter --root /mnt -c 'passwd lioma'
 
-cp . /home/lioma/dotfiles
+cp -r . /mnt/home/lioma/dotfiles
 sudo chown -R lioma /home/lioma/dotfiles
 
 echo ""
