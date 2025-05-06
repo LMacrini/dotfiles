@@ -63,6 +63,7 @@
     starship
     skim
     yazi
+    tlrc
 
     _7zz-rar
   ];
