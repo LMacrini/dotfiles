@@ -40,7 +40,7 @@ git clone https://github.com/lmacrini/dotfiles /tmp/config
 cd /tmp/config
 
 yorn manualdrives "n" "Do you want to partition drives manually? [n]"
-if manualdrives; then
+if $manualdrives; then
   echo "Just run 'exit' when you're done to proceed"
   sudo -i
 else
@@ -112,7 +112,7 @@ echo "Setting up password for lioma: "
 sudo nixos-enter --root /mnt -c 'passwd lioma'
 
 cp -r . /mnt/home/lioma/dotfiles
-sudo chown -R lioma /home/lioma/dotfiles
+sudo chown -R lioma /mnt/home/lioma/dotfiles
 
 echo ""
 echo "Build complete, you may reboot"
