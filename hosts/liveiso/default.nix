@@ -22,10 +22,6 @@ in {
     user = "lioma";
   };
 
-  de = {
-    gnome.enable = false;
-    hyprland.enable = true;
-  };
   dm = "gdm";
 
   liveSystem = true;
