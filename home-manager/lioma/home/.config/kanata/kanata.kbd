@@ -3,6 +3,7 @@
     "ZSA Technology Labs Ergodox EZ"
     "ZSA Technology Labs Ergodox EZ Keyboard"
     "ZSA Technology Labs Ergodox EZ Consumer Control"
+    "AT Translated Set 2 keyboard"
   )
   linux-continue-if-no-devs-found yes
 )
