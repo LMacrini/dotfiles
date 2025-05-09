@@ -1,0 +1,2 @@
+set -o vi
+source "$_ble_base/lib/vim-surround.sh"
