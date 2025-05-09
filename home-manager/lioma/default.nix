@@ -99,6 +99,9 @@
       source = ./home/.config;
       recursive = true;
     };
+    ".blerc" = {
+      source = ./home/.blerc;
+    };
     "Templates" = {
       source = ./home/Templates;
       recursive = true;
