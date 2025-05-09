@@ -21,22 +21,6 @@
 
     services.flatpak = {
       packages = [
-        {
-          appId = "moe.launcher.an-anime-game-launcher";
-          origin = "launcher.moe";
-        }
-        {
-          appId = "moe.launcher.the-honkers-railway-launcher";
-          origin = "launcher.moe";
-        }
-        {
-          appId = "moe.launcher.honkers-launcher";
-          origin = "launcher.moe";
-        }
-        {
-          appId = "moe.launcher.sleepy-launcher";
-          origin = "launcher.moe";
-        }
         "io.github.everestapi.Olympus"
         "org.vinegarhq.Sober"
         # "net.lutris.Lutris"
