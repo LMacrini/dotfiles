@@ -11,6 +11,9 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    catppuccin.url = "github:catppuccin/nix";
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     neovim = {

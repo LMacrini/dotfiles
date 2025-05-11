@@ -2,12 +2,21 @@
   lib,
   cfg,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
     ./de
     # ./discord.nix
+    inputs.catppuccin.homeModules.catppuccin
   ];
+
+  catppuccin = {
+    enable = true;
+    flavor = "macchiato";
+    waybar.enable = false;
+    accent = "pink";
+  };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -286,34 +295,40 @@
     };
   };
 
-  programs.bash = {
-    enable = true;
-    initExtra = ''
-      [[ $- != *i* ]] && return
+  programs = {
+    btop.enable = true;
 
-      export NO_POINTER_VIEWPORT=1
-      export DO_NOT_TRACK=1
+    starship.enable = true;
 
-      # alias ls='ls --color=auto'
-      alias grep='grep --color=auto'
-      PS1='[\u@\h \W]\$ '
+    bash = {
+      enable = true;
+      initExtra = ''
+        [[ $- != *i* ]] && return
 
-      eval "$(zoxide init bash)"
-      eval "$(direnv hook bash)"
+        export NO_POINTER_VIEWPORT=1
+        export DO_NOT_TRACK=1
 
-      alias cls="clear"
-      alias cd="z"
-      alias ls="lsd"
-      alias la="ls -a"
-      alias ll="ls -l"
-      alias lla="ls -la"
-      alias lg="lazygit"
+        # alias ls='ls --color=auto'
+        alias grep='grep --color=auto'
+        PS1='[\u@\h \W]\$ '
 
-      eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
-      source "$(blesh-share)/ble.sh"
+        eval "$(zoxide init bash)"
+        eval "$(direnv hook bash)"
 
-      # fastfetch
-    '';
+        alias cls="clear"
+        alias cd="z"
+        alias ls="lsd"
+        alias la="ls -a"
+        alias ll="ls -l"
+        alias lla="ls -la"
+        alias lg="lazygit"
+
+        eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
+        source "$(blesh-share)/ble.sh"
+
+        # fastfetch
+      '';
+    };
   };
 
   # Let Home Manager install and manage itself.
