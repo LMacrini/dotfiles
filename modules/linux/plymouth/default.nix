@@ -47,7 +47,11 @@
           "rd.systemd.show_status=auto"
         ];
 
-        loader.timeout = lib.mkDefault 0;
+        loader.timeout = lib.mkDefault (
+          if config.bootloader == "systemd"
+          then 0
+          else 1
+        );
       })
     ];
   };
