@@ -131,7 +131,8 @@
 
   environment.systemPackages = with pkgs; [
     unstable.peazip
-    resources
+    # resources
+    btop
     unstable.gimp3
     gnome-disk-utility
 
