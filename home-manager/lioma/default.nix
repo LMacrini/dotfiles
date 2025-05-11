@@ -37,6 +37,7 @@
 
   home.packages = with pkgs; [
     catppuccin-cursors.macchiatoDark
+    blesh
   ];
 
   home.pointerCursor = {
@@ -323,7 +324,7 @@
         alias lla="ls -la"
         alias lg="lazygit"
 
-        eval -- "$(/run/current-system/sw/bin/starship init bash --print-full-init)"
+        eval $(starship init bash)
         source "$(blesh-share)/ble.sh"
 
         # fastfetch

@@ -59,8 +59,6 @@
     alejandra
     zoxide
     lsd
-    blesh
-    starship
     skim
     yazi
     tlrc
