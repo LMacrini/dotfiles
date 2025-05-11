@@ -11,7 +11,7 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     catppuccin.url = "github:catppuccin/nix";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
@@ -77,6 +77,7 @@
           ./modules/linux
           ./modules/universal
           inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.catppuccin.nixosModules.catppuccin
           hm-module.x86_64-linux
           (
             _: {
@@ -134,6 +135,7 @@
               ./modules/universal
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.home-manager.nixosModules.default
+              inputs.catppuccin.nixosModules.catppuccin
               (
                 _: {
                   nixpkgs.overlays = [overlay-unstable.x86_64-linux];

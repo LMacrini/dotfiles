@@ -17,6 +17,8 @@
     };
   };
   config = {
+    catppuccin.plymouth.enable = false;
+
     boot = lib.mkMerge [
       {
         plymouth = rec {

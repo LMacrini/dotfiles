@@ -40,6 +40,12 @@
     settings.auto-optimise-store = true;
   };
 
+  catppuccin = {
+    enable = true;
+    flavor = "macchiato";
+    accent = "pink";
+  };
+
   services.gnome.gnome-keyring.enable = true;
 
   # Enable networking

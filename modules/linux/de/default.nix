@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   imports = [
     ./dm.nix
     ./gnome.nix

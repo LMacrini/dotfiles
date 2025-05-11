@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -36,4 +36,8 @@
   libreoffice.enable = true;
 
   stateVersion = "24.11";
+
+  environment.systemPackages = with pkgs; [
+    teams-for-linux
+  ];
 }

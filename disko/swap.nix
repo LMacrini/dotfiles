@@ -1,4 +1,8 @@
-{disk, swap, ...}: {
+{
+  disk,
+  swap,
+  ...
+}: {
   disko.devices = {
     disk = {
       main = {
