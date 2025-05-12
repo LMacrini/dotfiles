@@ -24,6 +24,8 @@ in {
 
   dm = "gdm";
 
+  bootloader = null;
+
   liveSystem = true;
 
   security.sudo.wheelNeedsPassword = false;
