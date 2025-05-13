@@ -99,7 +99,7 @@ while true; do
     sudo git add .
   fi
 
-  if sudo nixos-install --flake "./#$host"; then
+  if sudo nixos-install --flake "./#$host" --no-channel-copy; then
     break
   fi
 
