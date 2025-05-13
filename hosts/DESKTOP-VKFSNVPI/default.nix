@@ -3,6 +3,8 @@
     ./hardware-configuration.nix
   ];
 
+  bootloader = "grub";
+
   dm = "ly";
   de = {
     hyprland = {

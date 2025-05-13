@@ -21,7 +21,9 @@
         efiSupport = true;
         device = "nodev";
       };
-      efi.canTouchEfiVariables = true;
+      efi = {
+        canTouchEfiVariables = true;
+      };
     };
   };
 }
