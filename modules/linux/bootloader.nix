@@ -6,10 +6,11 @@
   options = with lib; {
     bootloader = mkOption {
       default = "systemd";
-      type = with types; nullOr (enum [
-        "systemd"
-        "grub"
-      ]);
+      type = with types;
+        nullOr (enum [
+          "systemd"
+          "grub"
+        ]);
     };
   };
 
