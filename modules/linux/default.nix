@@ -44,6 +44,7 @@
     enable = true;
     flavor = "macchiato";
     accent = "pink";
+    tty.enable = false;
   };
 
   services.gnome.gnome-keyring.enable = true;
