@@ -129,7 +129,9 @@
     ];
   };
 
-  programs.light.enable = true;
+  programs = {
+    light.enable = true;
+  };
 
   environment.sessionVariables = {
     NH_FLAKE = "/home/${config.mainUser}/dotfiles";
