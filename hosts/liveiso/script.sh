@@ -42,6 +42,7 @@ cd /tmp/config
 yorn manualdrives "n" "Do you want to partition drives manually? [n]"
 if $manualdrives; then
   echo "Just run 'exit' when you're done to proceed"
+  echo "(make sure to mount boot on /mnt/boot and the main partition on /mnt)"
   sudo -i
 else
   echo ""
