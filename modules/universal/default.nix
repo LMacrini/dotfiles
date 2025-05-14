@@ -42,7 +42,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["FiraCode"];})
+    unstable.nerd-fonts.fira-code
     fira-code
     nasin-nanpa
   ];
