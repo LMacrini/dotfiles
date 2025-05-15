@@ -39,9 +39,7 @@ lib.mkIf cfg.de.hyprland.enable {
       enable = true;
       layout =
         (
-          if cfg.liveSystem
-          then []
-          else [
+          lib.optionals (!cfg.liveSystem) [
             {
               label = "lock";
               action = "hyprlock";
@@ -186,9 +184,8 @@ lib.mkIf cfg.de.hyprland.enable {
           "blueman-applet"
         ]
         ++ (
-          if cfg.liveSystem
-          then ["kitty --hold nmtui"]
-          else []
+          lib.optionals cfg.liveSystem
+          ["kitty --hold nmtui"]
         );
 
       exec-shutdown = let
