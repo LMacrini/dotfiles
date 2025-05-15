@@ -73,9 +73,9 @@ else
       swapsize=${swapsize:=default_ram}
     done
 
-    sudo disko --mode zap_create_mount --arg disk "\"/dev/${drive}\"" --arg swap "\"${swapsize}\"" ./disko/swap.nix
+    sudo disko -m destroy,format,mount --yes-wipe-all-disks --arg disk "\"/dev/${drive}\"" --arg swap "\"${swapsize}\"" ./disko/swap.nix
   else
-    sudo disko --mode zap_create_mount --arg disk "\"/dev/${drive}\"" ./disko/no-swap.nix
+    sudo disko -m destroy,format,mount --yes-wipe-all-disks --arg disk "\"/dev/${drive}\"" ./disko/no-swap.nix
   fi
 fi
 
