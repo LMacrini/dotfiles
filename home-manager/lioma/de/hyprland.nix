@@ -343,6 +343,7 @@ lib.mkIf cfg.de.hyprland.enable {
       ecosystem = {
         enforce_permissions = true;
         no_donation_nag = true; # sorry but it's just not clean :pensive: i might donate anyway
+        no_update_news = cfg.liveSystem;
       };
     };
   };
