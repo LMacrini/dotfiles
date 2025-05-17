@@ -42,13 +42,13 @@
   };
 
   fonts.packages = with pkgs; [
-    unstable.nerd-fonts.fira-code
+    nerd-fonts.fira-code
     fira-code
     nasin-nanpa
   ];
 
   environment.systemPackages = with pkgs; [
-    unstable.nh
+    nh
     nix-output-monitor
 
     git

@@ -87,12 +87,12 @@
     udev.extraRules = ''
       KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
     '';
+    pulseaudio.enable = false;
   };
   boot.kernelModules = ["uinput"];
 
   # Enable sound with pipewire.
   hardware = {
-    pulseaudio.enable = false;
     uinput.enable = true;
   };
   security.rtkit.enable = true;
@@ -139,10 +139,10 @@
   };
 
   environment.systemPackages = with pkgs; [
-    unstable.peazip
+    peazip
     resources
     btop
-    unstable.gimp3
+    gimp3
     gnome-disk-utility
 
     celluloid

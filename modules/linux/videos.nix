@@ -15,7 +15,6 @@
       plugins = with pkgs.obs-studio-plugins; [
         wlrobs
         obs-vaapi
-        obs-nvfbc
         droidcam-obs
         obs-vkcapture
         obs-gstreamer
@@ -28,7 +27,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-      kdenlive
+      kdePackages.kdenlive
     ];
   };
 }

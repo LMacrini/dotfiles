@@ -4,8 +4,7 @@
   ...
 }: {
   imports = [
-    ./ryujinx.nix
-    ./torzu.nix
+    ./ryubing.nix
     ./dolphin.nix
   ];
 
@@ -18,8 +17,7 @@
       default = config.games.emulators.enable;
     in {
       dolphin.enable = lib.mkDefault default;
-      torzu.enable = lib.mkDefault default;
-      ryujinx.enable = lib.mkDefault false;
+      ryubing.enable = lib.mkDefault default;
     };
   };
 }

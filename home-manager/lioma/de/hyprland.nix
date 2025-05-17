@@ -238,11 +238,11 @@ lib.mkIf cfg.de.hyprland.enable {
 
       env = [
         "NIXOS_OZONE_WL,1"
-        "HYPRCURSOR_THEME,catppuccin-macchiato-dark-cursors"
-        "HYPRCURSOR_SIZE,32"
-        "XCURSOR_THEME,catppuccin-macchiato-dark-cursors"
-        "XCURSOR_SIZE,24"
-        "XDG_CONFIG_HOME,/home/lioma/.config"
+        # "HYPRCURSOR_THEME,catppuccin-macchiato-dark-cursors"
+        # "HYPRCURSOR_SIZE,32"
+        # "XCURSOR_THEME,catppuccin-macchiato-dark-cursors"
+        # "XCURSOR_SIZE,24"
+        # "XDG_CONFIG_HOME,/home/lioma/.config"
       ];
 
       bindel = [
