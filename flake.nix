@@ -19,7 +19,6 @@
 
     neovim = {
       url = "github:lmacrini/nvf-config";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
