@@ -337,6 +337,7 @@ lib.mkIf cfg.de.hyprland.enable {
       permission = [
         "${pkgs.grim}/bin/grim, screencopy, allow"
         "${pkgs.xdg-desktop-portal-hyprland}/libexec/*, screencopy, allow"
+        "${pkgs.hyprland}/bin/hyprctl, plugin, allow" # probably not a good idea lmao
       ];
 
       ecosystem = {
