@@ -10,6 +10,7 @@ lib.mkIf cfg.de.hyprland.enable {
     brightnessctl
     grim
     hypridle
+    hyprland-qtutils
     hyprpaper
     hyprpolkitagent
     kanata
@@ -331,6 +332,16 @@ lib.mkIf cfg.de.hyprland.enable {
           "workspacesIn, 1, 1.21, almostLinear, fade"
           "workspacesOut, 1, 1.94, almostLinear, fade"
         ];
+      };
+
+      permission = [
+        "${pkgs.grim}/bin/grim, screencopy, allow"
+        "${pkgs.xdg-desktop-portal-hyprland}/libexec/*, screencopy, allow"
+      ];
+
+      ecosystem = {
+        enforce_permissions = true;
+        no_donation_nag = true; # sorry but it's just not clean :pensive: i might donate anyway
       };
     };
   };
