@@ -42,4 +42,6 @@
   environment.systemPackages = with pkgs; [
     teams-for-linux
   ];
+
+  ssh.enable = true;
 }
