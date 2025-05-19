@@ -327,6 +327,7 @@
         alias ll="ls -l"
         alias lla="ls -la"
         alias lg="lazygit"
+        alias chkbd="sudo --preserve-env=WAYLAND_DISPLAY --preserve-env=XDG_RUNTIME_DIR --preserve-env=XDG_SESSION_TYPE keymapp"
 
         eval $(starship init bash)
         source "$(blesh-share)/ble.sh"
