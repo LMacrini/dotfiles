@@ -151,7 +151,9 @@
     eog
     wl-clipboard
 
-    helvum
+    # decide which to use
+    # helvum
+    qpwgraph
 
     goodvibes
     eartag
