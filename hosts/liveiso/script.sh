@@ -71,8 +71,8 @@ else
     default_ram=$(free -g | awk '/^Mem:/ {print $2}')
     read -p "How big do you want your swap file? (in GiB, default=$default_ram): " swapsize
     swapsize=${swapsize:=$default_ram}
-    while [[ $swapsize -gt 32 ]] || [[ $swapsize -gt $(($default_ram*2)) ]]; do
-      read -p "Invalid input, please try again " swapsize
+    while [[ $swapsize -gt 32 ]] || [[ $swapsize -gt $((default_ram*2)) ]]; do
+      read -p "Invalid input, please try again: " swapsize
       swapsize=${swapsize:=$default_ram}
     done
 
@@ -113,7 +113,28 @@ done
 
 echo ""
 echo "Setting up password for lioma: "
-sudo nixos-enter --root /mnt -c 'passwd lioma'
+
+attempt=0
+success=0
+
+while (( attempt < 3 )); do
+  ((attempt++))
+  set +e
+  sudo nixos-enter --root /mnt -c 'passwd lioma'
+  result=$?
+  set -e
+
+  if [ $result -eq 0 ]; then
+    success=1
+    break
+  else
+    echo "Failed to set password, please try again"
+  fi
+done
+
+if [ $success -eq 0 ]; then
+  echo "Failed to set password after $attempt attempts, proceeding..."
+fi
 
 cp -r . /mnt/home/lioma/dotfiles
 sudo chown -R lioma /mnt/home/lioma/dotfiles
