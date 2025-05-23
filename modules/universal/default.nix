@@ -5,7 +5,7 @@
   config,
   pkgs,
   inputs,
-  hmPath,
+  os,
   ...
 }: {
   imports = [
@@ -33,10 +33,11 @@
   home-manager = {
     extraSpecialArgs = {
       inherit inputs;
+      inherit os;
       cfg = config;
     };
     users = {
-      "${config.mainUser}" = import "${hmPath}/lioma";
+      "${config.mainUser}" = import ../../home-manager/lioma;
     };
     useGlobalPkgs = true;
   };

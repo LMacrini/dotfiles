@@ -54,7 +54,7 @@
       {
         specialArgs = {
           inherit inputs;
-          hmPath = ./home-manager;
+          os = "linux";
         };
         modules = [
           ./hosts/${path}
@@ -75,7 +75,7 @@
       nix-darwin.lib.darwinSystem {
         specialArgs = {
           inherit inputs;
-          hmPath = ./home-manager/darwin;
+          os = "darwin";
         };
         modules = [
           ./hosts/${path}
@@ -111,7 +111,7 @@
           live = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit inputs;
-              hmPath = ./home-manager;
+              os = "linux";
             };
             modules = [
               ./hosts/liveiso
