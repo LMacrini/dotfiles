@@ -48,7 +48,13 @@
     nasin-nanpa
   ];
 
+  programs = {
+    zsh.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
+    nushell
+
     nh
     nix-output-monitor
 
@@ -56,9 +62,6 @@
     lazygit
     gh
     devenv
-    direnv
-    alejandra
-    zoxide
     lsd
     skim
     yazi

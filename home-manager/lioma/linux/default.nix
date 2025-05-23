@@ -20,8 +20,8 @@
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "lioma";
-  home.homeDirectory = "/home/lioma";
+  home.username = cfg.mainUser;
+  home.homeDirectory = "/home/${cfg.mainUser}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -37,8 +37,11 @@
 
   home.packages = with pkgs; [
     catppuccin-cursors.macchiatoDark
-    blesh
   ];
+
+  home.shellAliases = {
+    chkbd = "sudo --preserve-env=WAYLAND_DISPLAY --preserve-env=XDG_RUNTIME_DIR --preserve-env=XDG_SESSION_TYPE keymapp";
+  };
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -299,58 +302,4 @@
       theme = "live-split";
     };
   };
-
-  programs = {
-    btop.enable = true;
-
-    starship = {
-      enable = true;
-    };
-
-    direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      enableNushellIntegration = true;
-    };
-
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-      enableNushellIntegration = true;
-    };
-
-    nushell = {
-      enable = true;
-    };
-
-    bash = {
-      enable = true;
-      initExtra = ''
-        [[ $- != *i* ]] && return
-
-        export NO_POINTER_VIEWPORT=1
-        export DO_NOT_TRACK=1
-
-        # alias ls='ls --color=auto'
-        alias grep='grep --color=auto'
-        PS1='[\u@\h \W]\$ '
-
-        alias cls="clear"
-        alias cd="z"
-        alias ls="lsd"
-        alias la="ls -a"
-        alias ll="ls -l"
-        alias lla="ls -la"
-        alias lg="lazygit"
-        alias chkbd="sudo --preserve-env=WAYLAND_DISPLAY --preserve-env=XDG_RUNTIME_DIR --preserve-env=XDG_SESSION_TYPE keymapp"
-
-        source "$(blesh-share)/ble.sh"
-
-        # fastfetch
-      '';
-    };
-  };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }
