@@ -5,6 +5,7 @@
     ];
 
     shellAliases = {
+      cd = "z";
       cls = "clear";
       lg = "lazygit";
     };
@@ -48,8 +49,12 @@
 
     nushell = {
       enable = true;
-      configFile = {
-        source = ./nuconfig.nu;
+      environmentVariables = {
+        NO_POINTER_VIEWPORT = 1;
+      };
+
+      settings = {
+        show_banner = false;
       };
     };
 
