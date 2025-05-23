@@ -1,4 +1,8 @@
-{lib, config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   options = {
     ssh.enable = lib.mkEnableOption "ssh";
   };
@@ -6,7 +10,7 @@
   config = lib.mkIf config.ssh.enable {
     services.openssh = {
       enable = true;
-      ports = [ 22 ];
+      ports = [22];
       settings = {
         PasswordAuthentication = true;
         AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]

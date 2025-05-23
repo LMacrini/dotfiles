@@ -186,7 +186,7 @@ lib.mkIf cfg.de.hyprland.enable {
         ]
         ++ (
           lib.optionals cfg.liveSystem
-          [ "kitty --hold nmtui" ]
+          ["kitty --hold nmtui"]
         );
 
       exec-shutdown = let
