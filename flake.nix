@@ -137,5 +137,11 @@
       pkgs = import nixpkgs {inherit system;};
     in {
       formatter = pkgs.alejandra;
+
+      devShells = {
+        default = import ./shell.nix {
+          inherit pkgs;
+        };
+      };
     });
 }
