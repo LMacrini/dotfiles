@@ -8,7 +8,7 @@ lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
     blueman
     brightnessctl
-    ghostty
+    kitty
     grim
     hypridle
     hyprland-qtutils
@@ -186,7 +186,7 @@ lib.mkIf cfg.de.hyprland.enable {
         ]
         ++ (
           lib.optionals cfg.liveSystem
-          [ "ghostty -e nmtui; ghostty" ]
+          [ "kitty --hold nmtui" ]
         );
 
       exec-shutdown = let
@@ -265,7 +265,7 @@ lib.mkIf cfg.de.hyprland.enable {
         [
           "$mod, T, exec, pkill wofi || wofi"
           "ALT, Space, exec, pkill wofi || wofi"
-          "$mod, Q, exec, ghostty"
+          "$mod, Q, exec, kitty"
           "$mod, C, killactive"
           "$mod, F, fullscreen"
           "$mod SHIFT, F, togglefloating"
