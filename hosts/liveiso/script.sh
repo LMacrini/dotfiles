@@ -36,6 +36,9 @@ else
   exit 1
 fi
 
+if [ -d /tmp/config ]; then
+  rm -r /tmp/config
+fi
 git clone https://github.com/lmacrini/dotfiles /tmp/config
 cd /tmp/config
 
@@ -67,10 +70,10 @@ else
   if $swap; then
     default_ram=$(free -g | awk '/^Mem:/ {print $2}')
     read -p "How big do you want your swap file? (in GiB, default=$default_ram): " swapsize
-    swapsize=${swapsize:=default_ram}
-    while [[ $swapsize -gt 32 ]] || [[ $swapsize -gt $((default_ram*2)) ]]; do
+    swapsize=${swapsize:=$default_ram}
+    while [[ $swapsize -gt 32 ]] || [[ $swapsize -gt $(($default_ram*2)) ]]; do
       read -p "Invalid input, please try again " swapsize
-      swapsize=${swapsize:=default_ram}
+      swapsize=${swapsize:=$default_ram}
     done
 
     sudo disko -m destroy,format,mount --yes-wipe-all-disks --arg disk "\"/dev/${drive}\"" --arg swap "\"${swapsize}\"" ./disko/swap.nix
