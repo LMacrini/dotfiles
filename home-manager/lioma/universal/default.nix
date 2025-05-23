@@ -34,7 +34,6 @@
       '';
 
       shellAliases = {
-        cd = "z";
         ls = "lsd";
         la = "lsd -a";
         ll = "lsd -l";
@@ -51,6 +50,12 @@
       enable = true;
       environmentVariables = {
         NO_POINTER_VIEWPORT = 1;
+      };
+
+      shellAliases = {
+        la = "ls -a";
+        ll = "ls -l";
+        lla = "ls -la";
       };
 
       settings = {
