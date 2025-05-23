@@ -8,13 +8,13 @@ lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
     blueman
     brightnessctl
+    ghostty
     grim
     hypridle
     hyprland-qtutils
     hyprpaper
     hyprpolkitagent
     kanata
-    kitty
     networkmanagerapplet
     pavucontrol
     playerctl
@@ -186,7 +186,7 @@ lib.mkIf cfg.de.hyprland.enable {
         ]
         ++ (
           lib.optionals cfg.liveSystem
-          ["kitty --hold nmtui"]
+          [ "ghostty -e nmtui; ghostty" ]
         );
 
       exec-shutdown = let
@@ -265,7 +265,7 @@ lib.mkIf cfg.de.hyprland.enable {
         [
           "$mod, T, exec, pkill wofi || wofi"
           "ALT, Space, exec, pkill wofi || wofi"
-          "$mod, Q, exec, kitty"
+          "$mod, Q, exec, ghostty"
           "$mod, C, killactive"
           "$mod, F, fullscreen"
           "$mod SHIFT, F, togglefloating"
