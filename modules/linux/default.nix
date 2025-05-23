@@ -129,6 +129,8 @@
 
       pipes
     ];
+
+    shell = pkgs.nushell;
   };
 
   programs = {

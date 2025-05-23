@@ -48,6 +48,9 @@
 
     nushell = {
       enable = true;
+      configFile = {
+        source = ./nuconfig.nu;
+      };
     };
 
     zsh = {
