@@ -13,6 +13,12 @@
     sessionVariables = {
       DO_NOT_TRACK = 1;
     };
+
+    file = {
+      ".blerc" = {
+        source = ./home/.blerc;
+      };
+    };
   };
 
   programs = {
