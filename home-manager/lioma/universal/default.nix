@@ -73,6 +73,27 @@
 
     zsh = {
       enable = true;
+
+      shellAliases = {
+        ls = "lsd";
+        la = "lsd -a";
+        ll = "lsd -l";
+        lla = "lsd -la";
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "git"
+        ];
+      };
+      antidote = {
+        enable = true;
+        plugins = [
+          "zsh-users/zsh-autosuggestions"
+          "zsh-users/zsh-syntax-highlighting"
+        ];
+      };
     };
 
     home-manager.enable = true;
