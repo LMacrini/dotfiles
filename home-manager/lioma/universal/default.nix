@@ -6,7 +6,6 @@
 
     shellAliases = {
       cd = "z";
-      cls = "clear";
       lg = "lazygit";
     };
 
@@ -45,6 +44,17 @@
       enable = true;
       initExtra = ''
         source "$(blesh-share)/ble.sh"
+
+        cls () {
+          line=0
+          while [ $line -lt $((LINES-2)) ]; do
+            echo ""
+          done
+        }
+
+        if [ $SHLVL -eq 1 ]; then
+          cls
+        fi
       '';
 
       shellAliases = {
@@ -68,6 +78,15 @@
       settings = {
         show_banner = false;
       };
+
+      extraConfig = ''
+        $env.TRANSIENT_PROMPT_COMMAND = ^starship module character
+        def cls [] {
+          clear
+          for _ in 2..(term size).rows { print "" }
+        }
+        if $env.SHLVL == 1 {cls}
+      '';
     };
 
     zsh = {
