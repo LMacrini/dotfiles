@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-nix run github:nix-community/nixos-generators -- --flake .#live -f install-iso -o result |& nom
+variant=${$1:=iso}
+nixos-rebuild build-image --flake .#live --image-variant $variant
