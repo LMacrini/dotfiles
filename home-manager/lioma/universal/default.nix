@@ -18,6 +18,14 @@
   programs = {
     btop.enable = true;
 
+    carapace = {
+      enable = true;
+      enableBashIntegration = false;
+      enableFishIntegration = false;
+      enableNushellIntegration = true;
+      enableZshIntegration = false;
+    };
+
     direnv.enable = true;
 
     starship = {
