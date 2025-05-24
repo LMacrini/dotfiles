@@ -118,7 +118,7 @@ attempt=0
 success=0
 
 while (( attempt < 3 )); do
-  ((attempt++))
+  ((++attempt))
   set +e
   sudo nixos-enter --root /mnt -c 'passwd lioma'
   result=$?
