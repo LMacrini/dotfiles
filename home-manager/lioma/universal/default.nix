@@ -48,17 +48,10 @@
         lla = "lsd -la";
         grep = "grep --color=auto";
       };
-
-      sessionVariables = {
-        NO_POINTER_VIEWPORT = 1;
-      };
     };
 
     nushell = {
       enable = true;
-      environmentVariables = {
-        NO_POINTER_VIEWPORT = 1;
-      };
 
       shellAliases = {
         la = "ls -a";
