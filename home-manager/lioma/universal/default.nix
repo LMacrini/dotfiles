@@ -83,6 +83,7 @@
 
       extraConfig = ''
         $env.TRANSIENT_PROMPT_COMMAND = ^starship module character
+        $env.TRANSIENT_PROMPT_COMMAND_RIGHT = ^starship module time
         def cls [] {
           clear
           for _ in 2..(term size).rows { print "" }
