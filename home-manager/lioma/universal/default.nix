@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   home = {
     packages = with pkgs; [
       blesh
@@ -21,8 +25,6 @@
   };
 
   programs = {
-    btop.enable = true;
-
     carapace = {
       enable = true;
       enableBashIntegration = false;
@@ -112,6 +114,38 @@
           "zsh-users/zsh-syntax-highlighting"
         ];
       };
+
+      initContent = let
+        # Common order values:
+        # 500 (mkBefore): Early initialization (replaces initExtraFirst)
+        #
+        # 550: Before completion initialization (replaces initExtraBeforeCompInit)
+        #
+        # 1000 (default): General configuration (replaces initExtra)
+        #
+        # 1500 (mkAfter): Last to run configuration
+
+        after = lib.mkOrder 1500 ''
+          transient-prompt () {
+            PROMPT=$(starship module character) zle .reset-prompt
+          }
+
+          autoload -Uz add-zle-hook-widget
+          add-zle-hook-widget zle-line-finish transient-prompt
+
+          cls () {
+            clear
+            print -n ''${(pl:$LINES::\n:):-}
+          }
+
+          if [ $SHLVL -eq 1 ]; then
+            cls
+          fi
+        '';
+      in
+        lib.mkMerge [
+          after
+        ];
     };
 
     home-manager.enable = true;
