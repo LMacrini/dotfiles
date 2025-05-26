@@ -68,5 +68,6 @@
     tlrc
 
     _7zz-rar
+    ffmpeg
   ];
 }

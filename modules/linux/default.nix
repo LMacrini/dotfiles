@@ -150,6 +150,7 @@
     gnome-disk-utility
 
     celluloid
+    vlc
     eog
     wl-clipboard
 
