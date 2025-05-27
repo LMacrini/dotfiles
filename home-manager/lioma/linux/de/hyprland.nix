@@ -6,6 +6,7 @@
 }:
 lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
+    arrpc
     blueman
     brightnessctl
     kitty
@@ -183,6 +184,7 @@ lib.mkIf cfg.de.hyprland.enable {
           "kanata"
           "nm-applet"
           "blueman-applet"
+          "arrpc"
         ]
         ++ (
           lib.optionals cfg.liveSystem
@@ -196,6 +198,7 @@ lib.mkIf cfg.de.hyprland.enable {
         (pkill "kanata")
         (pkill "blueman-applet")
         (pkill "nm-applet")
+        (pkill "arrpc")
       ];
 
       monitor =
