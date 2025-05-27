@@ -6,7 +6,7 @@
 }: {
   options = {
     latestKernel.enable = lib.mkOption {
-      default = !config.gpu.nvidia.enable;
+      default = true;
       example = true;
       type = lib.types.bool;
     };
