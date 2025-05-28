@@ -126,8 +126,8 @@ lib.mkIf cfg.de.hyprland.enable {
       enable = true;
       settings = {
         general = {
-          lock_cmd = lib.mkIf (!cfg.liveSystem) "pidof hyprlock || hyprlock --immediate --no-fade-in";
-          before_sleep_cmd = "loginctl lock-session";
+          lock_cmd = lib.mkIf (!cfg.liveSystem) "pidof hyprlock || hyprlock";
+          before_sleep_cmd = "pidof hyprlock || hyprlock --immediate --no-fade-in";
           after_sleep_cmd = "hyprctl dispatch dpms on";
         };
 
