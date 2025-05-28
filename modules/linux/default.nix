@@ -91,7 +91,10 @@
     '';
     pulseaudio.enable = false;
   };
-  boot.kernelModules = ["uinput"];
+  boot.kernelModules = [
+    "uinput"
+    "i2c-dev"
+  ];
 
   # Enable sound with pipewire.
   hardware = {
