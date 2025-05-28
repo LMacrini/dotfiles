@@ -238,6 +238,7 @@ lib.mkIf cfg.de.hyprland.enable {
       windowrule = [
         "float, title:Gambling Game"
         "float, title:Bitwarden"
+        "float, title:.*? - Thunar"
       ];
 
       env = [
@@ -286,6 +287,9 @@ lib.mkIf cfg.de.hyprland.enable {
           "SUPER CONTROL, left, workspace, -1"
           "SUPER SHIFT CONTROL, right, movecurrentworkspacetomonitor, +1"
           "SUPER SHIFT CONTROL, left, movecurrentworkspacetomonitor, -1"
+
+          "$mod, R, togglespecialworkspace, magic"
+          "$mod SHIFT, R, movetoworkspace, special:magic"
         ]
         ++ (
           # workspaces
@@ -339,7 +343,7 @@ lib.mkIf cfg.de.hyprland.enable {
 
       permission = [
         "${pkgs.grim}/bin/grim, screencopy, allow"
-        "${pkgs.xdg-desktop-portal-hyprland}/libexec/*, screencopy, allow"
+        "${pkgs.xdg-desktop-portal-hyprland}/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
         "${pkgs.hyprland}/bin/hyprctl, plugin, allow" # probably not a good idea lmao
       ];
 
