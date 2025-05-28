@@ -6,7 +6,7 @@
 }: {
   options = {
     latestKernel.enable = lib.mkOption {
-      default = true;
+      default = false;
       example = true;
       type = lib.types.bool;
     };
