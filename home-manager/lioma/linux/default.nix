@@ -120,10 +120,6 @@
       source = ./home/Templates;
       recursive = true;
     };
-    ".icons/catppuccin-macchiato-dark-cursors" = {
-      recursive = true;
-      source = "${pkgs.catppuccin-cursors.macchiatoDark}/share/icons/catppuccin-macchiato-dark-cursors";
-    };
   };
 
   dconf.settings = {
@@ -138,8 +134,8 @@
     };
 
     "org/gnome/desktop/background" = {
-      picture-uri = "file:///home/lioma/.config/background.jpg";
-      picture-uri-dark = "file:///home/lioma/.config/background.jpg";
+      picture-uri = "file:///home/${cfg.mainUser}/.config/background.jpg";
+      picture-uri-dark = "file:///home/${cfg.mainUser}/.config/background.jpg";
     };
 
     "org/gnome/desktop/interface" = {
