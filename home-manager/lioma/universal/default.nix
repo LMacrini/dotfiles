@@ -90,10 +90,42 @@
         $env.TRANSIENT_PROMPT_COMMAND = {starship module character}
         $env.TRANSIENT_PROMPT_COMMAND_RIGHT = {starship module time}
         def cls [] {
-          clear
-          for _ in 2..(term size).rows { print "" }
+            clear
+            for _ in 2..(term size).rows { print "" }
         }
         if $env.SHLVL == 1 {cls}
+
+        def to_command [s: string] {
+            mut idx = $s | str index-of " "
+            if $idx == -1 {
+                $idx = $s | str length
+            }
+            let first = $s | str substring 0..($idx - 1)
+            let rest = $s | str substring ($idx + 1)..
+            [$first $rest]
+        }
+
+        def lor [
+          c1: string
+          c2: string
+        ] {
+            let cmd1 = to_command $c1
+            let cmd2 = to_command $c2
+            if (^$cmd1.0 $cmd1.1 | complete | get exit_code) != 0 {
+                ^$cmd2.0 $cmd2.1
+            }
+        }
+
+        def land [
+          c1: string
+          c2: string
+        ] {
+            let cmd1 = to_command $c1
+            let cmd2 = to_command $c2
+            if (^$cmd1.0 $cmd1.1 | complete | get exit_code) == 0 {
+                ^$cmd2.0 $cmd2.1
+            }
+        }
       '';
     };
 
