@@ -64,6 +64,7 @@
     devenv
     lsd
     skim
+    ripgrep
     yazi
     tlrc
 
