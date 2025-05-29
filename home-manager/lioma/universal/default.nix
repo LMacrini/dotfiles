@@ -35,6 +35,11 @@
 
     direnv.enable = true;
 
+    git = {
+      enable = true;
+      aliases = {};
+    };
+
     starship = {
       enable = true;
       settings = import ./starship.nix;
