@@ -3,6 +3,8 @@
     ./hardware-configuration.nix
   ];
 
+  time.timeZone = "Europe/Zurich";
+
   vms.enable = true;
 
   gpu.nvidia.enable = true;

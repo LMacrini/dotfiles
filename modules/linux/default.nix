@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -60,7 +61,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Set your time zone.
-  time.timeZone = "America/Toronto";
+  time.timeZone = lib.mkDefault "America/Toronto";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
