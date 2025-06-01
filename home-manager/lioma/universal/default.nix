@@ -162,7 +162,6 @@
         # 1000 (default): General configuration (replaces initExtra)
         #
         # 1500 (mkAfter): Last to run configuration
-
         after = lib.mkOrder 1500 ''
           transient-prompt () {
             PROMPT=$(starship module character) zle .reset-prompt
