@@ -55,6 +55,7 @@
         specialArgs = {
           inherit inputs;
           os = "linux";
+          resources = ./resources;
         };
         modules = [
           ./hosts/${path}
@@ -76,6 +77,7 @@
         specialArgs = {
           inherit inputs;
           os = "darwin";
+          resources = ./resources;
         };
         modules = [
           ./hosts/${path}

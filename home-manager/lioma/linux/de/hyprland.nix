@@ -2,6 +2,7 @@
   pkgs,
   cfg,
   lib,
+  resources,
   ...
 }:
 lib.mkIf cfg.de.hyprland.enable {
@@ -96,7 +97,7 @@ lib.mkIf cfg.de.hyprland.enable {
 
         background = [
           {
-            path = "~/.config/background.jpg";
+            path = "${resources}/background.jpg";
             blur_passes = 3;
             blur_size = 8;
           }
@@ -114,11 +115,11 @@ lib.mkIf cfg.de.hyprland.enable {
         ipc = "on";
 
         preload = [
-          "~/.config/background.jpg"
+          ",${resources}/background.jpg"
         ];
 
         wallpaper = [
-          ",~/.config/background.jpg"
+          ",${resources}/background.jpg"
         ];
       };
     };

@@ -6,6 +6,7 @@
   pkgs,
   inputs,
   os,
+  resources,
   ...
 }: {
   imports = [
@@ -34,6 +35,7 @@
     extraSpecialArgs = {
       inherit inputs;
       inherit os;
+      inherit resources;
       cfg = config;
     };
     users = {
