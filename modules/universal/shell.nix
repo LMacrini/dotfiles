@@ -21,8 +21,10 @@
     } config.shell;
   in {
     users = {
-      defaultUserShell = shellPkg;
-      users.lioma.shell = shellPkg;
+      # defaultUserShell = shellPkg;
+      users = {
+        lioma.shell = shellPkg;
+      };
     };
 
     programs = {
