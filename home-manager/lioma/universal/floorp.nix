@@ -36,7 +36,13 @@
       search = {
         force = true;
         
-        default = "ddg@search.mozilla.orgdefault";
+        default = "twint-search";
+
+        order = [
+          "twint-search"
+          "ddg@search.mozilla.orgdefault"
+          "google@search.mozilla.orgdefault"
+        ];
 
         engines = {
           nixpkgs = {
@@ -63,6 +69,14 @@
             }];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@no" ];
+          };
+
+          twint-search = {
+            name = "Twint Search";
+            urls = [{
+              template = "https://search.twint.my.id/search?q={searchTerms}";
+            }];
+            definedAliases = [ "@tw" ];
           };
 
           "bing@search.mozilla.orgdefault".metaData.hidden = true;
