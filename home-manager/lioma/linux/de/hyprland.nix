@@ -115,7 +115,7 @@ lib.mkIf cfg.de.hyprland.enable {
         ipc = "on";
 
         preload = [
-          ",${resources}/background.jpg"
+          "${resources}/background.jpg"
         ];
 
         wallpaper = [
