@@ -3,6 +3,8 @@
     ./hardware-configuration.nix
   ];
 
+  shell = "nu";
+
   time.timeZone = "Europe/Zurich";
 
   vms.enable = true;

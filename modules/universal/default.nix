@@ -13,6 +13,7 @@
     # Include the results of the hardware scan.
     ./extra-options.nix
     ./libreoffice.nix
+    ./shell.nix
   ];
 
   nix = {
@@ -50,13 +51,7 @@
     nasin-nanpa
   ];
 
-  programs = {
-    zsh.enable = true;
-  };
-
   environment.systemPackages = with pkgs; [
-    nushell
-
     nh
     nix-output-monitor
 

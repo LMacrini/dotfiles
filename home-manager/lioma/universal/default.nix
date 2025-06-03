@@ -14,7 +14,7 @@
     shellAliases = {
       cd = "z";
       lg = "lazygit";
-      nix-shell = "nix-shell --run \"${cfg.users.users.lioma.shell}\"";
+      nix-shell = "nix-shell --run \"${cfg.shell}\"";
     };
 
     sessionVariables = {
@@ -61,6 +61,7 @@
           line=0
           while [ $line -lt $((LINES-2)) ]; do
             echo ""
+            ((line++))
           done
         }
 
