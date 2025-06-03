@@ -125,7 +125,6 @@
       unstable.equibop
       bitwarden-desktop
       mediawriter
-      teams-for-linux
 
       fastfetch
 
