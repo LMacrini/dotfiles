@@ -1,4 +1,4 @@
-{lib, ...}: {
+{lib, config, ...}: {
   imports = [
     ./floorp.nix
     ./ungoogled-chromium.nix
@@ -9,10 +9,10 @@
   };
 
   config = {
-    browsers = rec {
+    browsers = {
       all.enable = lib.mkDefault false;
       floorp.enable = lib.mkDefault true;
-      ungoogled-chromium.enable = lib.mkDefault all.enable;
+      ungoogled-chromium.enable = lib.mkDefault config.browsers.all.enable;
     };
   };
 }
