@@ -45,11 +45,20 @@
     useGlobalPkgs = true;
   };
 
+  environment.variables = {
+    SKIM_DEFAULT_COMMAND = "fd --type f";
+    SKIM_DEFAULT_OPTIONS = "--layout=reverse --ansi";
+  };
+
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
     fira-code
     nasin-nanpa
   ];
+
+  programs = {
+    skim.fuzzyCompletion = true;
+  };
 
   environment.systemPackages = with pkgs; [
     nh
@@ -58,9 +67,9 @@
     git
     lazygit
     gh
+    fd
     devenv
     lsd
-    skim
     ripgrep
     yazi
     tlrc
