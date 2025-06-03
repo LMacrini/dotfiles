@@ -2,6 +2,7 @@
   pkgs,
   lib,
   inputs,
+  cfg,
   ...
 }: {
   home = {
@@ -13,6 +14,7 @@
     shellAliases = {
       cd = "z";
       lg = "lazygit";
+      nix-shell = "nix-shell --run \"${cfg.users.users.lioma.shell}\"";
     };
 
     sessionVariables = {
