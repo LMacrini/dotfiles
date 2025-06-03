@@ -24,7 +24,7 @@
       {
         plymouth = rec {
           inherit (config.plymouth) enable;
-          logo = "${resources}/logo.png";
+          logo = resources + "/logo.png";
           theme = "breeze";
           themePackages = with pkgs; [
             (kdePackages.breeze-plymouth.override {
