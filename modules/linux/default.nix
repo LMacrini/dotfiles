@@ -138,6 +138,11 @@
 
   programs = {
     light.enable = true;
+    nano.enable = false;
+    vim = {
+      enable = true;
+      defaultEditor = true;
+    };
   };
 
   environment.sessionVariables = {

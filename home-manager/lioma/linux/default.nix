@@ -57,6 +57,17 @@
   };
 
   xdg = {
+    configFile = {
+      "mimeapps.list" = {
+        force = true;
+      };
+    };
+    dataFile = {
+      "applications/mimeapps.list" = {
+        force = true;
+      };
+    };
+
     portal = {
       enable = true;
       config = {
@@ -85,6 +96,39 @@
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
       ];
+    };
+
+    mimeApps = {
+      enable = true;
+      defaultApplications = let
+        browsers = [ "floorp.desktop" "chromium-browser.desktop" ];
+        images = [ "org.gnome.eog.desktop" "gimp.desktop" ];
+      in {
+        "inode/directory" = [ "pcmanfm.desktop" "thunar.desktop" "nautilus.desktop" ];
+        "x-scheme-handler/https" = browsers;
+        "x-scheme-handler/http" = browsers;
+        "image/*" = images;
+        "image/png" = images;
+        "image/jpeg" = images;
+        "image/gif" = images;
+        "text/*" = [ "nvim-kitty.desktop" ];
+      };
+    };
+
+    desktopEntries = {
+      nvim = {
+        name = "Neovim (hidden)";
+        noDisplay = true;
+      };
+      nvim-kitty = {
+        name = "Neovim (kitty)";
+        icon = "nvim";
+        categories = [ "Utility" "TextEditor" ];
+        genericName = "Text Editor";
+        type = "Application";
+        startupNotify = false;
+        exec = "kitty -- nvim %f";
+      };
     };
   };
 

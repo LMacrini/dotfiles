@@ -18,8 +18,6 @@
 
   libreoffice.enable = true;
 
-  dev.editors.enable = true;
-
   dm = "ly";
   de = {
     hyprland = {

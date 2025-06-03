@@ -1,11 +1,13 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   home = {
     packages = with pkgs; [
       blesh
+      inputs.neovim.packages.${pkgs.system}.default
     ];
 
     shellAliases = {
@@ -15,6 +17,7 @@
 
     sessionVariables = {
       DO_NOT_TRACK = 1;
+      EDITOR = "nvim";
     };
 
     file = {

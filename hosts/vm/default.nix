@@ -2,8 +2,6 @@
   imports = [
     ./hardware-configuration.nix
   ];
-  dev.editors.enable = true;
-
   networking.hostName = "vm";
 
   browsers.floorp.enable = false;
