@@ -101,17 +101,17 @@
     mimeApps = {
       enable = true;
       defaultApplications = let
-        browsers = [ "floorp.desktop" "chromium-browser.desktop" ];
-        images = [ "org.gnome.eog.desktop" "gimp.desktop" ];
+        browsers = ["floorp.desktop" "chromium-browser.desktop"];
+        images = ["org.gnome.eog.desktop" "gimp.desktop"];
       in {
-        "inode/directory" = [ "pcmanfm.desktop" "thunar.desktop" "nautilus.desktop" ];
+        "inode/directory" = ["pcmanfm.desktop" "thunar.desktop" "nautilus.desktop"];
         "x-scheme-handler/https" = browsers;
         "x-scheme-handler/http" = browsers;
         "image/*" = images;
         "image/png" = images;
         "image/jpeg" = images;
         "image/gif" = images;
-        "text/*" = [ "nvim-kitty.desktop" ];
+        "text/*" = ["nvim-kitty.desktop"];
       };
     };
 
@@ -123,7 +123,7 @@
       nvim-kitty = {
         name = "Neovim (kitty)";
         icon = "nvim";
-        categories = [ "Utility" "TextEditor" ];
+        categories = ["Utility" "TextEditor"];
         genericName = "Text Editor";
         type = "Application";
         startupNotify = false;
