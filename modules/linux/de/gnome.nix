@@ -9,7 +9,12 @@
   };
 
   config = lib.mkIf config.de.gnome.enable {
-    services.xserver.desktopManager.gnome.enable = true;
+    services = {
+      gnome = {
+        gnome-browser-connector.enable = true;
+      };
+      xserver.desktopManager.gnome.enable = true;
+    };
 
     environment.gnome.excludePackages = with pkgs; [
       gnome-tour

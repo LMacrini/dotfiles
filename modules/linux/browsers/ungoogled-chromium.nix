@@ -5,10 +5,10 @@
   ...
 }: {
   options = {
-    browsers.ungoogled-chromium.enable = lib.mkEnableOption "Enables the Ungoogled Chromium browser";
+    browsers.ungoogled-chromium.enable = lib.mkEnableOption "Ungoogled Chromium browser";
   };
 
-  config = lib.mkIf config.browsers.floorp.enable {
+  config = lib.mkIf config.browsers.ungoogled-chromium.enable {
     environment.systemPackages = with pkgs; [
       ungoogled-chromium
     ];

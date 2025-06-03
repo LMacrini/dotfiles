@@ -9,9 +9,10 @@
   };
 
   config = {
-    browsers = {
+    browsers = rec {
+      all.enable = lib.mkDefault false;
       floorp.enable = lib.mkDefault true;
-      ungoogled-chromium.enable = lib.mkDefault true;
+      ungoogled-chromium.enable = lib.mkDefault all.enable;
     };
   };
 }

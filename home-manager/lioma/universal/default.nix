@@ -4,7 +4,7 @@
   inputs,
   cfg,
   ...
-}: {
+}@params: {
   home = {
     packages = with pkgs; [
       blesh
@@ -39,6 +39,8 @@
     };
 
     direnv.enable = true;
+
+    floorp = import ./floorp.nix params;
 
     git = {
       enable = true;
