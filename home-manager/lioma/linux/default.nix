@@ -103,6 +103,7 @@
       defaultApplications = let
         browsers = ["floorp.desktop" "chromium-browser.desktop"];
         images = ["org.gnome.eog.desktop" "gimp.desktop"];
+        editors = ["nvim-kitty.desktop" "org.gnome.gedit.desktop"];
       in {
         "inode/directory" = ["pcmanfm.desktop" "thunar.desktop" "nautilus.desktop"];
         "x-scheme-handler/https" = browsers;
@@ -111,7 +112,8 @@
         "image/png" = images;
         "image/jpeg" = images;
         "image/gif" = images;
-        "text/*" = ["nvim-kitty.desktop"];
+        "text/*" = editors;
+        "text/plain" = editors;
       };
     };
 
