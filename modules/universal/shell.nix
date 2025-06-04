@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   options = with lib; {
     shell = mkOption {
       default = "bash";
@@ -12,13 +17,15 @@
     };
   };
 
-  config = let 
+  config = let
     map = set: str: set.${str};
-    shellPkg = map {
-      "bash" = pkgs.bash;
-      "zsh" = pkgs.zsh;
-      "nu" = pkgs.nushell;
-    } config.shell;
+    shellPkg =
+      map {
+        "bash" = pkgs.bash;
+        "zsh" = pkgs.zsh;
+        "nu" = pkgs.nushell;
+      }
+      config.shell;
   in {
     users = {
       # defaultUserShell = shellPkg;

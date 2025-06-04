@@ -65,11 +65,9 @@
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.catppuccin.nixosModules.catppuccin
           hm-module.x86_64-linux
-          (
-            _: {
-              nixpkgs.overlays = [overlay-unstable.x86_64-linux];
-            }
-          )
+          {
+            nixpkgs.overlays = [overlay-unstable.x86_64-linux];
+          }
         ];
       };
 
@@ -84,7 +82,7 @@
           ./modules/darwin
           ./modules/universal
           hm-module.aarch64-darwin
-          (_: {nixpkgs.overlays = [overlay-unstable.aarch64-darwin];})
+          {nixpkgs.overlays = [overlay-unstable.aarch64-darwin];}
         ];
       };
 
@@ -122,11 +120,9 @@
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.home-manager.nixosModules.default
               inputs.catppuccin.nixosModules.catppuccin
-              (
-                _: {
-                  nixpkgs.overlays = [overlay-unstable.x86_64-linux];
-                }
-              )
+              {
+                nixpkgs.overlays = [overlay-unstable.x86_64-linux];
+              }
             ];
           };
         };

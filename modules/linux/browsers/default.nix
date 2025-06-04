@@ -1,4 +1,8 @@
-{lib, config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./floorp.nix
     ./ungoogled-chromium.nix

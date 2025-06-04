@@ -4,7 +4,7 @@
   inputs,
   cfg,
   ...
-}@params: {
+} @ params: {
   home = {
     packages = with pkgs; [
       blesh
