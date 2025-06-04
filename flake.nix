@@ -49,13 +49,14 @@
       "aarch64-darwin" = darwinModules.default;
     };
 
+    resources = ./resources;
+
     mkLinuxHost = path:
       nixpkgs.lib.nixosSystem
       {
         specialArgs = {
-          inherit inputs;
+          inherit inputs resources;
           os = "linux";
-          resources = ./resources;
         };
         modules = [
           ./hosts/${path}
@@ -75,9 +76,8 @@
     mkDarwinHost = path:
       nix-darwin.lib.darwinSystem {
         specialArgs = {
-          inherit inputs;
+          inherit inputs resources;
           os = "darwin";
-          resources = ./resources;
         };
         modules = [
           ./hosts/${path}
@@ -112,7 +112,7 @@
         // {
           live = nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit inputs;
+              inherit inputs resources;
               os = "linux";
             };
             modules = [
