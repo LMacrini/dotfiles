@@ -25,7 +25,7 @@
         force = true;
         settings = [
           {
-            name = "test";
+            name = "Nix";
             toolbar = true;
             bookmarks = [
               {
