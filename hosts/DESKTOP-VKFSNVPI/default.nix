@@ -5,6 +5,8 @@
 
   bootloader = "grub";
 
+  shell = "nu";
+
   dm = "ly";
   de = {
     hyprland = {
@@ -25,7 +27,6 @@
   configapps.enable = true;
   appimages.enable = true;
 
-  dev.enable = true;
   dev.unity.enable = true;
 
   games.enable = true;
