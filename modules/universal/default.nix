@@ -43,6 +43,7 @@
       "${config.mainUser}" = import ../../home-manager/lioma;
     };
     useGlobalPkgs = true;
+    useUserPackages = true;
   };
 
   environment.variables = {
