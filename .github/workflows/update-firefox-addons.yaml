@@ -1,7 +1,6 @@
 on:
-  pull_request:
-  push:
-    branches: [main]
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build:
@@ -14,8 +13,6 @@ jobs:
           persist-credentials: true
           
       - uses: DeterminateSystems/determinate-nix-action@v3
-      - name: Run `nix build`
-        run: nix build .
         
       - name: Install cachix
         run: nix-env -f '<nixpkgs>' -iA cachix
