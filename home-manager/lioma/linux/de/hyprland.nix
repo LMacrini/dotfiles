@@ -21,6 +21,7 @@ lib.mkIf cfg.de.hyprland.enable {
     pavucontrol
     playerctl
     slurp
+    sway-audio-idle-inhibit
     swaynotificationcenter
     xfce.thunar
   ];
@@ -186,6 +187,7 @@ lib.mkIf cfg.de.hyprland.enable {
           "nm-applet"
           "blueman-applet"
           "arrpc"
+          "sway-audio-idle-inhibit"
         ]
         ++ (
           lib.optionals cfg.liveSystem
