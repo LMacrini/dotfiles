@@ -2,8 +2,10 @@
   cfg,
   pkgs,
   ...
-}: {
-  enable = cfg.browsers.floorp.enable;
+}@params: let 
+  addons = import ./firefox-addons params;
+in {
+  inherit (cfg.browsers.floorp) enable;
 
   enableGnomeExtensions = cfg.de.gnome.enable;
 
@@ -105,6 +107,31 @@
           "startpage@search.mozilla.orgdefault".metaData.hidden = true;
           "you.com@search.mozilla.orgdefault".metaData.hidden = true;
         };
+      };
+
+      extensions = {
+        packages = with addons; [
+          bitwarden-password-manager
+          bonjourr-startpage
+          darkreader
+          dearrow
+          decentraleyes
+          indie-wiki-buddy
+          nekocap
+          return-youtube-dislikes
+          simple-tab-groups
+          sponsorblock
+          styl-us
+          traduzir-paginas-web
+          ublock-origin
+          youtube-tweaks
+        ];
+      };
+
+      settings = {
+        "floorp.browser.sidebar.enable" = false;
+        "floorp.browser.workspaces.enabled" = false;
+        "userChrome.hidden.urlbar_iconbox" = true;
       };
     };
   };
