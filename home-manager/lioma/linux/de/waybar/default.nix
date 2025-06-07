@@ -12,6 +12,7 @@
       modules-center = ["clock"];
       modules-right = [
         "tray"
+        "idle_inhibitor"
         "pulseaudio"
         "battery"
         "custom/power"
@@ -54,6 +55,14 @@
           "(.*) - YouTube — Ablaze Floorp" = "  $1";
           " NixOS Search - (.*) — Ablaze Floorp" = " 󱄅 $1";
           "(.*) — Ablaze Floorp" = "  $1";
+        };
+      };
+
+      "idle_inhibitor" = {
+        format = "{icon}";
+        format-icons = {
+          activated = "";
+          deactivated = "";
         };
       };
 

@@ -21,6 +21,7 @@
   margin-right: 5px;
 }
 
+#idle_inhibitor,
 #tray,
 #pulseaudio {
   margin-right: 15px;
