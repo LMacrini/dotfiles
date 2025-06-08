@@ -129,6 +129,7 @@ in {
       };
 
       settings = {
+        "extensions.autoDisableScopes" = 0;
         "floorp.browser.sidebar.enable" = false;
         "floorp.browser.workspaces.enabled" = false;
         "userChrome.hidden.urlbar_iconbox" = true;
