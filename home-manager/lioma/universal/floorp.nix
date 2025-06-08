@@ -2,7 +2,7 @@
   cfg,
   pkgs,
   ...
-}@params: let 
+} @ params: let
   addons = import ./firefox-addons params;
 in {
   inherit (cfg.browsers.floorp) enable;
@@ -116,6 +116,7 @@ in {
           darkreader
           dearrow
           decentraleyes
+          firefox-color
           indie-wiki-buddy
           nekocap
           return-youtube-dislikes
@@ -126,6 +127,23 @@ in {
           ublock-origin
           youtube-tweaks
         ];
+        settings = {
+          "uBlock0@raymondhill.net" = {
+            selectedFiltersList = [
+              "user-filters"
+              "ublock-filters"
+              "ublock-badware"
+              "ublock-privacy"
+              "ublock-unbreak"
+              "ublock-quick-fixes"
+              "easylist"
+              "easyprivacy"
+              "urlhaus-1"
+              "plowe-0"
+            ];
+          };
+          "{4f391a9e-8717-4ba6-a5b1-488a34931fcb}" = builtins.fromJSON ./firefox-addons/bonjourr-settings.json;
+        };
       };
 
       settings = {
