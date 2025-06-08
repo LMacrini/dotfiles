@@ -13,6 +13,8 @@
     text = builtins.readFile ./script.sh;
   };
 in {
+  shell = "nu";
+
   nixpkgs.hostPlatform = "x86_64-linux";
 
   networking.wireless.enable = false;

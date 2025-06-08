@@ -55,31 +55,75 @@ else
   while true; do
     read -p "Please choose which drive you want to install nix on: " drive
 
-    if [[ -e /dev/$drive ]]; then
-      yorn sure "n" "Are you sure you want to continue? This will wipe all information on the drive [n]"
-      if $sure; then
-        break
-      fi
-    else
+    if ! [[ -e /dev/$drive ]]; then
       echo "invalid drive, please try again"
+      continue
+    fi
+
+    yorn swap "n" "Do you want a swap file? [n]"
+    if $swap; then
+      default_ram=$(free -g | awk '/^Mem:/ {print $2}')
+      read -p "How big do you want your swap file? (in GiB, default=$default_ram): " swapsize
+      swapsize=${swapsize:=$default_ram}
+      while [[ $swapsize -gt 32 ]] || [[ $swapsize -gt $((default_ram*2)) ]]; do
+        read -p "Invalid input, please try again: " swapsize
+        swapsize=${swapsize:=$default_ram}
+      done
+
+      yorn sure "n" "Are you sure you want to continue? This will wipe all information on the drive [n]"
+      if !$sure; then
+        continue
+      fi
+      sudo disko -m destroy,format,mount --yes-wipe-all-disks --arg disk "\"/dev/${drive}\"" --arg swap "\"${swapsize}\"" ./disko/swap.nix
+    else
+      yorn sure "n" "Are you sure you want to continue? This will wipe all information on the drive [n]"
+      if !$sure; then
+        continue
+      fi
+      sudo disko -m destroy,format,mount --yes-wipe-all-disks --arg disk "\"/dev/${drive}\"" ./disko/no-swap.nix
+    fi
+    break
+  done
+fi
+
+echo ""
+
+passwd=""
+rootpasswd=""
+liomapasswd=""
+
+yorn samepasswd "y" "Do you want to use the same password for root and lioma? [y]"
+if $samepasswd; then
+  while true; do
+    read -sp "Please enter password " passwd
+    echo ""
+    read -sp "Please enter password again " passwd2
+    echo ""
+    if [ $passwd -eq $passwd2 ]; then
+      break
     fi
   done
-
-
-  yorn swap "n" "Do you want a swap file? [n]"
-  if $swap; then
-    default_ram=$(free -g | awk '/^Mem:/ {print $2}')
-    read -p "How big do you want your swap file? (in GiB, default=$default_ram): " swapsize
-    swapsize=${swapsize:=$default_ram}
-    while [[ $swapsize -gt 32 ]] || [[ $swapsize -gt $((default_ram*2)) ]]; do
-      read -p "Invalid input, please try again: " swapsize
-      swapsize=${swapsize:=$default_ram}
-    done
-
-    sudo disko -m destroy,format,mount --yes-wipe-all-disks --arg disk "\"/dev/${drive}\"" --arg swap "\"${swapsize}\"" ./disko/swap.nix
-  else
-    sudo disko -m destroy,format,mount --yes-wipe-all-disks --arg disk "\"/dev/${drive}\"" ./disko/no-swap.nix
-  fi
+  rootpasswd=$passwd
+  liomapasswd=$passwd
+else
+  while true; do
+    read -sp "Please enter root password " rootpasswd
+    echo ""
+    read -sp "Please enter root password again " rootpasswd2
+    echo ""
+    if [ $rootpasswd -eq $rootpasswd2 ]; then
+      break
+    fi
+  done
+  while true; do
+    read -sp "Please enter lioma password " liomapasswd
+    echo ""
+    read -sp "Please enter lioma password again " liomapasswd2
+    echo ""
+    if [ $liomapasswd -eq $liomapasswd2 ]; then
+      break
+    fi
+  done
 fi
 
 echo ""
@@ -103,7 +147,7 @@ while true; do
     sudo git add .
   fi
 
-  if sudo nixos-install --flake "./#$host" --no-channel-copy; then
+  if yes $rootpasswd | sudo nixos-install --flake "./#$host" --no-channel-copy || [[ $? -eq 141 ]]; then
     break
   fi
 
@@ -112,29 +156,9 @@ while true; do
 done
 
 echo ""
-echo "Setting up password for lioma: "
+echo "setting up password for lioma..."
 
-attempt=0
-success=0
-
-while (( attempt < 3 )); do
-  ((++attempt))
-  set +e
-  sudo nixos-enter --root /mnt -c 'passwd lioma'
-  result=$?
-  set -e
-
-  if [ $result -eq 0 ]; then
-    success=1
-    break
-  else
-    echo "Failed to set password, please try again"
-  fi
-done
-
-if [ $success -eq 0 ]; then
-  echo "Failed to set password after $attempt attempts, proceeding..."
-fi
+yes $liomapasswd | sudo nixos-enter --root /mnt -c 'passwd lioma' > /dev/null || [[ $? -eq 141 ]]
 
 cp -r . /mnt/home/lioma/dotfiles
 sudo chown -R lioma /mnt/home/lioma/dotfiles
