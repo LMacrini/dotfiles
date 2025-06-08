@@ -142,7 +142,7 @@ in {
               "plowe-0"
             ];
           };
-          "{4f391a9e-8717-4ba6-a5b1-488a34931fcb}" = builtins.fromJSON ./firefox-addons/bonjourr-settings.json;
+          "{4f391a9e-8717-4ba6-a5b1-488a34931fcb}" = builtins.readFile ./firefox-addons/bonjourr-settings.json |> builtins.fromJSON;
         };
       };
 
