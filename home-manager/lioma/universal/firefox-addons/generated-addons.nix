@@ -114,6 +114,25 @@
       platforms = platforms.all;
     };
   };
+  "firefox-color" = buildFirefoxXpiAddon {
+    pname = "firefox-color";
+    version = "2.1.7";
+    addonId = "FirefoxColor@mozilla.com";
+    url = "https://addons.mozilla.org/firefox/downloads/file/3643624/firefox_color-2.1.7.xpi";
+    sha256 = "b7fb07b6788f7233dd6223e780e189b4c7b956c25c40493c28d7020493249292";
+    meta = with lib; {
+      homepage = "https://color.firefox.com";
+      description = "Build, save and share beautiful Firefox themes.";
+      license = licenses.mpl20;
+      mozPermissions = [
+        "theme"
+        "storage"
+        "tabs"
+        "https://color.firefox.com/*"
+      ];
+      platforms = platforms.all;
+    };
+  };
   "indie-wiki-buddy" = buildFirefoxXpiAddon {
     pname = "indie-wiki-buddy";
     version = "3.13.5";
