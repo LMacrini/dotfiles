@@ -114,10 +114,10 @@ in {
         packages = with addons; [
           bitwarden-password-manager
           bonjourr-startpage
+          catppuccin-macchiato-pink
           darkreader
           dearrow
           decentraleyes
-          firefox-color
           indie-wiki-buddy
           nekocap
           return-youtube-dislikes
@@ -152,6 +152,7 @@ in {
         "floorp.browser.sidebar.enable" = false;
         "floorp.browser.workspaces.enabled" = false;
         "userChrome.hidden.urlbar_iconbox" = true;
+        "extensions.activeThemeID" = "{f6a92958-4dd7-4f80-bda3-936d3af8e63f}";
       };
     };
   };
