@@ -4,11 +4,7 @@
   config,
   ...
 }: {
-  options = {
-    de.gnome.enable = lib.mkEnableOption "Enable gnome";
-  };
-
-  config = lib.mkIf config.de.gnome.enable {
+  config = lib.mkIf (config.de.de == "gnome") {
     services = {
       gnome = {
         gnome-browser-connector.enable = true;

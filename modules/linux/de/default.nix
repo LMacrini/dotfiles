@@ -6,9 +6,17 @@
     ./hyprland.nix
   ];
 
-  de = {
-    hyprland.enable = lib.mkDefault true;
-    gnome.enable = lib.mkDefault false;
-    budgie.enable = lib.mkDefault false;
+  options = with lib; {
+    de = {
+      de = mkOption {
+        default = "hyprland";
+        type = types.enum [
+          "hyprland"
+          "gnome"
+          "budgie"
+        ];
+        example = "gnome";
+      };
+    };
   };
 }

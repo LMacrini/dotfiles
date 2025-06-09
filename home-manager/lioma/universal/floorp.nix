@@ -7,7 +7,7 @@
 in {
   inherit (cfg.browsers.floorp) enable;
 
-  enableGnomeExtensions = cfg.de.gnome.enable;
+  enableGnomeExtensions = cfg.de.de == "gnome";
 
   languagePacks = [
     "en-CA"

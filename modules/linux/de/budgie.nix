@@ -4,11 +4,7 @@
   config,
   ...
 }: {
-  options = {
-    de.budgie.enable = lib.mkEnableOption "Enable budgie";
-  };
-
-  config = lib.mkIf config.de.budgie.enable {
+  config = lib.mkIf (config.de.de == "budgie") {
     services.xserver.desktopManager.budgie.enable = true;
 
     environment.budgie.excludePackages = with pkgs; [

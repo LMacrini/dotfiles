@@ -14,7 +14,7 @@
     };
   };
 
-  config = lib.mkIf config.de.hyprland.enable {
+  config = lib.mkIf (config.de.de == "hyprland") {
     qt.enable = true;
 
     programs = {
