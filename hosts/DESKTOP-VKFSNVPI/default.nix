@@ -3,8 +3,6 @@
     ./hardware-configuration.nix
   ];
 
-  bootloader = "grub";
-
   shell = "nu";
 
   dm = "ly";
