@@ -23,7 +23,7 @@
   "textShadow": 0.2,
   "announcements": "major",
   "review": -1,
-  "css": "#link-mini,\n#credit {\n    display: none !important;\n}\n1r\n#interface #linkblocks li.link a img {\n    background: none;\n    padding: 0;\n}\n\n#linkblocks.large li.link div {\n    padding: 0;\n}\n\nli.link div {\n    border: none;\n}",
+  "css": "#credit {\n    display: none !important;\n}\n1r\n#interface #linkblocks li.link a img {\n    background: none;\n    padding: 0;\n}\n\n#linkblocks.large li.link div {\n    padding: 0;\n}\n\nli.link div {\n    border: none;\n}",
   "hide": {
     "weatherdesc": true,
     "weathericon": false,
@@ -36,7 +36,7 @@
   "linknewtab": false,
   "linksrow": 6,
   "linkgroups": {
-    "on": true,
+    "on": false,
     "selected": "default",
     "groups": [
       "default"
