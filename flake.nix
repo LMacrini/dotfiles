@@ -18,6 +18,7 @@
 
     neovim = {
       url = "github:lmacrini/nvf-config";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-darwin = {
@@ -26,6 +27,11 @@
     };
 
     disko.url = "github:nix-community/disko";
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # nixcord.url = "github:kaylorben/nixcord";
   };
@@ -37,10 +43,18 @@
     ...
   } @ inputs: let
     eachSystem = nixpkgs.lib.genAttrs flake-utils.lib.defaultSystems;
-    overlay-unstable = eachSystem (system: _: _: {
+    overlay = eachSystem (system: _: _: {
       unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
+      };
+
+      quickshell = inputs.quickshell.packages.${system}.default.override {
+        withQtSvg = true;
+        withWayland = true;
+        withPipewire = true;
+        withPam = true;
+        withHyprland = true;
       };
     });
 
@@ -66,7 +80,7 @@
           inputs.catppuccin.nixosModules.catppuccin
           hm-module.x86_64-linux
           {
-            nixpkgs.overlays = [overlay-unstable.x86_64-linux];
+            nixpkgs.overlays = [overlay.x86_64-linux];
           }
         ];
       };
@@ -82,7 +96,7 @@
           ./modules/darwin
           ./modules/universal
           hm-module.aarch64-darwin
-          {nixpkgs.overlays = [overlay-unstable.aarch64-darwin];}
+          {nixpkgs.overlays = [overlay.aarch64-darwin];}
         ];
       };
 
@@ -121,7 +135,7 @@
               inputs.home-manager.nixosModules.default
               inputs.catppuccin.nixosModules.catppuccin
               {
-                nixpkgs.overlays = [overlay-unstable.x86_64-linux];
+                nixpkgs.overlays = [overlay.x86_64-linux];
               }
             ];
           };

@@ -15,8 +15,14 @@
   };
 
   config = lib.mkIf config.de.hyprland.enable {
+    qt.enable = true;
+
     programs = {
       hyprland.enable = true;
     };
+
+    environment.systemPackages = with pkgs; [
+      quickshell
+    ];
   };
 }
