@@ -110,6 +110,7 @@ in {
       };
 
       extensions = {
+        force = true;
         packages = with addons; [
           bitwarden-password-manager
           bonjourr-startpage
@@ -128,8 +129,8 @@ in {
           youtube-tweaks
         ];
         settings = {
-          "uBlock0@raymondhill.net" = {
-            selectedFiltersList = [
+          "uBlock0@raymondhill.net".settings = {
+            selectedFiltersLists = [
               "user-filters"
               "ublock-filters"
               "ublock-badware"
@@ -142,7 +143,7 @@ in {
               "plowe-0"
             ];
           };
-          "{4f391a9e-8717-4ba6-a5b1-488a34931fcb}" = builtins.readFile ./firefox-addons/bonjourr-settings.json |> builtins.fromJSON;
+          "{4f391a9e-8717-4ba6-a5b1-488a34931fcb}".settings = builtins.readFile ./firefox-addons/bonjourr-settings.json |> builtins.fromJSON;
         };
       };
 
