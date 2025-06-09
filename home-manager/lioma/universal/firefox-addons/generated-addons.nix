@@ -47,6 +47,19 @@
       platforms = platforms.all;
     };
   };
+  "catppuccin-macchiato-pink" = buildFirefoxXpiAddon {
+    pname = "catppuccin-macchiato-pink";
+    version = "1.0";
+    addonId = "{f6a92958-4dd7-4f80-bda3-936d3af8e63f}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4509183/catppuccin_macchiato_pink-1.0.xpi";
+    sha256 = "e2d384d649307862a05eca7e12543176783c768f447b0f5edba84bf882b930f9";
+    meta = with lib; {
+      homepage = "https://github.com/catppuccin/firefox";
+      description = "🦊 Soothing pastel theme for Firefox";
+      mozPermissions = [];
+      platforms = platforms.all;
+    };
+  };
   "darkreader" = buildFirefoxXpiAddon {
     pname = "darkreader";
     version = "4.9.106";
