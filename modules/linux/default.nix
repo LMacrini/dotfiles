@@ -29,13 +29,13 @@
     nixos = {
       label = "WamOS-${config.system.nixos.release}";
     };
-    stateVersion = config.stateVersion;
+    inherit (config) stateVersion;
   };
 
   nix = {
     gc = {
       automatic = true;
-      dates = "weekly";
+      dates = "daily";
       options = "--delete-older-than 14d";
     };
 
