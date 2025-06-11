@@ -1,13 +1,15 @@
 {
   cfg,
   pkgs,
+  lib,
+  os,
   ...
 } @ params: let
   addons = import ./firefox-addons params;
 in {
-  inherit (cfg.browsers.floorp) enable;
+  enable = lib.mkDefault cfg.browsers.floorp.enable;
 
-  enableGnomeExtensions = cfg.de.de == "gnome";
+  enableGnomeExtensions = if os == "linux" then cfg.de.de == "gnome" else false;
 
   languagePacks = [
     "en-CA"

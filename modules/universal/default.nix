@@ -10,7 +10,7 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
+    ./browsers
     ./extra-options.nix
     ./libreoffice.nix
     ./shell.nix
@@ -57,15 +57,12 @@
     nasin-nanpa
   ];
 
-  programs = {
-    skim.fuzzyCompletion = true;
-  };
-
   environment.systemPackages = with pkgs; [
     nh
     nix-output-monitor
 
     git
+    skim
     lazygit
     gh
     fd

@@ -8,7 +8,6 @@
   imports = [
     ./appimages.nix
     ./bootloader.nix
-    ./browsers
     ./config-apps.nix
     ./de
     ./development
