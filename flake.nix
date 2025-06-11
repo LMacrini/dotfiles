@@ -64,6 +64,7 @@
     };
 
     resources = ./resources;
+    extraHome = path: if (nixpkgs.lib.pathIsRegularFile ./hosts/${path}/home.nix) then import ./hosts/${path}/home.nix else {};
 
     mkLinuxHost = path:
       nixpkgs.lib.nixosSystem
@@ -71,6 +72,7 @@
         specialArgs = {
           inherit inputs resources;
           os = "linux";
+          extraHome = extraHome path;
         };
         modules = [
           ./hosts/${path}
@@ -90,6 +92,7 @@
         specialArgs = {
           inherit inputs resources;
           os = "darwin";
+          extraHome = extraHome path;
         };
         modules = [
           ./hosts/${path}
@@ -120,26 +123,8 @@
           "DESKTOP-VKFSNVPI"
           "lionels-laptop"
           "vm"
-        ]
-        // {
-          live = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs resources;
-              os = "linux";
-            };
-            modules = [
-              ./hosts/liveiso
-              ./modules/linux
-              ./modules/universal
-              inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.home-manager.nixosModules.default
-              inputs.catppuccin.nixosModules.catppuccin
-              {
-                nixpkgs.overlays = [overlay.x86_64-linux];
-              }
-            ];
-          };
-        };
+          "live"
+        ];
 
       darwinConfigurations = mkHosts "aarch64-darwin" [
         "Lionels-MacBook-Air"

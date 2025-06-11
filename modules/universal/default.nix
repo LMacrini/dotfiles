@@ -5,10 +5,8 @@
   config,
   pkgs,
   inputs,
-  os,
-  resources,
   ...
-}: {
+}@params: {
   imports = [
     ./browsers
     ./extra-options.nix
@@ -34,9 +32,7 @@
 
   home-manager = {
     extraSpecialArgs = {
-      inherit inputs;
-      inherit os;
-      inherit resources;
+      inherit (params) inputs resources os extraHome;
       cfg = config;
     };
     users = {
