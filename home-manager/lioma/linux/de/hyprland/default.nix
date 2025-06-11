@@ -26,6 +26,13 @@ lib.mkIf cfg.de.hyprland.enable {
     xfce.thunar
   ];
 
+  home.file = {
+    ".config/quickshell" = {
+      source = ./quickshell;
+      recursive = true;
+    };
+  };
+
   programs = {
     wofi = {
       enable = true;
