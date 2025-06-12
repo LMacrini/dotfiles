@@ -136,7 +136,7 @@
       formatter = pkgs.alejandra;
 
       devShells = {
-        default = import ./shell.nix {
+        default = import ./devshells {
           inherit pkgs;
         };
       };
