@@ -5,6 +5,8 @@
 
   shell = "nu";
 
+  kernel = "zen";
+
   dm = "ly";
   de = {
     hyprland = {

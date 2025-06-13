@@ -4,16 +4,26 @@
   config,
   ...
 }: {
-  options = {
-    latestKernel.enable = lib.mkOption {
-      default = false;
-      example = true;
-      type = lib.types.bool;
+  options = with lib; {
+    kernel = mkOption {
+      default = "default";
+      example = "latest";
+      type = types.enum [
+        "default"
+        "latest"
+        "zen"
+      ];
     };
   };
 
-  config = lib.mkIf config.latestKernel.enable {
-    boot.kernelPackages = pkgs.linuxPackages_latest;
-    boot.supportedFilesystems.zfs = lib.mkForce false;
+  config = {
+    boot.kernelPackages = 
+      if config.kernel == "default"
+        then pkgs.linuxPackages
+      else if config.kernel == "latest"
+        then pkgs.linuxPackages_latest
+      else if config.kernel == "zen"
+        then pkgs.linuxPackages_zen
+      else builtins.abort "impossible option";
   };
 }
