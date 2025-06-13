@@ -1,4 +1,4 @@
-shell-integration = bash
+shell-integration = detect
 theme = catppuccin-macchiato
 font-family = FiraCode Nerd Font Mono
 window-decoration = auto
