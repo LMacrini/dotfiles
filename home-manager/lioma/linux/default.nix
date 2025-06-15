@@ -13,10 +13,12 @@
   ];
 
   catppuccin = {
+    accent = "pink";
     enable = true;
     flavor = "macchiato";
+    hyprland.enable = false;
+    starship.enable = false;
     waybar.enable = false;
-    accent = "pink";
   };
 
   # Home Manager needs a bit of information about you and the paths it should
