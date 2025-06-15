@@ -6,7 +6,7 @@
 }: {
   options = with lib; {
     kernel = mkOption {
-      default = "default";
+      default = "zen";
       example = "latest";
       type = types.enum [
         "default"
