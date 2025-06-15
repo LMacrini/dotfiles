@@ -2,12 +2,15 @@
   time = {
     disabled = false;
   };
+  shlvl = {
+    disabled = false;
+    format = ''[\[$shlvl\]]($style) '';
+  };
 
   format = builtins.concatStringsSep "" [
     "$username"
     "$hostname"
     "$localip"
-    "$shlvl"
     "$singularity"
     "$kubernetes"
     "$directory"
@@ -95,6 +98,7 @@
     "$container"
     "$netns"
     "$shell"
+    "$shlvl"
     "$character"
   ];
 
