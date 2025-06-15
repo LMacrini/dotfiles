@@ -12,6 +12,7 @@ lib.mkIf cfg.de.hyprland.enable {
     kitty
     grim
     hyprland-qtutils
+    hyprpaper
     kanata
     pavucontrol
     playerctl
