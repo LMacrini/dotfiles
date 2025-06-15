@@ -1,9 +1,9 @@
 {
   description = "Nixos config flake";
 
-  nixConfig = {
-    extra-experimental-features = ["pipe-operators"];
-  };
+  # nixConfig = {
+  #   extra-experimental-features = ["pipe-operators"];
+  # };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
