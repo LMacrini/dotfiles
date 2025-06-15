@@ -4,15 +4,17 @@
   lib,
   ...
 }: {
-  options = {
-    dm = lib.mkOption {
-      type = lib.types.enum [
-        "gdm"
-        "ly"
-        # for some reason sddm and lightdm don't work, so i'm leaving them commented out for now
-        # "sddm"
-        # "lightdm"
-      ];
+  options = with lib; {
+    dm = mkOption {
+      type =
+        types.enum [
+          "gdm"
+          "ly"
+          # for some reason sddm and lightdm don't work, so i'm leaving them commented out for now
+          # "sddm"
+          # "lightdm"
+        ]
+        |> types.nullOr;
       default = "ly";
     };
   };
