@@ -7,22 +7,16 @@
 }:
 lib.mkIf cfg.de.hyprland.enable {
   home.packages = with pkgs; [
-    arrpc
     blueman
     brightnessctl
     kitty
     grim
-    hypridle
     hyprland-qtutils
-    hyprpaper
-    hyprpolkitagent
     kanata
-    networkmanagerapplet
     pavucontrol
     playerctl
     slurp
     sway-audio-idle-inhibit
-    swaynotificationcenter
     xfce.thunar
   ];
 
@@ -117,6 +111,7 @@ lib.mkIf cfg.de.hyprland.enable {
   };
 
   services = {
+    arrpc.enable = true;
     hyprpaper = {
       enable = true;
       settings = {
@@ -162,6 +157,9 @@ lib.mkIf cfg.de.hyprland.enable {
         ];
       };
     };
+    hyprpolkitagent.enable = true;
+    network-manager-applet.enable = true;
+    swaync.enable = true;
   };
 
   wayland.windowManager.hyprland = {
@@ -186,14 +184,11 @@ lib.mkIf cfg.de.hyprland.enable {
       exec-once =
         [
           ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
-          "systemctl --user start hyprpolkitagent"
           "hyprpaper"
           "hypridle"
           "waybar"
           "kanata"
-          "nm-applet"
           "blueman-applet"
-          "arrpc"
           "sway-audio-idle-inhibit"
         ]
         ++ (
@@ -207,8 +202,6 @@ lib.mkIf cfg.de.hyprland.enable {
         ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)"''
         (pkill "kanata")
         (pkill "blueman-applet")
-        (pkill "nm-applet")
-        (pkill "arrpc")
       ];
 
       monitor =
