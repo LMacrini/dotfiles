@@ -38,7 +38,15 @@
       options = "--delete-older-than 14d";
     };
 
-    settings.auto-optimise-store = true;
+    settings = {
+      auto-optimise-store = true;
+      substituters = [
+        "https://catppuccin.cachix.org"
+      ];
+      trusted-public-keys = [
+        "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+      ];
+    };
   };
 
   catppuccin = {
