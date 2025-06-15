@@ -24,8 +24,6 @@ in {
     user = "lioma";
   };
 
-  users.users.lioma.hashedPassword = "";
-
   dm = "gdm";
 
   bootloader = null;

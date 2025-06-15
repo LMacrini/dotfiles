@@ -5,7 +5,7 @@
   resources,
   ...
 }:
-lib.mkIf cfg.de.hyprland.enable {
+lib.mkIf (cfg.de.de == "hyprland") {
   home.packages = with pkgs; [
     blueman
     brightnessctl
