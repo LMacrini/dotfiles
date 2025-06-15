@@ -89,42 +89,16 @@ fi
 echo ""
 
 passwd=""
-rootpasswd=""
-liomapasswd=""
 
-yorn samepasswd "y" "Do you want to use the same password for root and lioma? [y]"
-if $samepasswd; then
-  while true; do
-    read -sp "Please enter password " passwd
-    echo ""
-    read -sp "Please enter password again " passwd2
-    echo ""
-    if [ $passwd -eq $passwd2 ]; then
-      break
-    fi
-  done
-  rootpasswd=$passwd
-  liomapasswd=$passwd
-else
-  while true; do
-    read -sp "Please enter root password " rootpasswd
-    echo ""
-    read -sp "Please enter root password again " rootpasswd2
-    echo ""
-    if [ $rootpasswd -eq $rootpasswd2 ]; then
-      break
-    fi
-  done
-  while true; do
-    read -sp "Please enter lioma password " liomapasswd
-    echo ""
-    read -sp "Please enter lioma password again " liomapasswd2
-    echo ""
-    if [ $liomapasswd -eq $liomapasswd2 ]; then
-      break
-    fi
-  done
-fi
+while true; do
+  read -sp "Please enter root password " passwd
+  echo ""
+  read -sp "Please enter root password again " passwd2
+  echo ""
+  if [ $passwd -eq $passwd2 ]; then
+    break
+  fi
+done
 
 echo ""
 
@@ -147,18 +121,13 @@ while true; do
     sudo git add .
   fi
 
-  if yes $rootpasswd | sudo nixos-install --flake "./#$host" --no-channel-copy || [[ $? -eq 141 ]]; then
+  if yes $passwd | sudo nixos-install --flake "./#$host" --no-channel-copy | [[ $? -eq 141 ]]; then
     break
   fi
 
   echo ""
   echo "Build failed, please try again"
 done
-
-echo ""
-echo "setting up password for lioma..."
-
-yes $liomapasswd | sudo nixos-enter --root /mnt -c 'passwd lioma' > /dev/null || [[ $? -eq 141 ]]
 
 cp -r . /mnt/home/lioma/dotfiles
 sudo chown -R lioma /mnt/home/lioma/dotfiles
