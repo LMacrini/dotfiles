@@ -2,7 +2,7 @@
   description = "Nixos config flake";
 
   nixConfig = {
-    extra-experimental-features = [ "pipe-operators" ];
+    extra-experimental-features = ["pipe-operators"];
   };
 
   inputs = {
@@ -68,7 +68,10 @@
     };
 
     resources = ./resources;
-    extraHome = path: if (nixpkgs.lib.pathIsRegularFile ./hosts/${path}/home.nix) then import ./hosts/${path}/home.nix else {};
+    extraHome = path:
+      if (nixpkgs.lib.pathIsRegularFile ./hosts/${path}/home.nix)
+      then import ./hosts/${path}/home.nix
+      else {};
 
     mkLinuxHost = path:
       nixpkgs.lib.nixosSystem
@@ -122,13 +125,12 @@
         hosts);
   in
     {
-      nixosConfigurations =
-        mkHosts "x86_64-linux" [
-          "DESKTOP-VKFSNVPI"
-          "lionels-laptop"
-          "vm"
-          "live"
-        ];
+      nixosConfigurations = mkHosts "x86_64-linux" [
+        "DESKTOP-VKFSNVPI"
+        "lionels-laptop"
+        "vm"
+        "live"
+      ];
 
       darwinConfigurations = mkHosts "aarch64-darwin" [
         "Lionels-MacBook-Air"

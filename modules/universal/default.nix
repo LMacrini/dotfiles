@@ -6,7 +6,7 @@
   pkgs,
   inputs,
   ...
-}@params: {
+} @ params: {
   imports = [
     ./browsers
     ./extra-options.nix

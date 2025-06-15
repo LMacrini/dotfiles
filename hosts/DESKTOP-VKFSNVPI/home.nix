@@ -1,5 +1,4 @@
-{pkgs, ...}:
-{
+{pkgs, ...}: {
   xdg.desktopEntries = {
     iwtc = {
       name = "I WANT TO CRAFT";

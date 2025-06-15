@@ -9,7 +9,10 @@
 in {
   enable = lib.mkDefault cfg.browsers.floorp.enable;
 
-  enableGnomeExtensions = if os == "linux" then cfg.de.de == "gnome" else false;
+  enableGnomeExtensions =
+    if os == "linux"
+    then cfg.de.de == "gnome"
+    else false;
 
   languagePacks = [
     "en-CA"

@@ -17,13 +17,13 @@
   };
 
   config = {
-    boot.kernelPackages = 
+    boot.kernelPackages =
       if config.kernel == "default"
-        then pkgs.linuxPackages
+      then pkgs.linuxPackages
       else if config.kernel == "latest"
-        then pkgs.linuxPackages_latest
+      then pkgs.linuxPackages_latest
       else if config.kernel == "zen"
-        then pkgs.linuxPackages_zen
+      then pkgs.linuxPackages_zen
       else builtins.abort "impossible option";
   };
 }

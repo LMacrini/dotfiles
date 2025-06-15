@@ -1,4 +1,8 @@
-{os, extraHome, ...}: {
+{
+  os,
+  extraHome,
+  ...
+}: {
   imports = [
     ./universal
     (./. + "/${os}")
