@@ -118,6 +118,7 @@
   };
 
   users = {
+    mutableUsers = false;
     users.lioma = {
       isNormalUser = true;
       description = "Lionel Macrini";
