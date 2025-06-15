@@ -258,11 +258,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1749727998,
-        "narHash": "sha256-mHv/yeUbmL91/TvV95p+mBVahm9mdQMJoqaTVTALaFw=",
+        "lastModified": 1749857119,
+        "narHash": "sha256-tG5xUn3hFaPpAHYIvr2F88b+ovcIO5k1HqajFy7ZFPM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fd487183437963a59ba763c0cc4f27e3447dd6dd",
+        "rev": "5f4f306bea96741f1588ea4f450b2a2e29f42b98",
         "type": "github"
       },
       "original": {
@@ -305,11 +305,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749937504,
-        "narHash": "sha256-kRNl+KJGj5VMfHAGyFGEBQAVK7hD/hGTZ/7jIIXSqhU=",
+        "lastModified": 1749982371,
+        "narHash": "sha256-+lrgH2+Hwmoo13DvztAj6D+a4kiTl08LFFzpXcnPHAw=",
         "ref": "refs/heads/master",
-        "rev": "0140356d99f28261f8d59f37adb624832ab3fe80",
-        "revCount": 578,
+        "rev": "d9164578a2fc4f0721aaf61c2af8bc6c5cdb11b4",
+        "revCount": 581,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
