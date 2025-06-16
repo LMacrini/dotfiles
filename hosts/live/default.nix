@@ -21,6 +21,7 @@
   dm = "gdm";
 
   bootloader = null;
+  kernel = "default";
 
   liveSystem = true;
 
