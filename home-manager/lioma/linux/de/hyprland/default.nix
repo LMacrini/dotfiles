@@ -242,7 +242,6 @@ lib.mkIf (cfg.de.de == "hyprland") {
       windowrule = [
         "float, title:Gambling Game"
         "float, title:Bitwarden"
-        "float, title:.*? - Thunar"
       ];
 
       env = [
