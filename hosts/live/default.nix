@@ -5,14 +5,8 @@
   lib,
   config,
   ...
-}: let
-  nixinstall = pkgs.writeTextFile {
-    name = "nixinstall";
-    executable = true;
-    destination = "/bin/nixinstall";
-    text = builtins.readFile ./script.sh;
-  };
-in {
+}:
+{
   shell = "nu";
 
   nixpkgs.hostPlatform = "x86_64-linux";
@@ -40,7 +34,7 @@ in {
   environment.systemPackages = with pkgs; [
     git
     inputs.disko.packages.${pkgs.stdenv.system}.disko
-    nixinstall
+    pkgs.my.nixinstall
   ];
 
   services.qemuGuest.enable = true;

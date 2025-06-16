@@ -1,9 +1,9 @@
 {
   description = "Nixos config flake";
 
-  # nixConfig = {
-  #   extra-experimental-features = ["pipe-operators"];
-  # };
+  nixConfig = {
+    extra-experimental-features = ["pipe-operators"];
+  };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -49,6 +49,32 @@
     nix-darwin,
     ...
   } @ inputs: let
+    myPkgs = builtins.readDir ./pkgs
+          |> nixpkgs.lib.attrsToList
+          |> map ({name, value}: 
+            if value == "directory" then {
+              inherit name;
+              package = import ./pkgs/${name};
+              systems = if builtins.pathExists ./pkgs/${name}/systems.nix then
+                import ./pkgs/${name}/systems.nix 
+              else
+                flake-utils.lib.defaultSystems;
+            }
+            else
+              builtins.abort "non directory found")
+          |> map ({name, package, systems}@p:
+              let
+                systemPackages = map (system: {
+                    name = system;
+                    value = {
+                      ${name} = package ((import nixpkgs {inherit system;}) // {inherit inputs;});
+                    };
+                  }
+                ) systems;
+              in builtins.listToAttrs systemPackages
+          )
+          |> builtins.foldl' nixpkgs.lib.recursiveUpdate {};
+
     eachSystem = nixpkgs.lib.genAttrs flake-utils.lib.defaultSystems;
     overlay = eachSystem (system: _: _: {
       unstable = import inputs.nixpkgs-unstable {
@@ -63,6 +89,8 @@
         withPam = true;
         withHyprland = true;
       };
+
+      my = myPkgs.${system};
     });
 
     hm-module = with inputs.home-manager; {
@@ -140,7 +168,10 @@
       ];
     }
     // flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {inherit system;};
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [overlay.${system}];
+      };
     in {
       formatter = pkgs.alejandra;
 
