@@ -1,4 +1,7 @@
 {
+  directory = {
+    fish_style_pwd_dir_length = 1;
+  };
   direnv = {
     allowed_msg = "";
     denied_msg = "/denied";
