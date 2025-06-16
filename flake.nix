@@ -169,6 +169,8 @@
       darwinConfigurations = mkHosts "aarch64-darwin" [
         "Lionels-MacBook-Air"
       ];
+
+      packages = myPkgs;
     }
     // flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
@@ -184,4 +186,5 @@
         };
       };
     });
+    
 }
