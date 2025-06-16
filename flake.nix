@@ -99,7 +99,7 @@
 
     resources = ./resources;
     extraHome = path:
-      if (nixpkgs.lib.pathIsRegularFile ./hosts/${path}/home.nix)
+      if (builtins.pathExists ./hosts/${path}/home.nix)
       then import ./hosts/${path}/home.nix
       else {};
 
