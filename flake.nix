@@ -61,7 +61,7 @@
             }
             else
               builtins.abort "non directory found")
-          |> map ({name, package, systems}@p:
+          |> map ({name, package, systems}:
               let
                 systemPackages = map (system: {
                     name = system;
