@@ -1,10 +1,21 @@
 {
-  time = {
+  direnv = {
+    allowed_msg = "";
+    denied_msg = "/denied";
     disabled = false;
+    format = ''[$symbol$loaded$allowed]($style) '';
+    symbol = "󰁨 ";
   };
   shlvl = {
     disabled = false;
     format = ''[\[$shlvl\]]($style) '';
+  };
+  sudo = {
+    disabled = false;
+    symbol = "󰆥 ";
+  };
+  time = {
+    disabled = false;
   };
 
   format = builtins.concatStringsSep "" [
