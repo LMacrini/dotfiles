@@ -38,7 +38,11 @@
       enableZshIntegration = false;
     };
 
-    direnv.enable = true;
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      silent = true;
+    };
 
     floorp = import ./floorp.nix params;
 
