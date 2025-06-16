@@ -10,6 +10,7 @@
         default = [];
         type = with types; listOf str;
       };
+      quickshell = mkEnableOption "quickshell";
     };
   };
 
@@ -21,7 +22,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-      quickshell
-    ];
+      (lib.mkIf config.de.hyprland.quickshell quickshell)
+    ] |> builtins.filter (x: x != null);
   };
 }

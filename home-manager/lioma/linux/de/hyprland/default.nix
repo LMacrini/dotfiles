@@ -22,7 +22,7 @@ lib.mkIf (cfg.de.de == "hyprland") {
   ];
 
   home.file = {
-    ".config/quickshell" = {
+    ".config/quickshell" = lib.mkIf cfg.de.hyprland.quickshell {
       source = ./quickshell;
       recursive = true;
     };
