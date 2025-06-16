@@ -121,8 +121,11 @@ while true; do
     sudo git add .
   fi
 
-  yes $passwd | sudo nixos-install --flake "./#$host" --no-channel-copy || true
-  if [[ ${PIPESTATUS[1]} -eq 141 ]]; then
+  set +e
+  yes $passwd | sudo nixos-install --flake "./#$host" --no-channel-copy
+  code=$?
+  set -e
+  if [[ $code -eq 141 ]]; then
     break
   fi
 
