@@ -7,6 +7,7 @@
     denied_msg = "/denied";
     disabled = false;
     format = ''[$symbol$loaded$allowed]($style) '';
+    not_allowed_msg = "/not allowed";
     symbol = "󰁨 ";
   };
   shlvl = {
