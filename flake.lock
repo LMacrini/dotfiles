@@ -130,32 +130,9 @@
         "type": "github"
       }
     },
-    "neovim": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nvf": "nvf",
-        "systems": "systems_4"
-      },
-      "locked": {
-        "lastModified": 1749963429,
-        "narHash": "sha256-X0+k3BjwapfI5QXyRvoTc1By5OYhhZbM2FVr7yWW+X0=",
-        "owner": "lmacrini",
-        "repo": "nvf-config",
-        "rev": "926c76fb34a8de1c6e07a7661ad9028704127065",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lmacrini",
-        "repo": "nvf-config",
-        "type": "github"
-      }
-    },
     "nil": {
       "inputs": {
         "nixpkgs": [
-          "neovim",
           "nvf",
           "nixpkgs"
         ]
@@ -265,7 +242,6 @@
         "mnw": "mnw",
         "nil": "nil",
         "nixpkgs": [
-          "neovim",
           "nixpkgs"
         ],
         "systems": "systems_3"
@@ -310,11 +286,11 @@
         "disko": "disko",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "neovim": "neovim",
         "nix-darwin": "nix-darwin",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nvf": "nvf",
         "quickshell": "quickshell"
       }
     },
@@ -349,21 +325,6 @@
       }
     },
     "systems_3": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_4": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

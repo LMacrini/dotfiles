@@ -8,7 +8,7 @@
   home = {
     packages = with pkgs; [
       blesh
-      inputs.neovim.packages.${pkgs.system}.default
+      my.neovim
     ];
 
     shellAliases = {
