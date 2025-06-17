@@ -83,7 +83,11 @@
               map (system: {
                 name = system;
                 value = {
-                  ${name} = package ((import nixpkgs {inherit system;}) // {inherit inputs;});
+                  ${name} = package ((import nixpkgs {
+                      inherit system;
+                      overlays = [overlay.${system}];
+                    })
+                    // {inherit inputs;});
                 };
               })
               systems;
