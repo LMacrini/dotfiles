@@ -21,8 +21,10 @@
       hyprland.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      (lib.mkIf config.de.hyprland.quickshell quickshell)
-    ] |> builtins.filter (x: x != null);
+    environment.systemPackages = with pkgs;
+      [
+        (lib.mkIf config.de.hyprland.quickshell quickshell)
+      ]
+      |> builtins.filter (x: x != null);
   };
 }

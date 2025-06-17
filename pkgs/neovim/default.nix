@@ -1,4 +1,8 @@
-{pkgs, inputs, ...}:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 (inputs.nvf.lib.neovimConfiguration {
   inherit pkgs;
   modules = [

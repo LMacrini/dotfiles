@@ -5,4 +5,3 @@ pkgs.writeTextFile {
   destination = "/bin/nixinstall";
   text = builtins.readFile ./script.sh;
 }
-

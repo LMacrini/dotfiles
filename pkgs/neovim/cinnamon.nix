@@ -1,4 +1,8 @@
-{lib, config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   options = {
     cinnamon.enable = lib.mkEnableOption "Enable cinnamon";
   };

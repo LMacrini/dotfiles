@@ -262,7 +262,7 @@ in {
       setupOpts = {
         signature.enabled = true;
         snippets.expand = lib.generators.mkLuaInline ''
-          function(snippet) 
+          function(snippet)
             local text = snippet
             local before_paren = snippet:match("^(.-)%(")
             if not snippet:match("%(%s*%)$") and before_paren then
@@ -407,7 +407,8 @@ in {
 
     treesitter = {
       autotagHtml = true;
-      grammars = with pkgs.vimPlugins; with nvim-treesitter.builtGrammars; [
+      grammars = with pkgs.vimPlugins;
+      with nvim-treesitter.builtGrammars; [
         nvim-treesitter-parsers.qmljs
         nvim-treesitter-parsers.qmldir
       ];

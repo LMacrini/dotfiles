@@ -48,35 +48,51 @@
     nix-darwin,
     ...
   } @ inputs: let
-
     myPkgs = let
       pkgsDir = ./pkgs;
       rawPkgs = builtins.readDir pkgsDir;
       pkgsList = nixpkgs.lib.attrsToList rawPkgs;
 
-      parsedPkgs = map ({ name, value }: 
-        if value == "directory" then {
-          inherit name;
-          package = import (pkgsDir + "/${name}");
-          systems = if builtins.pathExists (pkgsDir + "/${name}/systems.nix") then
-            import (pkgsDir + "/${name}/systems.nix")
-          else
-            flake-utils.lib.defaultSystems;
-        } else
-          builtins.abort "non directory found"
-      ) pkgsList;
+      parsedPkgs =
+        map (
+          {
+            name,
+            value,
+          }:
+            if value == "directory"
+            then {
+              inherit name;
+              package = import (pkgsDir + "/${name}");
+              systems =
+                if builtins.pathExists (pkgsDir + "/${name}/systems.nix")
+                then import (pkgsDir + "/${name}/systems.nix")
+                else flake-utils.lib.defaultSystems;
+            }
+            else builtins.abort "non directory found"
+        )
+        pkgsList;
 
-      systemPkgsList = map ({ name, package, systems }: 
-        let
-          systemPackages = map (system: {
-            name = system;
-            value = {
-              ${name} = package ((import nixpkgs { inherit system; }) // { inherit inputs; });
-            };
-          }) systems;
-        in builtins.listToAttrs systemPackages
-      ) parsedPkgs;
-      in builtins.foldl' nixpkgs.lib.recursiveUpdate {} systemPkgsList;
+      systemPkgsList =
+        map (
+          {
+            name,
+            package,
+            systems,
+          }: let
+            systemPackages =
+              map (system: {
+                name = system;
+                value = {
+                  ${name} = package ((import nixpkgs {inherit system;}) // {inherit inputs;});
+                };
+              })
+              systems;
+          in
+            builtins.listToAttrs systemPackages
+        )
+        parsedPkgs;
+    in
+      builtins.foldl' nixpkgs.lib.recursiveUpdate {} systemPkgsList;
 
     eachSystem = nixpkgs.lib.genAttrs flake-utils.lib.defaultSystems;
     overlay = eachSystem (system: _: _: {
@@ -186,5 +202,4 @@
         };
       };
     });
-    
 }

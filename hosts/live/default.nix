@@ -5,8 +5,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   shell = "nu";
 
   nixpkgs.hostPlatform = "x86_64-linux";
