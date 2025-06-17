@@ -1,6 +1,6 @@
 {inputs, ...}: {
   imports = [
-    inputs.nixcord.homeManagerModules.nixcord
+    inputs.nixcord.homeModules.nixcord
   ];
 
   programs.nixcord = {
@@ -348,10 +348,21 @@
     #     url = "https://git.nin0.dev/Sqaaakoi-VencordUserPlugins/shyTyping.git";
     #     rev = "a6f6a21cf5a64792cb049067b6e3536636fcfa37";
     #   };
-    #   _ = builtins.trace shyTyping "";
     # in {
-    #   shyTyping = "${shyTyping}";
+    #   shyTyping = shyTyping;
     # };
+
+    dorion = {
+      enable = true;
+      autoClearCache = true;
+      clientMods = [
+        "Shelter"
+        "Vencord"
+      ];
+      openOnStartup = false;
+      unreadBadge = false;
+      updateNotify = false;
+    };
 
     extraConfig = {
       plugins = {
