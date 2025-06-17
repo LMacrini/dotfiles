@@ -6,7 +6,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    inputs.neovim.packages.aarch64-darwin.default
+    my.neovim
   ];
 
   environment.variables = {
