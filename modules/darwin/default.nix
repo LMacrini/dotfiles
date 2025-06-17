@@ -6,6 +6,8 @@ in {
     inherit home;
   };
 
+  system.primaryUser = config.mainUser;
+
   environment = {
     variables = {
       NH_FLAKE = home + "/dotfiles";
