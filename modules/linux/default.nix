@@ -13,7 +13,6 @@
     ./games
     ./gpu
     ./kernel.nix
-    ./keyboards.nix
     ./laptop
     ./plymouth
     ./ssh.nix

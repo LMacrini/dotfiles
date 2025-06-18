@@ -248,20 +248,11 @@
     };
 
     "org/gnome/desktop/input-sources" = {
-      sources = builtins.filter (x: !isNull x) [
+      sources = [
         (lib.gvariant.mkTuple [
           "xkb"
           "us+mac"
         ])
-        (
-          if cfg.kb.cmk-dh.enable
-          then
-            (lib.gvariant.mkTuple [
-              "xkb"
-              "us+colemak_dh"
-            ])
-          else null
-        )
         (lib.gvariant.mkTuple [
           "xkb"
           "gr"
