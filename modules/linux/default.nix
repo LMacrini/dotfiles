@@ -17,7 +17,6 @@
     ./plymouth
     ./ssh.nix
     ./videos.nix
-    ./vms.nix
     inputs.home-manager.nixosModules.default
   ];
 

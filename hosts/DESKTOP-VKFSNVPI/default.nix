@@ -26,8 +26,6 @@
 
   videos.enable = true;
 
-  vms.enable = true;
-
   libreoffice.enable = true;
 
   stateVersion = "24.11";

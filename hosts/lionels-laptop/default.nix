@@ -5,8 +5,6 @@
 
   shell = "nu";
 
-  vms.enable = true;
-
   gpu.nvidia.enable = true;
 
   networking.hostName = "lionels-laptop";

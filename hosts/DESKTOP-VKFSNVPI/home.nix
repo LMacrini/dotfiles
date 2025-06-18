@@ -11,4 +11,8 @@
   home.packages = with pkgs; [
     dconf-editor
   ];
+
+  services.flatpak.packages = [
+    "org.gnome.Boxes"
+  ];
 }
