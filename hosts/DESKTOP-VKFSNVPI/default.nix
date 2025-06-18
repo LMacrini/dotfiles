@@ -22,7 +22,6 @@
   kb.cmk-dh.enable = false;
 
   configapps.enable = true;
-  appimages.enable = true;
 
   dev.unity.enable = true;
 

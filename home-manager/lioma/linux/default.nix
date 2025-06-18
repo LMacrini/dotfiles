@@ -44,6 +44,7 @@
     celluloid
     eartag
     eog
+    gearlever
     gimp3
     gnome-disk-utility
     peazip

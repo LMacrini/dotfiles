@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    ./appimages.nix
     ./bootloader.nix
     ./config-apps.nix
     ./de
@@ -147,6 +146,10 @@
   };
 
   programs = {
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
     light.enable = true;
     nano.enable = false;
     vim = {
