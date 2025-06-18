@@ -16,14 +16,13 @@
     };
   };
 
-  config = {
-    boot.kernelPackages =
-      if config.kernel == "default"
-      then pkgs.linuxPackages
-      else if config.kernel == "latest"
-      then pkgs.linuxPackages_latest
-      else if config.kernel == "zen"
-      then pkgs.linuxPackages_zen
-      else builtins.abort "impossible option";
+  config = let
+    kernelMap = with pkgs; {
+      default = linuxPackages;
+      latest = linuxPackages_latest;
+      zen = linuxPackages_zen;
+    };
+  in {
+    boot.kernelPackages = kernelMap.${config.kernel};
   };
 }
