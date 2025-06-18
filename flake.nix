@@ -57,7 +57,7 @@
             if value == "directory"
             then {
               inherit name;
-              package = import (pkgsDir + "/${name}");
+              package = pkgsDir + "/${name}";
               systems =
                 if builtins.pathExists (pkgsDir + "/${name}/systems.nix")
                 then import (pkgsDir + "/${name}/systems.nix")
@@ -75,14 +75,15 @@
             systems,
           }: let
             systemPackages =
-              map (system: {
+              map (system: let
+                pkgs = import nixpkgs {
+                  inherit system;
+                  overlays = [overlay.${system}];
+                };
+              in {
                 name = system;
                 value = {
-                  ${name} = package ((import nixpkgs {
-                      inherit system;
-                      overlays = [overlay.${system}];
-                    })
-                    // {inherit inputs;});
+                  ${name} = pkgs.callPackage package {inherit inputs;};
                 };
               })
               systems;
