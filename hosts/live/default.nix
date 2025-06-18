@@ -33,7 +33,7 @@
 
   environment.systemPackages = with pkgs; [
     git
-    inputs.disko.packages.${pkgs.stdenv.system}.disko
+    disko
     pkgs.my.nixinstall
   ];
 
