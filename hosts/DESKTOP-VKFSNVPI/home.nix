@@ -10,6 +10,7 @@
 
   home.packages = with pkgs; [
     dconf-editor
+    unityhub
   ];
 
   services.flatpak.packages = [

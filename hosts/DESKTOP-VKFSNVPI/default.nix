@@ -19,8 +19,6 @@
 
   networking.hostName = "DESKTOP-VKFSNVPI";
 
-  dev.unity.enable = true;
-
   games.enable = true;
   games.emulators.enable = true;
 

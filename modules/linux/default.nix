@@ -8,7 +8,6 @@
   imports = [
     ./bootloader.nix
     ./de
-    ./development
     ./extra-options.nix
     ./games
     ./gpu
@@ -163,6 +162,8 @@
   environment.systemPackages = with pkgs; [
     wl-clipboard
   ];
+
+  environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ]; # see https://nix-community.github.io/home-manager/options.xhtml#opt-xdg.portal.enable
 
   services.flatpak = {
     enable = true;

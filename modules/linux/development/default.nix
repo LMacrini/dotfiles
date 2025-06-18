@@ -1,6 +1,0 @@
-{...}: {
-  imports = [
-    ./editors
-    ./unity.nix
-  ];
-}
