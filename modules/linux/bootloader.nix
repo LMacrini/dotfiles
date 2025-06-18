@@ -1,15 +1,17 @@
 {
   lib,
   config,
+  resources,
   ...
 }: {
   options = with lib; {
     bootloader = mkOption {
-      default = "systemd";
+      default = "limine";
       type = with types;
         nullOr (enum [
-          "systemd"
           "grub"
+          "limine"
+          "systemd"
         ]);
     };
   };
@@ -24,6 +26,25 @@
       };
       efi = {
         canTouchEfiVariables = true;
+      };
+
+      limine = {
+        enable = config.bootloader == "limine";
+        style = {
+          wallpapers = [
+            "${resources}/background.jpg"
+          ];
+          wallpaperStyle = "centered";
+          interface = {
+            branding = "WamOS ${config.system.nixos.release}";
+            brandingColor = 6; # number from 0-7 that corresponds to:
+              # 0: black, 1: red, 2: green, 3: brown, 4: blue, 5: magenta, 6: cyan, 7: gray
+          };
+        };
+
+        extraConfig = ''
+          quiet: yes
+        '';
       };
     };
   };
