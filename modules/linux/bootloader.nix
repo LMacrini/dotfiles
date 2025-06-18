@@ -43,7 +43,7 @@
         };
 
         extraConfig = ''
-          quiet: yes
+          quiet: ${if config.plymouth.quietBoot then "yes" else "no"}
         '';
       };
     };
