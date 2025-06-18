@@ -177,10 +177,6 @@
       }
     ];
     packages = [
-      "com.usebottles.bottles"
-      # "net.bartkessels.getit"
-      # "org.gnome.Showtime"
-      # "org.gnome.Decibels"
     ];
     update = {
       onActivation = true;

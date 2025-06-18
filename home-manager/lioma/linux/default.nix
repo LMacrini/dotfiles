@@ -10,6 +10,7 @@
     ./de
     # ./discord.nix
     inputs.catppuccin.homeModules.catppuccin
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
 
   catppuccin = {
@@ -47,13 +48,40 @@
     gnome-disk-utility
     peazip
     pkgs.resources # what a genius idea to have a variable named resources
-    shortwave
     vlc
 
     # decide which to use
     # helvum
     qpwgraph
   ];
+
+  services.flatpak = {
+    enable = true;
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+      {
+        name = "launcher.moe";
+        location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
+      }
+    ];
+    packages = [
+      "com.usebottles.bottles"
+      "de.haeckerfelix.Shortwave"
+      # "net.bartkessels.getit"
+      # "org.gnome.Showtime"
+      # "org.gnome.Decibels"
+    ];
+    update = {
+      onActivation = true;
+      auto = {
+        enable = true;
+        onCalendar = "weekly";
+      };
+    };
+  };
 
   home.shellAliases = {
     chkbd = "sudo --preserve-env=WAYLAND_DISPLAY --preserve-env=XDG_RUNTIME_DIR --preserve-env=XDG_SESSION_TYPE keymapp";
