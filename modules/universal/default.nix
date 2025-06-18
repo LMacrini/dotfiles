@@ -68,6 +68,8 @@
     yazi
     tlrc
 
+    bat
+
     _7zz-rar
     ffmpeg
   ];
