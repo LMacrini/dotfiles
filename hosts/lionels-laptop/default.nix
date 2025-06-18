@@ -19,7 +19,6 @@
   dm = "ly";
   de = {
     hyprland = {
-      enable = true;
       monitor = [
         "eDPI1,1920x1080,0x0,1"
       ];
