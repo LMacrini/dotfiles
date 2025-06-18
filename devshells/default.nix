@@ -1,7 +1,8 @@
 {pkgs, ...}:
 pkgs.mkShell {
   name = "dotfiles";
-  packages = [
-    pkgs.my.buildiso
+  packages = with pkgs; [
+    my.buildiso
+    zig
   ];
 }
