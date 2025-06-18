@@ -161,6 +161,7 @@
 
   environment.systemPackages = with pkgs; [
     wl-clipboard
+    inputs.home-manager.packages.${stdenv.system}.default
   ];
 
   environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ]; # see https://nix-community.github.io/home-manager/options.xhtml#opt-xdg.portal.enable
