@@ -40,6 +40,19 @@
 
   home.packages = with pkgs; [
     catppuccin-cursors.macchiatoDark
+    celluloid
+    eartag
+    eog
+    gimp3
+    gnome-disk-utility
+    peazip
+    pkgs.resources # what a genius idea to have a variable named resources
+    shortwave
+    vlc
+
+    # decide which to use
+    # helvum
+    qpwgraph
   ];
 
   home.shellAliases = {

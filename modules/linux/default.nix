@@ -161,23 +161,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    peazip
-    resources
-    btop
-    gimp3
-    gnome-disk-utility
-
-    celluloid
-    vlc
-    eog
     wl-clipboard
-
-    # decide which to use
-    # helvum
-    qpwgraph
-
-    goodvibes
-    eartag
   ];
 
   services.flatpak = {
