@@ -7,4 +7,8 @@
       exec = "${pkgs.prismlauncher}/bin/prismlauncher -l \"I WANT TO CRAFT\" -s mc.serversmp.xyz:25565";
     };
   };
+
+  home.packages = with pkgs; [
+    dconf-editor
+  ];
 }

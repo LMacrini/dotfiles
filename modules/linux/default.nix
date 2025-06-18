@@ -7,7 +7,6 @@
 }: {
   imports = [
     ./bootloader.nix
-    ./config-apps.nix
     ./de
     ./development
     ./extra-options.nix

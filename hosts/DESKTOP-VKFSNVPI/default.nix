@@ -21,8 +21,6 @@
 
   kb.cmk-dh.enable = false;
 
-  configapps.enable = true;
-
   dev.unity.enable = true;
 
   games.enable = true;
