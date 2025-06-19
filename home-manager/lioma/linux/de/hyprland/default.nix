@@ -11,6 +11,7 @@ lib.mkIf (cfg.de.de == "hyprland") {
     brightnessctl
     kitty
     grim
+    hypridle
     hyprland-qtutils
     hyprpaper
     kanata
