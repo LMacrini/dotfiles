@@ -15,6 +15,7 @@ lib.mkIf (cfg.de.de == "hyprland") {
     hyprland-qtutils
     hyprpaper
     kanata
+    networkmanagerapplet
     pavucontrol
     playerctl
     slurp
@@ -191,6 +192,7 @@ lib.mkIf (cfg.de.de == "hyprland") {
           "waybar"
           "kanata"
           "blueman-applet"
+          "nm-applet"
           "sway-audio-idle-inhibit"
         ]
         ++ (
@@ -204,6 +206,7 @@ lib.mkIf (cfg.de.de == "hyprland") {
         ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)"''
         (pkill "kanata")
         (pkill "blueman-applet")
+        (pkill "nm-applet")
       ];
 
       monitor =
