@@ -5,6 +5,8 @@
   git,
   hello,
   makeWrapper,
+  parted,
+  util-linux,
   zig,
   ...
 }:
@@ -21,6 +23,8 @@ stdenvNoCC.mkDerivation rec {
     disko
     git
     hello
+    parted
+    util-linux
   ];
 
   phases = [
@@ -32,7 +36,7 @@ stdenvNoCC.mkDerivation rec {
   buildPhase = ''
     export XDG_CACHE_HOME=$(mktemp -d)
     zig build-exe -O Debug $src/nixinstall.zig
-  '';
+  ''; # TODO: turn off caching entirely when zig 0.15.0 comes out
 
   installPhase = ''
     install -Dm755 nixinstall $out/bin/nixinstall-zig
