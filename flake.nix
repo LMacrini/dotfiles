@@ -34,6 +34,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    fjordlauncher = {
+      url = "github:unmojang/fjordlauncher";
+    };
+
     # nixcord.url = "github:kaylorben/nixcord";
   };
 
@@ -110,6 +114,8 @@
       };
 
       my = myPkgs.${system};
+
+      fjordlauncher = inputs.fjordlauncher.packages.${system}.default;
     });
 
     hm-module = with inputs.home-manager; {

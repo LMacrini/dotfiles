@@ -4,7 +4,16 @@
       name = "I WANT TO CRAFT";
       startupNotify = false;
       terminal = false;
-      exec = "${pkgs.prismlauncher}/bin/prismlauncher -l \"I WANT TO CRAFT\" -s mc.serversmp.xyz:25565";
+      exec = "${pkgs.fjordlauncher}/bin/fjordlauncher -l \"I WANT TO CRAFT\" -s mc.serversmp.xyz:25565 -a Wam25";
+      icon = "${pkgs.fjordlauncher}/share/icons/hicolor/scalable/apps/org.unmojang.FjordLauncher.svg";
+    };
+
+    iwtcseija = {
+      name = "I WANT TO CRAFT (ely account)";
+      startupNotify = false;
+      terminal = false;
+      exec = "${pkgs.fjordlauncher}/bin/fjordlauncher -l \"I WANT TO CRAFT\" -s mc.serversmp.xyz:25565 -a seija_";
+      icon = "${pkgs.fjordlauncher}/share/icons/hicolor/scalable/apps/org.unmojang.FjordLauncher.svg";
     };
   };
 

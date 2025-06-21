@@ -13,7 +13,7 @@
 
     users.users.lioma.packages = with pkgs; [
       wine
-      prismlauncher
+      fjordlauncher
       heroic
       unstable.lutris
       protonplus
