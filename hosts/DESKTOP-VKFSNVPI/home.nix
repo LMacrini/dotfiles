@@ -24,5 +24,9 @@
 
   services.flatpak.packages = [
     "org.gnome.Boxes"
+    {
+      appId = "moe.launcher.an-anime-game-launcher";
+      origin = "launcher.moe";
+    }
   ];
 }
