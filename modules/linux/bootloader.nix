@@ -34,7 +34,7 @@
           wallpapers = lib.mkDefault [
             "${resources}/background.jpg"
           ];
-          wallpaperStyle = "stretched";
+          wallpaperStyle = "streched";
           interface = {
             branding = "WamOS ${config.system.nixos.release}";
             brandingColor = 6; # number from 0-7 that corresponds to:
