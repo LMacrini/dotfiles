@@ -9,7 +9,6 @@ lib.mkIf (cfg.de.de == "hyprland") {
   home.packages = with pkgs; [
     blueman
     brightnessctl
-    kitty
     grim
     hypridle
     hyprland-qtutils
@@ -31,6 +30,8 @@ lib.mkIf (cfg.de.de == "hyprland") {
   };
 
   programs = {
+    kitty.enable = true;
+
     wofi = {
       enable = true;
       settings = {

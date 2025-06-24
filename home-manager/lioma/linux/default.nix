@@ -123,11 +123,6 @@
         source = ./home/config/kanata;
         recursive = true;
       };
-
-      kitty = {
-        source = ./home/config/kitty;
-        recursive = true;
-      };
     };
     dataFile = {
       "applications/mimeapps.list" = {

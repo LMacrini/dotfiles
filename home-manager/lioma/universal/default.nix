@@ -61,6 +61,14 @@
       aliases = {};
     };
 
+    kitty = {
+      enableGitIntegration = true;
+      font = {
+        name = "FiraCode Nerd Font Mono";
+        package = pkgs.nerd-fonts.fira-code;
+      };
+    };
+
     lazygit = {
       enable = true;
     };
