@@ -166,7 +166,7 @@
     inputs.home-manager.packages.${stdenv.system}.default
   ];
 
-  environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ]; # see https://nix-community.github.io/home-manager/options.xhtml#opt-xdg.portal.enable
+  environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"]; # see https://nix-community.github.io/home-manager/options.xhtml#opt-xdg.portal.enable
 
   services.flatpak = {
     enable = true;
