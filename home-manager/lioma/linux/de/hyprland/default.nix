@@ -250,7 +250,6 @@ lib.mkIf (cfg.de.de == "hyprland") {
 
       env = [
         "NIXOS_OZONE_WL,1"
-        # "XDG_CONFIG_HOME,/home/lioma/.config"
       ];
 
       bindel = [
