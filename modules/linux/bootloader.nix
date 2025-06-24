@@ -31,7 +31,7 @@
       limine = {
         enable = config.bootloader == "limine";
         style = {
-          wallpapers = [
+          wallpapers = lib.mkDefault [
             "${resources}/background.jpg"
           ];
           wallpaperStyle = "stretched";
