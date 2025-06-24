@@ -95,10 +95,6 @@
       '';
 
       shellAliases = {
-        ls = "lsd";
-        la = "lsd -a";
-        ll = "lsd -l";
-        lla = "lsd -la";
         grep = "grep --color=auto";
       };
     };
@@ -161,13 +157,6 @@
 
     zsh = {
       enable = true;
-
-      shellAliases = {
-        ls = "lsd";
-        la = "lsd -a";
-        ll = "lsd -l";
-        lla = "lsd -la";
-      };
 
       oh-my-zsh = {
         enable = true;
