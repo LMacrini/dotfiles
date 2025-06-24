@@ -1,6 +1,7 @@
 {
   lib,
   cfg,
+  config,
   pkgs,
   inputs,
   resources,
@@ -101,9 +102,31 @@
   };
 
   xdg = {
+    enable = true;
+
     configFile = {
       "mimeapps.list" = {
         force = true;
+      };
+
+      fastfetch = {
+        source = ./home/config/fastfetch;
+        recursive = true;
+      };
+
+      ghostty = {
+        source = ./home/config/ghostty;
+        recursive = true;
+      };
+
+      kanata = {
+        source = ./home/config/kanata;
+        recursive = true;
+      };
+
+      kitty = {
+        source = ./home/config/kitty;
+        recursive = true;
       };
     };
     dataFile = {
@@ -176,6 +199,16 @@
         exec = "kitty -- nvim %f";
       };
     };
+
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      desktop = null;
+
+      extraConfig = {
+        XDG_GAMES_DIR = "${config.home.homeDirectory}/Games";
+      };
+    };
   };
 
   gtk = {
@@ -203,10 +236,6 @@
   };
 
   home.file = {
-    ".config" = {
-      source = ./home/.config;
-      recursive = true;
-    };
     "Templates" = {
       source = ./home/Templates;
       recursive = true;
