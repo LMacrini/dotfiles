@@ -34,7 +34,8 @@
   environment.systemPackages = with pkgs; [
     git
     disko
-    pkgs.my.nixinstall
+    my.nixinstall
+    my.nixinstall-zig
   ];
 
   services.qemuGuest.enable = true;
