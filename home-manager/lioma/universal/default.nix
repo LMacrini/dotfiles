@@ -38,6 +38,16 @@
       enableZshIntegration = false;
     };
 
+    cava = {
+      enable = true;
+      settings = {
+        output = {
+          method = "ncurses";
+          orientation = "top";
+        };
+      };
+    };
+
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -49,6 +59,14 @@
     git = {
       enable = true;
       aliases = {};
+    };
+
+    lazygit = {
+      enable = true;
+    };
+
+    lsd = {
+      enable = true;
     };
 
     starship = {

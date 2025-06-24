@@ -59,13 +59,10 @@
 
     git
     skim
-    lazygit
     gh
     fd
     devenv
-    lsd
     ripgrep
-    yazi
     tlrc
 
     bat
