@@ -1,10 +1,15 @@
 {
   lib,
   stdenvNoCC,
+  bash,
+  coreutils,
   disko,
   git,
   hello,
   makeWrapper,
+  my,
+  nix,
+  nixos-install-tools,
   parted,
   util-linux,
   zig,
@@ -15,14 +20,19 @@ stdenvNoCC.mkDerivation rec {
   src = ./src;
 
   nativeBuildInputs = [
-    zig
     makeWrapper
+    zig
   ];
 
   buildInputs = [
+    bash
+    coreutils
     disko
     git
     hello
+    my.neovim
+    nix
+    nixos-install-tools
     parted
     util-linux
   ];

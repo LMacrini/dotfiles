@@ -73,67 +73,10 @@ fn partitionDrives(allocator: std.mem.Allocator) !void {
         try stderr.writeAll("(write \"exit\" to exit)\n");
         try stderr.writeAll("\n");
 
-        var buf: [1024]u8 = undefined;
-        var cmd: []const u8 = undefined;
-
-        var args_buf: [32][]const u8 = undefined;
-        outer: while (true) {
-            try stderr.writeAll("> ");
-            cmd = stdin.readUntilDelimiterOrEof(&buf, '\n') catch |err| switch (err) {
-                error.StreamTooLong => {
-                    try stderr.writeAll("command too long, please try again\n");
-                    continue;
-                },
-                else => return err,
-            } orelse continue;
-
-            if (std.mem.eql(u8, cmd, "exit")) break;
-            if (std.mem.eql(u8, cmd, "")) continue;
-
-            var args: [][]const u8 = &args_buf;
-            args.len = 1;
-
-            var prev_split_idx: usize, var in_quotes = .{0, false};
-            for (cmd, 0..) |char, i| {
-                if (char == ' ' and !in_quotes) {
-                    if (args.len >= args_buf.len) {
-                        try stderr.writeAll("too many arguments, please try again\n");
-                        continue :outer;
-                    }
-                    const split_idx = if (i > 0 and cmd[i-1] == '"') i-1 else i;
-                    args[args.len - 1] = cmd[prev_split_idx..split_idx];
-                    prev_split_idx = i+1;
-                    args.len += 1;
-                } else if (char == '"') {
-                    if (!in_quotes and i > 0 and cmd[i-1] != ' ' or in_quotes and i + 1 < cmd.len and cmd[i + 1] != ' ') {
-                        try stderr.writeAll("parsing error, please try again\n");
-                        continue :outer;
-                    }
-                    if (!in_quotes) {
-                        prev_split_idx += 1;
-                    }
-                    in_quotes = !in_quotes;
-                }
-            }
-
-            {
-                const split_idx = if (cmd.len > 1 and cmd[cmd.len - 1] == '"') cmd.len-1 else cmd.len; 
-                args[args.len - 1] = cmd[prev_split_idx..split_idx];
-            }
-
-            var cmd_process: Child = .init(args, allocator);
-            _ = cmd_process.spawnAndWait() catch |err| switch (err) {
-                error.FileNotFound => {
-                    try stderr.writeAll("unknown command, please try again\n");
-                    continue;
-                },
-                else => {
-                    try stderr.print("an error occurred, please try again: {}\n" , .{err});
-                    continue;
-                },
-            };
-        }
-
+        const shell = std.posix.getenv("SHELL") orelse "bash";
+        var shell_process: Child = .init(&.{ shell }, allocator);
+        _ = try shell_process.spawnAndWait();
+        
         return;
     }
 
@@ -217,6 +160,93 @@ fn partitionDrives(allocator: std.mem.Allocator) !void {
     }
 }
 
+fn getPassword(buf: []u8) ![]const u8 {
+    var buf1 = buf;
+    var buf2: [64]u8 = undefined;
+    if (buf1.len > buf2.len) {
+        buf1.len = buf2.len;
+    }
+
+    while (true) {
+        try stderr.writeAll("please enter root password: ");
+        const password1 = stdin.readUntilDelimiterOrEof(buf1, '\n') catch |err| switch (err) {
+            error.StreamTooLong => {
+                try stderr.writeAll("password too long, please try again\n");
+                continue;
+            },
+            else => return err,
+        } orelse "";
+        
+        try stderr.writeAll("please enter root password again: ");
+        const password2 = stdin.readUntilDelimiterOrEof(&buf2, '\n') catch |err| switch (err) {
+            error.StreamTooLong => {
+                try stderr.writeAll("password too long, please try again\n");
+                continue;
+            },
+            else => return err,
+        } orelse "";
+
+        if (std.mem.eql(u8, password1, password2)) return password1;
+
+        try stderr.writeAll("passwords do not match, please try again\n");
+    }
+}
+
+fn install(allocator: std.mem.Allocator) !void {
+    var password_buf: [64]u8 = undefined;
+    const passwd = try getPassword(&password_buf);
+
+    const States = enum {
+        hostname,
+        hardware_config,
+        install,
+    };
+
+    var host_buf: [64]u8 = undefined;
+    var host: []const u8 = undefined;
+
+    var hosts_dir = try std.fs.openDirAbsolute("/tmp/config/hosts", .{});
+    defer hosts_dir.close();
+
+    installation: switch (States.hostname) {
+        .hostname => {
+            try stderr.writeAll("please choose host to install ");
+            host = stdin.readUntilDelimiterOrEof(&host_buf, '\n') catch |err| switch (err) {
+                error.StreamTooLong => {
+                    try stderr.writeAll("host name too long, please try again\n");
+                    continue :installation .hostname;
+                },
+                else => return err,
+            } orelse "";
+
+            if (std.mem.eql(u8, host, "new")) {
+                const shell = std.posix.getenv("SHELL") orelse "bash";
+                var shell_process: Child = .init( &.{shell}, allocator );
+                shell_process.cwd_dir = try std.fs.openDirAbsolute("/tmp/config", .{});
+                _ = try shell_process.spawnAndWait();
+                try stderr.writeAll("\n");
+                continue :installation .hostname;
+            }
+
+            if (hosts_dir.access(host, .{})) {
+                try stderr.writeAll("not a valid host, please try again\n");
+                continue :installation .hostname;
+            } else |_| {}
+
+            continue :installation .hardware_config;
+        },
+        else => unreachable,
+    }
+
+    var install_process: Child = .init(&.{ "nixos-install", "--flake", "/tmp/config#vm", "--no-channel-copy" }, allocator);
+    install_process.stdin_behavior = .Pipe;
+
+    try install_process.spawn();
+    try install_process.stdin.?.writeAll(passwd);
+
+    std.debug.print("{}", .{try install_process.wait()});
+}
+
 pub fn main() !void {
     if (builtin.os.tag != .linux) {
         @compileError("only intended for linux");
@@ -225,6 +255,9 @@ pub fn main() !void {
     var gpa: std.heap.DebugAllocator(.{}) = .init;
     const allocator = gpa.allocator();
     defer _ = gpa.detectLeaks();
+
+    var hello_process: Child = .init(&.{ "hello" }, allocator);
+    _ = try hello_process.spawnAndWait();
 
     if (std.os.linux.getuid() != 0) { // NOTE: this getuid() function will be under std.posix in the future
         try stderr.writeAll("please run nixinstall with sudo");
@@ -269,4 +302,8 @@ pub fn main() !void {
     try stderr.writeAll("\n");
 
     try partitionDrives(allocator);
+
+    try stderr.writeAll("\n");
+
+    try install(allocator);
 }
