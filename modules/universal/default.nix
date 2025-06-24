@@ -43,7 +43,7 @@
   };
 
   environment.variables = {
-    SKIM_DEFAULT_COMMAND = "fd --type f";
+    SKIM_DEFAULT_COMMAND = "fd -ut f";
     SKIM_DEFAULT_OPTIONS = "--layout=reverse --ansi";
   };
 
