@@ -61,7 +61,7 @@
     skim
     gh
     fd
-    devenv
+    unstable.devenv # NOTE: devenv seems to break after a while, can be left on unstable
     ripgrep
     tlrc
 
