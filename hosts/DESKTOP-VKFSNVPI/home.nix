@@ -29,8 +29,4 @@
       origin = "launcher.moe";
     }
   ];
-
-  programs = {
-    cava.settings.general.framerate = 144;
-  };
 }
