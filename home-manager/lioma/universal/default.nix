@@ -121,7 +121,7 @@
       };
 
       extraConfig = ''
-        $env.TRANSIENT_PROMPT_COMMAND = {starship module character}
+        $env.TRANSIENT_PROMPT_COMMAND = {starship module character | $"\n($in)"}
         $env.TRANSIENT_PROMPT_COMMAND_RIGHT = {starship module time}
         def cls [] {
             clear
