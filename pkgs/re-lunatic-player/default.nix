@@ -1,4 +1,4 @@
-{stdenvNoCC, autoPatchelfHook, alsa-lib, at-spi2-atk, cairo, cups, dbus, glib, gtk3, libgbm, libxkbcommon, nss, xorg, ...}:
+{stdenvNoCC, autoPatchelfHook, makeWrapper, electron, alsa-lib, at-spi2-atk, cairo, cups, dbus, glib, gtk3, libgbm, libxkbcommon, nss, xorg, ...}:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "re-lunatic-player";
   version = "1.1.0";
@@ -9,6 +9,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     autoPatchelfHook
+    makeWrapper
   ];
 
   buildInputs = [
@@ -33,6 +34,9 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   installPhase = ''
     mkdir $out
-    cp -r . $out/bin
+    cp -r . $out/opt
+
+    makeWrapper ${electron}/bin/electron $out/bin/re-lunatic-player \
+      --add-flags $out/opt/resources/app.asar
   '';
 })
