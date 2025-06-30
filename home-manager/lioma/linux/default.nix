@@ -50,6 +50,7 @@
     gnome-disk-utility
     peazip
     pkgs.resources # what a genius idea to have a variable named resources
+    my.re-lunatic-player
     vlc
 
     # decide which to use
@@ -71,7 +72,6 @@
     ];
     packages = [
       "com.usebottles.bottles"
-      "de.haeckerfelix.Shortwave"
       # "net.bartkessels.getit"
       # "org.gnome.Showtime"
       # "org.gnome.Decibels"
