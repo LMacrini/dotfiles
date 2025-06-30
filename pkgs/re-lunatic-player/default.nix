@@ -1,4 +1,4 @@
-{stdenvNoCC, autoPatchelfHook, makeWrapper, electron, alsa-lib, at-spi2-atk, cairo, cups, dbus, glib, gtk3, libgbm, libxkbcommon, nss, xorg, ...}:
+{stdenvNoCC, autoPatchelfHook, makeWrapper, makeDesktopItem, copyDesktopItems, electron, alsa-lib, at-spi2-atk, cairo, cups, dbus, glib, gtk3, libgbm, libxkbcommon, nss, xorg, ...}:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "re-lunatic-player";
   version = "1.1.0";
@@ -9,6 +9,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     autoPatchelfHook
+    copyDesktopItems
     makeWrapper
   ];
 
@@ -18,6 +19,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     cairo
     cups
     dbus
+    electron
     glib
     gtk3
     libgbm
@@ -32,11 +34,32 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       libXrandr
   ]);
 
+  desktopItems = makeDesktopItem {
+    name = "re-lunatic-player";
+    desktopName = "Re:Lunatic Player";
+    exec = "re-lunatic-player";
+    startupWMClass = "Re:Lunatic Player";
+    genericName = "Radio Player";
+    keywords = [
+      "radio"
+      "touhou"
+      "lunatic"
+      "player"
+      "music"
+    ];
+    categories = [
+      "Audio"
+      "AudioVideo"
+    ];
+  };
+
   installPhase = ''
     mkdir $out
     cp -r . $out/opt
 
     makeWrapper ${electron}/bin/electron $out/bin/re-lunatic-player \
       --add-flags $out/opt/resources/app.asar
+
+    runHook postInstall
   '';
 })
