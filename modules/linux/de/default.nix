@@ -4,6 +4,7 @@
     ./gnome.nix
     ./budgie.nix
     ./hyprland.nix
+    ./niri.nix
   ];
 
   options = with lib; {
@@ -14,7 +15,8 @@
           "hyprland"
           "gnome"
           "budgie"
-        ];
+          "niri"
+        ] |> types.nullOr;
         example = "gnome";
       };
     };

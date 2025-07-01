@@ -20,7 +20,7 @@
     flavor = "macchiato";
     hyprland.enable = false;
     starship.enable = false;
-    waybar.enable = false;
+    waybar.enable = lib.mkDefault false;
   };
 
   # Home Manager needs a bit of information about you and the paths it should
