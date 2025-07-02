@@ -74,9 +74,10 @@
 
   # Enable CUPS to print documents.
   services = {
-    udisks2.enable = true;
+    blueman.enable = true;
     gvfs.enable = true;
     tumbler.enable = true;
+    udisks2.enable = true;
 
     printing = {
       enable = true;
