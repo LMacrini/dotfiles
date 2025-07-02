@@ -4,7 +4,7 @@
 
   settings.mainBar = {
     layer = "top";
-    position = "bottom";
+    position = "top";
 
     modules-left = [ "niri/workspaces" "niri/window" ];
     modules-center = [ "clock" ];
@@ -23,6 +23,13 @@
         "(.*) - YouTube — Ablaze Floorp" = "  $1";
         " NixOS Search - (.*) — Ablaze Floorp" = " 󱄅 $1";
         "(.*) — Ablaze Floorp" = "  $1";
+      };
+    };
+
+    "niri/workspaces" = {
+      format = "{icon}";
+      format-icons = {
+        active = "";
       };
     };
 
