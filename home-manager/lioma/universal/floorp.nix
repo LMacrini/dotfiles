@@ -131,6 +131,7 @@ in {
           styl-us
           traduzir-paginas-web
           ublock-origin
+          youtube-anti-translate
           youtube-tweaks
         ];
         settings = {
