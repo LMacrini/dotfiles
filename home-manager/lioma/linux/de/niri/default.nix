@@ -40,6 +40,12 @@ lib.mkIf (cfg.de.de == "niri") {
       "Mod+Shift+Ctrl+Up".action = move-column-to-monitor-up;
       "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
 
+      "Mod+M".action = maximize-column;
+  
+      # TODO: figure out how this should work on the ergodox
+      "Mod+BracketLeft".action = consume-or-expel-window-left;
+      "Mod+BracketRight".action = consume-or-expel-window-right;
+
       "Super+Shift+S".action = screenshot;
     } // (
         builtins.listToAttrs (builtins.concatLists (builtins.genList (
@@ -61,7 +67,7 @@ lib.mkIf (cfg.de.de == "niri") {
 
     clipboard.disable-primary = true;
 
-    hotkey-overlay.skip-at-startup = lib.mkDefault false;
+    hotkey-overlay.skip-at-startup = lib.mkDefault true;
 
     input = {
       touchpad = {
@@ -74,7 +80,8 @@ lib.mkIf (cfg.de.de == "niri") {
     spawn-at-startup = [
       { command = ["kanata"]; }
       { command = ["waybar"]; }
-      { command = ["swww" "img" "${resources}/background.jpg"]; }
+      { command = ["swww" "img" "${resources}/background.jpg" "-t" "random"]; }
+      { command = ["sway-audio-idle-inhibit"]; }
     ];
 
     environment = {
@@ -85,21 +92,66 @@ lib.mkIf (cfg.de.de == "niri") {
   programs = {
     fuzzel.enable = true;
     kitty.enable = true;
+    swaylock = {
+      enable = true;
+      package = pkgs.swaylock-effects;
+      settings = {
+        clock = true;
+        daemonize = true;
+        effect-blur = "7x5";
+        fade-in = 1;
+        image = "${resources}/background.jpg";
+        indicator = true;
+        ring-color = lib.mkForce "717df1";
+      };
+    };
     waybar = import ./waybar;
 
     wlogout.enable = true;
   };
 
   services = {
+    blueman-applet.enable = true;
+    network-manager-applet.enable = true;
+
+    swayidle = let
+      swaylock = config.programs.swaylock.package;
+    in {
+      enable = true;
+      events = [
+        {
+          event = "before-sleep";
+          command = "${swaylock}/bin/swaylock";
+        }
+        {
+          event = "lock";
+          command = "${swaylock}/bin/swaylock --grace 10";
+        }
+      ];
+      timeouts = [
+        {
+          timeout = 150;
+          command = "brightnessctl -s set 10";
+          resumeCommand = "brightnessctl -r";
+        }
+        {
+          timeout = 300;
+          command = "loginctl lock-session";
+        }
+        {
+          timeout = 900;
+          command = "systemctl suspend";
+        }
+      ];
+    };
+    swaync.enable = true;
     swww.enable = true;
   };
-  
-  # systemd.user.services = {
-  #   niri.Unit.Wants = [ "swww.service" ];
-  # };
 
   home.packages = with pkgs; [
     kanata
+    pcmanfm
+    sway-audio-idle-inhibit
   ];
 
   catppuccin.waybar.enable = true;
