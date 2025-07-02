@@ -30,7 +30,7 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 14d";
+      options = lib.mkDefault "--delete-older-than 14d";
     };
 
     settings = {
@@ -131,7 +131,7 @@
       hashedPassword = lib.mkDefault "$y$j9T$MVARZZBLm43XHuw9mceTd1$Ij0wQ0GJ5YwJinZlm0e4IWK2Bq8VHN/Kbe3xvQ58B22";
       packages = with pkgs; [
         thunderbird
-        unstable.equibop
+        (unstable.equibop.override { electron = electron_36; })
         bitwarden-desktop
         mediawriter
 
