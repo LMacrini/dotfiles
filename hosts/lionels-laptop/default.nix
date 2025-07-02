@@ -16,7 +16,6 @@
 
   libreoffice.enable = true;
 
-  dm = "ly";
   de = {
     de = "niri";
     hyprland = {
