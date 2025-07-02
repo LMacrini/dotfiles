@@ -41,12 +41,36 @@ lib.mkIf (cfg.de.de == "niri") {
       "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
 
       "Mod+M".action = maximize-column;
+      "Mod+Y" = {
+        repeat = false;
+        action = toggle-overview;
+      };
+      "Mod+F".action = fullscreen-window;
+      "Mod+Shift+F".action = toggle-window-floating;
+      "Mod+Ctrl+F".action = toggle-windowed-fullscreen;
   
       # TODO: figure out how this should work on the ergodox
       "Mod+BracketLeft".action = consume-or-expel-window-left;
       "Mod+BracketRight".action = consume-or-expel-window-right;
 
       "Super+Shift+S".action = screenshot;
+
+      "XF86AudioRaiseVolume" = {
+        allow-when-locked = true;
+        action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
+      };
+      "XF86AudioLowerVolume" = {
+        allow-when-locked = true;
+        action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
+      };
+      "XF86AudioMute" = {
+        allow-when-locked = true;
+        action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+      };
+      "XF86AudioMicMute" = {
+        allow-when-locked = true;
+        action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+      };
     } // (
         builtins.listToAttrs (builtins.concatLists (builtins.genList (
           i: let
@@ -66,6 +90,10 @@ lib.mkIf (cfg.de.de == "niri") {
       ));
 
     clipboard.disable-primary = true;
+
+    gestures = {
+      hot-corners.enable = false;
+    };
 
     hotkey-overlay.skip-at-startup = lib.mkDefault true;
 
@@ -148,8 +176,15 @@ lib.mkIf (cfg.de.de == "niri") {
     swww.enable = true;
   };
 
+  systemd.user.services = {
+    blueman-applet = {
+      Unit.After = [ "network-manager-applet.service" ];
+    };
+  };
+
   home.packages = with pkgs; [
     kanata
+    pavucontrol
     pcmanfm
     sway-audio-idle-inhibit
   ];
