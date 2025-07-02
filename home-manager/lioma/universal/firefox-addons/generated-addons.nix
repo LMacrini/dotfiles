@@ -406,10 +406,10 @@
   };
   "nekocap" = buildFirefoxXpiAddon {
     pname = "nekocap";
-    version = "1.16.0";
+    version = "1.17.0";
     addonId = "nekocaption@gmail.com";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4513585/nekocap-1.16.0.xpi";
-    sha256 = "f384325bcf7140da63feebb3ee3c1584f52504f9a33463c773b16af0fa867ec7";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4524539/nekocap-1.17.0.xpi";
+    sha256 = "11f47488bd9f7757de753ddbde4d2e4f2a1246425244fe185fe7ef9d1141acbf";
     meta = with lib; {
       homepage = "https://nekocap.com";
       description = "Create and upload community captions for YouTube videos (and more) with this easy to use extension that supports SSA/ASS rendering.";
@@ -431,13 +431,14 @@
         "https://*.tiktok.com/*"
         "https://*.iq.com/*"
         "https://*.abema.tv/*"
+        "https://*.dailymotion.com/*"
         "https://*.bilibili.tv/*"
         "https://*.nogidoga.com/*"
         "https://*.cu.tbs.co.jp/*"
         "https://*.instagram.com/*"
         "https://*.unext.jp/*"
+        "https://*.lemino.docomo.ne.jp/*"
         "https://*.archive.org/*"
-        "https://*.dailymotion.com/*"
       ];
       platforms = platforms.all;
     };
@@ -589,6 +590,19 @@
         "https://ublockorigin.github.io/*"
         "https://*.reddit.com/r/uBlockOrigin/*"
       ];
+      platforms = platforms.all;
+    };
+  };
+  "youtube-anti-translate" = buildFirefoxXpiAddon {
+    pname = "youtube-anti-translate";
+    version = "1.18.3";
+    addonId = "{458160b9-32eb-4f4c-87d1-89ad3bdeb9dc}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4518659/youtube_anti_translate-1.18.3.xpi";
+    sha256 = "6d9f15703dcee2c891d3a9bd99702ed325f032942782c6f128f985d91393ed0c";
+    meta = with lib; {
+      description = "A small extension to disable YT video titles autotranslation.";
+      license = licenses.mpl20;
+      mozPermissions = ["storage" "*://*.youtube.com/*"];
       platforms = platforms.all;
     };
   };
