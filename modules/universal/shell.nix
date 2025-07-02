@@ -41,5 +41,7 @@
     environment.systemPackages = lib.mkIf (!(lib.elem config.shell ["bash" "zsh"])) [
       shellPkg
     ];
+
+    environment.shells = [ shellPkg ];
   };
 }
