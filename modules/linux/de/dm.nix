@@ -15,7 +15,7 @@
           # "lightdm"
         ]
         |> types.nullOr;
-      default = "ly";
+      default = "gdm";
     };
   };
 
