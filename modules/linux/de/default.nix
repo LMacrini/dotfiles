@@ -10,7 +10,7 @@
   options = with lib; {
     de = {
       de = mkOption {
-        default = "hyprland";
+        default = "niri";
         type = types.enum [
           "hyprland"
           "gnome"
