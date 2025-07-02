@@ -42,6 +42,6 @@
       shellPkg
     ];
 
-    environment.shells = [ shellPkg ];
+    environment.shells = [shellPkg];
   };
 }

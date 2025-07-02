@@ -1,4 +1,23 @@
-{stdenvNoCC, autoPatchelfHook, makeWrapper, makeDesktopItem, copyDesktopItems, electron, alsa-lib, at-spi2-atk, cairo, cups, dbus, glib, gtk3, libgbm, libxkbcommon, nss, xorg, ...}:
+{
+  stdenvNoCC,
+  autoPatchelfHook,
+  makeWrapper,
+  makeDesktopItem,
+  copyDesktopItems,
+  electron,
+  alsa-lib,
+  at-spi2-atk,
+  cairo,
+  cups,
+  dbus,
+  glib,
+  gtk3,
+  libgbm,
+  libxkbcommon,
+  nss,
+  xorg,
+  ...
+}:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "re-lunatic-player";
   version = "1.1.0";
@@ -13,26 +32,28 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     makeWrapper
   ];
 
-  buildInputs = [
-    alsa-lib
-    at-spi2-atk
-    cairo
-    cups
-    dbus
-    electron
-    glib
-    gtk3
-    libgbm
-    libxkbcommon
-    nss
-  ] ++ (with xorg; [
+  buildInputs =
+    [
+      alsa-lib
+      at-spi2-atk
+      cairo
+      cups
+      dbus
+      electron
+      glib
+      gtk3
+      libgbm
+      libxkbcommon
+      nss
+    ]
+    ++ (with xorg; [
       libX11
       libXcomposite
       libXdamage
       libXext
       libXfixes
       libXrandr
-  ]);
+    ]);
 
   desktopItems = makeDesktopItem {
     name = "re-lunatic-player";

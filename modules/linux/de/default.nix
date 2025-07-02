@@ -11,12 +11,14 @@
     de = {
       de = mkOption {
         default = "niri";
-        type = types.enum [
-          "hyprland"
-          "gnome"
-          "budgie"
-          "niri"
-        ] |> types.nullOr;
+        type =
+          types.enum [
+            "hyprland"
+            "gnome"
+            "budgie"
+            "niri"
+          ]
+          |> types.nullOr;
         example = "gnome";
       };
     };

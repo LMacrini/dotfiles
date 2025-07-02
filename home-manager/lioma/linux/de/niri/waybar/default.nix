@@ -6,8 +6,8 @@
     layer = "top";
     position = "top";
 
-    modules-left = [ "niri/workspaces" "niri/window" ];
-    modules-center = [ "clock" ];
+    modules-left = ["niri/workspaces" "niri/window"];
+    modules-center = ["clock"];
     modules-right = [
       "tray"
       "idle_inhibitor"

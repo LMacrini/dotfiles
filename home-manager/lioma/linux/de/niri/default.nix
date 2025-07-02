@@ -1,4 +1,11 @@
-{pkgs, cfg, config, lib, resources, ...}:
+{
+  pkgs,
+  cfg,
+  config,
+  lib,
+  resources,
+  ...
+}:
 lib.mkIf (cfg.de.de == "niri") {
   programs.niri.settings = let
     fuzzel = {
@@ -6,88 +13,92 @@ lib.mkIf (cfg.de.de == "niri") {
       action.spawn = "fuzzel";
     };
   in {
-    binds = with config.lib.niri.actions; {
-      "Mod+Shift+Slash".action = show-hotkey-overlay;
-      "Mod+Q" = {
-        hotkey-overlay.title = "Open a Terminal: kitty";
-        action.spawn = ["env" "-u" "SHLVL" "kitty"];
-      };
-      "Mod+Shift+E".action = quit;
-      "Ctrl+Alt+Delete".action = quit;
+    binds = with config.lib.niri.actions;
+      {
+        "Mod+Shift+Slash".action = show-hotkey-overlay;
+        "Mod+Q" = {
+          hotkey-overlay.title = "Open a Terminal: kitty";
+          action.spawn = ["env" "-u" "SHLVL" "kitty"];
+        };
+        "Mod+Shift+E".action = quit;
+        "Ctrl+Alt+Delete".action = quit;
 
-      "Mod+C".action = close-window;
+        "Mod+C".action = close-window;
 
-      "Alt+Space" = fuzzel;
-      "Mod+T" = fuzzel;
+        "Alt+Space" = fuzzel;
+        "Mod+T" = fuzzel;
 
-      "Mod+Left".action = focus-column-left;
-      "Mod+Down".action = focus-workspace-down;
-      "Mod+Up".action = focus-workspace-up;
-      "Mod+Right".action = focus-column-right;
+        "Mod+Left".action = focus-column-left;
+        "Mod+Down".action = focus-workspace-down;
+        "Mod+Up".action = focus-workspace-up;
+        "Mod+Right".action = focus-column-right;
 
-      "Mod+Ctrl+Left".action = move-column-left;
-      "Mod+Ctrl+Down".action = move-column-to-workspace-down;
-      "Mod+Ctrl+Up".action = move-column-to-workspace-up;
-      "Mod+Ctrl+Right".action = move-column-right;
+        "Mod+Ctrl+Left".action = move-column-left;
+        "Mod+Ctrl+Down".action = move-column-to-workspace-down;
+        "Mod+Ctrl+Up".action = move-column-to-workspace-up;
+        "Mod+Ctrl+Right".action = move-column-right;
 
-      "Mod+Shift+Left".action = focus-monitor-left;
-      "Mod+Shift+Down".action = focus-monitor-down;
-      "Mod+Shift+Up".action = focus-monitor-up;
-      "Mod+Shift+Right".action = focus-monitor-right;
+        "Mod+Shift+Left".action = focus-monitor-left;
+        "Mod+Shift+Down".action = focus-monitor-down;
+        "Mod+Shift+Up".action = focus-monitor-up;
+        "Mod+Shift+Right".action = focus-monitor-right;
 
-      "Mod+Shift+Ctrl+Left".action = move-column-to-monitor-left;
-      "Mod+Shift+Ctrl+Down".action = move-column-to-monitor-down;
-      "Mod+Shift+Ctrl+Up".action = move-column-to-monitor-up;
-      "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
+        "Mod+Shift+Ctrl+Left".action = move-column-to-monitor-left;
+        "Mod+Shift+Ctrl+Down".action = move-column-to-monitor-down;
+        "Mod+Shift+Ctrl+Up".action = move-column-to-monitor-up;
+        "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
 
-      "Mod+M".action = maximize-column;
-      "Mod+Y" = {
-        repeat = false;
-        action = toggle-overview;
-      };
-      "Mod+F".action = fullscreen-window;
-      "Mod+Shift+F".action = toggle-window-floating;
-      "Mod+Ctrl+F".action = toggle-windowed-fullscreen;
-  
-      # TODO: figure out how this should work on the ergodox
-      "Mod+BracketLeft".action = consume-or-expel-window-left;
-      "Mod+BracketRight".action = consume-or-expel-window-right;
+        "Mod+M".action = maximize-column;
+        "Mod+Y" = {
+          repeat = false;
+          action = toggle-overview;
+        };
+        "Mod+F".action = fullscreen-window;
+        "Mod+Shift+F".action = toggle-window-floating;
+        "Mod+Ctrl+F".action = toggle-windowed-fullscreen;
 
-      "Super+Shift+S".action = screenshot;
+        # TODO: figure out how this should work on the ergodox
+        "Mod+BracketLeft".action = consume-or-expel-window-left;
+        "Mod+BracketRight".action = consume-or-expel-window-right;
 
-      "XF86AudioRaiseVolume" = {
-        allow-when-locked = true;
-        action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
-      };
-      "XF86AudioLowerVolume" = {
-        allow-when-locked = true;
-        action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
-      };
-      "XF86AudioMute" = {
-        allow-when-locked = true;
-        action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
-      };
-      "XF86AudioMicMute" = {
-        allow-when-locked = true;
-        action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
-      };
-    } // (
-        builtins.listToAttrs (builtins.concatLists (builtins.genList (
-          i: let
-            ws = i+1;
-          in [
-            {
-              name = "Mod+${toString ws}";
-              value.action.focus-workspace = ws;
-            }
-            {
-              name = "Mod+Shift+${toString ws}";
-              value.action.move-window-to-workspace = ws;
-            }
-          ]
-          )
-        9)
-      ));
+        "Super+Shift+S".action = screenshot;
+
+        "XF86AudioRaiseVolume" = {
+          allow-when-locked = true;
+          action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
+        };
+        "XF86AudioLowerVolume" = {
+          allow-when-locked = true;
+          action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
+        };
+        "XF86AudioMute" = {
+          allow-when-locked = true;
+          action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+        };
+        "XF86AudioMicMute" = {
+          allow-when-locked = true;
+          action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+        };
+      }
+      // (
+        builtins.listToAttrs (
+          builtins.concatLists (builtins.genList (
+              i: let
+                ws = i + 1;
+              in [
+                {
+                  name = "Mod+${toString ws}";
+                  value.action.focus-workspace = ws;
+                }
+                {
+                  name = "Mod+Shift+${toString ws}";
+                  value.action.move-window-to-workspace = ws;
+                }
+              ]
+            )
+            9)
+        )
+      );
 
     clipboard.disable-primary = true;
 
@@ -106,10 +117,10 @@ lib.mkIf (cfg.de.de == "niri") {
     screenshot-path = "~/Pictures/Screenshots/screenshot-%Y-%m-%d %H-%M-%S.png";
 
     spawn-at-startup = [
-      { command = ["kanata"]; }
-      { command = ["waybar"]; }
-      { command = ["swww" "img" "${resources}/background.jpg" "-t" "random"]; }
-      { command = ["sway-audio-idle-inhibit"]; }
+      {command = ["kanata"];}
+      {command = ["waybar"];}
+      {command = ["swww" "img" "${resources}/background.jpg" "-t" "random"];}
+      {command = ["sway-audio-idle-inhibit"];}
     ];
 
     environment = {
@@ -178,7 +189,7 @@ lib.mkIf (cfg.de.de == "niri") {
 
   systemd.user.services = {
     blueman-applet = {
-      Unit.After = [ "network-manager-applet.service" ];
+      Unit.After = ["network-manager-applet.service"];
     };
   };
 
