@@ -56,6 +56,10 @@ lib.mkIf (cfg.de.de == "niri") {
         "Mod+F".action = fullscreen-window;
         "Mod+Shift+F".action = toggle-window-floating;
         "Mod+Ctrl+F".action = toggle-windowed-fullscreen;
+        "Mod+L" = {
+          repeat = false;
+          action = spawn "wlogout";
+        };
 
         # TODO: figure out how this should work on the ergodox
         "Mod+BracketLeft".action = consume-or-expel-window-left;
@@ -146,7 +150,47 @@ lib.mkIf (cfg.de.de == "niri") {
     };
     waybar = import ./waybar;
 
-    wlogout.enable = true;
+    wlogout = {
+      enable = true;
+      layout = lib.mkDefault [
+        {
+          label = "lock";
+          action = "hyprlock";
+          text = "Lock";
+          keybind = "l";
+        }
+        {
+          label = "hibernate";
+          action = "systemctl hibernate";
+          text = "Hibernate";
+          keybind = "h";
+        }
+        {
+          label = "logout";
+          action = "hyprctl dispatch exit";
+          text = "Logout";
+          keybind = "e";
+        }
+        {
+          label = "shutdown";
+          action = "systemctl poweroff";
+          text = "Shutdown";
+          keybind = "s";
+        }
+        {
+          label = "suspend";
+          action = "loginctl lock-session && systemctl suspend";
+          text = "Suspend";
+          keybind = "u";
+        }
+        {
+          label = "reboot";
+          action = "systemctl reboot";
+          text = "Reboot";
+          keybind = "r";
+        }
+      ];
+    };
   };
 
   services = {
