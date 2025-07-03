@@ -119,7 +119,7 @@ lib.mkIf (cfg.de.de == "niri") {
     spawn-at-startup = [
       {command = ["kanata"];}
       {command = ["waybar"];}
-      {command = ["swww" "img" "${resources}/background.jpg" "-t" "random"];}
+      {command = ["swww" "img" "${resources}/background.jpg"];}
       {command = ["sway-audio-idle-inhibit"];}
     ];
 
