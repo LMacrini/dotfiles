@@ -9,10 +9,14 @@
 in {
   enable = lib.mkDefault cfg.browsers.floorp.enable;
 
-  enableGnomeExtensions =
-    if os == "linux"
-    then cfg.de.de == "gnome"
-    else false;
+  package =
+    if os == "linux" && cfg.de.de == "gnome"
+    then pkgs.floorp.override {
+      nativeMessagingHosts = [
+        pkgs.gnome-browser-connector
+      ];
+    }
+    else pkgs.floorp;
 
   languagePacks = [
     "en-CA"
