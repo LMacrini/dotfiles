@@ -392,6 +392,9 @@ in {
       ts = {
         enable = true;
       };
+      svelte = {
+        enable = true;
+      };
 
       markdown = {
         enable = true;
