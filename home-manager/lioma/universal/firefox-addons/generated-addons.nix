@@ -406,10 +406,10 @@
   };
   "nekocap" = buildFirefoxXpiAddon {
     pname = "nekocap";
-    version = "1.17.0";
+    version = "1.18.0";
     addonId = "nekocaption@gmail.com";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4524539/nekocap-1.17.0.xpi";
-    sha256 = "11f47488bd9f7757de753ddbde4d2e4f2a1246425244fe185fe7ef9d1141acbf";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4525319/nekocap-1.18.0.xpi";
+    sha256 = "00decf59a8098d8a85df532fe3aeda352670b6a2b67ecc5b27b188b864879968";
     meta = with lib; {
       homepage = "https://nekocap.com";
       description = "Create and upload community captions for YouTube videos (and more) with this easy to use extension that supports SSA/ASS rendering.";
@@ -438,6 +438,7 @@
         "https://*.instagram.com/*"
         "https://*.unext.jp/*"
         "https://*.lemino.docomo.ne.jp/*"
+        "https://*.oned.net/*"
         "https://*.archive.org/*"
       ];
       platforms = platforms.all;
@@ -608,10 +609,10 @@
   };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
-    version = "2025.5.23.1";
+    version = "2025.6.26";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4499051/youtube_tweaks-2025.5.23.1.xpi";
-    sha256 = "7f9ebeab0f07e5da5779b74d77f08fbb39b5c5f2aa25a8f2ffdcf2540af6cb9f";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4520872/youtube_tweaks-2025.6.26.xpi";
+    sha256 = "63de702c68662c211598a1d405b374917c6b3b33ae354734cfd5a5e7a24b15aa";
     meta = with lib; {
       description = "A collection of tweaks for hiding Shorts, disabling auto-dubbing, disabling 'Video paused. Continue watching?', changing the number of videos per row and more!";
       license = licenses.mit;
