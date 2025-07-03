@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -9,6 +9,11 @@
   gpu.nvidia.enable = true;
 
   networking.hostName = "lionels-laptop";
+
+  specialisation.hyprland.configuration = {
+    system.nixos.tags = ["hyprland"];
+    de.de = lib.mkForce "hyprland";
+  };
 
   games.light.enable = true;
   games.greentimer.enable = false;
