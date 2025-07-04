@@ -50,6 +50,8 @@
     enable = true;
     flavor = "macchiato";
     accent = "pink";
+    limine.enable = false;
+    plymouth.enable = false;
     tty.enable = false;
   };
 
