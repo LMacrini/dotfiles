@@ -58,7 +58,9 @@
 
     git = {
       enable = true;
-      aliases = {};
+      aliases = {
+        co = "checkout";
+      };
     };
 
     kitty = {
