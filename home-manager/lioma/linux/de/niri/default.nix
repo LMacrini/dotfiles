@@ -130,6 +130,11 @@ lib.mkIf (cfg.de.de == "niri") {
     environment = {
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
+
+    xwayland-satellite = {
+      enable = true;
+      path = lib.getExe pkgs.xwayland-satellite-unstable;
+    };
   };
 
   programs = {
