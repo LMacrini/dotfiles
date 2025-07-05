@@ -15,11 +15,6 @@
       system.nixos.tags = ["hyprland"];
       de.de = lib.mkForce "hyprland";
     };
-
-    gnome.configuration = {
-      system.nixos.tags = ["gnome"];
-      de.de = lib.mkForce "gnome";
-    };
   };
 
   games.light.enable = true;
