@@ -17,6 +17,8 @@
   catppuccin = {
     accent = "pink";
     enable = true;
+
+    floorp.profiles = {};
     flavor = "macchiato";
     hyprland.enable = false;
     starship.enable = false;
