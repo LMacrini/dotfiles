@@ -69,11 +69,11 @@ lib.mkIf (cfg.de.de == "niri") {
 
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
-          action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
+          action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+";
         };
         "XF86AudioLowerVolume" = {
           allow-when-locked = true;
-          action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
+          action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-";
         };
         "XF86AudioMute" = {
           allow-when-locked = true;
