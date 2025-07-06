@@ -10,8 +10,11 @@ lib.mkIf (cfg.de.de == "niri") {
   programs.niri.settings = let
     fuzzel = {
       hotkey-overlay.title = "Run an Application: fuzzel";
-      action.spawn = "fuzzel";
+      action.spawn = lib.getExe pkgs.fuzzel;
     };
+
+    brightnessctl = lib.getExe pkgs.brightnessctl;
+    wpctl = "${pkgs.wireplumber}/bin/wpctl";
   in {
     binds = with config.lib.niri.actions;
       {
@@ -69,19 +72,27 @@ lib.mkIf (cfg.de.de == "niri") {
 
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
-          action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+";
+          action = spawn wpctl "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+";
         };
         "XF86AudioLowerVolume" = {
           allow-when-locked = true;
-          action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-";
+          action = spawn wpctl "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-";
         };
         "XF86AudioMute" = {
           allow-when-locked = true;
-          action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+          action = spawn wpctl "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
         };
         "XF86AudioMicMute" = {
           allow-when-locked = true;
-          action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+          action = spawn wpctl "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+        };
+        "XF86MonBrightnessUp" = {
+          allow-when-locked = true;
+          action = spawn brightnessctl "s" "10%+";
+        };
+        "XF86MonBrightnessDown" = {
+          allow-when-locked = true;
+          action = spawn brightnessctl "s" "10%-";
         };
       }
       // (
