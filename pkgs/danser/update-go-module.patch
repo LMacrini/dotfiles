@@ -1,0 +1,13 @@
+diff --git a/go.mod b/go.mod
+index ae70c917..608b6647 100644
+--- a/go.mod
++++ b/go.mod
+@@ -5,7 +5,7 @@ go 1.24.0
+ toolchain go1.24.1
+ 
+ require (
+-	github.com/AllenDang/cimgui-go v1.0.0
++	github.com/AllenDang/cimgui-go v1.3.1
+ 	github.com/EdlinOrg/prominentcolor v1.0.0
+ 	github.com/Microsoft/go-winio v0.6.1
+ 	github.com/dustin/go-humanize v1.0.0
