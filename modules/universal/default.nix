@@ -42,9 +42,11 @@
     useUserPackages = true;
   };
 
-  environment.variables = {
+  environment.sessionVariables = {
     SKIM_DEFAULT_COMMAND = "fd -ut f";
     SKIM_DEFAULT_OPTIONS = "--layout=reverse --ansi";
+
+    EDITOR = "vim";
   };
 
   fonts.packages = with pkgs; [
@@ -65,6 +67,7 @@
     tlrc
 
     bat
+    vim
 
     _7zz-rar
     ffmpeg
