@@ -68,7 +68,9 @@ lib.mkIf (cfg.de.de == "niri") {
         "Mod+BracketLeft".action = consume-or-expel-window-left;
         "Mod+BracketRight".action = consume-or-expel-window-right;
 
-        "Super+Shift+S".action = screenshot;
+        "Super+Shift+S".action = screenshot {
+          show-pointer = false;
+        };
 
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
