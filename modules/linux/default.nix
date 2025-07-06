@@ -100,10 +100,16 @@
     '';
     pulseaudio.enable = false;
   };
-  boot.kernelModules = [
-    "uinput"
-    "i2c-dev"
-  ];
+  boot = {
+    tmp = {
+      cleanOnBoot = true;
+    };
+
+    kernelModules = [
+      "uinput"
+      "i2c-dev"
+    ];
+  };
 
   # Enable sound with pipewire.
   hardware = {
