@@ -36,15 +36,15 @@ lib.mkIf (cfg.de.de == "niri") {
         "Mod+Up".action = focus-workspace-up;
         "Mod+Right".action = focus-column-right;
 
-        "Mod+Ctrl+Left".action = move-column-left;
-        "Mod+Ctrl+Down".action = move-column-to-workspace-down;
-        "Mod+Ctrl+Up".action = move-column-to-workspace-up;
-        "Mod+Ctrl+Right".action = move-column-right;
+        "Mod+Ctrl+Left".action = focus-monitor-left;
+        "Mod+Ctrl+Down".action = focus-monitor-down;
+        "Mod+Ctrl+Up".action = focus-monitor-up;
+        "Mod+Ctrl+Right".action = focus-monitor-right;
 
-        "Mod+Shift+Left".action = focus-monitor-left;
-        "Mod+Shift+Down".action = focus-monitor-down;
-        "Mod+Shift+Up".action = focus-monitor-up;
-        "Mod+Shift+Right".action = focus-monitor-right;
+        "Mod+Shift+Left".action = move-column-left;
+        "Mod+Shift+Down".action = move-column-to-workspace-down;
+        "Mod+Shift+Up".action = move-column-to-workspace-up;
+        "Mod+Shift+Right".action = move-column-right;
 
         "Mod+Shift+Ctrl+Left".action = move-column-to-monitor-left;
         "Mod+Shift+Ctrl+Down".action = move-column-to-monitor-down;
@@ -58,11 +58,15 @@ lib.mkIf (cfg.de.de == "niri") {
         };
         "Mod+F".action = fullscreen-window;
         "Mod+Shift+F".action = toggle-window-floating;
-        "Mod+Ctrl+F".action = toggle-windowed-fullscreen;
+        "Mod+Ctrl+F".action = switch-focus-between-floating-and-tiling;
+        "Mod+Shift+Ctrl+F".action = toggle-windowed-fullscreen;
         "Mod+L" = {
           repeat = false;
-          action = spawn "wlogout";
+          hotkey-overlay.title = "Open Logout Menu: wlogout";
+          action = spawn "sh" "-c" "pkill wlogout || wlogout";
         };
+        "Mod+R".action = switch-preset-window-width;
+        "Mod+Shift+R".action = switch-preset-window-height;
 
         # TODO: figure out how this should work on the ergodox
         "Mod+BracketLeft".action = consume-or-expel-window-left;
@@ -126,9 +130,31 @@ lib.mkIf (cfg.de.de == "niri") {
     hotkey-overlay.skip-at-startup = lib.mkDefault true;
 
     input = {
+      focus-follows-mouse = {
+        enable = true;
+        max-scroll-amount = "95%";
+      };
+
       touchpad = {
         dwt = true;
       };
+    };
+    
+    layout = {
+      always-center-single-column = true;
+
+      preset-column-widths = [
+        { proportion = 1.0 / 3.0; }
+        { proportion = 1.0 / 2.0; }
+        { proportion = 2.0 / 3.0; }
+      ];
+
+      preset-window-heights = [
+        { proportion = 1.0; }
+        { proportion = 1.0 / 3.0; }
+        { proportion = 1.0 / 2.0; }
+        { proportion = 2.0 / 3.0; }
+      ];
     };
 
     screenshot-path = "~/Pictures/Screenshots/screenshot-%Y-%m-%d %H-%M-%S.png";
