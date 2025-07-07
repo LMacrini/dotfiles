@@ -65,7 +65,7 @@ lib.mkIf (cfg.de.de == "niri") {
           hotkey-overlay.title = "Open Logout Menu: wlogout";
           action = spawn "sh" "-c" "pkill wlogout || wlogout";
         };
-        "Mod+R".action = switch-preset-window-width;
+        "Mod+R".action = switch-preset-column-width;
         "Mod+Shift+R".action = switch-preset-window-height;
 
         # TODO: figure out how this should work on the ergodox
