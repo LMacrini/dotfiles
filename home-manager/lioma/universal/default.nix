@@ -18,7 +18,6 @@
     };
 
     sessionVariables = {
-      DO_NOT_TRACK = 1;
       EDITOR = "nvim";
     };
 

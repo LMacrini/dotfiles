@@ -43,6 +43,7 @@
   };
 
   environment.sessionVariables = {
+    DO_NOT_TRACK = 1;
     SKIM_DEFAULT_COMMAND = "fd -ut f";
     SKIM_DEFAULT_OPTIONS = "--layout=reverse --ansi";
 
