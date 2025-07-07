@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751705516,
-        "narHash": "sha256-Y099OGYWYHtpYFP4offuV6rldBnpUv4CYk+HwuaQwLU=",
+        "lastModified": 1751880463,
+        "narHash": "sha256-aSQllMKqsTYAUp4yhpspZn0Hj5yIj7Mh4UD5iyk5iMM=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "719bb50ca2c99bc9c077669a48bfd9815493a11d",
+        "rev": "9474347c69e93e392f194dda7a57c641ba4b998e",
         "type": "github"
       },
       "original": {
@@ -145,27 +145,6 @@
         "type": "github"
       }
     },
-    "nil": {
-      "inputs": {
-        "nixpkgs": [
-          "nvf",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1750047244,
-        "narHash": "sha256-vluLARrk4485npdyHOj8XKr0yk6H22pNf+KVRNL+i/Y=",
-        "owner": "oxalica",
-        "repo": "nil",
-        "rev": "870a4b1b5f12004832206703ac15aa85c42c247b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "nil",
-        "type": "github"
-      }
-    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -176,11 +155,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1751815493,
-        "narHash": "sha256-tF7Tery/v0lhBKAwj9TgBLPSng42iZzlf/MeFb7on6U=",
+        "lastModified": 1751866241,
+        "narHash": "sha256-9UJmOYKYXx/hrXTAtFCJtlrIRQmuRLQ+IKj9eTeFIXc=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "c4d9d4caa0c1e5c002679ca4b15db223b1942c2b",
+        "rev": "59e74c8ac38b131d664a667e046861bd72f5b651",
         "type": "github"
       },
       "original": {
@@ -308,11 +287,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1751637120,
-        "narHash": "sha256-xVNy/XopSfIG9c46nRmPaKfH1Gn/56vQ8++xWA8itO4=",
+        "lastModified": 1751792365,
+        "narHash": "sha256-J1kI6oAj25IG4EdVlg2hQz8NZTBNYvIS0l4wpr9KcUo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5c724ed1388e53cc231ed98330a60eb2f7be4be3",
+        "rev": "1fd8bada0b6117e6c7eb54aad5813023eed37ccb",
         "type": "github"
       },
       "original": {
@@ -324,11 +303,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1751637120,
-        "narHash": "sha256-xVNy/XopSfIG9c46nRmPaKfH1Gn/56vQ8++xWA8itO4=",
+        "lastModified": 1751792365,
+        "narHash": "sha256-J1kI6oAj25IG4EdVlg2hQz8NZTBNYvIS0l4wpr9KcUo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5c724ed1388e53cc231ed98330a60eb2f7be4be3",
+        "rev": "1fd8bada0b6117e6c7eb54aad5813023eed37ccb",
         "type": "github"
       },
       "original": {
@@ -359,18 +338,17 @@
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils_2",
         "mnw": "mnw",
-        "nil": "nil",
         "nixpkgs": [
           "nixpkgs"
         ],
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1751520935,
-        "narHash": "sha256-jp5Mzbw0I/DEX4PVFi4C6MzwCZ/st+GUKMl/+IodX0o=",
+        "lastModified": 1751887073,
+        "narHash": "sha256-M92RDGGx330MPqK2v7IRn98938Y2b1tkfe0ujD5GK70=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "b4850409336b770d0db4cfd8acd71793747ddfe5",
+        "rev": "d70c3a834061b9f24cfcc350ce2325c3bbede774",
         "type": "github"
       },
       "original": {
@@ -386,11 +364,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751686190,
-        "narHash": "sha256-veNnb2UVyjugo9fIeGjisMGGn0TNae71p5D1YwwEAFs=",
+        "lastModified": 1751880110,
+        "narHash": "sha256-5fQ2cetL3rTHqXe2VM3puawL/8u5j6ujBr6Gdt7Iues=",
         "ref": "refs/heads/master",
-        "rev": "87d99b866f9866db10b55c8b03632f0eecae52d8",
-        "revCount": 606,
+        "rev": "5d7e07508ae3e5487edb1ac5a152120434f091d5",
+        "revCount": 607,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
