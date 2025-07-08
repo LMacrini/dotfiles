@@ -6,10 +6,10 @@
 }: {
   "bitwarden-password-manager" = buildFirefoxXpiAddon {
     pname = "bitwarden-password-manager";
-    version = "2025.5.0";
+    version = "2025.6.1";
     addonId = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4493940/bitwarden_password_manager-2025.5.0.xpi";
-    sha256 = "56e62622b7c322d2c2c4db04ad3eac2e7454bd7eebffebdcf5ca4b728ba09feb";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4525374/bitwarden_password_manager-2025.6.1.xpi";
+    sha256 = "f61e604f0b6c13ac734e78cf415ee5e12c96577d6f0382a0853108c60b1b4eb1";
     meta = with lib; {
       homepage = "https://bitwarden.com";
       description = "At home, at work, or on the go, Bitwarden easily secures all your passwords, passkeys, and sensitive information.";
@@ -609,10 +609,10 @@
   };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
-    version = "2025.6.26";
+    version = "2025.7.2";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4520872/youtube_tweaks-2025.6.26.xpi";
-    sha256 = "63de702c68662c211598a1d405b374917c6b3b33ae354734cfd5a5e7a24b15aa";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4525285/youtube_tweaks-2025.7.2.xpi";
+    sha256 = "6c99a740d9d98c5f7fa52cd9109ab5f20875b34ecf46632c245d6b0a1ab7d299";
     meta = with lib; {
       description = "A collection of tweaks for hiding Shorts, disabling auto-dubbing, disabling 'Video paused. Continue watching?', changing the number of videos per row and more!";
       license = licenses.mit;
