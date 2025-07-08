@@ -16,20 +16,20 @@
     ];
 
     "niri/window" = {
-      format = " {title}";
+      format = "  {title}";
       separate-outputs = true;
 
       rewrite = {
-        "(.*) - YouTube — Ablaze Floorp" = "  $1";
-        " NixOS Search - (.*) — Ablaze Floorp" = " 󱄅 $1";
-        "(.*) — Ablaze Floorp" = "  $1";
+        " (.*) - YouTube — Ablaze Floorp" = "   $1";
+        "  NixOS Search - (.*) — Ablaze Floorp" = "  󱄅 $1";
+        " (.*) — Ablaze Floorp" = "   $1";
       };
     };
 
     "niri/workspaces" = {
       format = "{icon}";
       format-icons = {
-        active = "";
+
       };
     };
 
