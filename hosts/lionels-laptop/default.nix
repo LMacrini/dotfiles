@@ -13,7 +13,12 @@
   specialisation = {
     hyprland.configuration = {
       system.nixos.tags = ["hyprland"];
-      de.de = lib.mkForce "hyprland";
+      de.de = "hyprland";
+    };
+
+    gnome.configuration = {
+      system.nixos.tags = ["gnome"];
+      de.de = "gnome";
     };
   };
 
@@ -25,7 +30,7 @@
   libreoffice.enable = true;
 
   de = {
-    de = "niri";
+    de = lib.mkDefault "niri";
     hyprland = {
       monitor = [
         "eDPI1,1920x1080,0x0,1"
