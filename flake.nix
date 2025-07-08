@@ -103,7 +103,7 @@
       builtins.foldl' nixpkgs.lib.recursiveUpdate {} systemPkgsList;
 
     eachSystem = nixpkgs.lib.genAttrs flake-utils.lib.defaultSystems;
-    overlay = eachSystem (system: _: _: {
+    overlay = eachSystem (system: next: prev: {
       unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
@@ -150,7 +150,12 @@
           inputs.niri.nixosModules.niri
           hm-module.x86_64-linux
           {
-            nixpkgs.overlays = [overlay.x86_64-linux];
+            nixpkgs.overlays = [
+              overlay.x86_64-linux
+              (_: prev: {
+                gdm = prev.my.gdm-wam;
+              })
+            ];
           }
         ];
       };
