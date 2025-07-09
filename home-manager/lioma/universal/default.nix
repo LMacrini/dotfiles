@@ -13,6 +13,7 @@
 
     shellAliases = {
       cd = "z";
+      cls = "clear";
       lg = "lazygit";
       nix-shell = "nix-shell --run \"${cfg.shell}\"";
     };
