@@ -76,6 +76,7 @@
 
   # Enable CUPS to print documents.
   services = {
+    accounts-daemon.enable = true;
     blueman.enable = true;
     gvfs.enable = true;
     tumbler.enable = true;
