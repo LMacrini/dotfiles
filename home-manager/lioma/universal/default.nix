@@ -93,18 +93,6 @@
       enable = true;
       initExtra = ''
         source "$(blesh-share)/ble.sh"
-
-        cls () {
-          line=0
-          while [ $line -lt $((LINES-2)) ]; do
-            echo ""
-            ((line++))
-          done
-        }
-
-        if [ $SHLVL -eq 1 ]; then
-          cls
-        fi
       '';
 
       shellAliases = {
@@ -136,12 +124,6 @@
       extraConfig = ''
         $env.TRANSIENT_PROMPT_COMMAND = {starship module character | $"\n($in)"}
         $env.TRANSIENT_PROMPT_COMMAND_RIGHT = {starship module time}
-        def cls [] {
-            clear
-            for _ in 2..(term size).rows { print "" }
-        }
-        if $env.SHLVL == 1 {cls}
-
         def to_command [s: string] {
             mut idx = $s | str index-of " "
             if $idx == -1 {
@@ -209,15 +191,6 @@
 
           autoload -Uz add-zle-hook-widget
           add-zle-hook-widget zle-line-finish transient-prompt
-
-          cls () {
-            clear
-            print -n ''${(pl:$LINES::\n:):-}
-          }
-
-          if [ $SHLVL -eq 1 ]; then
-            cls
-          fi
         '';
       in
         lib.mkMerge [
