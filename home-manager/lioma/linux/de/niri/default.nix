@@ -282,8 +282,8 @@ lib.mkIf (cfg.de.de == "niri") {
 
   home.packages = with pkgs; [
     kanata
+    nautilus
     pavucontrol
-    pcmanfm
     sway-audio-idle-inhibit
   ];
 
