@@ -1,6 +1,6 @@
 {gdm, replaceVars, my, ...}: let
   override = replaceVars ./org.gnome.login-screen.gschema.override {
-    icon = "${my.icons}/share/logo.png";
+    icon = "${my.imgs}/share/logo.png";
   };
 in gdm.overrideAttrs {
   preInstall = ''
