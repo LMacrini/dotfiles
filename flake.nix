@@ -127,7 +127,6 @@
       "aarch64-darwin" = darwinModules.default;
     };
 
-    resources = ./resources;
     extraHome = path:
       if (builtins.pathExists ./hosts/${path}/home.nix)
       then import ./hosts/${path}/home.nix
@@ -137,7 +136,7 @@
       nixpkgs.lib.nixosSystem
       {
         specialArgs = {
-          inherit inputs resources;
+          inherit inputs;
           os = "linux";
           extraHome = extraHome path;
         };
@@ -163,7 +162,7 @@
     mkDarwinHost = path:
       nix-darwin.lib.darwinSystem {
         specialArgs = {
-          inherit inputs resources;
+          inherit inputs;
           os = "darwin";
           extraHome = extraHome path;
         };

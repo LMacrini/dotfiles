@@ -3,7 +3,6 @@
   cfg,
   config,
   lib,
-  resources,
   ...
 }:
 lib.mkIf (cfg.de.de == "niri") {
@@ -162,7 +161,7 @@ lib.mkIf (cfg.de.de == "niri") {
     spawn-at-startup = [
       {command = ["kanata"];}
       {command = ["waybar"];}
-      {command = ["swww" "img" "${resources}/background.jpg"];}
+      {command = ["swww" "img" "${pkgs.my.imgs}/share/background.jpg"];}
       {command = ["sway-audio-idle-inhibit"];}
     ];
 
@@ -187,7 +186,7 @@ lib.mkIf (cfg.de.de == "niri") {
         daemonize = true;
         effect-blur = "7x5";
         fade-in = 1;
-        image = "${resources}/background.jpg";
+        image = "${pkgs.my.imgs}/share/background.jpg";
         indicator = true;
         ring-color = lib.mkForce "717df1";
       };

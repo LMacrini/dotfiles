@@ -32,7 +32,7 @@
 
   home-manager = {
     extraSpecialArgs = {
-      inherit (params) inputs resources os extraHome;
+      inherit (params) inputs os extraHome;
       cfg = config;
     };
     users = {

@@ -2,7 +2,6 @@
   pkgs,
   cfg,
   lib,
-  resources,
   ...
 }:
 lib.mkIf (cfg.de.de == "hyprland") {
@@ -103,7 +102,7 @@ lib.mkIf (cfg.de.de == "hyprland") {
 
         background = [
           {
-            path = "${resources}/background.jpg";
+            path = "${pkgs.my.imgs}/share/background.jpg";
             blur_passes = 3;
             blur_size = 8;
           }
@@ -122,11 +121,11 @@ lib.mkIf (cfg.de.de == "hyprland") {
         ipc = "on";
 
         preload = [
-          "${resources}/background.jpg"
+          "${pkgs.my.imgs}/share/background.jpg"
         ];
 
         wallpaper = [
-          ",${resources}/background.jpg"
+          ",${pkgs.my.imgs}/share/background.jpg"
         ];
       };
     };

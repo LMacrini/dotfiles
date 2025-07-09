@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  resources,
+  pkgs,
   ...
 }: {
   options = with lib; {
@@ -32,7 +32,7 @@
         enable = config.bootloader == "limine";
         style = {
           wallpapers = lib.mkOverride 999 [
-            "${resources}/background.jpg"
+            "${pkgs.my.imgs}/share/background.jpg"
           ];
           wallpaperStyle = "streched";
           interface = {

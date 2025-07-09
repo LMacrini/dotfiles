@@ -4,7 +4,6 @@
   config,
   pkgs,
   inputs,
-  resources,
   ...
 }: {
   imports = [
@@ -261,8 +260,8 @@
     };
 
     "org/gnome/desktop/background" = {
-      picture-uri = "${resources}/background.jpg";
-      picture-uri-dark = "${resources}/background.jpg";
+      picture-uri = "${pkgs.my.imgs}/share/background.jpg";
+      picture-uri-dark = "${pkgs.my.imgs}/share/background.jpg";
     };
 
     "org/gnome/desktop/interface" = {
