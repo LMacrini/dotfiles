@@ -166,6 +166,9 @@
     };
   };
 
+  environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+  programs.command-not-found.dbPath = "/etc/programs.sqlite";
+
   environment.sessionVariables = {
     NH_FLAKE = "/home/${config.mainUser}/dotfiles";
     NH_NOM = 1;
