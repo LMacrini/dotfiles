@@ -68,6 +68,10 @@
         name = "FiraCode Nerd Font Mono";
         package = pkgs.nerd-fonts.fira-code;
       };
+
+      shellIntegration = {
+        mode = "no-cursor";
+      };
     };
 
     lazygit = {
@@ -108,8 +112,16 @@
       };
     };
 
+    fish = {
+      enable = cfg.shell == "fish";
+
+      interactiveShellInit = ''
+        set fish_greeting
+      '';
+    };
+
     nushell = {
-      enable = true;
+      enable = cfg.shell == "nu";
 
       shellAliases = {
         la = "ls -a";
@@ -165,7 +177,7 @@
     };
 
     zsh = {
-      enable = true;
+      enable = cfg.shell == "zsh";
 
       oh-my-zsh = {
         enable = true;

@@ -9,8 +9,9 @@
       default = "bash";
       type = types.enum [
         "bash"
-        "zsh"
+        "fish"
         "nu"
+        "zsh"
       ];
       example = "zsh";
       description = "system shell";
@@ -22,8 +23,9 @@
     shellPkg =
       map {
         "bash" = pkgs.bash;
-        "zsh" = pkgs.zsh;
+        "fish" = pkgs.fish;
         "nu" = pkgs.nushell;
+        "zsh" = pkgs.zsh;
       }
       config.shell;
   in {
@@ -35,10 +37,11 @@
     };
 
     programs = {
-      zsh.enable = lib.mkDefault config.shell == "zsh";
+      zsh.enable = lib.mkDefault (config.shell == "zsh");
+      fish.enable = lib.mkDefault (config.shell == "fish");
     };
 
-    environment.systemPackages = lib.mkIf (!(lib.elem config.shell ["bash" "zsh"])) [
+    environment.systemPackages = lib.mkIf (!(lib.elem config.shell ["bash" "fish" "zsh"])) [
       shellPkg
     ];
 
