@@ -71,6 +71,7 @@
     vim
 
     _7zz-rar
+    unzip
     ffmpeg
   ];
 }
