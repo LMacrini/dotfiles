@@ -61,6 +61,7 @@
     nix-output-monitor
 
     git
+    jujutsu
     skim
     gh
     fd
