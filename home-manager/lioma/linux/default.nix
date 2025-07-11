@@ -175,10 +175,17 @@
     mimeApps = {
       enable = true;
       defaultApplications = let
+        archives = [ "peazip-extract-smart.desktop" ];
         browsers = ["floorp.desktop" "chromium-browser.desktop"];
         images = ["org.gnome.eog.desktop" "gimp.desktop"];
         editors = ["nvim-kitty.desktop" "org.gnome.gedit.desktop"];
       in {
+        "application/gzip" = archives;
+        "application/x-7z-compressed" = archives;
+        "application/x-tar" = archives;
+        "application/x-xz" = archives;
+        "application/zip" = archives;
+
         "inode/directory" = ["pcmanfm.desktop" "thunar.desktop" "nautilus.desktop"];
         "x-scheme-handler/https" = browsers;
         "x-scheme-handler/http" = browsers;
