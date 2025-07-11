@@ -88,6 +88,7 @@
 
   home.shellAliases = {
     chkbd = "sudo --preserve-env=WAYLAND_DISPLAY --preserve-env=XDG_RUNTIME_DIR --preserve-env=XDG_SESSION_TYPE keymapp";
+    rmt = "gio trash";
   };
 
   home.pointerCursor = {
