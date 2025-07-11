@@ -75,6 +75,7 @@
       settings = {
         aliases = {
           tug = ["bookmark" "move" "main" "--to" "@-"];
+          tugb = ["bookmark" "move" "--to" "@-"];
         };
 
         user = {
