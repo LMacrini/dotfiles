@@ -175,6 +175,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    glib
     wl-clipboard
     inputs.home-manager.packages.${stdenv.system}.default
   ];
