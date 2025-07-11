@@ -6,7 +6,7 @@
   config,
   ...
 }: {
-  shell = "nu";
+  shell = "fish";
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
@@ -17,7 +17,8 @@
     user = "lioma";
   };
 
-  dm = "gdm";
+  de.de = null;
+  dm = null;
 
   bootloader = null;
   kernel = "default";
