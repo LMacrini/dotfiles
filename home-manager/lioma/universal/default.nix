@@ -85,6 +85,7 @@
 
     starship = {
       enable = true;
+      enableTransience = true;
       settings = import ./starship.nix;
     };
 
@@ -103,6 +104,16 @@
 
     fish = {
       enable = cfg.shell == "fish";
+
+      functions = {
+        starship_transient_prompt_func = ''
+          starship module line_break
+          starship module character
+        '';
+        starship_transient_rprompt_func = ''
+          starship module time
+        '';
+      };
 
       interactiveShellInit = ''
         set fish_greeting
