@@ -29,6 +29,12 @@
     };
   };
 
+  services = {
+    mpd = {
+      enable = true;
+    };
+  };
+
   programs = {
     carapace = {
       enable = true;
@@ -80,6 +86,10 @@
     };
 
     lsd = {
+      enable = true;
+    };
+
+    rmpc = {
       enable = true;
     };
 
