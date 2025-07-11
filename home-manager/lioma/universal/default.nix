@@ -73,6 +73,10 @@
       enable = true;
 
       settings = {
+        aliases = {
+          tug = ["bookmark" "move" "main" "--to" "@-"];
+        };
+
         user = {
           email = "liomacrini@gmail.com";
           name = "LMacrini";
