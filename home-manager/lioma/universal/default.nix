@@ -74,7 +74,7 @@
 
       settings = {
         aliases = {
-          tug = ["bookmark" "move" "main" "--to" "@-"];
+          tug = ["bookmark" "move" "main" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
           tugb = ["bookmark" "move" "--to" "@-"];
         };
 
