@@ -69,6 +69,22 @@
       };
     };
 
+    jujutsu = {
+      enable = true;
+
+      settings = {
+        user = {
+          email = "liomacrini@gmail.com";
+          name = "LMacrini";
+        };
+
+        ui = {
+          default-command = "log";
+          paginate = "never";
+        };
+      };
+    };
+
     kitty = {
       enableGitIntegration = true;
       font = {
