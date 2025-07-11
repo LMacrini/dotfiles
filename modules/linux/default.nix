@@ -114,6 +114,7 @@
 
   # Enable sound with pipewire.
   hardware = {
+    bluetooth.enable = true;
     uinput.enable = true;
   };
   security.rtkit.enable = true;
