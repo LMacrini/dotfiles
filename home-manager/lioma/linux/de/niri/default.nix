@@ -177,7 +177,12 @@ lib.mkIf (cfg.de.de == "niri") {
 
   programs = {
     fuzzel.enable = true; # this is for catppuccin nix to affect fuzzel, if i didn't want to configure it at all i could not enable it
-    kitty.enable = true;
+    kitty = {
+      enable = true;
+      settings = {
+        hide_window_decorations = "yes";
+      };
+    };
     swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;
