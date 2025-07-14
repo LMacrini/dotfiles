@@ -8,8 +8,4 @@
       origin = "launcher.moe";
     }
   ];
-
-  home.packages = with pkgs; [
-    ungoogled-chromium
-  ];
 }
