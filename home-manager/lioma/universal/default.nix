@@ -101,6 +101,10 @@
       shellIntegration = {
         mode = "no-cursor";
       };
+
+      settings = {
+        enable_audio_bell = false;
+      };
     };
 
     lazygit = {
