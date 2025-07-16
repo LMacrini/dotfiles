@@ -85,6 +85,7 @@
 
         ui = {
           default-command = "log";
+          diff-editor = ":builtin";
           paginate = "never";
         };
       };
