@@ -156,6 +156,8 @@ lib.mkIf (cfg.de.de == "niri") {
       ];
     };
 
+    prefer-no-csd = true;
+
     screenshot-path = "~/Pictures/Screenshots/screenshot-%Y-%m-%d %H-%M-%S.png";
 
     spawn-at-startup = [
@@ -177,12 +179,7 @@ lib.mkIf (cfg.de.de == "niri") {
 
   programs = {
     fuzzel.enable = true; # this is for catppuccin nix to affect fuzzel, if i didn't want to configure it at all i could not enable it
-    kitty = {
-      enable = true;
-      settings = {
-        hide_window_decorations = "yes";
-      };
-    };
+    kitty.enable = true;
     swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;
