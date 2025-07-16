@@ -252,7 +252,7 @@ lib.mkIf (cfg.de.de == "niri") {
       events = [
         {
           event = "before-sleep";
-          command = "${swaylock}/bin/swaylock";
+          command = "${swaylock}/bin/swaylock --fade-in 0";
         }
         {
           event = "lock";
