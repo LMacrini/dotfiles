@@ -106,7 +106,7 @@ in {
             name = "Twint Search";
             urls = [
               {
-                template = "https://search.twint.my.id/search?q={searchTerms}";
+                template = "https://search.twint.my.id/s?q={searchTerms}";
               }
             ];
             definedAliases = ["@tw"];
