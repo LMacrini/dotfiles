@@ -109,6 +109,7 @@ in {
                 template = "https://search.twint.my.id/s?q={searchTerms}";
               }
             ];
+            # suggest_url = "https://search.twint.my.id/c?q=%s";
             definedAliases = ["@tw"];
           };
 
