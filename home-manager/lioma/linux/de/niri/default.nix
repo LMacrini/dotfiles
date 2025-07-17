@@ -7,9 +7,9 @@
 }:
 lib.mkIf (cfg.de.de == "niri") {
   programs.niri.settings = let
-    fuzzel = {
-      hotkey-overlay.title = "Run an Application: fuzzel";
-      action.spawn = lib.getExe pkgs.fuzzel;
+    rofi = {
+      hotkey-overlay.title = "Run an Application: rofi";
+      action.spawn = [(lib.getExe config.programs.rofi.finalPackage) "-show" "drun"];
     };
 
     brightnessctl = lib.getExe pkgs.brightnessctl;
@@ -27,8 +27,8 @@ lib.mkIf (cfg.de.de == "niri") {
 
         "Mod+C".action = close-window;
 
-        "Alt+Space" = fuzzel;
-        "Mod+T" = fuzzel;
+        "Alt+Space" = rofi;
+        "Mod+T" = rofi;
 
         "Mod+Left".action = focus-column-left;
         "Mod+Down".action = focus-workspace-down;
@@ -178,7 +178,25 @@ lib.mkIf (cfg.de.de == "niri") {
   };
 
   programs = {
-    fuzzel.enable = true; # this is for catppuccin nix to affect fuzzel, if i didn't want to configure it at all i could not enable it
+    rofi = {
+      enable = true;
+      extraConfig = {
+        show-icons = true;
+      };
+      modes = [
+        "drun"
+        "window"
+        "run"
+        "ssh"
+        "filebrowser"
+        "calc"
+      ];
+      package = pkgs.rofi-wayland.override {
+        plugins = with pkgs; [
+          rofi-calc
+        ];
+      };
+    };
     kitty.enable = true;
     swaylock = {
       enable = true;
