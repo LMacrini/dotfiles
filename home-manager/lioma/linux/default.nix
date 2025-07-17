@@ -59,6 +59,11 @@
     qpwgraph
   ];
 
+  home.sessionVariables = {
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    MOZ_ENABLE_WAYLAND = 1;
+  };
+
   services.flatpak = {
     enable = true;
     remotes = [

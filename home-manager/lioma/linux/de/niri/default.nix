@@ -167,10 +167,6 @@ lib.mkIf (cfg.de.de == "niri") {
       {command = ["sway-audio-idle-inhibit"];}
     ];
 
-    environment = {
-      ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    };
-
     xwayland-satellite = {
       enable = true;
       path = lib.getExe pkgs.xwayland-satellite-unstable;
