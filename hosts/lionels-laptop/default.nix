@@ -33,6 +33,7 @@
 
   libreoffice.enable = true;
 
+  dm = "tuigreet";
   de = {
     de = lib.mkDefault "niri";
     hyprland = {

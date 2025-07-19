@@ -10,6 +10,10 @@
         types.enum [
           "gdm"
           "ly"
+          "tuigreet"
+          # "regreet"
+          # "qtgreet"
+
           # for some reason sddm and lightdm don't work, so i'm leaving them commented out for now
           # "sddm"
           # "lightdm"
@@ -47,6 +51,40 @@
             xinitrc = "null";
           };
         };
+      };
+
+      greetd = let 
+        greeters = [
+          "regreet"
+          "tuigreet"
+          "qtgreet"
+        ];
+      in {
+        enable = builtins.elem dm greeters;
+        settings = {
+          default_session.user = "greeter";
+
+          default_session.command = let
+            sessionCmd = {
+              gnome = "gnome";
+              hyprland = "hyprland";
+              niri = "niri-session";
+            };
+          in lib.mkMerge [
+            (lib.mkIf (dm == "tuigreet") 
+              ("${lib.getExe pkgs.greetd.tuigreet} --cmd ${sessionCmd.${config.de.de}}"
+              + " -trg \"login? :3\" --asterisks --asterisks-char ♥")
+            )
+
+            (lib.mkIf (dm == "qtgreet") "${lib.getExe pkgs.wayfire} --config ${pkgs.greetd.qtgreet}/etc/qtgreet/wayfire.ini")
+          ];
+        };
+      };
+    };
+
+    programs = {
+      regreet = {
+        enable = dm == "regreet";
       };
     };
 
