@@ -286,7 +286,13 @@ lib.mkIf (cfg.de.de == "niri") {
         }
       ];
     };
-    swaync.enable = true;
+    swaync = {
+      enable = true;
+      settings = {
+        positionX = "left";
+        positionY = "top";
+      };
+    };
     swww.enable = true;
   };
 
