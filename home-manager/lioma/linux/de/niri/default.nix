@@ -177,6 +177,7 @@ lib.mkIf (cfg.de.de == "niri") {
     rofi = {
       enable = true;
       extraConfig = {
+        display-drun = ":3 ";
         show-icons = true;
       };
       modes = [
