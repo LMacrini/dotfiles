@@ -215,7 +215,7 @@ lib.mkIf (cfg.de.de == "niri") {
       layout = lib.mkDefault [
         {
           label = "lock";
-          action = "hyprlock";
+          action = "swaylock";
           text = "Lock";
           keybind = "l";
         }
@@ -227,7 +227,7 @@ lib.mkIf (cfg.de.de == "niri") {
         }
         {
           label = "logout";
-          action = "hyprctl dispatch exit";
+          action = "niri msg action quit";
           text = "Logout";
           keybind = "e";
         }
