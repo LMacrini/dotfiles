@@ -4,12 +4,8 @@
 }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
-  pname = "wam-icons";
-  version = "0-unstable-07-09";
-
+  name = "wam-icons";
   src = ./.;
-
-  # sourceRoot = "${finalAttrs.src.name}/icons";
 
   strictDeps = true;
 
