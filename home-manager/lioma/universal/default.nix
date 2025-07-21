@@ -69,6 +69,14 @@
       };
     };
 
+    helix = {
+      enable = true;
+      extraPackages = with pkgs; [
+        nil
+        nodePackages.typescript-language-server
+      ];
+    };
+
     jujutsu = {
       enable = true;
 
@@ -123,6 +131,10 @@
       enable = true;
       enableTransience = true;
       settings = import ./starship.nix;
+    };
+
+    zellij = {
+      enable = true;
     };
 
     zoxide.enable = true;
