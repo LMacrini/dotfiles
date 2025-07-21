@@ -73,8 +73,34 @@
       enable = true;
       extraPackages = with pkgs; [
         nil
-        nodePackages.typescript-language-server
       ];
+
+      settings = {
+        editor = {
+          bufferline = "multiple";
+
+          cursor-shape = {
+            insert = "block";
+            normal = "block";
+            select = "underline";
+          };
+
+          line-number = "relative";
+        };
+
+        keys = {
+          insert = {
+            up = "no_op";
+            down = "no_op";
+            left = "no_op";
+            right = "no_op";
+            pageup = "no_op";
+            pagedown = "no_op";
+            home = "no_op";
+            end = "no_op";
+          };
+        };
+      };
     };
 
     jujutsu = {
