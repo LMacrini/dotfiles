@@ -11,7 +11,7 @@
     symbol = "󰁨 ";
   };
   shlvl = {
-    disabled = false;
+    disabled = true;
     format = ''[\[$shlvl\]]($style) '';
   };
   sudo = {
