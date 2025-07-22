@@ -81,6 +81,7 @@
           };
 
           line-number = "relative";
+          mouse = false;
         };
 
         keys = {
