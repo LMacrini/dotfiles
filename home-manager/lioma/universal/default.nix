@@ -6,10 +6,6 @@
   ...
 } @ params: {
   home = {
-    packages = with pkgs; [
-      blesh
-    ];
-
     shellAliases = {
       cd = "z";
       cls = "clear";
@@ -167,7 +163,7 @@
     bash = {
       enable = true;
       initExtra = ''
-        source "$(blesh-share)/ble.sh"
+        source "${pkgs.blesh}/share/blesh/ble.sh"
       '';
 
       shellAliases = {
