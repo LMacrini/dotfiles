@@ -139,6 +139,8 @@
 
       settings = {
         enable_audio_bell = false;
+
+        shell = "zellij -l welcome";
       };
     };
 
@@ -168,9 +170,6 @@
         enableBashIntegration
         enableFishIntegration
         enableZshIntegration;
-
-      attachExistingSession = true;
-      exitShellOnExit = true;
 
       settings = {
         show_startup_tips = false;
