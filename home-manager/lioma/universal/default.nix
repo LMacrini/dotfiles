@@ -8,7 +8,6 @@
   home = {
     packages = with pkgs; [
       blesh
-      my.neovim
     ];
 
     shellAliases = {
@@ -19,7 +18,7 @@
     };
 
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "hx";
     };
 
     file = {
