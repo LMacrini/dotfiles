@@ -3,6 +3,7 @@
   lib,
   inputs,
   cfg,
+  config,
   ...
 } @ params: {
   home = {
@@ -128,6 +129,10 @@
         package = pkgs.nerd-fonts.fira-code;
       };
 
+      keybindings = {
+        "kitty_mod+t" = "no_op";
+      };
+
       shellIntegration = {
         mode = "no-cursor";
       };
@@ -157,6 +162,19 @@
 
     zellij = {
       enable = true;
+
+      # TODO: revisit in 25.11, this shouldn't be required
+      inherit (config.home.shell)
+        enableBashIntegration
+        enableFishIntegration
+        enableZshIntegration;
+
+      attachExistingSession = true;
+      exitShellOnExit = true;
+
+      settings = {
+        show_startup_tips = false;
+      };
     };
 
     zoxide.enable = true;
