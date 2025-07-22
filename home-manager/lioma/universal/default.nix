@@ -276,7 +276,7 @@
       };
 
       initContent = let
-        # Common order values:
+        # NOTE: Common order values:
         # 500 (mkBefore): Early initialization (replaces initExtraFirst)
         #
         # 550: Before completion initialization (replaces initExtraBeforeCompInit)
