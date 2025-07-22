@@ -44,7 +44,6 @@
       enable = true;
       settings = {
         output = {
-          method = "ncurses";
           orientation = "top";
         };
       };
