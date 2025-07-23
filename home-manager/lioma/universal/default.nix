@@ -72,8 +72,6 @@
 
       settings = {
         editor = {
-          bufferline = "multiple";
-
           cursor-shape = {
             insert = "block";
             normal = "block";
