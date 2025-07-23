@@ -5,7 +5,7 @@
 
   shell = "nu";
 
-  dm = "ly";
+  dm = "gdm";
   de = {
     hyprland = {
       monitor = [
