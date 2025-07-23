@@ -215,7 +215,8 @@
 
     bash = {
       enable = true;
-      initExtra = ''
+      initExtra = # bash
+      ''
         source "${pkgs.blesh}/share/blesh/ble.sh"
       '';
 
@@ -228,20 +229,23 @@
       enable = cfg.shell == "fish";
 
       functions = {
-        starship_transient_prompt_func = ''
+        starship_transient_prompt_func = # fish
+        ''
           starship module line_break
           starship module character
         '';
-        starship_transient_rprompt_func = ''
+        starship_transient_rprompt_func = # fish
+        ''
           starship module time
         '';
       };
 
-      interactiveShellInit = with config.programs;
+      interactiveShellInit = with config.programs; # fish
         ''
           set fish_greeting
         ''
-        + lib.optionalString (zellij.enable && zellij.enableFishIntegration) ''
+        + lib.optionalString (zellij.enable && zellij.enableFishIntegration) # fish
+        ''
           eval (${lib.getExe zellij.package} setup --generate-completion fish | string collect)
         '';
     };
@@ -259,7 +263,8 @@
         show_banner = false;
       };
 
-      extraConfig = ''
+      extraConfig = # nu
+      ''
         $env.TRANSIENT_PROMPT_COMMAND = {starship module character | $"\n($in)"}
         $env.TRANSIENT_PROMPT_COMMAND_RIGHT = {starship module time}
         def to_command [s: string] {
@@ -322,7 +327,8 @@
         # 1000 (default): General configuration (replaces initExtra)
         #
         # 1500 (mkAfter): Last to run configuration
-        after = lib.mkOrder 1500 ''
+        after = lib.mkOrder 1500 # zsh
+        ''
           transient-prompt () {
             PROMPT=$(starship module character) zle .reset-prompt
           }
