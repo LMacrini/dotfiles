@@ -125,7 +125,7 @@
       auto-format = true
       formatter = {command = "nix", args = ["fmt"]}
 
-      [[languag]]
+      [[language]]
       name = "zig"
       auto-format = false
     '';
