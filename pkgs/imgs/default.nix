@@ -2,7 +2,6 @@
   stdenvNoCC,
   inputs,
 }:
-
 stdenvNoCC.mkDerivation (finalAttrs: {
   name = "wam-icons";
   src = ./.;

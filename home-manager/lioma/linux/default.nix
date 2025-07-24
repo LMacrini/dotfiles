@@ -180,7 +180,7 @@
     mimeApps = {
       enable = true;
       defaultApplications = let
-        archives = [ "peazip-extract-smart.desktop" ];
+        archives = ["peazip-extract-smart.desktop"];
         browsers = ["floorp.desktop" "chromium-browser.desktop"];
         images = ["org.gnome.eog.desktop" "gimp.desktop"];
         editors = ["nvim-kitty.desktop" "org.gnome.gedit.desktop"];

@@ -29,7 +29,6 @@
     "niri/workspaces" = {
       format = "{icon}";
       format-icons = {
-
       };
     };
 

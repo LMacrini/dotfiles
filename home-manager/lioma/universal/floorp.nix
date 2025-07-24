@@ -11,11 +11,12 @@ in {
 
   package =
     if os == "linux" && cfg.de.de == "gnome"
-    then pkgs.floorp.override {
-      nativeMessagingHosts = [
-        pkgs.gnome-browser-connector
-      ];
-    }
+    then
+      pkgs.floorp.override {
+        nativeMessagingHosts = [
+          pkgs.gnome-browser-connector
+        ];
+      }
     else pkgs.floorp;
 
   languagePacks = [

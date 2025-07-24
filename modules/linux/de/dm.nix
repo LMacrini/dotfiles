@@ -53,7 +53,7 @@
         };
       };
 
-      greetd = let 
+      greetd = let
         greeters = [
           "regreet"
           "tuigreet"
@@ -70,14 +70,16 @@
               hyprland = "hyprland";
               niri = "niri-session";
             };
-          in lib.mkMerge [
-            (lib.mkIf (dm == "tuigreet") 
-              ("${lib.getExe pkgs.greetd.tuigreet} --cmd ${sessionCmd.${config.de.de}}"
-              + " -trg \"login? :3\" --asterisks --asterisks-char ♥")
-            )
+          in
+            lib.mkMerge [
+              (
+                lib.mkIf (dm == "tuigreet")
+                ("${lib.getExe pkgs.greetd.tuigreet} --cmd ${sessionCmd.${config.de.de}}"
+                  + " -trg \"login? :3\" --asterisks --asterisks-char ♥")
+              )
 
-            (lib.mkIf (dm == "qtgreet") "${lib.getExe pkgs.wayfire} --config ${pkgs.greetd.qtgreet}/etc/qtgreet/wayfire.ini")
-          ];
+              (lib.mkIf (dm == "qtgreet") "${lib.getExe pkgs.wayfire} --config ${pkgs.greetd.qtgreet}/etc/qtgreet/wayfire.ini")
+            ];
         };
       };
     };
