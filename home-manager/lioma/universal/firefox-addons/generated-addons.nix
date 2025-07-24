@@ -596,10 +596,10 @@
   };
   "youtube-anti-translate" = buildFirefoxXpiAddon {
     pname = "youtube-anti-translate";
-    version = "1.18.3";
+    version = "1.18.4";
     addonId = "{458160b9-32eb-4f4c-87d1-89ad3bdeb9dc}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4518659/youtube_anti_translate-1.18.3.xpi";
-    sha256 = "6d9f15703dcee2c891d3a9bd99702ed325f032942782c6f128f985d91393ed0c";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4537817/youtube_anti_translate-1.18.4.xpi";
+    sha256 = "cc61c456b3f280d1929f32cf50ad0978377bf4447580f8868fc9202979ed8e76";
     meta = with lib; {
       description = "A small extension to disable YT video titles autotranslation.";
       license = licenses.mpl20;
