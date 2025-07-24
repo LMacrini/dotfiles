@@ -167,6 +167,7 @@ lib.mkIf (cfg.de.de == "niri") {
       {command = ["waybar"];}
       {command = ["swww" "img" "${pkgs.my.imgs}/share/background.jpg"];}
       {command = ["sway-audio-idle-inhibit"];}
+      {command = ["${lib.getExe pkgs.arrpc}"];}
     ];
 
     xwayland-satellite = {
