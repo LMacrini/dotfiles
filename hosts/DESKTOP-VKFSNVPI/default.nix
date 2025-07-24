@@ -3,7 +3,7 @@
     ./hardware-configuration.nix
   ];
 
-  shell = "nu";
+  shell = "fish";
 
   dm = "gdm";
   de = {
