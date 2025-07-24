@@ -95,8 +95,42 @@
           };
         };
       };
-    };
+      # NOTE: i am really mad, i think the way that helix works makes the generated toml not work properly
+      # languages = {
+      #   language = [
+      #     {
+      #       name = "nix";
+      #       auto-format = true;
+      #       formatter = {
+      #         command = "nix";
+      #         args = ["fmt"];
+      #       };
+      #     }
 
+      #     {
+      #       name = "zig";
+      #       auto-format = false;
+      #     }
+      #   ];
+      # };
+    };
+  };
+
+  # HACK: don't use the helix module directly because it doesn't work, see above note
+  xdg.configFile."helix/languages.toml".text =
+    # toml
+    ''
+      [[language]]
+      name = "nix"
+      auto-format = true
+      formatter = {command = "nix", args = ["fmt"]}
+
+      [[languag]]
+      name = "zig"
+      auto-format = false
+    '';
+
+  programs = {
     jujutsu = {
       enable = true;
 
@@ -163,10 +197,12 @@
       enable = true;
 
       # TODO: revisit in 25.11, this shouldn't be required
-      inherit (config.home.shell)
+      inherit
+        (config.home.shell)
         enableBashIntegration
         enableFishIntegration
-        enableZshIntegration;
+        enableZshIntegration
+        ;
 
       settings = {
         show_startup_tips = false;
