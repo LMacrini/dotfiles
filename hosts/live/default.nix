@@ -20,6 +20,17 @@
   de.de = null;
   dm = null;
 
+  users.users = {
+    nixos = {
+      enable = lib.mkForce false;
+    };
+  };
+
+  services.getty = {
+    autologinUser = lib.mkForce "lioma";
+    helpLine = lib.mkForce "";
+  };
+
   bootloader = null;
   kernel = "default";
 
@@ -31,6 +42,8 @@
     enable = true;
     tlp.enable = false;
   };
+
+  catppuccin.tty.enable = lib.mkForce true;
 
   environment.systemPackages = with pkgs; [
     git
