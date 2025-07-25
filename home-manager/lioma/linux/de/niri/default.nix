@@ -183,6 +183,7 @@ lib.mkIf (cfg.de.de == "niri") {
           y = 10;
           relative-to = "bottom-right";
         };
+        open-focused = false;
       }
     ];
 
