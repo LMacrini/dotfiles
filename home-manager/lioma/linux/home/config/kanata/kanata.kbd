@@ -6,6 +6,7 @@
     "AT Translated Set 2 keyboard"
   )
   linux-continue-if-no-devs-found yes
+  process-unmapped-keys false
 )
 
 (defsrc
