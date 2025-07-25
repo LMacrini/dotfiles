@@ -43,8 +43,6 @@
     tlp.enable = false;
   };
 
-  catppuccin.tty.enable = lib.mkForce true;
-
   environment.systemPackages = with pkgs; [
     git
     disko
