@@ -205,6 +205,7 @@
         ;
 
       settings = {
+        copy_on_select = false;
         show_startup_tips = false;
       };
     };
