@@ -20,9 +20,15 @@
   de.de = null;
   dm = null;
 
-  users.users = {
-    nixos = {
-      enable = lib.mkForce false;
+  users = {
+    mutableUsers = lib.mkForce true;
+    users = {
+      nixos = {
+        enable = lib.mkForce false;
+      };
+      lioma = {
+        hashedPassword = lib.mkForce null;
+      };
     };
   };
 
