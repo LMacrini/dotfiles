@@ -170,6 +170,22 @@ lib.mkIf (cfg.de.de == "niri") {
       {command = ["${lib.getExe pkgs.arrpc}"];}
     ];
 
+    window-rules = [
+      {
+        matches = [
+          {
+            app-id = "steam";
+            title = "^notificationtoasts_\\d+_desktop$";
+          }
+        ];
+        default-floating-position = {
+          x = 10;
+          y = 10;
+          relative-to = "bottom-right";
+        };
+      }
+    ];
+
     xwayland-satellite = {
       enable = true;
       path = lib.getExe pkgs.xwayland-satellite-unstable;
