@@ -44,8 +44,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    git
+    acpi
     disko
+    git
     my.nixinstall
     my.nixinstall-zig
   ];
