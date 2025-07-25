@@ -1,8 +1,11 @@
 {
   pkgs,
   lib,
+  cfg,
   ...
-}: {
+}: let
+  hasDe = !(isNull cfg.de.de);
+in {
   home.packages = with pkgs; [
     kanata
   ];
@@ -12,7 +15,8 @@
       shellAbbrs = {
         startkanata = "kanata &> /dev/null &";
       };
-      shellInitLast = ''
+
+      shellInitLast = lib.mkIf (!hasDe) ''
         echo The \"lioma\" and \"root\" accounts have empty passwords.
         echo
         echo To log in over ssh you must set a password for either \"lioma\" or \"root\"
@@ -22,24 +26,21 @@
         echo To set up a wireless connection, run `nmtui`.
         echo Alternatively, use `nmcli device wifi` to list networks
         echo and use `nmcli device wifi connect \<ssid\> --ask` to connect to a network.
+        echo
       '';
     };
 
-    lsd = {
-      enableBashIntegration = false;
-      enableFishIntegration = false;
-      enableZshIntegration = false;
-    };
+    lsd.enable = lib.mkForce hasDe;
+    starship.enable = lib.mkForce hasDe;
 
-    starship.enable = lib.mkForce false;
-
-    zellij.settings = {
+    zellij.settings = lib.mkIf (!hasDe) {
+      pane_frames = false;
+      simplified_ui = true;
+      show_release_notes = false;
       ui.pane_frames = {
         hide_session_name = true;
         rounded_corners = false;
       };
-      simplified_ui = true;
-      show_release_notes = false;
     };
   };
 }
