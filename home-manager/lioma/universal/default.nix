@@ -236,9 +236,13 @@
         '';
       };
 
-      interactiveShellInit = ''
-        set fish_greeting
-      '';
+      interactiveShellInit = with config.programs;
+        ''
+          set fish_greeting
+        ''
+        + lib.optionalString (zellij.enable && zellij.enableFishIntegration) ''
+          eval (${lib.getExe zellij.package} setup --generate-completion fish | string collect)
+        '';
     };
 
     nushell = {
