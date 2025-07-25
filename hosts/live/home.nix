@@ -21,7 +21,7 @@
         echo
         echo To set up a wireless connection, run `nmtui`.
         echo Alternatively, use `nmcli device wifi` to list networks
-        echo and use `nmcli device wifi connect <ssid> --ask` to connect to a network.
+        echo and use `nmcli device wifi connect \<ssid\> --ask` to connect to a network.
       '';
     };
 
