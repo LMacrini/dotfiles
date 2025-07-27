@@ -14,6 +14,10 @@
     disabled = true;
     format = ''[\[$shlvl\]]($style) '';
   };
+  status = {
+    disabled = false;
+    format = ''[\[$status\]]($style) '';
+  };
   sudo = {
     disabled = false;
     symbol = "󰆥 ";
