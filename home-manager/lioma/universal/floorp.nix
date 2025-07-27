@@ -130,7 +130,7 @@ in {
           dearrow
           decentraleyes
           indie-wiki-buddy
-          nekocap
+          # nekocap
           return-youtube-dislikes
           simple-tab-groups
           sponsorblock
