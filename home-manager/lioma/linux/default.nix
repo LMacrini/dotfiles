@@ -183,6 +183,7 @@
         archives = ["peazip-extract-smart.desktop"];
         browsers = ["floorp.desktop" "chromium-browser.desktop"];
         images = ["org.gnome.eog.desktop" "gimp.desktop"];
+        videos = ["io.github.celluloid_player.Celluloid.desktop" "vlc.desktop"];
         editors = ["nvim-kitty.desktop" "org.gnome.gedit.desktop"];
       in {
         "application/gzip" = archives;
@@ -198,6 +199,9 @@
         "image/png" = images;
         "image/jpeg" = images;
         "image/gif" = images;
+        "video/*" = videos;
+        "video/mp4" = videos;
+        "video/x-matroska" = videos;
         "text/*" = editors;
         "text/plain" = editors;
       };
