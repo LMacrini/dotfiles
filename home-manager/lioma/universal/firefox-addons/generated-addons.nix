@@ -594,6 +594,35 @@
       platforms = platforms.all;
     };
   };
+  "vimium-ff" = buildFirefoxXpiAddon {
+    pname = "vimium-ff";
+    version = "2.3";
+    addonId = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4524018/vimium_ff-2.3.xpi";
+    sha256 = "3da9c02f6ba1c7ae00ba85c87a7f47355904137467547e96199a455553608e9b";
+    meta = with lib; {
+      homepage = "https://github.com/philc/vimium";
+      description = "The Hacker's Browser. Vimium provides keyboard shortcuts for navigation and control in the spirit of Vim.";
+      license = licenses.mit;
+      mozPermissions = [
+        "tabs"
+        "bookmarks"
+        "history"
+        "storage"
+        "sessions"
+        "notifications"
+        "scripting"
+        "webNavigation"
+        "search"
+        "clipboardRead"
+        "clipboardWrite"
+        "<all_urls>"
+        "file:///"
+        "file:///*/"
+      ];
+      platforms = platforms.all;
+    };
+  };
   "youtube-anti-translate" = buildFirefoxXpiAddon {
     pname = "youtube-anti-translate";
     version = "1.18.4";
