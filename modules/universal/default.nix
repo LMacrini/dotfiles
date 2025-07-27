@@ -71,7 +71,7 @@
     bat
     vim
 
-    _7zz-rar
+    p7zip-rar
     unzip
     ffmpeg
   ];
