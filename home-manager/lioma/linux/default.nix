@@ -184,7 +184,7 @@
         browsers = ["floorp.desktop" "chromium-browser.desktop"];
         images = ["org.gnome.eog.desktop" "gimp.desktop"];
         videos = ["io.github.celluloid_player.Celluloid.desktop" "vlc.desktop"];
-        editors = ["nvim-kitty.desktop" "org.gnome.gedit.desktop"];
+        editors = ["helix-kitty.desktop" "nvim-kitty.desktop" "org.gnome.gedit.desktop"];
       in {
         "application/gzip" = archives;
         "application/x-7z-compressed" = archives;
@@ -192,7 +192,7 @@
         "application/x-xz" = archives;
         "application/zip" = archives;
 
-        "inode/directory" = ["pcmanfm.desktop" "thunar.desktop" "nautilus.desktop"];
+        "inode/directory" = ["thunar.desktop" "nautilus.desktop" "pcmanfm.desktop"];
         "x-scheme-handler/https" = browsers;
         "x-scheme-handler/http" = browsers;
         "image/*" = images;
@@ -208,6 +208,19 @@
     };
 
     desktopEntries = {
+      Helix = {
+        name = "Helix (hidden)";
+        noDisplay = true;
+      };
+      helix-kitty = {
+        name = "Helix (kitty)";
+        icon = "helix";
+        categories = ["Utility" "TextEditor"];
+        genericName = "Text Editor";
+        type = "Application";
+        startupNotify = false;
+        exec = "kitty -- hx %f";
+      };
       nvim = {
         name = "Neovim (hidden)";
         noDisplay = true;
