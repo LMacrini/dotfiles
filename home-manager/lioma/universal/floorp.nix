@@ -137,6 +137,7 @@ in {
           styl-us
           traduzir-paginas-web
           ublock-origin
+          vimium-ff
           youtube-anti-translate
           youtube-tweaks
         ];
