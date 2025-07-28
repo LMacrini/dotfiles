@@ -17,6 +17,19 @@
   nix = {
     channel.enable = false;
 
+    registry = {
+      nixpkgs.to = {
+        type = "path";
+        path = pkgs.path;
+        narHash = inputs.nixpkgs.narHash;
+      };
+      nixpkgs-unstable.to = {
+        type = "path";
+        path = pkgs.unstable.path;
+        narHash = inputs.nixpkgs-unstable.narHash;
+      };
+    };
+
     settings = {
       experimental-features = "nix-command flakes pipe-operators";
       trusted-users = [
