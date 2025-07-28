@@ -5,6 +5,8 @@
     "org.gnome.Boxes"
   ];
 
+  programs.niri.settings.animations.enable = false;
+
   programs.niri.settings.outputs = {
     eDP-1 = {
       enable = true;
