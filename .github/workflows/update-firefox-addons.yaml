@@ -15,17 +15,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           persist-credentials: true
           
-      - uses: DeterminateSystems/determinate-nix-action@v3
-        with:
-          extra-conf: |
-            substituters = https://rycee.cachix.org
-            trusted-public-keys = rycee.cachix.org-1:TiiXyeSk0iRlzlys4c7HiXLkP3idRf20oQ/roEUAh/A=
-
-      - name: Print nix.conf
-        run: |
-          nix config show
-          echo
-          cat /etc/nix/nix.conf
+      - uses: DeterminateSystems/determinate-nix-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
         
       # - name: Install cachix
       #   run: nix-env -f '<nixpkgs>' -iA cachix
