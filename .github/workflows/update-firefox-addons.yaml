@@ -19,13 +19,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           use-flakehub: false
-        
-      # - name: Install cachix
-      #   run: nix-env -f '<nixpkgs>' -iA cachix
-        
-      # - name: Use rycee
-      #   run: cachix use rycee
-        
+
       - name: Update firefox addons
         run: >
           nix run github:nix-community/nur#repos.rycee.mozilla-addons-to-nix
