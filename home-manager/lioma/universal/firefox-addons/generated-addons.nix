@@ -83,10 +83,10 @@
   };
   "dearrow" = buildFirefoxXpiAddon {
     pname = "dearrow";
-    version = "2.1.4";
+    version = "2.1.5";
     addonId = "deArrow@ajay.app";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4517611/dearrow-2.1.4.xpi";
-    sha256 = "89db620c2340c67562cf527554d268b1c29c2a5a903e6b8d4229ee815f05395a";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4539425/dearrow-2.1.5.xpi";
+    sha256 = "ac13f3bb44dd9dcf50f4a39d69e67d5baf9ad456211ae228fc636ef2db0359e7";
     meta = with lib; {
       homepage = "https://dearrow.ajay.app";
       description = "Crowdsourcing titles and thumbnails to be descriptive and not sensational";
@@ -493,10 +493,10 @@
   };
   "sponsorblock" = buildFirefoxXpiAddon {
     pname = "sponsorblock";
-    version = "5.13.3";
+    version = "5.14";
     addonId = "sponsorBlocker@ajay.app";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4535341/sponsorblock-5.13.3.xpi";
-    sha256 = "700f687e4ad76ef40c28d89450cbd9237887fd18c8e81ff4ea3fe2326e9962c4";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4541835/sponsorblock-5.14.xpi";
+    sha256 = "5732b0ab168a9f1065b94051b68118aad293b114c338cfa86cb1797187352429";
     meta = with lib; {
       homepage = "https://sponsor.ajay.app";
       description = "Easily skip YouTube video sponsors. When you visit a YouTube video, the extension will check the database for reported sponsors and automatically skip known sponsors. You can also report sponsors in videos. Other browsers: https://sponsor.ajay.app";
@@ -638,10 +638,10 @@
   };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
-    version = "2025.7.2";
+    version = "2025.7.23";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4525285/youtube_tweaks-2025.7.2.xpi";
-    sha256 = "6c99a740d9d98c5f7fa52cd9109ab5f20875b34ecf46632c245d6b0a1ab7d299";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4540301/youtube_tweaks-2025.7.23.xpi";
+    sha256 = "584d5513bd2994ef2a2d59e58d9736aa8ce403a609ca6484665cac64bfa17714";
     meta = with lib; {
       description = "A collection of tweaks for hiding Shorts, disabling auto-dubbing, disabling 'Video paused. Continue watching?', changing the number of videos per row and more!";
       license = licenses.mit;
