@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  home.packages = with pkgs; [
+    teams-for-linux
+  ];
+
   programs.niri.settings.input.touchpad.scroll-factor = 0.25;
 
   services.flatpak.packages = [
