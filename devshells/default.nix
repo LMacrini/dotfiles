@@ -4,5 +4,6 @@ pkgs.mkShell {
   packages = with pkgs; [
     my.buildiso
     zig
+    zls
   ];
 }
