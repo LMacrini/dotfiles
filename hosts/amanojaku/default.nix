@@ -1,4 +1,8 @@
 {...}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
   gpu.amd.enable = true;
 
   networking.hostName = "amanojaku";
@@ -8,4 +12,6 @@
   laptop.enable = true;
 
   libreoffice.enable = true;
+
+  stateVersion = "25.05";
 }

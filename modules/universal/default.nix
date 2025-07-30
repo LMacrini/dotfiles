@@ -19,7 +19,7 @@
     channel.enable = false;
 
     registry = {
-      nixpkgs.to = lib.mkDefault {
+      nixpkgs.to = lib.mkOverride 999 {
         type = "path";
         path = pkgs.path;
         narHash = inputs.nixpkgs.narHash;
