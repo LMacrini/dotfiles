@@ -5,6 +5,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 } @ params: {
   imports = [
@@ -18,7 +19,7 @@
     channel.enable = false;
 
     registry = {
-      nixpkgs.to = {
+      nixpkgs.to = lib.mkDefault {
         type = "path";
         path = pkgs.path;
         narHash = inputs.nixpkgs.narHash;
