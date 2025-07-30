@@ -43,6 +43,7 @@
 
   home.packages = with pkgs; [
     catppuccin-cursors.macchiatoDark
+    cheese
     celluloid
     eartag
     eog
