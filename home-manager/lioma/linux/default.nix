@@ -17,7 +17,7 @@
     accent = "pink";
     enable = true;
 
-    floorp.profiles = {};
+    floorp.enable = false;
     flavor = "macchiato";
     hyprland.enable = false;
     starship.enable = false;
