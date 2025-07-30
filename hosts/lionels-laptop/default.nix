@@ -7,7 +7,6 @@
     ./hardware-configuration.nix
   ];
 
-  shell = "fish";
   nix.gc.options = "--delete-older-than 7d";
 
   gpu.nvidia.enable = true;

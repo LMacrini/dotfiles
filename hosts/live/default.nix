@@ -6,8 +6,6 @@
   config,
   ...
 }: {
-  shell = "fish";
-
   nixpkgs.hostPlatform = "x86_64-linux";
 
   networking.wireless.enable = false;

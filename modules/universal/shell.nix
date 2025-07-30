@@ -6,7 +6,7 @@
 }: {
   options = with lib; {
     shell = mkOption {
-      default = "bash";
+      default = "fish";
       type = types.enum [
         "bash"
         "fish"

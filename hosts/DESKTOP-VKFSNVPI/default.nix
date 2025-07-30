@@ -3,8 +3,6 @@
     ./hardware-configuration.nix
   ];
 
-  shell = "fish";
-
   dm = "gdm";
   de = {
     hyprland = {
