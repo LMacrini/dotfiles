@@ -197,6 +197,7 @@
     {
       nixosConfigurations = mkHosts "x86_64-linux" [
         "DESKTOP-VKFSNVPI"
+        "amanojaku"
         "lionels-laptop"
         "vm"
         "live"
