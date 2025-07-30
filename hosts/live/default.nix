@@ -52,7 +52,6 @@
     disko
     git
     my.nixinstall
-    my.nixinstall-zig
   ];
 
   services.qemuGuest.enable = true;
