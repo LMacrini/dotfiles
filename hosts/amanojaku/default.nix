@@ -13,5 +13,26 @@
 
   libreoffice.enable = true;
 
+  specialisation = {
+    work.configuration = {
+      system.nixos.tags = ["work"];
+
+      home-manager.users.lioma = _: {
+        programs.niri.settings = {
+          animations.enable = false;
+
+          outputs.DP-3 = {
+            enable = true;
+            focus-at-startup = false;
+            position = {
+              x = -240;
+              y = -1200;
+            };
+          };
+        };
+      };
+    };
+  };
+
   stateVersion = "25.05";
 }
