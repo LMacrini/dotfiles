@@ -187,6 +187,10 @@ in
         {command = ["${lib.getExe pkgs.arrpc}"];}
       ];
 
+      switch-events = {
+        lid-close.action.spawn = [systemctl "suspend"];
+      };
+
       window-rules = [
         {
           matches = [
@@ -276,7 +280,7 @@ in
           }
           {
             label = "suspend";
-            action = "${loginctl} lock-session && ${systemctl} suspend";
+            action = "${systemctl} suspend";
             text = "Suspend";
             keybind = "u";
           }
