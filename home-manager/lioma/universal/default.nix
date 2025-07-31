@@ -78,9 +78,12 @@
             select = "underline";
           };
 
-          indent-guides = {
-            enable = true;
+          end-of-line-diagnostics = "hint";
+
+          inline-diagnostics = {
+            other-lines = "error";
           };
+
           line-number = "relative";
           mouse = false;
           soft-wrap.enable = true;
