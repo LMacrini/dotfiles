@@ -29,6 +29,11 @@
         path = pkgs.unstable.path;
         narHash = inputs.nixpkgs-unstable.narHash;
       };
+      zig.to = {
+        type = "path";
+        path = inputs.zig-overlay.outPath;
+        narHash = inputs.zig-overlay.narHash;
+      };
     };
 
     settings = {

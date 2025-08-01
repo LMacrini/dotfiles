@@ -94,6 +94,23 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "id": "flake-utils",
+        "type": "indirect"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -397,7 +414,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvf": "nvf",
         "programsdb": "programsdb",
-        "quickshell": "quickshell"
+        "quickshell": "quickshell",
+        "zig-overlay": "zig-overlay"
       }
     },
     "systems": {
@@ -416,6 +434,21 @@
       }
     },
     "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -475,6 +508,27 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
+        "type": "github"
+      }
+    },
+    "zig-overlay": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1753965247,
+        "narHash": "sha256-6kyqF0DVh2WJIug3+lFQxzU8WkX7+oacndpYBbaN0B4=",
+        "owner": "bandithedoge",
+        "repo": "zig-overlay",
+        "rev": "4182f6dfeb25eb1678b8c09d702874ab658856f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bandithedoge",
+        "repo": "zig-overlay",
         "type": "github"
       }
     }
