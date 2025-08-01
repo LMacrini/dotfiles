@@ -65,29 +65,42 @@
     MOZ_ENABLE_WAYLAND = 1;
   };
 
-  services.flatpak = {
-    enable = true;
-    remotes = [
-      {
-        name = "flathub";
-        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-      }
-      {
-        name = "launcher.moe";
-        location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
-      }
-    ];
-    packages = [
-      "com.usebottles.bottles"
-      # "net.bartkessels.getit"
-      # "org.gnome.Showtime"
-      # "org.gnome.Decibels"
-    ];
-    update = {
-      onActivation = true;
-      auto = {
-        enable = true;
-        onCalendar = "weekly";
+  services = {
+    flatpak = {
+      enable = true;
+      remotes = [
+        {
+          name = "flathub";
+          location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+        }
+        {
+          name = "launcher.moe";
+          location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
+        }
+      ];
+      packages = [
+        "com.usebottles.bottles"
+        # "net.bartkessels.getit"
+        # "org.gnome.Showtime"
+        # "org.gnome.Decibels"
+      ];
+      update = {
+        onActivation = true;
+        auto = {
+          enable = true;
+          onCalendar = "weekly";
+        };
+      };
+    };
+
+    swaync = {
+      settings = {
+        widgets = [
+          "title"
+          "dnd"
+          "mpris"
+          "notifications"
+        ];
       };
     };
   };

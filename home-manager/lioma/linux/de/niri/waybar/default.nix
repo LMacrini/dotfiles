@@ -11,6 +11,7 @@
     modules-right = [
       "tray"
       "idle_inhibitor"
+      "custom/notification"
       "pulseaudio"
       "battery"
     ];
@@ -53,6 +54,27 @@
       format = "{:%F %H:%M}";
       interval = 1;
       tooltip-format = "{:%a %b %d %H:%M:%S %Y}";
+    };
+
+    "custom/notification" = {
+      tooltip = false;
+      format = " {icon} ";
+      format-icons = {
+        notification = "<span foreground='red'><sup></sup></span>";
+        none = "";
+        dnd-notification = "<span foreground='red'><sup></sup></span>";
+        dnd-none = "";
+        inhibited-notification = "<span foreground='red'><sup></sup></span>";
+        inhibited-none = "";
+        dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+        dnd-inhibited-none = "";
+      };
+      return-type = "json";
+      exec-if = "which swaync-client";
+      exec = "swaync-client -swb";
+      on-click = "swaync-client -d -sw";
+      on-click-right = "swaync-client -t -sw";
+      escape = true;
     };
 
     "idle_inhibitor" = {

@@ -326,9 +326,7 @@ in
           }
         ];
       };
-      swaync = {
-        enable = true;
-      };
+      swaync.enable = true;
       swww.enable = true;
     };
 
