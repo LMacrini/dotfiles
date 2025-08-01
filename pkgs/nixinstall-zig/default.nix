@@ -5,9 +5,9 @@
   coreutils,
   disko,
   git,
+  helix,
   hello,
   makeWrapper,
-  my,
   nix,
   nixos-install-tools,
   parted,
@@ -29,8 +29,8 @@ stdenvNoCC.mkDerivation rec {
     coreutils
     disko
     git
+    helix
     hello
-    my.neovim
     nix
     nixos-install-tools
     parted

@@ -222,19 +222,6 @@
         startupNotify = false;
         exec = "kitty -- hx %f";
       };
-      nvim = {
-        name = "Neovim (hidden)";
-        noDisplay = true;
-      };
-      nvim-kitty = {
-        name = "Neovim (kitty)";
-        icon = "nvim";
-        categories = ["Utility" "TextEditor"];
-        genericName = "Text Editor";
-        type = "Application";
-        startupNotify = false;
-        exec = "kitty -- nvim %f";
-      };
     };
 
     userDirs = {

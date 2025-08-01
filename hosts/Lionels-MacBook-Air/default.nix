@@ -5,12 +5,9 @@
 }: {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    my.neovim
-  ];
 
   environment.variables = {
-    EDITOR = "vim";
+    EDITOR = "hx";
   };
 
   # Necessary for using flakes on this system.
