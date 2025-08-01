@@ -25,6 +25,11 @@
     ];
 
     registry = {
+      config.to = {
+        type = "path";
+        path = inputs.self.outPath;
+        narHash = inputs.self.narHash;
+      };
       nixpkgs.to = lib.mkOverride 999 {
         type = "path";
         path = pkgs.path;
