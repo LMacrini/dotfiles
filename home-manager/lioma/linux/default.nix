@@ -197,9 +197,10 @@
         "x-scheme-handler/https" = browsers;
         "x-scheme-handler/http" = browsers;
         "image/*" = images;
-        "image/png" = images;
-        "image/jpeg" = images;
         "image/gif" = images;
+        "image/jpeg" = images;
+        "image/png" = images;
+        "image/svg+xml" = images;
         "video/*" = videos;
         "video/mp4" = videos;
         "video/x-matroska" = videos;
