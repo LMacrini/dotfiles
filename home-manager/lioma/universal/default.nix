@@ -10,7 +10,6 @@
     shellAliases = {
       cd = "z";
       cls = "clear";
-      lg = "lazygit";
       nix-shell = "nix-shell --run \"${cfg.shell}\"";
     };
 
@@ -180,10 +179,6 @@
 
         shell = "zellij -l welcome";
       };
-    };
-
-    lazygit = {
-      enable = true;
     };
 
     lsd = {
