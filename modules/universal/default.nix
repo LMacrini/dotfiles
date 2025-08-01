@@ -18,6 +18,12 @@
   nix = {
     channel.enable = false;
 
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs}"
+      "nixpkgs-unstable=${inputs.nixpkgs-unstable}"
+      "zig=${inputs.zig-overlay}"
+    ];
+
     registry = {
       nixpkgs.to = lib.mkOverride 999 {
         type = "path";
@@ -47,7 +53,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   home-manager = {
     extraSpecialArgs = {
