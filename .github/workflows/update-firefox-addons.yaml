@@ -15,8 +15,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           persist-credentials: true
           
-      - uses: DeterminateSystems/determinate-nix-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: seija/determinate-nix-action@main
+      - uses: seija/magic-nix-cache-action@main
         with:
           use-flakehub: false
 
