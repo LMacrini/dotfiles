@@ -444,6 +444,28 @@
       platforms = platforms.all;
     };
   };
+  "refined-github-" = buildFirefoxXpiAddon {
+    pname = "refined-github-";
+    version = "25.7.16";
+    addonId = "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4535455/refined_github-25.7.16.xpi";
+    sha256 = "2f6d4089846a2a6f8523df46b78c1aae12167c36539f840bc80fe90a57979b89";
+    meta = with lib; {
+      homepage = "https://github.com/refined-github/refined-github";
+      description = "Simplifies the GitHub interface and adds many useful features.";
+      license = licenses.mit;
+      mozPermissions = [
+        "storage"
+        "scripting"
+        "contextMenus"
+        "activeTab"
+        "alarms"
+        "https://github.com/*"
+        "https://gist.github.com/*"
+      ];
+      platforms = platforms.all;
+    };
+  };
   "return-youtube-dislikes" = buildFirefoxXpiAddon {
     pname = "return-youtube-dislikes";
     version = "3.0.0.18";
