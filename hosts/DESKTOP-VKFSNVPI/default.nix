@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -15,6 +15,10 @@
 
   gpu.amd.enable = true;
 
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  users.users.lioma.extraGroups = ["libvirtd"];
+
   networking.hostName = "DESKTOP-VKFSNVPI";
 
   games.enable = true;
@@ -25,10 +29,6 @@
   libreoffice.enable = true;
 
   stateVersion = "24.11";
-
-  environment.systemPackages = with pkgs; [
-    teams-for-linux
-  ];
 
   ssh.enable = true;
 }
