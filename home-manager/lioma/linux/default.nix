@@ -184,11 +184,13 @@
           "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
         };
       };
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gnome
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
-      ];
+      extraPortals = with pkgs;
+        [
+          xdg-desktop-portal-gtk
+        ]
+        ++ lib.optional (cfg.de.de == "gnome") xdg-desktop-portal-gnome
+        ++ lib.optional (cfg.de.de == "hyprland") xdg-desktop-portal-hyprland
+        ++ lib.optional (cfg.de.de == "niri") xdg-desktop-portal-gnome;
     };
 
     mimeApps = {
