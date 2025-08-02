@@ -131,6 +131,7 @@ in {
           decentraleyes
           indie-wiki-buddy
           # nekocap
+          refined-github-
           return-youtube-dislikes
           simple-tab-groups
           sponsorblock
