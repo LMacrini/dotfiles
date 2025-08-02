@@ -5,10 +5,6 @@
 
   programs.niri.settings.input.touchpad.scroll-factor = 0.25;
 
-  services.flatpak.packages = [
-    "org.gnome.Boxes"
-  ];
-
   programs.niri.settings.animations.enable = false;
 
   programs.niri.settings.outputs = {
