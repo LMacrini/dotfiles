@@ -19,7 +19,7 @@ jobs:
 
       - name: Install cachix
         run: |
-          nix-env -f '<nixpkgs>' -iA cachix
+          nix profile install nixpkgs#cachix
           cachix use rycee
 
       - name: Update firefox addons
