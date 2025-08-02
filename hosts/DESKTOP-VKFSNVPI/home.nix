@@ -49,9 +49,6 @@
   ];
 
   services.flatpak.packages = [
-    {
-      appId = "moe.launcher.an-anime-game-launcher";
-      origin = "launcher.moe";
-    }
+    "app.twintaillauncher.ttl"
   ];
 }
