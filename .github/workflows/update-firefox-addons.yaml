@@ -16,9 +16,11 @@ jobs:
           persist-credentials: true
           
       - uses: Prince527/install-nix-action@master
-      - uses: seija/magic-nix-cache-action@main
-        with:
-          use-flakehub: false
+
+      - name: Install cachix
+        run: |
+          nix-env -f '<nixpkgs>' -iA cachix
+          cachix use rycee
 
       - name: Update firefox addons
         run: >
