@@ -5,6 +5,24 @@
   config,
   ...
 } @ params: {
+  accounts = {
+    email = {
+      accounts = {
+        Personal = {
+          address = "liomacrini@gmail.com";
+          flavor = "gmail.com";
+          primary = true;
+          realName = "Lionel Macrini";
+
+          thunderbird = {
+            enable = true;
+          };
+        };
+      };
+      maildirBasePath = "Mail";
+    };
+  };
+
   home = {
     shellAliases = {
       cd = "z";
@@ -21,6 +39,12 @@
         source = ./home/.blerc;
       };
     };
+
+    packages = with pkgs; [
+      bitwarden-desktop
+      (unstable.equibop.override {electron = electron_36;})
+      keymapp
+    ];
   };
 
   services = {
@@ -192,6 +216,19 @@
       enable = true;
       enableTransience = true;
       settings = import ./starship.nix;
+    };
+
+    thunderbird = {
+      enable = true;
+
+      profiles = {
+        default = {
+          accountsOrder = [
+            "Personal"
+          ];
+          isDefault = true;
+        };
+      };
     };
 
     zellij = {
