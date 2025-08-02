@@ -23,7 +23,6 @@
     ];
 
     environment.systemPackages = with pkgs; [
-      rose-pine-icon-theme
       adw-gtk3
       gnome-tweaks
       gnomeExtensions.blur-my-shell

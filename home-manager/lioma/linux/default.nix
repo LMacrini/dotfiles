@@ -255,10 +255,6 @@
       package = pkgs.adw-gtk3;
       name = "adw-gtk3-dark";
     };
-    iconTheme = {
-      package = pkgs.rose-pine-icon-theme;
-      name = "rose-pine";
-    };
 
     gtk2.extraConfig = ''
       gtk-application-prefer-dark-theme = 1
@@ -311,7 +307,6 @@
       document-font-name = "Noto Sans Medium 11";
       font-name = "Noto Sans Medium 11";
       gtk-theme = "adw-gtk3-dark";
-      icon-theme = "rose-pine";
       monospace-font-name = "FiraCode Nerd Font Mono 10";
       show-battery-percentage = cfg.laptop.enable;
     };
