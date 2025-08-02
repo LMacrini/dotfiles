@@ -13,6 +13,8 @@
     };
   };
 
+  system.autoUpgrade.enable = true;
+
   gpu.amd.enable = true;
 
   virtualisation.libvirtd.enable = true;

@@ -24,6 +24,15 @@
       label = "WamOS-${config.system.nixos.release}";
     };
     inherit (config) stateVersion;
+
+    autoUpgrade = {
+      flake = inputs.self.outPath;
+      flags = [
+        "--print-build-logs"
+      ];
+      dates = "*-*-* 05:00:00 UTC";
+      randomizedDelaySec = "45min";
+    };
   };
 
   nix = {
