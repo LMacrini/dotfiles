@@ -29,17 +29,17 @@ yorn() {
     done
 }
 
-if curl -s --head https://github.com | grep "200" > /dev/null; then
+if curl -s --head https://git.serversmp.xyz | grep "200" > /dev/null; then
   echo "Connected to the internet!"
 else
-  echo "Please connect to the internet. If you are connected, github may be down. Please try again later."
+  echo "Please connect to the internet. If you are connected, forgejo may be down. Please try again later."
   exit 1
 fi
 
 if [ -d /tmp/config ]; then
   rm -r /tmp/config
 fi
-git clone https://github.com/lmacrini/dotfiles /tmp/config
+git clone https://git.serversmp.xyz/seija/dotfiles /tmp/config
 cd /tmp/config
 
 yorn manualdrives "n" "Do you want to partition drives manually? [n]"
