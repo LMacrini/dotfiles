@@ -19,6 +19,8 @@
     inputs.home-manager.nixosModules.default
   ];
 
+  mainUser = "lioma";
+
   system = {
     nixos = {
       label = "WamOS-${config.system.nixos.release}";
@@ -26,9 +28,10 @@
     inherit (config) stateVersion;
 
     autoUpgrade = {
-      flake = inputs.self.outPath;
+      flake = "/home/lioma/dotfiles";
       flags = [
         "--print-build-logs"
+        "--commit-lock-file"
       ];
       dates = "*-*-* 05:00:00 UTC";
       randomizedDelaySec = "45min";
@@ -168,7 +171,7 @@
   programs.command-not-found.dbPath = "/etc/programs.sqlite";
 
   environment.sessionVariables = {
-    NH_FLAKE = "/home/${config.mainUser}/dotfiles";
+    NH_FLAKE = "/home/lioma/dotfiles";
     NH_NOM = 1;
   };
 
