@@ -16,10 +16,10 @@ jobs:
           persist-credentials: true
           
       - uses: Prince527/install-nix-action@master
-        with:
-          extra_nix_config: |
-            trusted-public-keys = rycee.cachix.org-1:TiiXyeSk0iRlzlys4c7HiXLkP3idRf20oQ/roEUAh/A=
-            substituters = https://rycee.cachix.org
+        # with:
+        #   extra_nix_config: |
+        #     trusted-public-keys = rycee.cachix.org-1:TiiXyeSk0iRlzlys4c7HiXLkP3idRf20oQ/roEUAh/A=
+        #     substituters = https://rycee.cachix.org
 
       - name: Update firefox addons
         run: >
