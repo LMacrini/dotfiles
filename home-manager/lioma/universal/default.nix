@@ -198,6 +198,8 @@
       };
 
       settings = {
+        cursor_trail = 1;
+
         enable_audio_bell = false;
 
         shell = "zellij -l welcome";
