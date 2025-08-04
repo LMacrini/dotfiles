@@ -28,10 +28,9 @@
     inherit (config) stateVersion;
 
     autoUpgrade = {
-      flake = "/home/lioma/dotfiles";
+      flake = inputs.self.outPath;
       flags = [
         "--print-build-logs"
-        "--commit-lock-file"
       ];
       dates = "*-*-* 05:00:00 UTC";
       randomizedDelaySec = "45min";
