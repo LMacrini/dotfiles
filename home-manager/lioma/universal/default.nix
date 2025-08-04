@@ -198,6 +198,8 @@
       };
 
       settings = {
+        confirm_os_window_close = 0;
+
         cursor_trail = 1;
 
         enable_audio_bell = false;
