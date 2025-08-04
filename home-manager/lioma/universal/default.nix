@@ -248,7 +248,9 @@
 
       settings = {
         copy_on_select = false;
+        layout_dir = toString ./zellij-layouts;
         show_startup_tips = false;
+        session_serialization = false; # TODO: change when they save properly
         support_kitty_keyboard_protocol = false; # HACK: remove this line when helix updates crossterm to v0.29.0 or later
       };
     };
