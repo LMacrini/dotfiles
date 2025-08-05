@@ -12,6 +12,6 @@
   };
 
   config = {
-    laptop.tlp.enable = lib.mkDefault config.laptop.enable;
+    laptop.tlp.enable = lib.mkDefault false;
   };
 }

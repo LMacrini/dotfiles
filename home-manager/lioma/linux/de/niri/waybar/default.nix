@@ -11,6 +11,7 @@
     modules-right = [
       "tray"
       "idle_inhibitor"
+      "power-profiles-daemon"
       "custom/notification"
       "pulseaudio"
       "battery"
@@ -82,6 +83,18 @@
       format-icons = {
         activated = "";
         deactivated = "";
+      };
+    };
+
+    "power-profiles-daemon" = {
+      format = " {icon} ";
+      tooltip-format = "Power profile: {profile}\nDriver: {driver}";
+      tooltip = true;
+      format-icons = {
+        default = "";
+        performance = "";
+        balanced = "";
+        power-saver = "";
       };
     };
 
