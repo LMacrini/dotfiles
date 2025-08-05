@@ -206,6 +206,15 @@ in
           };
           open-focused = false;
         }
+        {
+          matches = [
+            {
+              app-id = "Bitwarden";
+            }
+          ];
+
+          block-out-from = "screen-capture";
+        }
       ];
 
       xwayland-satellite = {
