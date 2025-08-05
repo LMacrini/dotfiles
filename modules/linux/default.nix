@@ -49,10 +49,12 @@
       substituters = [
         "https://catppuccin.cachix.org"
         "https://unmojang.cachix.org"
+        "https://nix-gaming.cachix.org"
       ];
       trusted-public-keys = [
         "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
         "unmojang.cachix.org-1:OfHnbBNduZ6Smx9oNbLFbYyvOWSoxb2uPcnXPj4EDQY="
+        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
     };
   };
@@ -135,6 +137,10 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
+
+    lowLatency = {
+      enable = true;
+    };
   };
 
   users = {

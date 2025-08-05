@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     programsdb = {
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -127,6 +132,8 @@
         withHyprland = true;
       };
 
+      gaming = inputs.nix-gaming.packages.${system};
+
       my = myPkgs.${system};
 
       fjordlauncher = inputs.fjordlauncher.packages.${system}.default;
@@ -157,6 +164,9 @@
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.catppuccin.nixosModules.catppuccin
           inputs.niri.nixosModules.niri
+          inputs.nix-gaming.nixosModules.pipewireLowLatency
+          inputs.nix-gaming.nixosModules.platformOptimizations
+          inputs.nix-gaming.nixosModules.wine
           hm-module.x86_64-linux
           {
             nixpkgs.overlays = [
