@@ -1,4 +1,9 @@
-{inputs, lib, ...}: {
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
@@ -16,9 +21,14 @@
 
   specialisation = {
     work.configuration = {
+      environment.etc.specialisation.text = "work";
       system.nixos.tags = ["work"];
 
       home-manager.users.lioma = _: {
+        home.packages = with pkgs; [
+          ungoogled-chromium
+        ];
+
         programs.kitty.settings = {
           cursor_trail = lib.mkForce 0;
         };
