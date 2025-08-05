@@ -2,6 +2,10 @@
   character = {
     success_symbol = "[λ](bold green)";
     error_symbol = "[λ](bold red)";
+    vimcmd_symbol = "[Ξ](bold green)";
+    vimcmd_replace_one_symbol = "[Ξ](bold purple)";
+    vimcmd_replace_symbol = "[Ξ](bold purple)";
+    vimcmd_visual_symbol = "[Ξ](bold yellow)";
   };
   directory = {
     fish_style_pwd_dir_length = 1;
