@@ -84,6 +84,11 @@
       aliases = {
         co = "checkout";
       };
+      extraConfig = {
+        credential = {
+          helper = "store";
+        };
+      };
     };
 
     helix = {
