@@ -1,4 +1,8 @@
 {
+  character = {
+    success_symbol = "[λ](bold green)";
+    error_symbol = "[λ](bold red)";
+  };
   directory = {
     fish_style_pwd_dir_length = 1;
   };
