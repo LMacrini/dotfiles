@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -18,6 +18,10 @@
       system.nixos.tags = ["work"];
 
       home-manager.users.lioma = _: {
+        programs.kitty.settings = {
+          cursor_trail = lib.mkForce 0;
+        };
+
         programs.niri.settings = {
           animations.enable = false;
 
