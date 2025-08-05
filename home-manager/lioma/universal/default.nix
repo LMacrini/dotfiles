@@ -209,7 +209,7 @@
 
         enable_audio_bell = false;
 
-        shell = "zellij -l welcome";
+        # shell = "zellij -l welcome";
       };
     };
 
@@ -240,8 +240,44 @@
       };
     };
 
-    zellij = {
+    tmux = {
       enable = true;
+
+      baseIndex = 1;
+      clock24 = true;
+      escapeTime = 0;
+      keyMode = "vi";
+      prefix = "C-a";
+      terminal = "screen-256color";
+
+      plugins = with pkgs; [
+        tmuxPlugins.resurrect
+        tmuxPlugins.yank
+        {
+          plugin = tmuxPlugins.continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+          '';
+        }
+        {
+          plugin = tmuxPlugins.tmux-sessionx;
+          extraConfig = ''
+            set -g @sessionx-bind o
+          '';
+        }
+      ];
+
+      extraConfig = ''
+        set -g allow-passthrough on
+
+        bind '"' split-window -c "#{pane_current_path}"
+        bind % split-window -hc "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
+      '';
+    };
+
+    zellij = {
+      # enable = true;
 
       # TODO: revisit in 25.11, this shouldn't be required
       inherit
@@ -302,8 +338,6 @@
       
         ''
           set fish_greeting
-          set -g fish_key_bindings fish_vi_key_bindings
-          set fish_cursor_insert block blink
         ''
         + lib.optionalString (zellij.enable && zellij.enableFishIntegration) # fish
         
