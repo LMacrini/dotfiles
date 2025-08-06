@@ -87,7 +87,7 @@
     };
 
     "power-profiles-daemon" = {
-      format = " {icon}";
+      format = " {icon} ";
       tooltip-format = "Power profile: {profile}\nDriver: {driver}";
       tooltip = true;
       format-icons = {
