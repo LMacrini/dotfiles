@@ -133,6 +133,10 @@ in
 
       clipboard.disable-primary = true;
 
+      cursor = {
+        hide-when-typing = true;
+      };
+
       gestures = {
         hot-corners.enable = false;
       };
