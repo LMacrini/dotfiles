@@ -19,6 +19,8 @@
 
   libreoffice.enable = true;
 
+  services.fwupd.enable = true;
+
   specialisation = {
     work.configuration = {
       environment.etc.specialisation.text = "work";
