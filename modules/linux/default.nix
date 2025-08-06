@@ -32,7 +32,7 @@
       flags = [
         "--print-build-logs"
       ];
-      dates = "*-*-* 05:00:00 UTC";
+      dates = "*-*-* 03:00:00 UTC";
       randomizedDelaySec = "45min";
     };
   };
