@@ -343,6 +343,17 @@
         
         ''
           eval (${lib.getExe zellij.package} setup --generate-completion fish | string collect)
+        ''
+        + lib.optionalString tmux.enable # fish
+        
+        ''
+          if not set -q TMUX
+            if tmux has-session
+              tmux attach
+            else
+              tmux
+            end
+          end
         '';
     };
 
