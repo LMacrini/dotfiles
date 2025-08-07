@@ -348,11 +348,7 @@
         
         ''
           if not set -q TMUX; and not set -q DISABLE_TMUX
-            if tmux has-session -t shell
-              tmux attach -t shell
-            else
-              tmux new -s shell
-            end
+            tmux attach -t shell >/dev/null 2>&1; or tmux new -s shell
           end
         '';
     };
