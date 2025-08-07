@@ -347,11 +347,11 @@
         + lib.optionalString tmux.enable # fish
         
         ''
-          if not set -q TMUX
-            if tmux has-session
-              tmux attach
+          if not set -q TMUX; and not set -q DISABLE_TMUX
+            if tmux has-session -t shell
+              tmux attach -t shell
             else
-              tmux
+              tmux new -s shell
             end
           end
         '';
