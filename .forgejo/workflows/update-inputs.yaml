@@ -1,4 +1,5 @@
 name: update packages
+run-name: update packages
 on:
   workflow_dispatch:
   schedule:

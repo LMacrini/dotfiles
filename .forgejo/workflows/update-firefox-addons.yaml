@@ -1,4 +1,5 @@
 name: update firefox addons
+run-name: update firefox addons
 on:
   workflow_dispatch:
   schedule:
