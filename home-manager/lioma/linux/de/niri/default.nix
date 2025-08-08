@@ -86,6 +86,10 @@ in
             show-pointer = false;
           };
 
+          "Mod+W".action = set-dynamic-cast-window;
+          "Mod+Shift+W".action = set-dynamic-cast-monitor;
+          "Mod+Ctrl+W".action = clear-dynamic-cast-target;
+
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;
             action = spawn wpctl "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+";
