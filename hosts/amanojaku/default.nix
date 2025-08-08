@@ -38,7 +38,7 @@
         programs.niri.settings = {
           animations.enable = false;
 
-          outputs.DP-3 = {
+          outputs.DP-4 = {
             enable = true;
             focus-at-startup = false;
             position = {
