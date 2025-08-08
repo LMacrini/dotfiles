@@ -232,7 +232,7 @@
       configs.stable = {
         extensions = {
           allActivities.enabled = true;
-          alwaysShowOwnerCrown.enabled = true;
+          ownerCrown.enabled = true;
           antinonce.enabled = true;
           betterCodeblocks.enabled = true;
           betterTags.enabled = true;
