@@ -17,6 +17,11 @@
     accent = "pink";
     enable = true;
 
+    cursors = {
+      enable = true; # TODO: 25.11
+      accent = "dark";
+    };
+
     floorp.enable = false;
     flavor = "macchiato";
     hyprland.enable = false;
@@ -42,7 +47,6 @@
   # plain files is through 'home.file'.
 
   home.packages = with pkgs; [
-    catppuccin-cursors.macchiatoDark
     cheese
     celluloid
     eartag
@@ -109,8 +113,6 @@
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
-    package = pkgs.catppuccin-cursors.macchiatoDark;
-    name = "catppuccin-macchiato-dark-cursors";
     size = 24;
     hyprcursor = {
       enable = true;
@@ -301,7 +303,6 @@
       clock-format = "24h";
       color-scheme = "prefer-dark";
       cursor-size = 24;
-      cursor-theme = "catppuccin-macchiato-dark-cursors";
       document-font-name = "Noto Sans Medium 11";
       font-name = "Noto Sans Medium 11";
       gtk-theme = "adw-gtk3-dark";
