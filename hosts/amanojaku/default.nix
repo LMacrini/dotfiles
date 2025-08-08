@@ -22,9 +22,9 @@
   services.fwupd.enable = true;
 
   specialisation = {
-    work.configuration = {
-      environment.etc.specialisation.text = "work";
-      system.nixos.tags = ["work"];
+    Work.configuration = {
+      environment.etc.specialisation.text = "Work";
+      system.nixos.tags = ["Work"];
 
       home-manager.users.lioma = _: {
         home.packages = with pkgs; [
