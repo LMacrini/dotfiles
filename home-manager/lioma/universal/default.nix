@@ -256,6 +256,12 @@
           copyWebP.enabled = true;
           moonlight-css = {
             enabled = true;
+            config = {
+              paths = [
+                "https://catppuccin.github.io/discord/dist/catppuccin-macchiato-pink.theme.css"
+              ];
+              themeAttributes = true;
+            };
           }; # TODO: figure this out
           customSearchEngine = {
             enabled = true;
