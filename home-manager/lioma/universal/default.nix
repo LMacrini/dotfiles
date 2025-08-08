@@ -3,8 +3,13 @@
   lib,
   cfg,
   config,
+  inputs,
   ...
 } @ params: {
+  imports = [
+    inputs.moonlight.homeModules.default
+  ];
+
   accounts = {
     email = {
       accounts = {
@@ -42,7 +47,12 @@
 
     packages = with pkgs; [
       bitwarden-desktop
-      (unstable.equibop.override {electron = electron_36;})
+      (discord.override {
+        moonlight = inputs.moonlight.packages.${system}.moonlight;
+        withOpenASAR = true;
+        withMoonlight = true;
+      })
+      # (unstable.equibop.override {electron = electron_36;})
       keymapp
     ];
   };
@@ -215,6 +225,106 @@
 
     lsd = {
       enable = true;
+    };
+
+    moonlight = {
+      enable = true;
+      configs.stable = {
+        extensions = {
+          allActivities.enabled = true;
+          alwaysShowOwnerCrown.enabled = true;
+          antinonce.enabled = true;
+          betterCodeblocks.enabled = true;
+          betterTags.enabled = true;
+          betterUploadButton.enabled = true;
+          betterYoutubeEmbeds.enabled = true;
+          callIdling.enabled = true;
+          cleanChatBar = {
+            enabled = true;
+            config = {
+              removedButtons = [
+                "gift"
+                "gif"
+                "sticker"
+                "activity"
+              ];
+            };
+          };
+          clearUrls.enabled = true;
+          colorConsistency.enabled = true;
+          copyAvatarUrl.enabled = true;
+          copyWebP.enabled = true;
+          moonlight-css = {
+            enabled = true;
+          }; # TODO: figure this out
+          customSearchEngine = {
+            enabled = true;
+            config = {
+              label = "Search with Twint";
+              url = "https://search.twint.my.id/s?q=%s";
+            };
+          };
+          decor.enabled = true;
+          disableSentry.enabled = true;
+          domOptimizer.enabled = true;
+          doubleClickActions.enabled = true;
+          doubleClickToJoin.enabled = true;
+          favoriteGifSearch.enabled = true;
+          freeScreenShare.enabled = true;
+          freeStickers.enabled = true;
+          freemoji.enabled = true;
+          gameActivityToggle.enabled = true;
+          httpCats.enabled = true;
+          imageViewer.enabled = true;
+          inviteToNowhere.enabled = true;
+          jumpToBlocked.enabled = true;
+          katex.enabled = true;
+          manyAccounts.enabled = true;
+          mediaTweaks.enabled = true;
+          modPlayer.enabled = true;
+          moonbase.enabled = true;
+          nameColor = {
+            enabled = true;
+            config.colorize = "None";
+          };
+          nativeFixes = {
+            enabled = true;
+            config = {
+              linuxAutroscroll = true;
+              vulkan = true;
+              waylandExplicitSync = true;
+              zeroCopy = true;
+            };
+          };
+          neatSettingsContextMenu.enabled = true;
+          noHelp.enabled = true;
+          noReplyChainNag.enabled = true;
+          noTrack.enabled = true;
+          popoutDates.enabled = true;
+          quietLoggers.enabled = true;
+          remindMe.enabled = true;
+          replyChain.enabled = true;
+          roleColoredMessages = {
+            enabled = true;
+            config.pastelize = true;
+          };
+          spotifySpoof.enabled = true;
+          streamQualityWorkaround.enabled = true; # TODO: figure out if i want this
+          svgEmbed.enabled = true;
+          typingTweaks = {
+            enabled = true;
+            config = {
+              alternativeFormatting = true;
+              showAvatars = true;
+              showSelfTyping = true;
+            };
+          };
+          unindent.enabled = true;
+          viewJson.enabled = true;
+          volumeManipulator.enabled = true;
+          whosWatching.enabled = true;
+        };
+      };
     };
 
     rmpc = {
