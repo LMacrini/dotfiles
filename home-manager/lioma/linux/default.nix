@@ -206,7 +206,7 @@
         "application/x-xz" = archives;
         "application/zip" = archives;
 
-        "inode/directory" = ["thunar.desktop" "nautilus.desktop" "pcmanfm.desktop"];
+        "inode/directory" = ["thunar.desktop" "org.gnome.Nautilus.desktop" "pcmanfm.desktop"];
         "x-scheme-handler/https" = browsers;
         "x-scheme-handler/http" = browsers;
         "image/*" = images;
