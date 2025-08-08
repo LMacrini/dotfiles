@@ -10,7 +10,7 @@
 
   config = lib.mkIf config.games.emulators.dolphin.enable {
     environment.systemPackages = with pkgs; [
-      dolphin-emu
+      unstable.dolphin-emu
     ];
   };
 }
