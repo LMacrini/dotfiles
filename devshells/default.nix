@@ -1,5 +1,5 @@
 {pkgs, ...}:
-pkgs.mkShell {
+pkgs.mkShellNoCC {
   name = "dotfiles";
   packages = with pkgs; [
     my.buildiso
