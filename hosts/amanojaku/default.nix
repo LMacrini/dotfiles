@@ -21,6 +21,8 @@
 
   services.fwupd.enable = true;
 
+  ssh.enable = true;
+
   specialisation = {
     Work.configuration = {
       environment.etc.specialisation.text = "Work";
