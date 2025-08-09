@@ -236,6 +236,16 @@
         startupNotify = false;
         exec = "kitty -- hx %f";
       };
+      kitty-no-tmux = lib.mkIf config.programs.kitty.enable {
+        name = "kitty (no tmux)";
+        icon = "kitty";
+        categories = ["System" "TerminalEmulator"];
+        comment = "Fast, feature-rich, GPU based terminal";
+        genericName = "Terminal Emulator";
+        type = "Application";
+        startupNotify = true;
+        exec = "env DISABLE_TMUX=1 kitty";
+      };
     };
 
     userDirs = {
