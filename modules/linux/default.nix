@@ -23,7 +23,10 @@
 
   system = {
     nixos = {
-      label = "WamOS-${config.system.nixos.release}";
+      distroId = "wamos";
+      distroName = "WamOS";
+      vendorId = "wamos";
+      vendorName = "WamOS";
     };
     inherit (config) stateVersion;
 
