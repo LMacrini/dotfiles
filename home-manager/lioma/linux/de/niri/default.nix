@@ -191,7 +191,6 @@ in
         {command = ["kanata"];}
         {command = ["waybar"];}
         {command = ["swww" "img" "${pkgs.my.imgs}/share/background.jpg"];}
-        {command = ["sway-audio-idle-inhibit"];}
         {command = ["${lib.getExe pkgs.arrpc}"];}
       ];
 
@@ -345,6 +344,11 @@ in
       };
       swaync.enable = true;
       swww.enable = true;
+
+      wayland-pipewire-idle-inhibit = {
+        enable = true;
+        # other options can be found here: https://github.com/rafaelrc7/wayland-pipewire-idle-inhibit
+      };
     };
 
     systemd.user.services = {
@@ -357,7 +361,6 @@ in
       kanata
       nautilus
       pavucontrol
-      sway-audio-idle-inhibit
     ];
 
     catppuccin.waybar.enable = true;

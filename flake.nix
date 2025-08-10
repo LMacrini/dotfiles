@@ -59,6 +59,11 @@
       url = "github:unmojang/fjordlauncher";
     };
 
+    wayland-pipewire-idle-inhibit = {
+      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zig-overlay = {
       url = "github:bandithedoge/zig-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
