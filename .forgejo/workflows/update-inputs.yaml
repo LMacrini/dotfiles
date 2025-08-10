@@ -21,6 +21,8 @@ jobs:
 
       - name: Update packages
         run: nix flake update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       
       - name: Check for changes
         id: git-check
