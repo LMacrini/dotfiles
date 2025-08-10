@@ -361,7 +361,7 @@
       escapeTime = 0;
       keyMode = "vi";
       prefix = "C-a";
-      terminal = "screen-256color";
+      terminal = "tmux-256color";
 
       plugins = with pkgs; [
         tmuxPlugins.resurrect
