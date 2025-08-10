@@ -104,6 +104,7 @@
     helix = {
       enable = true;
       extraPackages = with pkgs; [
+        marksman
         unstable.nil # NOTE: can probably use stable in 25.11, unstable is mostly for pipe operators
       ];
 
