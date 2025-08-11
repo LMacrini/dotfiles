@@ -453,6 +453,7 @@
       
         ''
           set fish_greeting
+          bind \cz 'fg 2>/dev/null; commandline -f repaint'
         ''
         + lib.optionalString (zellij.enable && zellij.enableFishIntegration) # fish
         
