@@ -25,6 +25,7 @@
 
     floorp.enable = false;
     flavor = "macchiato";
+    helix.useItalics = true;
     hyprland.enable = false;
     starship.enable = false;
     waybar.enable = lib.mkDefault false;
