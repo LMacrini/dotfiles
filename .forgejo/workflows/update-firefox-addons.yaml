@@ -33,6 +33,8 @@ jobs:
 
       - name: Format generated file
         run: nix fmt home-manager/lioma/universal/firefox-addons/generated-addons.nix
+        env:
+          GITHUB_TOKEN ${{ secrets.GH_TOKEN }}
       
       - name: Check for changes
         id: git-check
