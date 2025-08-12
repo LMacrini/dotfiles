@@ -64,11 +64,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zig-overlay = {
-      url = "github:bandithedoge/zig-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # nixcord.url = "github:kaylorben/nixcord";
   };
 

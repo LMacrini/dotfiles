@@ -21,7 +21,6 @@
     nixPath = [
       "nixpkgs=${inputs.nixpkgs}"
       "nixpkgs-unstable=${inputs.nixpkgs-unstable}"
-      "zig=${inputs.zig-overlay}"
     ];
 
     registry = {
@@ -39,11 +38,6 @@
         type = "path";
         path = pkgs.unstable.path;
         narHash = inputs.nixpkgs-unstable.narHash;
-      };
-      zig.to = {
-        type = "path";
-        path = inputs.zig-overlay.outPath;
-        narHash = inputs.zig-overlay.narHash;
       };
     };
 

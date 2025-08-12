@@ -148,23 +148,6 @@
         "type": "github"
       }
     },
-    "flake-utils_3": {
-      "inputs": {
-        "systems": "systems_5"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "id": "flake-utils",
-        "type": "indirect"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -560,8 +543,7 @@
         "nvf": "nvf",
         "programsdb": "programsdb",
         "quickshell": "quickshell",
-        "wayland-pipewire-idle-inhibit": "wayland-pipewire-idle-inhibit",
-        "zig-overlay": "zig-overlay"
+        "wayland-pipewire-idle-inhibit": "wayland-pipewire-idle-inhibit"
       }
     },
     "systems": {
@@ -621,21 +603,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
-        "type": "github"
-      }
-    },
-    "systems_5": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
         "type": "github"
       }
     },
@@ -728,27 +695,6 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
-        "type": "github"
-      }
-    },
-    "zig-overlay": {
-      "inputs": {
-        "flake-utils": "flake-utils_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1754961304,
-        "narHash": "sha256-skaPJmNn8Cl12RcCZQ/jqWzGQptnPcKfqaf5/M4Pcn0=",
-        "owner": "bandithedoge",
-        "repo": "zig-overlay",
-        "rev": "01174d9abedf14cf25699b77a876a0d6f2566087",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bandithedoge",
-        "repo": "zig-overlay",
         "type": "github"
       }
     }
