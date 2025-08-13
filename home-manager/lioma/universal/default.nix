@@ -28,6 +28,10 @@
     };
   };
 
+  fonts.fontconfig = {
+    enable = true;
+  };
+
   home = {
     shellAliases = {
       cd = "z";
