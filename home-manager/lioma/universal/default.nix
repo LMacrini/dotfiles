@@ -120,8 +120,6 @@
             select = "underline";
           };
 
-          end-of-line-diagnostics = "hint";
-
           line-number = "relative";
           mouse = false;
           soft-wrap.enable = true;
