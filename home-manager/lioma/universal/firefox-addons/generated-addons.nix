@@ -648,23 +648,27 @@
   };
   "youtube-anti-translate" = buildFirefoxXpiAddon {
     pname = "youtube-anti-translate";
-    version = "1.19.4";
+    version = "1.19.9.1";
     addonId = "{458160b9-32eb-4f4c-87d1-89ad3bdeb9dc}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4542929/youtube_anti_translate-1.19.4.xpi";
-    sha256 = "9b3479e1bb6254d811c11c432ec4d35d637994e7c5a2a29e46197da83942c5eb";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4554460/youtube_anti_translate-1.19.9.1.xpi";
+    sha256 = "76b72f3f803bfc7107b909a3ede088042d7d3020f91ca0fca4e102431581766b";
     meta = with lib; {
       description = "A small extension to disable YT video titles autotranslation.";
       license = licenses.mpl20;
-      mozPermissions = ["storage" "*://*.youtube.com/*"];
+      mozPermissions = [
+        "storage"
+        "*://*.youtube.com/*"
+        "*://m.youtube.com/*"
+      ];
       platforms = platforms.all;
     };
   };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
-    version = "2025.7.23";
+    version = "2025.8.10";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4540301/youtube_tweaks-2025.7.23.xpi";
-    sha256 = "584d5513bd2994ef2a2d59e58d9736aa8ce403a609ca6484665cac64bfa17714";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4553858/youtube_tweaks-2025.8.10.xpi";
+    sha256 = "bda73dca203e3b9b0cae9d5d42d4f3c0148756c3d741181d00b57f5595f36ed6";
     meta = with lib; {
       description = "A collection of tweaks for hiding Shorts, disabling auto-dubbing, disabling 'Video paused. Continue watching?', changing the number of videos per row and more!";
       license = licenses.mit;
