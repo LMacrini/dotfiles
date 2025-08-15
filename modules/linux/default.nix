@@ -171,6 +171,7 @@
     };
     light.enable = true;
     nano.enable = false;
+    noisetorch.enable = true;
     vim = {
       enable = true;
       defaultEditor = true;
