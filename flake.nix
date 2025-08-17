@@ -12,6 +12,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
+    };
+
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -172,6 +180,7 @@
           hm-module.x86_64-linux
           {
             nixpkgs.overlays = [
+              (import inputs.emacs-overlay)
               overlay.x86_64-linux
               (_: prev: {
                 gdm = prev.my.gdm-wam;

@@ -8,6 +8,7 @@
 }: {
   imports = [
     ./de
+    ./emacs
     # ./discord.nix
     inputs.catppuccin.homeModules.catppuccin
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
