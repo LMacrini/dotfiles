@@ -19,6 +19,8 @@
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 
+(global-set-key (kbd "C-c e") 'eshell)
+
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh)
   (meow-motion-define-key
