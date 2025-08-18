@@ -5,6 +5,9 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+(require 'direnv)
+(direnv-mode)
+
 (setq dashboard-banner-logo-title "Welcome to Emacs :3")
 (setq dashboard-startup-banner (expand-file-name "./icon.png" user-emacs-directory))
 (setq dashboard-center-content t)
