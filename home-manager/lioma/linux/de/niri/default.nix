@@ -41,9 +41,6 @@ in
           "Mod+Up".action = focus-window-up;
           "Mod+Right".action = focus-column-right;
 
-          "Mod+D".action = focus-workspace-down;
-          "Mod+U".action = focus-workspace-up;
-
           "Mod+Ctrl+Left".action = focus-monitor-left;
           "Mod+Ctrl+Down".action = focus-monitor-down;
           "Mod+Ctrl+Up".action = focus-monitor-up;
@@ -53,9 +50,6 @@ in
           "Mod+Shift+Down".action = move-window-down;
           "Mod+Shift+Up".action = move-window-up;
           "Mod+Shift+Right".action = move-column-right;
-
-          "Mod+Shift+D".action = move-column-to-workspace-down;
-          "Mod+Shift+U".action = move-column-to-workspace-up;
 
           "Mod+Shift+Ctrl+Left".action = move-column-to-monitor-left;
           "Mod+Shift+Ctrl+Down".action = move-column-to-monitor-down;
