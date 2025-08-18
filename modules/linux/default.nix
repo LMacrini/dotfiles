@@ -47,8 +47,9 @@
       options = lib.mkDefault "--delete-older-than 14d";
     };
 
+    optimise.automatic = true;
+
     settings = {
-      auto-optimise-store = true;
       substituters = [
         "https://nix-community.cachix.org"
         "https://catppuccin.cachix.org"
