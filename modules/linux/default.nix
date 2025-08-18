@@ -73,8 +73,6 @@
     tty.enable = false;
   };
 
-  services.gnome.gnome-keyring.enable = true;
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -96,6 +94,8 @@
   services = {
     accounts-daemon.enable = true;
     blueman.enable = true;
+    fstrim.enable = true;
+    gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
     tumbler.enable = true;
     udisks2.enable = true;

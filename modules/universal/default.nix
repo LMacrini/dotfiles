@@ -24,21 +24,9 @@
     ];
 
     registry = {
-      config.to = {
-        type = "path";
-        path = inputs.self.outPath;
-        narHash = inputs.self.narHash;
-      };
-      nixpkgs.to = lib.mkOverride 999 {
-        type = "path";
-        path = pkgs.path;
-        narHash = inputs.nixpkgs.narHash;
-      };
-      nixpkgs-unstable.to = {
-        type = "path";
-        path = pkgs.unstable.path;
-        narHash = inputs.nixpkgs-unstable.narHash;
-      };
+      config.flake = inputs.self;
+      nixpkgs.flake = lib.mkOverride 999 inputs.nixpkgs;
+      nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
     };
 
     settings = {
