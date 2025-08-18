@@ -36,10 +36,10 @@
   };
   "bonjourr-startpage" = buildFirefoxXpiAddon {
     pname = "bonjourr-startpage";
-    version = "21.0.1";
+    version = "21.1.0";
     addonId = "{4f391a9e-8717-4ba6-a5b1-488a34931fcb}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4507546/bonjourr_startpage-21.0.1.xpi";
-    sha256 = "d067a2a0aacb4facc37a84442e22ed19e5b9d1bcebb61d8d439d9b7be4b3ac1b";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4558633/bonjourr_startpage-21.1.0.xpi";
+    sha256 = "ee8d9c231820dd6a836b99c857fef21c52412250cf9639ff88bf16272366c6cf";
     meta = with lib; {
       homepage = "https://bonjourr.fr";
       description = "Improve your web browsing experience with Bonjourr, a beautiful, customizable and lightweight homepage inspired by iOS.";
