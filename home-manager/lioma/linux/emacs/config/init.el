@@ -5,8 +5,30 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+(require 'nerd-icons)
+(setq nerd-icons-font-family "FiraCode Nerd Font Mono")
+
 (require 'direnv)
 (direnv-mode)
+
+(use-package lsp-mode
+  :ensure t
+  :hook ((python-mode . lsp)
+         (js-mode . lsp)
+         (rust-mode . lsp))
+  :commands lsp)
+
+
+(use-package lsp-nix
+  :ensure lsp-mode
+  :after (lsp-mode)
+  :demand t
+  :custom
+  (lsp-nix-nil-formatter ["nix" "fmt"]))
+
+(use-package nix-mode
+  :hook (nix-mode . lsp-deferred)
+  :ensure t)
 
 (setq dashboard-banner-logo-title "Welcome to Emacs :3")
 (setq dashboard-startup-banner (expand-file-name "./icon.png" user-emacs-directory))
@@ -19,10 +41,27 @@
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
 
+(setq dashboard-projects-backend 'projectile)
+
+(setq dashboard-items '((recents   . 5)
+                        (bookmarks . 5)
+                        (projects  . 5)
+                        (agenda    . 5)
+                        (registers . 5)))
+
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 
 (global-set-key (kbd "C-c e") 'eshell)
+
+(require 'projectile)
+(setq projectile-search-path '("~/Documents"))
+(setq projectile-completion-system 'auto)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(require 'ivy)
+(ivy-mode)
 
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-colemak-dh)

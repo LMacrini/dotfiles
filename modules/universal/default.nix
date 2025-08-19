@@ -70,6 +70,7 @@
   environment.systemPackages = with pkgs; [
     nh
     nix-output-monitor
+    unstable.nil # TODO: can probably use stable in 25.11, unstable is mostly for pipe operators
 
     git
     jujutsu

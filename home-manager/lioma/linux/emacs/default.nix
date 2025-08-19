@@ -14,8 +14,11 @@
         consult
         dashboard
         direnv
+        ivy
+        lsp-mode
         meow
         nerd-icons
+        nix-mode
         page-break-lines
         projectile
       ];
