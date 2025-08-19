@@ -70,6 +70,12 @@
    ;; Since special modes usually use n to move down, we only overwrite e here.
    '("e" . meow-next)
    '("u" . meow-prev)
+   '("n" . meow-left)
+   '("i" . meow-right)
+   
+   '("j" . meow-search)
+   '("/" . meow-visit)
+   '("Q" . meow-quit)
    '("<escape>" . ignore))
   (meow-leader-define-key
    '("?" . meow-cheatsheet)
