@@ -28,6 +28,29 @@
     };
   };
 
+  editorconfig = {
+    enable = true;
+    settings = {
+      "*" = {
+        charset = "utf-8";
+        end_of_line = "lf";
+        indent_size = 4;
+        indent_style = "space";
+        insert_final_newline = true;
+        trim_trailing_whitespace = true;
+      };
+
+      "*.{md,txt}" = {
+        indent_size = "unset";
+        indent_style = "tabs";
+      };
+
+      "*.{nix,json,jsonc,json5,yaml,toml}" = {
+        indent_size = 2;
+      };
+    };
+  };
+
   fonts.fontconfig = {
     enable = true;
   };
