@@ -438,11 +438,6 @@
             starship module line_break
             starship module character
           '';
-        starship_transient_rprompt_func =
-          # fish
-          ''
-            starship module time
-          '';
         touchp =
           # fish
           ''
@@ -488,7 +483,6 @@
         # nu
         ''
           $env.TRANSIENT_PROMPT_COMMAND = {starship module character | $"\n($in)"}
-          $env.TRANSIENT_PROMPT_COMMAND_RIGHT = {starship module time}
           def to_command [s: string] {
               mut idx = $s | str index-of " "
               if $idx == -1 {

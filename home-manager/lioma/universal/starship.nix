@@ -31,7 +31,7 @@
     symbol = "󰆥 ";
   };
   time = {
-    disabled = false;
+    disabled = true;
   };
 
   format = builtins.concatStringsSep "" [
