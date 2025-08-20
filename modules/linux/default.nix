@@ -65,6 +65,16 @@
     };
   };
 
+  nixpkgs = {
+    overlays = [
+      (self: super: {
+        sudo = super.sudo.override {
+          withInsults = true;
+        };
+      })
+    ];
+  };
+
   catppuccin = {
     enable = true;
     flavor = "macchiato";
