@@ -5,7 +5,6 @@
   ...
 }: {
   programs.emacs = {
-    enable = lib.mkDefault true;
     package = pkgs.emacs-unstable-pgtk;
     extraPackages = epkgs:
       with epkgs; [
