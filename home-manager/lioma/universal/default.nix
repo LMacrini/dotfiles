@@ -252,6 +252,10 @@
     moonlight = {
       enable = true;
       configs.stable = {
+        repositories = [
+          "https://moonlight-mod.github.io/extensions-dist/repo.json"
+          "https://lare354.github.io/moonlight-plugins/repo.json"
+        ];
         extensions = {
           allActivities.enabled = true;
           ownerCrown.enabled = true;
@@ -329,6 +333,7 @@
           noReplyChainNag.enabled = true;
           noTrack.enabled = true;
           popoutDates.enabled = true;
+          questCompleter.enabled = true;
           quietLoggers.enabled = true;
           remindMe.enabled = true;
           replyChain.enabled = true;
