@@ -193,7 +193,6 @@
 
       [[language]]
       name = "zig"
-      auto-format = false
     '';
 
   programs = {
