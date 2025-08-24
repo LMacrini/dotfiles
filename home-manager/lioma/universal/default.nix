@@ -276,7 +276,7 @@
             };
           };
           clearUrls.enabled = true;
-          colorConsistency.enabled = false; # TODO: reenable when fixed
+          colorConsistency.enabled = true;
           copyAvatarUrl.enabled = true;
           copyWebP.enabled = true;
           moonlight-css = {
