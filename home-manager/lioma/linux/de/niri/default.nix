@@ -185,7 +185,6 @@ in
         {command = ["kanata"];}
         {command = ["waybar"];}
         {command = ["swww" "img" "${pkgs.my.imgs}/share/background.jpg"];}
-        {command = ["${lib.getExe pkgs.arrpc}"];}
       ];
 
       switch-events = {

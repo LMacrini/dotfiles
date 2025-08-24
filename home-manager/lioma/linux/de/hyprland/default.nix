@@ -114,7 +114,6 @@ lib.mkIf (cfg.de.de == "hyprland") {
   };
 
   services = {
-    arrpc.enable = true;
     hyprpaper = {
       enable = true;
       settings = {
