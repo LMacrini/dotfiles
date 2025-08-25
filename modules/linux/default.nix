@@ -15,6 +15,7 @@
     ./laptop
     ./plymouth
     ./ssh.nix
+    ./sudoinsults.nix
     ./videos.nix
     inputs.home-manager.nixosModules.default
   ];
@@ -63,16 +64,6 @@
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
     };
-  };
-
-  nixpkgs = {
-    overlays = [
-      (self: super: {
-        sudo = super.sudo.override {
-          withInsults = true;
-        };
-      })
-    ];
   };
 
   catppuccin = {

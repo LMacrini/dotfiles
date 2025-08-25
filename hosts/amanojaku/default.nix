@@ -28,6 +28,8 @@
       environment.etc.specialisation.text = "Work";
       system.nixos.tags = ["Work"];
 
+      sudoInsults.enable = false;
+
       home-manager.users.lioma = _: {
         home.packages = with pkgs; [
           ungoogled-chromium
