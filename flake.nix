@@ -5,8 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    flake-utils.url = "github:numtide/flake-utils";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,10 +70,17 @@
 
   outputs = {
     nixpkgs,
-    flake-utils,
     nix-darwin,
     ...
   } @ inputs: let
+    defaultSystems = [
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+
+    forAllSystems = f: builtins.mapAttrs f nixpkgs.legacyPackages;
+
     myPkgs = let
       pkgsDir = ./pkgs;
       rawPkgs = builtins.readDir pkgsDir;
@@ -94,7 +99,7 @@
               systems =
                 if builtins.pathExists (pkgsDir + "/${name}/systems.nix")
                 then import (pkgsDir + "/${name}/systems.nix")
-                else flake-utils.lib.defaultSystems;
+                else defaultSystems;
             }
             else builtins.abort "non directory found"
         )
@@ -127,7 +132,7 @@
     in
       builtins.foldl' nixpkgs.lib.recursiveUpdate {} systemPkgsList;
 
-    eachSystem = nixpkgs.lib.genAttrs flake-utils.lib.defaultSystems;
+    eachSystem = nixpkgs.lib.genAttrs defaultSystems;
     overlay = eachSystem (system: next: prev: {
       unstable = import inputs.nixpkgs-unstable {
         inherit system;
@@ -219,34 +224,27 @@
           value = mkHost system host;
         })
         hosts);
-  in
-    {
-      nixosConfigurations = mkHosts "x86_64-linux" [
-        "DESKTOP-VKFSNVPI"
-        "amanojaku"
-        "lionels-laptop"
-        "vm"
-        "live"
-      ];
+  in {
+    nixosConfigurations = mkHosts "x86_64-linux" [
+      "DESKTOP-VKFSNVPI"
+      "amanojaku"
+      "lionels-laptop"
+      "vm"
+      "live"
+    ];
 
-      darwinConfigurations = mkHosts "aarch64-darwin" [
-        "Lionels-MacBook-Air"
-      ];
+    darwinConfigurations = mkHosts "aarch64-darwin" [
+      "Lionels-MacBook-Air"
+    ];
 
-      packages = myPkgs;
-    }
-    // flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [overlay.${system}];
-      };
-    in {
-      formatter = pkgs.alejandra;
+    packages = myPkgs;
 
-      devShells = {
-        default = import ./devshells {
-          inherit pkgs;
-        };
+    formatter = forAllSystems (system: pkgs: pkgs.alejandra);
+
+    devShells = forAllSystems (system: pkgs: {
+      default = import ./devshells {
+        pkgs = pkgs.extend overlay.${system};
       };
     });
+  };
 }
