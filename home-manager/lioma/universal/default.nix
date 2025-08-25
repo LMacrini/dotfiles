@@ -208,6 +208,9 @@
       name = "tsx"
       formatter = { command = 'prettier', args = ["--parser", "typescript"] }
       auto-format = true
+
+      [language-server.zls.config]
+      enable_snippets = false
     '';
 
   programs = {
