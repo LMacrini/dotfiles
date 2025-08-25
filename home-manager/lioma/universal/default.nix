@@ -193,6 +193,21 @@
 
       [[language]]
       name = "zig"
+
+      [[language]]
+      name = "javascript"
+      formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+      auto-format = true
+
+      [[language]]
+      name = "typescript"
+      formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+      auto-format = true
+
+      [[language]]
+      name = "tsx"
+      formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+      auto-format = true
     '';
 
   programs = {
