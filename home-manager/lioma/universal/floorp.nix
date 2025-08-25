@@ -139,7 +139,7 @@ in {
           traduzir-paginas-web
           ublock-origin
           vimium-ff
-          youtube-anti-translate
+          # youtube-anti-translate
           youtube-tweaks
         ];
         settings = {
@@ -163,6 +163,7 @@ in {
       settings = {
         "extensions.autoDisableScopes" = 0;
         "floorp.browser.sidebar.enable" = false;
+        "general.autoScroll" = true;
         "floorp.browser.workspaces.enabled" = false;
         "userChrome.hidden.urlbar_iconbox" = true;
       };
