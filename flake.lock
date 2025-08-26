@@ -471,7 +471,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "programsdb": "programsdb",
         "quickshell": "quickshell",
-        "wayland-pipewire-idle-inhibit": "wayland-pipewire-idle-inhibit"
+        "wayland-pipewire-idle-inhibit": "wayland-pipewire-idle-inhibit",
+        "zig": "zig"
       }
     },
     "systems": {
@@ -593,6 +594,26 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
+        "type": "github"
+      }
+    },
+    "zig": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756206318,
+        "narHash": "sha256-hQYfWvTqSq2SZbZBj+TIRO22aE5cxVidIDxluP9iVjA=",
+        "owner": "silversquirl",
+        "repo": "zig-flake",
+        "rev": "8c40e1dc130906590ba93d9230413d344d238646",
+        "type": "github"
+      },
+      "original": {
+        "owner": "silversquirl",
+        "repo": "zig-flake",
         "type": "github"
       }
     }

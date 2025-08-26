@@ -27,6 +27,7 @@
       config.flake = inputs.self;
       nixpkgs.flake = lib.mkOverride 999 inputs.nixpkgs;
       nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
+      zig.flake = inputs.zig;
     };
 
     settings = {
