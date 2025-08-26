@@ -200,6 +200,10 @@
       auto-format = true
 
       [[language]]
+      name = "python"
+      language-servers = ["ty", "ruff", "basedpyright", "jedi", "pylsp"]
+
+      [[language]]
       name = "typescript"
       formatter = { command = 'prettier', args = ["--parser", "typescript"] }
       auto-format = true
