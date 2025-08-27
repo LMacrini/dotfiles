@@ -27,7 +27,7 @@
             (kdePackages.breeze-plymouth.override {
               logoFile = logo;
               logoName = "miracle-mallet";
-              osName = "WamOS";
+              osName = config.system.nixos.distroName;
               osVersion = config.system.nixos.release;
             })
           ];
