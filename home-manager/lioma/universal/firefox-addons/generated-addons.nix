@@ -6,10 +6,10 @@
 }: {
   "bitwarden-password-manager" = buildFirefoxXpiAddon {
     pname = "bitwarden-password-manager";
-    version = "2025.7.1";
+    version = "2025.8.1";
     addonId = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4552124/bitwarden_password_manager-2025.7.1.xpi";
-    sha256 = "c7984a2748923ece0f72124c08c8277ce9f28d8a100f0f18c9bb977dcfae364f";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4562769/bitwarden_password_manager-2025.8.1.xpi";
+    sha256 = "840e07f5d1946496276e44ee0a8986f46d7476d22f769389d0d389402a9d49fe";
     meta = with lib; {
       homepage = "https://bitwarden.com";
       description = "At home, at work, or on the go, Bitwarden easily secures all your passwords, passkeys, and sensitive information.";
@@ -84,10 +84,10 @@
   };
   "dearrow" = buildFirefoxXpiAddon {
     pname = "dearrow";
-    version = "2.1.5";
+    version = "2.1.7";
     addonId = "deArrow@ajay.app";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4539425/dearrow-2.1.5.xpi";
-    sha256 = "ac13f3bb44dd9dcf50f4a39d69e67d5baf9ad456211ae228fc636ef2db0359e7";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4562058/dearrow-2.1.7.xpi";
+    sha256 = "e1938bf3efdf66f60588d0867b3f5b40496d8fe42a8ac1c12d4377fa26c7dacf";
     meta = with lib; {
       homepage = "https://dearrow.ajay.app";
       description = "Crowdsourcing titles and thumbnails to be descriptive and not sensational";
@@ -447,10 +447,10 @@
   };
   "refined-github-" = buildFirefoxXpiAddon {
     pname = "refined-github-";
-    version = "25.8.23";
+    version = "25.8.27";
     addonId = "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4563040/refined_github-25.8.23.xpi";
-    sha256 = "3dce4c6f1be666406746a5121172731a0e208f9521baa59847ea561f3302fecf";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4566240/refined_github-25.8.27.xpi";
+    sha256 = "ed1908dbe373ef36de76baea6217d807efddee981a2c762146c76f5279d3d309";
     meta = with lib; {
       homepage = "https://github.com/refined-github/refined-github";
       description = "Simplifies the GitHub interface and adds many useful features.";
