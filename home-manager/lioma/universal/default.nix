@@ -513,6 +513,10 @@
             tmux attach -t shell >/dev/null 2>&1; or tmux new -s shell
           end
         '';
+
+      shellAbbrs = {
+        zbw = "zig build -Dno-bin --watch -fincremental --prominent-compile-errors";
+      };
     };
 
     nushell = {
