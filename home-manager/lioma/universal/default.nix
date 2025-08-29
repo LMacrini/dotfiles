@@ -112,6 +112,9 @@
       enable = true;
       nix-direnv.enable = true;
       silent = true;
+      config = {
+        warn_timeout = "0s";
+      };
     };
 
     floorp = import ./floorp.nix params;
