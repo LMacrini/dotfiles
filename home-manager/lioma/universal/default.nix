@@ -250,9 +250,14 @@
         package = pkgs.nerd-fonts.fira-code;
       };
 
-      keybindings = lib.optionalAttrs (config.programs.tmux.enable || config.programs.zellij.enable) {
-        "kitty_mod+t" = "no_op";
-      };
+      keybindings =
+        {
+          "kitty_mod+enter" = "launch --cwd=current";
+        }
+        // lib.optionalAttrs (config.programs.tmux.enable || config.programs.zellij.enable) {
+          "kitty_mod+t" = "no_op";
+          "kitty_mod+enter" = "no_op";
+        };
 
       shellIntegration = {
         mode = "no-cursor";
