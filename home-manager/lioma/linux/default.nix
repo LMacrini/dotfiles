@@ -239,7 +239,7 @@
         startupNotify = false;
         exec = "kitty -- hx %f";
       };
-      kitty-no-tmux = lib.mkIf config.programs.kitty.enable {
+      kitty-no-tmux = lib.mkIf (config.programs.kitty.enable || config.programs.tmux.enable) {
         name = "kitty (no tmux)";
         icon = "kitty";
         categories = ["System" "TerminalEmulator"];

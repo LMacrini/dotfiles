@@ -250,7 +250,7 @@
         package = pkgs.nerd-fonts.fira-code;
       };
 
-      keybindings = {
+      keybindings = lib.optionalAttrs (config.programs.tmux.enable || config.programs.zellij.enable) {
         "kitty_mod+t" = "no_op";
       };
 
@@ -408,7 +408,7 @@
     };
 
     tmux = {
-      enable = true;
+      # enable = true;
 
       baseIndex = 1;
       clock24 = true;
