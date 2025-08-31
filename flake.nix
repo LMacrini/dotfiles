@@ -35,10 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
 
     moonlight = {
       url = "github:moonlight-mod/moonlight/develop";
