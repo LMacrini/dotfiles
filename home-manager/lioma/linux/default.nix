@@ -212,6 +212,7 @@
         "inode/directory" = ["thunar.desktop" "org.gnome.Nautilus.desktop" "pcmanfm.desktop"];
         "x-scheme-handler/https" = browsers;
         "x-scheme-handler/http" = browsers;
+        "x-scheme-handler/terminal" = ["kitty.desktop" "com.mitchellh.ghostty.desktop"];
         "image/*" = images;
         "image/gif" = images;
         "image/jpeg" = images;
