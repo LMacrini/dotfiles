@@ -24,10 +24,10 @@
 
   system = {
     nixos = {
-      distroId = "wamos";
-      distroName = "WamOS";
-      vendorId = "wamos";
-      vendorName = "WamOS";
+      distroId = "seios";
+      distroName = "SeiOS";
+      vendorId = "seios";
+      vendorName = "SeiOS";
     };
     inherit (config) stateVersion;
 
