@@ -45,6 +45,7 @@
 
   home.packages = with pkgs; [
     dconf-editor
+    zoom-us
     unityhub
   ];
 
