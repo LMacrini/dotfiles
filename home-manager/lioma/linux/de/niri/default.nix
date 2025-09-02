@@ -6,11 +6,11 @@
   ...
 }: let
   brightnessctl = lib.getExe pkgs.brightnessctl;
-  loginctl = "${pkgs.systemd}/bin/loginctl";
+  loginctl = lib.getExe' pkgs.systemd "loginctl";
   rofi = lib.getExe config.programs.rofi.finalPackage;
   swaylock = lib.getExe config.programs.swaylock.package;
-  systemctl = "${pkgs.systemd}/bin/systemctl";
-  wpctl = "${pkgs.wireplumber}/bin/wpctl";
+  systemctl = lib.getExe' pkgs.systemd "systemctl";
+  wpctl = lib.getExe' pkgs.wireplumber "wpctl";
 in
   lib.mkIf (cfg.de.de == "niri") {
     programs.niri.settings = let
