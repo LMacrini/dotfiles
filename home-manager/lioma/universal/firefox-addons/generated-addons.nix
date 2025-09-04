@@ -6,10 +6,10 @@
 }: {
   "bitwarden-password-manager" = buildFirefoxXpiAddon {
     pname = "bitwarden-password-manager";
-    version = "2025.8.1";
+    version = "2025.8.2";
     addonId = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4562769/bitwarden_password_manager-2025.8.1.xpi";
-    sha256 = "840e07f5d1946496276e44ee0a8986f46d7476d22f769389d0d389402a9d49fe";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4567044/bitwarden_password_manager-2025.8.2.xpi";
+    sha256 = "0a6d986010d4845454083e2a02f81667b43dd7e4901693f4a7d0e7c67d9f7ffb";
     meta = with lib; {
       homepage = "https://bitwarden.com";
       description = "At home, at work, or on the go, Bitwarden easily secures all your passwords, passkeys, and sensitive information.";
@@ -84,10 +84,10 @@
   };
   "dearrow" = buildFirefoxXpiAddon {
     pname = "dearrow";
-    version = "2.1.7";
+    version = "2.1.8";
     addonId = "deArrow@ajay.app";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4562058/dearrow-2.1.7.xpi";
-    sha256 = "e1938bf3efdf66f60588d0867b3f5b40496d8fe42a8ac1c12d4377fa26c7dacf";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4566992/dearrow-2.1.8.xpi";
+    sha256 = "ddd13a9edad6fd508f00ad9c0c49a9a7f5af10fe6224924dfed2cbd94f6581aa";
     meta = with lib; {
       homepage = "https://dearrow.ajay.app";
       description = "Crowdsourcing titles and thumbnails to be descriptive and not sensational";
