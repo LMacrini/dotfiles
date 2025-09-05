@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756948762,
-        "narHash": "sha256-yQUaCz0bu4b09Yse1YWqZyun1rU+pbm63RkYFUFdfBs=",
+        "lastModified": 1757037883,
+        "narHash": "sha256-VFxrVB4eTc1wAReTTFiattSe/QA+DVRPPVonb2/vfIw=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "4d06a7cf8096476b87cf13fe18a4f0632a97e81f",
+        "rev": "f1f919a574146174bda34d6f232db7bf5bc5a6fa",
         "type": "github"
       },
       "original": {
@@ -256,11 +256,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756950352,
-        "narHash": "sha256-CkNlcUeNlDmxF1GJwEQg3aIBSCihnFcAqCwBjUQGqNY=",
+        "lastModified": 1757037153,
+        "narHash": "sha256-C/7KPJln4yL5au1ivOJOEgAFbMVAw/cFmQp80O8friA=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "64ac07fae89f297beab704dce70038cdbda55c25",
+        "rev": "c1376c823e440c159c0bde9fc22a6cee19c25b24",
         "type": "github"
       },
       "original": {
@@ -418,11 +418,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1756905000,
-        "narHash": "sha256-gj2AbDtAouMLDuDLG00pLlPE8jY497HRfeilrtU0H8Q=",
+        "lastModified": 1757017000,
+        "narHash": "sha256-T+S5hMNmcJLawPMbbIWOKcR5cYbCUNxTCrJjPTJXnR4=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "3a340696d43bed3c33269e6bfc677670aa1857e5",
+        "rev": "24bc4e8f0c2e0e2c6e76b9bc0377dd5f97e92e7f",
         "type": "github"
       },
       "original": {
@@ -438,11 +438,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756831196,
-        "narHash": "sha256-ce3GbGNCYSXswHpoSKXxRDlGNcsZ30lciERrtjCz1Qo=",
+        "lastModified": 1756981260,
+        "narHash": "sha256-GhuD9QVimjynHI0OOyZsqJsnlXr2orowh9H+HYz4YMs=",
         "ref": "refs/heads/master",
-        "rev": "f592793873f3cab387fafdad1d08a696a0edcede",
-        "revCount": 669,
+        "rev": "6eb12551baf924f8fdecdd04113863a754259c34",
+        "revCount": 672,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
@@ -585,11 +585,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756834367,
-        "narHash": "sha256-Pt4u1mrE8XajL09P5nDwRYH/v0sefvdYlNyU1IERry0=",
+        "lastModified": 1757016093,
+        "narHash": "sha256-SlWqmQ/fcsvj1y+zQPwUb7XWG3MywldTLFTAZNcHrbs=",
         "owner": "silversquirl",
         "repo": "zig-flake",
-        "rev": "8ca23d514e4df5eb32a8fcab97e46165c9dceeda",
+        "rev": "5ca940cc91743be63246b35c44b56adb449a5c04",
         "type": "github"
       },
       "original": {
