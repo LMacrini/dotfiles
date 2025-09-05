@@ -144,7 +144,7 @@ in
       input = {
         focus-follows-mouse = {
           enable = true;
-          max-scroll-amount = "95%";
+          max-scroll-amount = "10%";
         };
 
         keyboard = {
