@@ -91,6 +91,15 @@
   };
 
   programs = {
+    bat = {
+      enable = true;
+
+      extraPackages = with pkgs.bat-extras; [
+        batgrep
+        batman
+      ];
+    };
+
     carapace = {
       enable = true;
       enableBashIntegration = false;
