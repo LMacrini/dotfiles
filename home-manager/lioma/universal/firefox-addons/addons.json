@@ -1,5 +1,8 @@
 [
   {
+    "slug": "annotations-restored"
+  }
+  {
     "slug": "bitwarden-password-manager"
   },
   {
@@ -8,6 +11,9 @@
   {
     "slug": "catppuccin-macchiato-pink"
   },
+  {
+    "slug": "consent-o-matic"
+  }
   {
     "slug": "darkreader"
   },
@@ -24,8 +30,14 @@
     "slug": "indie-wiki-buddy"
   },
   {
+    "slug": "localcdn-fork-of-decentraleyes"
+  }
+  {
     "slug": "nekocap"
   },
+  {
+    "slug": "nixpkgs-pr-tracker"
+  }
   {
     "slug": "refined-github-"
   },
@@ -39,6 +51,9 @@
     "slug": "sponsorblock"
   },
   {
+    "slug": "stop-malware-content"
+  }
+  {
     "slug": "styl-us"
   },
   {
@@ -47,6 +62,9 @@
   {
     "slug": "ublock-origin"
   },
+  {
+    "slug": "ultimadark"
+  }
   {
     "slug": "vimium-ff"
   },
