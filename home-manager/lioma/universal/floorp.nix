@@ -123,23 +123,23 @@ in {
       extensions = {
         force = true;
         packages = with addons; [
+          annotations-restored
           bitwarden-password-manager
           bonjourr-startpage
           catppuccin-macchiato-pink
-          darkreader
+          consent-o-matic
           dearrow
-          decentraleyes
           indie-wiki-buddy
-          # nekocap
+          localcdn-fork-of-decentraleyes
+          nixpkgs-pr-tracker
           refined-github-
           return-youtube-dislikes
           simple-tab-groups
+          stop-malware-content
           sponsorblock
           styl-us
-          traduzir-paginas-web
           ublock-origin
-          vimium-ff
-          # youtube-anti-translate
+          ultimadark
           youtube-tweaks
         ];
         settings = {
