@@ -45,8 +45,9 @@
 
   home.packages = with pkgs; [
     dconf-editor
-    zoom-us
+    teams-for-linux
     unityhub
+    zoom-us
   ];
 
   services.flatpak.packages = [
