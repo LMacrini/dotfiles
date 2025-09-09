@@ -4,6 +4,24 @@
   lib,
   stdenv,
 }: {
+  "annotations-restored" = buildFirefoxXpiAddon {
+    pname = "annotations-restored";
+    version = "1.2";
+    addonId = "{0731d555-4732-4047-99f9-38a388ffa044}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4002251/annotations_restored-1.2.xpi";
+    sha256 = "114666c34865b32f31162e47959da3b46735f31c9166ce71fd60a97f04822c64";
+    meta = with lib; {
+      homepage = "https://github.com/isaackd/AnnotationsRestored";
+      description = "Brings annotation support back to YouTube™!";
+      license = licenses.gpl3;
+      mozPermissions = [
+        "https://storage.googleapis.com/biggest_bucket/annotations/*"
+        "storage"
+        "*://www.youtube.com/*"
+      ];
+      platforms = platforms.all;
+    };
+  };
   "bitwarden-password-manager" = buildFirefoxXpiAddon {
     pname = "bitwarden-password-manager";
     version = "2025.8.2";
@@ -58,6 +76,20 @@
       homepage = "https://github.com/catppuccin/firefox";
       description = "🦊 Soothing pastel theme for Firefox";
       mozPermissions = [];
+      platforms = platforms.all;
+    };
+  };
+  "consent-o-matic" = buildFirefoxXpiAddon {
+    pname = "consent-o-matic";
+    version = "1.1.5";
+    addonId = "gdpr@cavi.au.dk";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4515369/consent_o_matic-1.1.5.xpi";
+    sha256 = "a2119abc329638d6e7af1ab4e5548a348465e02eec11de08dee0af84919923dc";
+    meta = with lib; {
+      homepage = "https://consentomatic.au.dk/";
+      description = "Automatic handling of GDPR consent forms";
+      license = licenses.mit;
+      mozPermissions = ["activeTab" "tabs" "storage" "<all_urls>"];
       platforms = platforms.all;
     };
   };
@@ -405,6 +437,27 @@
       platforms = platforms.all;
     };
   };
+  "localcdn-fork-of-decentraleyes" = buildFirefoxXpiAddon {
+    pname = "localcdn-fork-of-decentraleyes";
+    version = "2.6.81";
+    addonId = "{b86e4813-687a-43e6-ab65-0bde4ab75758}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4557546/localcdn_fork_of_decentraleyes-2.6.81.xpi";
+    sha256 = "98a33081a50230f18d173d7b64be9de6c35e7a5b68f7710978e9b36257852cd8";
+    meta = with lib; {
+      homepage = "https://www.localcdn.org";
+      description = "Emulates remote frameworks (e.g. jQuery, Bootstrap, AngularJS) and delivers them as local resource. Prevents unnecessary 3rd party requests to Google, StackPath, MaxCDN and more. Prepared rules for uBlock Origin/uMatrix.";
+      license = licenses.mpl20;
+      mozPermissions = [
+        "*://*/*"
+        "privacy"
+        "storage"
+        "webNavigation"
+        "webRequest"
+        "webRequestBlocking"
+      ];
+      platforms = platforms.all;
+    };
+  };
   "nekocap" = buildFirefoxXpiAddon {
     pname = "nekocap";
     version = "1.18.1";
@@ -442,6 +495,19 @@
         "https://*.oned.net/*"
         "https://*.archive.org/*"
       ];
+      platforms = platforms.all;
+    };
+  };
+  "nixpkgs-pr-tracker" = buildFirefoxXpiAddon {
+    pname = "nixpkgs-pr-tracker";
+    version = "0.1.2";
+    addonId = "nixpkgs-pr-tracker@tahayassine.me";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4560332/nixpkgs_pr_tracker-0.1.2.xpi";
+    sha256 = "91a0b64787f503c3f3d89dfefe36a4bfc6bb1724e9e87fd01a1e8a5e79e1a7c8";
+    meta = with lib; {
+      description = "Shows which branch a Nixpkgs PR is merged into.";
+      license = licenses.mit;
+      mozPermissions = ["storage" "https://github.com/*"];
       platforms = platforms.all;
     };
   };
@@ -534,6 +600,20 @@
       platforms = platforms.all;
     };
   };
+  "stop-malware-content" = buildFirefoxXpiAddon {
+    pname = "stop-malware-content";
+    version = "1.4.5";
+    addonId = "{f58788c2-383d-4453-9e7d-afdcca0c9e65}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4516688/stop_malware_content-1.4.5.xpi";
+    sha256 = "05c6ebcb5f04bfa5e91b49fd131d79b6ed977616532c5d90802228d46a40b86a";
+    meta = with lib; {
+      homepage = "https://stopmalwarecontent.lodine.xyz";
+      description = "Alerts you when you attempt to visit suspicious or harmful websites.";
+      license = licenses.gpl3;
+      mozPermissions = ["tabs"];
+      platforms = platforms.all;
+    };
+  };
   "styl-us" = buildFirefoxXpiAddon {
     pname = "styl-us";
     version = "2.3.16";
@@ -613,6 +693,29 @@
         "https://github.com/uBlockOrigin/*"
         "https://ublockorigin.github.io/*"
         "https://*.reddit.com/r/uBlockOrigin/*"
+      ];
+      platforms = platforms.all;
+    };
+  };
+  "ultimadark" = buildFirefoxXpiAddon {
+    pname = "ultimadark";
+    version = "1.6.24";
+    addonId = "{7c7f6dea-3957-4bb9-9eec-2ef2b9e5bcec}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4563286/ultimadark-1.6.24.xpi";
+    sha256 = "9e78b1e4bb05127b459c533b924f690ba75c814214f08e01285f6a85cb5778e8";
+    meta = with lib; {
+      homepage = "https://github.com/ThomazPom/Moz-Ext-UltimaDark";
+      description = "UltimaDark uses agressive and smart techniques to turn even the sunniest websites into realms of darkness.\nAlthough it works well, this is so experimental, it makes lab rats look like seasoned professionals. \nGo ahead, embrace the shadows! 🦇";
+      license = licenses.mpl20;
+      mozPermissions = [
+        "<all_urls>"
+        "tabs"
+        "browsingData"
+        "webNavigation"
+        "webRequest"
+        "webRequestBlocking"
+        "storage"
+        "unlimitedStorage"
       ];
       platforms = platforms.all;
     };
