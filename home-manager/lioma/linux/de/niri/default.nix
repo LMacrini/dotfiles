@@ -215,6 +215,14 @@ in
 
           block-out-from = "screen-capture";
         }
+        {
+          matches = [
+            {
+              title = "Python Turtle Graphics";
+            }
+          ];
+          open-floating = true;
+        }
       ];
 
       xwayland-satellite = {
