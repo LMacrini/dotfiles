@@ -203,6 +203,7 @@
         videos = ["io.github.celluloid_player.Celluloid.desktop" "vlc.desktop"];
         editors = ["helix-kitty.desktop" "nvim-kitty.desktop" "org.gnome.gedit.desktop"];
       in {
+        "application/pdf" = ["sioyek.desktop"] ++ browsers;
         "application/gzip" = archives;
         "application/x-7z-compressed" = archives;
         "application/x-tar" = archives;
