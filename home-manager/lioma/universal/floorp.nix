@@ -140,6 +140,7 @@ in {
           styl-us
           ublock-origin
           ultimadark
+          violentmonkey
           youtube-tweaks
         ];
         settings = {
