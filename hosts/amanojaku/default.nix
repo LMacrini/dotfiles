@@ -24,7 +24,7 @@
   ssh.enable = true;
 
   specialisation = {
-    Work.configuration = {
+    Work.configuration = lib.mkIf false {
       environment.etc.specialisation.text = "Work";
       system.nixos.tags = ["Work"];
 
