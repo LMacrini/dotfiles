@@ -30,15 +30,6 @@
       vendorName = "SeiOS";
     };
     inherit (config) stateVersion;
-
-    autoUpgrade = {
-      flake = inputs.self.outPath;
-      flags = [
-        "--print-build-logs"
-      ];
-      dates = "*-*-* 03:00:00 UTC";
-      randomizedDelaySec = "45min";
-    };
   };
 
   nix = {
