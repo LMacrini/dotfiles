@@ -1,27 +1,38 @@
 {pkgs, ...}: {
-  programs.niri.settings.outputs = {
-    "DP-1" = {
-      enable = true;
-      focus-at-startup = true;
-      position = {
-        x = 0;
-        y = 0;
+  programs.niri.settings = {
+    input = {
+      tablet = {
+        map-to-output = "DP-1";
+        calibration-matrix = [
+          [1.0 0.0 0.0]
+          [0.0 2.0 0.0]
+        ];
       };
-      scale = 1;
     };
+    outputs = {
+      "DP-1" = {
+        enable = true;
+        focus-at-startup = true;
+        position = {
+          x = 0;
+          y = 0;
+        };
+        scale = 1;
+      };
 
-    "HDMI-A-2" = {
-      enable = true;
-      mode = {
-        width = 1920;
-        height = 1080;
-        refresh = 144.001;
+      "HDMI-A-2" = {
+        enable = true;
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 144.001;
+        };
+        position = {
+          x = 2560;
+          y = 180;
+        };
+        scale = 1;
       };
-      position = {
-        x = 2560;
-        y = 180;
-      };
-      scale = 1;
     };
   };
 
