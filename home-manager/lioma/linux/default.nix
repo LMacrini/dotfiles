@@ -136,6 +136,8 @@
         recursive = true;
       };
 
+      "fourmolu.yaml".source = ./home/config/fourmolu.yaml;
+
       ghostty = {
         source = ./home/config/ghostty;
         recursive = true;

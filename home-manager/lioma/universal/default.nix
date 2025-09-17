@@ -41,7 +41,7 @@
       };
 
       "*.{md,txt}" = {
-        indent_size = "unset";
+        indent_size = 8;
         indent_style = "tabs";
       };
 
@@ -227,6 +227,11 @@
 
       [language-server.zls.config]
       enable_snippets = false
+
+      [[language]]
+      name = "haskell"
+      formatter = { command = 'fourmolu', args = ["--stdin-input-file", "."] }
+      auto-format = true
     '';
 
   programs = {
