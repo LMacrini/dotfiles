@@ -9,10 +9,8 @@
   };
 
   config = lib.mkIf config.games.standalone.enable {
-    users.users.lioma.packages = with pkgs; [
-      (gaming.osu-lazer-bin.override {
-        releaseStream = "tachyon";
-      })
+    home-manager.users.lioma.home.packages = with pkgs; [
+      my.osu-tachyon
     ];
   };
 }

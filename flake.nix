@@ -119,6 +119,7 @@
                 pkgs = import nixpkgs {
                   inherit system;
                   overlays = [overlay.${system}];
+                  config.allowUnfree = true;
                 };
               in {
                 name = system;
@@ -138,7 +139,7 @@
     overlay = eachSystem (system: next: prev: {
       unstable = import inputs.nixpkgs-unstable {
         inherit system;
-        config.allowUnfree = true;
+        config.allowUnfree = prev.config.allowUnfree;
       };
 
       quickshell = inputs.quickshell.packages.${system}.default.override {
