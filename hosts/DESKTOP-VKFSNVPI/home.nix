@@ -4,8 +4,8 @@
       tablet = {
         map-to-output = "DP-1";
         calibration-matrix = [
-          [1.0 0.0 0.0]
-          [0.0 2.0 0.0]
+          [1.25 0.0 0.0]
+          [0.0 2.5 0.0]
         ];
       };
     };
