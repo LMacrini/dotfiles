@@ -19,13 +19,18 @@ jobs:
 
       - uses: Prince527/install-nix-action@master
 
-      - name: Update packages
+      - name: Update firefox addons
         run: |
-          nix flake update
           nix run github:nix-community/nur#repos.rycee.mozilla-addons-to-nix \
                     home-manager/lioma/universal/firefox-addons/addons.json \
                     home-manager/lioma/universal/firefox-addons/generated-addons.nix
+          nix fmt home-manager/lioma/universal/firefox-addons/generated-addons.nix
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
+      - name: Update packages
+        run: |
+          nix flake update
           ./.forgejo/update.sh ./pkgs/osu-tachyon/info.json
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
