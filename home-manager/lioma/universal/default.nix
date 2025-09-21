@@ -401,6 +401,7 @@
             enabled = true;
             config.pastelize = true;
           };
+          sendTimestamps.enabled = true;
           spotifySpoof.enabled = true;
           streamQualityWorkaround.enabled = true; # TODO: figure out if i want this
           svgEmbed.enabled = true;
