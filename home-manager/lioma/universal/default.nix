@@ -501,6 +501,7 @@
         show_startup_tips = false;
         session_serialization = false; # TODO: change when they save properly
         support_kitty_keyboard_protocol = false; # HACK: remove this line when helix's version updates past 25.07.01
+        # TODO: check on this in 25.11
       };
     };
 
