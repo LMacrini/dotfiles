@@ -482,7 +482,10 @@
     };
 
     zellij = {
-      enable = !config.guiApps;
+      enable = lib.mkDefault (builtins.all (x: !x) [
+        config.programs.kitty.enable
+        config.programs.ghostty.enable
+      ]);
 
       # TODO: revisit in 25.11, this shouldn't be required
       inherit
@@ -497,7 +500,7 @@
         layout_dir = toString ./zellij-layouts;
         show_startup_tips = false;
         session_serialization = false; # TODO: change when they save properly
-        support_kitty_keyboard_protocol = false; # HACK: remove this line when helix updates crossterm to v0.29.0 or later
+        support_kitty_keyboard_protocol = false; # HACK: remove this line when helix's version updates past 25.07.01
       };
     };
 
