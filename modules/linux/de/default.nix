@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./dm.nix
     ./gnome.nix
@@ -22,5 +26,9 @@
         example = "gnome";
       };
     };
+  };
+
+  config = lib.mkIf (config.de.de == null) {
+    guiApps = lib.mkDefault false;
   };
 }
