@@ -49,23 +49,25 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
 
-  home.packages = with pkgs; [
-    cheese
-    celluloid
-    eartag
-    eog
-    gearlever
-    gimp3
-    gnome-disk-utility
-    peazip
-    pkgs.resources # what a genius idea to have a variable named resources
-    my.re-lunatic-player
-    vlc
+  home.packages = with pkgs;
+    []
+    ++ lib.optionals config.guiApps [
+      cheese
+      celluloid
+      eartag
+      eog
+      gearlever
+      gimp3
+      gnome-disk-utility
+      peazip
+      pkgs.resources # what a genius idea to have a variable named resources
+      my.re-lunatic-player
+      vlc
 
-    # decide which to use
-    # helvum
-    qpwgraph
-  ];
+      # decide which to use
+      # helvum
+      qpwgraph
+    ];
 
   home.sessionVariables = {
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
@@ -81,7 +83,7 @@
           location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
         }
       ];
-      packages = [
+      packages = lib.optionals config.guiApps [
         "com.usebottles.bottles"
         # "net.bartkessels.getit"
         # "org.gnome.Showtime"
@@ -300,7 +302,7 @@
   };
 
   programs = {
-    sioyek.enable = true;
+    sioyek.enable = config.guiApps;
   };
 
   dconf.settings = {

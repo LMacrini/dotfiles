@@ -1,10 +1,5 @@
 {lib, ...}: {
   options = with lib; {
     guiApps = mkEnableOption "gui apps" // {default = true;};
-
-    mainUser = mkOption {
-      default = "lioma";
-      type = types.str;
-    };
   };
 }

@@ -48,7 +48,7 @@
       cfg = config;
     };
     users = {
-      "${config.mainUser}" = import ../../home-manager/lioma;
+      "${config.mainUser}" = import ../../home-manager/lioma/from-nixos.nix;
     };
     useGlobalPkgs = true;
     useUserPackages = true;

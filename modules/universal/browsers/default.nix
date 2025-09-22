@@ -15,7 +15,7 @@
   config = {
     browsers = {
       all.enable = lib.mkDefault false;
-      floorp.enable = lib.mkDefault true;
+      floorp.enable = lib.mkDefault config.guiApps;
       ungoogled-chromium.enable = lib.mkDefault config.browsers.all.enable;
     };
   };

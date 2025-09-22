@@ -1,6 +1,8 @@
 {
   os,
   extraHome,
+  cfg,
+  lib,
   ...
 }: {
   imports = [
@@ -8,4 +10,6 @@
     (./. + "/${os}")
     extraHome
   ];
+
+  guiApps = lib.mkDefault cfg.guiApps;
 }

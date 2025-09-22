@@ -7,6 +7,7 @@
   ...
 } @ params: {
   imports = [
+    ./options.nix
     inputs.moonlight.homeModules.default
   ];
 
@@ -72,16 +73,17 @@
       };
     };
 
-    packages = with pkgs; [
-      bitwarden-desktop
-      (discord.override {
-        moonlight = inputs.moonlight.packages.${system}.moonlight;
-        withOpenASAR = true;
-        withMoonlight = true;
-      })
-      # (unstable.equibop.override {electron = electron_36;})
-      keymapp
-    ];
+    packages = with pkgs;
+      lib.mkIf config.guiApps [
+        bitwarden-desktop
+        (discord.override {
+          moonlight = inputs.moonlight.packages.${system}.moonlight;
+          withOpenASAR = true;
+          withMoonlight = true;
+        })
+        # (unstable.equibop.override {electron = electron_36;})
+        keymapp
+      ];
   };
 
   services = {
@@ -308,7 +310,7 @@
     };
 
     moonlight = {
-      enable = true;
+      enable = config.guiApps;
       configs.stable = {
         repositories = [
           "https://moonlight-mod.github.io/extensions-dist/repo.json"
@@ -429,7 +431,7 @@
     };
 
     thunderbird = {
-      enable = true;
+      enable = config.guiApps;
 
       profiles = {
         default = {
@@ -480,7 +482,7 @@
     };
 
     zellij = {
-      # enable = true;
+      enable = !config.guiApps;
 
       # TODO: revisit in 25.11, this shouldn't be required
       inherit
