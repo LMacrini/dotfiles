@@ -160,18 +160,33 @@
           soft-wrap.enable = true;
         };
 
-        keys = {
-          insert = {
-            up = "no_op";
-            down = "no_op";
-            left = "no_op";
-            right = "no_op";
-            pageup = "no_op";
-            pagedown = "no_op";
-            home = "no_op";
-            end = "no_op";
-          };
-        };
+        keys =
+          lib.recursiveUpdate {
+            insert = {
+              up = "no_op";
+              down = "no_op";
+              left = "no_op";
+              right = "no_op";
+              pageup = "no_op";
+              pagedown = "no_op";
+              home = "no_op";
+              end = "no_op";
+            };
+          } (lib.optionalAttrs (config.programs.kitty.enable || config.programs.ghostty.enable) {
+            normal = {
+              tab = "move_parent_node_end";
+              S-tab = "move_parent_node_start";
+            };
+
+            insert = {
+              S-tab = "move_parent_node_start";
+            };
+
+            select = {
+              tab = "extend_parent_node_end";
+              S-tab = "extend_parent_node_start";
+            };
+          });
       };
       # NOTE: i am really mad, i think the way that helix works makes the generated toml not work properly
       # languages = {
