@@ -10,6 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs = {
@@ -73,6 +75,7 @@
   outputs = {
     nixpkgs,
     nix-darwin,
+    determinate,
     ...
   } @ inputs: let
     defaultSystems = [
@@ -179,6 +182,7 @@
           ./hosts/${path}
           ./modules/linux
           ./modules/universal
+          determinate.nixosModules.default
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.catppuccin.nixosModules.catppuccin
           inputs.niri.nixosModules.niri
