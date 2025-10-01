@@ -14,6 +14,7 @@
   networking.hostName = "amanojaku";
 
   games.light.enable = true;
+  games.launchers.enable = true;
 
   laptop.enable = true;
 
