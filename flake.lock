@@ -90,11 +90,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759284850,
-        "narHash": "sha256-MP06v4gTOch6UMyoxPSNWkDarPbgj8HlZtenHIQzhXE=",
+        "lastModified": 1759370635,
+        "narHash": "sha256-qX5Ot+d1Hh7wvpDnt41dwJC3VqzpG+Yue4d3fM/Xlmk=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "e0929cc9ff9bfd638f60b38b1f55605b5e75363a",
+        "rev": "e8a15f25bcbd4e29cd7a36e1fbc3df525cca9acb",
         "type": "github"
       },
       "original": {
@@ -265,11 +265,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758498346,
-        "narHash": "sha256-MaS7LwFtHziNrg1yQWyx9LTnka2Hb15y5MSncZ+IvvI=",
+        "lastModified": 1759350982,
+        "narHash": "sha256-HlSyg/ccr1AKwui1lx7aLK3ocOPGaiTVVHDB1xL+wWQ=",
         "owner": "moonlight-mod",
         "repo": "moonlight",
-        "rev": "b074791394b0c7777bf713cff30cf0dc2144b096",
+        "rev": "58a9e4b165abbd900068fccc1763efc79ad52484",
         "type": "github"
       },
       "original": {
@@ -289,11 +289,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1759207481,
-        "narHash": "sha256-xhUr1oMQwL/8h8xnPi5QxUHRFDHoCofhw8Jy7qTD4BY=",
+        "lastModified": 1759368439,
+        "narHash": "sha256-bnSC8cERE0zJDCY7yr+ds6YR1ndVIzZDSRXs5X5ybKI=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "d425163158a96a26924597574316a627d2e982aa",
+        "rev": "f7b8c9ff119c1a190df9260aa8871d52663ea9b7",
         "type": "github"
       },
       "original": {
@@ -509,11 +509,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1759143472,
-        "narHash": "sha256-TvODmeR2W7yX/JmOCmP+lAFNkTT7hAxYcF3Kz8SZV3w=",
+        "lastModified": 1759281824,
+        "narHash": "sha256-FIBE1qXv9TKvSNwst6FumyHwCRH3BlWDpfsnqRDCll0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5ed4e25ab58fd4c028b59d5611e14ea64de51d23",
+        "rev": "5b5be50345d4113d04ba58c444348849f5585b4a",
         "type": "github"
       },
       "original": {
@@ -601,11 +601,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1759143472,
-        "narHash": "sha256-TvODmeR2W7yX/JmOCmP+lAFNkTT7hAxYcF3Kz8SZV3w=",
+        "lastModified": 1759281824,
+        "narHash": "sha256-FIBE1qXv9TKvSNwst6FumyHwCRH3BlWDpfsnqRDCll0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5ed4e25ab58fd4c028b59d5611e14ea64de51d23",
+        "rev": "5b5be50345d4113d04ba58c444348849f5585b4a",
         "type": "github"
       },
       "original": {
@@ -623,11 +623,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1759257171,
-        "narHash": "sha256-4y7crX3XbncqVrcjsKzU1lw7gGyvEuqfycKikfw53p0=",
+        "lastModified": 1759360589,
+        "narHash": "sha256-fyz57wjfK/P+HV0vHODviex66WRGM8KQDDmxKpCpwtA=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "c2cca5e55d2b7071e695a53419f5ca369947b5f9",
+        "rev": "08e9bca7838aac09fad885bb725d3340cea1ca8f",
         "type": "github"
       },
       "original": {
@@ -643,11 +643,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759208386,
-        "narHash": "sha256-IQCtGpy+Z1GupmTeJKSb/bXf097jL5fnsGnP8PArkPo=",
+        "lastModified": 1759303785,
+        "narHash": "sha256-EUXrK7pUIzOQWR1dquZh26A6W8lsY2oiHEEZzQnsarM=",
         "ref": "refs/heads/master",
-        "rev": "482744cfa95cdb76a6175d08f29f35005b8e0887",
-        "revCount": 684,
+        "rev": "9662234759eb57f2a1057f2a1c667da1bf128c1c",
+        "revCount": 686,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
@@ -791,11 +791,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759253598,
-        "narHash": "sha256-iYuY9aO4UZogZYTBRjtf4ZtXc+4X3A5hb7z5Uz6re2Y=",
+        "lastModified": 1759314934,
+        "narHash": "sha256-kFbX1WYtd4C1d7Kq3ajWPjUTuKRaYDuT1+8X0+Gw9gg=",
         "owner": "silversquirl",
         "repo": "zig-flake",
-        "rev": "8d75b39b8941a49af5a267cc6b93ff06f78de701",
+        "rev": "df2615c72076e875c7609b9980c62926bea1a84e",
         "type": "github"
       },
       "original": {
