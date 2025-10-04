@@ -108,6 +108,14 @@
         ];
       };
     };
+
+    wpaperd = {
+      settings = {
+        any = {
+          path = "${pkgs.my.imgs}/share/background.jpg";
+        };
+      };
+    };
   };
 
   home.shellAliases = {

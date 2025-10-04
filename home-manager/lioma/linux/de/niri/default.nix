@@ -184,7 +184,6 @@ in
       spawn-at-startup = [
         {command = ["kanata"];}
         {command = ["waybar"];}
-        {command = ["swww" "img" "${pkgs.my.imgs}/share/background.jpg"];}
       ];
 
       switch-events = {
@@ -344,7 +343,7 @@ in
         ];
       };
       swaync.enable = true;
-      swww.enable = true;
+      wpaperd.enable = true;
 
       wayland-pipewire-idle-inhibit = {
         enable = true;
