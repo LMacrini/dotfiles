@@ -478,6 +478,11 @@
       '';
     };
 
+    yt-dlp = {
+      enable = true;
+      package = pkgs.unstable.yt-dlp;
+    };
+
     zellij = {
       enable = lib.mkDefault (builtins.all (x: !x) [
         config.programs.kitty.enable
