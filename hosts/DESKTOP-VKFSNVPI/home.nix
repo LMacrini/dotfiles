@@ -34,6 +34,9 @@
         scale = 1;
       };
     };
+    spawn-at-startup = [
+      {command = ["noisetorch" "-i" "alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo"];}
+    ];
   };
 
   xdg.desktopEntries = {
