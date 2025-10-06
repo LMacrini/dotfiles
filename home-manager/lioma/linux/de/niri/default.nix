@@ -343,6 +343,9 @@ in
         ];
       };
       swaync.enable = true;
+
+      trash.enable = true;
+
       wpaperd.enable = true;
 
       wayland-pipewire-idle-inhibit = {
