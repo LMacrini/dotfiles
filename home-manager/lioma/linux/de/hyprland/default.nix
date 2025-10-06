@@ -162,6 +162,7 @@ lib.mkIf (cfg.de.de == "hyprland") {
     hyprpolkitagent.enable = true;
     network-manager-applet.enable = true;
     swaync.enable = true;
+    trash.enable = true;
   };
 
   wayland.windowManager.hyprland = {
