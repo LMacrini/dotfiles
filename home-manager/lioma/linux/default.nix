@@ -21,7 +21,7 @@
     enable = true;
 
     cursors = {
-      enable = true; # TODO: 25.11
+      enable = false; # TODO: 25.11
       accent = "dark";
     };
 
@@ -125,6 +125,9 @@
   };
 
   home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+
     gtk.enable = true;
     x11.enable = true;
     size = 24;
@@ -336,7 +339,8 @@
       accent-color = "blue";
       clock-format = "24h";
       color-scheme = "prefer-dark";
-      cursor-size = 24;
+      cursor-theme = config.home.pointerCursor.name;
+      cursor-size = config.home.pointerCursor.size;
       document-font-name = "Noto Sans Medium 11";
       font-name = "Noto Sans Medium 11";
       gtk-theme = "adw-gtk3-dark";
