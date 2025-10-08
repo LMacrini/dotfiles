@@ -15,7 +15,7 @@
       wine
       fjordlauncher
       heroic
-      unstable.lutris
+      lutris
       protonplus
     ];
 

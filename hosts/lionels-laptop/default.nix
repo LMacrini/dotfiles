@@ -27,9 +27,6 @@
 
   games.light.enable = true;
   programs.steam.enable = true;
-  environment.systemPackages = with pkgs; [
-    lutris
-  ];
   games.greentimer.enable = false;
 
   laptop.enable = true;
