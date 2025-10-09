@@ -133,6 +133,8 @@ in
 
       cursor = {
         hide-when-typing = true;
+        size = config.home.sessionVariables.XCURSOR_SIZE;
+        theme = config.home.sessionVariables.XCURSOR_THEME;
       };
 
       gestures = {

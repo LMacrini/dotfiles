@@ -125,16 +125,16 @@
   };
 
   home.pointerCursor = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
+    name = lib.mkDefault "Bibata-Modern-Classic";
+    size = lib.mkDefault 24;
+    package = lib.mkDefault pkgs.bibata-cursors;
 
     gtk.enable = true;
-    x11.enable = true;
-    size = 24;
     hyprcursor = {
       enable = true;
-      size = 24;
+      size = lib.mkDefault config.home.pointerCursor.size;
     };
+    x11.enable = true;
   };
 
   home.preferXdgDirectories = true;
@@ -339,8 +339,8 @@
       accent-color = "blue";
       clock-format = "24h";
       color-scheme = "prefer-dark";
-      cursor-theme = config.home.pointerCursor.name;
-      cursor-size = config.home.pointerCursor.size;
+      cursor-theme = config.gtk.cursorTheme.name;
+      cursor-size = config.gtk.cursorTheme.size;
       document-font-name = "Noto Sans Medium 11";
       font-name = "Noto Sans Medium 11";
       gtk-theme = "adw-gtk3-dark";
