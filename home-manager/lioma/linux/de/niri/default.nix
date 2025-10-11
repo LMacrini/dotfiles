@@ -56,6 +56,8 @@ in
           "Mod+Shift+Ctrl+Up".action = move-column-to-monitor-up;
           "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
 
+          "Mod+S".action = move-workspace-to-monitor-next;
+
           "Mod+M".action = maximize-column;
           "Mod+Y" = {
             repeat = false;
@@ -122,6 +124,10 @@ in
                   {
                     name = "Mod+Shift+${toString ws}";
                     value.action.move-window-to-workspace = ws;
+                  }
+                  {
+                    name = "Mod+Ctrl+${toString ws}";
+                    value.action.move-workspace-to-index = ws;
                   }
                 ]
               )
