@@ -10,11 +10,11 @@ const stderr = io.getStdErr().writer();
 const YesNoEnum = enum {
     yes,
     y,
-    @"true",
+    true,
     @"1",
     no,
     n,
-    @"false",
+    false,
     @"0",
 };
 
@@ -27,12 +27,12 @@ fn yesOrNo(msg: []const u8, default: bool) !bool {
     } orelse return default;
 
     _ = std.ascii.lowerString(&buf, answer);
-    
+
     const answer_as_enum = std.meta.stringToEnum(YesNoEnum, answer) orelse return default;
 
     switch (answer_as_enum) {
-        .yes, .y, .@"true", .@"1" => return true,
-        .no, .n, .@"false", .@"0" => return false,
+        .yes, .y, .true, .@"1" => return true,
+        .no, .n, .false, .@"0" => return false,
     }
 }
 
@@ -46,7 +46,7 @@ fn getTotalMem() !u64 {
     var buf: [64]u8 = undefined;
 
     const reader = mem_info.reader();
-    
+
     while (try reader.readUntilDelimiterOrEof(&buf, '\n')) |line| {
         if (std.mem.startsWith(u8, line, "MemTotal:")) {
             var it = std.mem.tokenizeScalar(u8, line, ' ');
@@ -74,18 +74,18 @@ fn partitionDrives(allocator: std.mem.Allocator) !void {
         try stderr.writeAll("\n");
 
         const shell = std.posix.getenv("SHELL") orelse "bash";
-        var shell_process: Child = .init(&.{ shell }, allocator);
+        var shell_process: Child = .init(&.{shell}, allocator);
         _ = try shell_process.spawnAndWait();
-        
+
         return;
     }
 
     while (true) {
         try stderr.writeAll("\n");
 
-        var lsblk_process: Child = .init(&.{ "lsblk" }, allocator);
+        var lsblk_process: Child = .init(&.{"lsblk"}, allocator);
         _ = try lsblk_process.spawnAndWait();
-        
+
         try stderr.writeAll("\n");
 
         var disk_buf: [64]u8 = undefined;
@@ -103,7 +103,7 @@ fn partitionDrives(allocator: std.mem.Allocator) !void {
             try stderr.writeAll("please try again\n");
             continue;
         };
-        
+
         const disk_path = try std.fmt.bufPrint(&disk_buf, "\"/dev/{s}\"", .{disk});
 
         var disko_process: Child = if (try yesOrNo("do you want a swap file? [n] ", false)) blk: {
@@ -151,7 +151,7 @@ fn partitionDrives(allocator: std.mem.Allocator) !void {
 
             if (!try yesOrNo("are you sure you want to continue? this will wipe all the information on the drive [n] ", false)) continue;
 
-            break :blk .init(&.{"disko", "-m", "destroy,format,mount", "--yes-wipe-all-disks", "--arg", "disk", disk_path, "--arg", "swap", swap, "/tmp/config/disko/swap.nix"}, allocator);
+            break :blk .init(&.{ "disko", "-m", "destroy,format,mount", "--yes-wipe-all-disks", "--arg", "disk", disk_path, "--arg", "swap", swap, "/tmp/config/disko/swap.nix" }, allocator);
         } else .init(&.{ "disko", "-m", "destroy,format,mount", "--yes-wipe-all-disks", "--arg", "disk", disk_path, "/tmp/config/disko/no-swap.nix" }, allocator);
 
         const res = try disko_process.spawnAndWait();
@@ -176,7 +176,7 @@ fn getPassword(buf: []u8) ![]const u8 {
             },
             else => return err,
         } orelse "";
-        
+
         try stderr.writeAll("please enter root password again: ");
         const password2 = stdin.readUntilDelimiterOrEof(&buf2, '\n') catch |err| switch (err) {
             error.StreamTooLong => {
@@ -221,7 +221,7 @@ fn install(allocator: std.mem.Allocator) !void {
 
             if (std.mem.eql(u8, host, "new")) {
                 const shell = std.posix.getenv("SHELL") orelse "bash";
-                var shell_process: Child = .init( &.{shell}, allocator );
+                var shell_process: Child = .init(&.{shell}, allocator);
                 shell_process.cwd_dir = try std.fs.openDirAbsolute("/tmp/config", .{});
                 _ = try shell_process.spawnAndWait();
                 try stderr.writeAll("\n");
@@ -256,7 +256,7 @@ pub fn main() !void {
     const allocator = gpa.allocator();
     defer _ = gpa.detectLeaks();
 
-    var hello_process: Child = .init(&.{ "hello" }, allocator);
+    var hello_process: Child = .init(&.{"hello"}, allocator);
     _ = try hello_process.spawnAndWait();
 
     if (std.os.linux.getuid() != 0) { // NOTE: this getuid() function will be under std.posix in the future
@@ -264,7 +264,7 @@ pub fn main() !void {
         std.process.exit(1);
     }
 
-    var httpClient: std.http.Client = .{ .allocator = allocator }; 
+    var httpClient: std.http.Client = .{ .allocator = allocator };
     defer httpClient.deinit();
     const online_check = httpClient.fetch(.{
         .location = .{ .url = "https://github.com" },
@@ -272,7 +272,8 @@ pub fn main() !void {
         error.TemporaryNameServerFailure,
         error.TlsAlert,
         error.UnexpectedReadFailure,
-        error.MessageNotCompleted, => {
+        error.MessageNotCompleted,
+        => {
             std.debug.print("failed to connect to github. are you connected to the internet?\n", .{});
             std.debug.print("if you are connected to the internet but github is down, please try again later\n", .{});
             std.process.exit(1);
@@ -285,7 +286,7 @@ pub fn main() !void {
 
     if (online_check.status != .ok) {
         // TODO: return different message based on result, probably using @intFromEnum and ranges
-        try stderr.print("unexpected result: {s} {d}", .{@tagName(online_check.status), @intFromEnum(online_check.status)});
+        try stderr.print("unexpected result: {s} {d}", .{ @tagName(online_check.status), @intFromEnum(online_check.status) });
         std.process.exit(1);
     }
 
