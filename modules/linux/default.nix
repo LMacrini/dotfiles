@@ -155,10 +155,6 @@
     light.enable = true;
     nano.enable = false;
     noisetorch.enable = true;
-    vim = {
-      enable = true;
-      defaultEditor = true;
-    };
   };
 
   environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;

@@ -63,10 +63,6 @@
       nix-shell = "nix-shell --run \"${cfg.shell}\"";
     };
 
-    sessionVariables = {
-      EDITOR = "hx";
-    };
-
     file = {
       ".blerc" = {
         source = ./home/.blerc;
@@ -151,6 +147,8 @@
         marksman
         unstable.nil # NOTE: can probably use stable in 25.11, unstable is mostly for pipe operators
       ];
+
+      defaultEditor = true;
 
       settings = {
         editor = {

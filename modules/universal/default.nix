@@ -59,7 +59,6 @@
     SKIM_DEFAULT_COMMAND = "fd -ut f";
     SKIM_DEFAULT_OPTIONS = "--layout=reverse --ansi";
     DETSYS_IDS_TELEMETRY = "disabled";
-    EDITOR = "vim";
   };
 
   fonts.packages = with pkgs; [
@@ -79,6 +78,11 @@
     };
   };
 
+  programs.vim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   environment.systemPackages = with pkgs; [
     git
     jujutsu
@@ -89,8 +93,6 @@
     tlrc
 
     bat
-    vim
-
     p7zip-rar
     unzip
     ffmpeg
