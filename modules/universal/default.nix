@@ -68,10 +68,18 @@
     nasin-nanpa
   ];
 
-  environment.systemPackages = with pkgs; [
-    unstable.nh # TODO: use stable in 25.11
-    nix-output-monitor
+  programs.nh = {
+    enable = true;
+    package = pkgs.unstable.nh; # TODO: use stable in 25.11
 
+    clean = {
+      enable = true;
+      extraArgs = lib.mkDefault "--keep-since 14d";
+      dates = "daily";
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
     git
     jujutsu
     skim

@@ -7,7 +7,7 @@
     ./hardware-configuration.nix
   ];
 
-  nix.gc.options = "--delete-older-than 7d";
+  programs.nh.clean.extraArgs = "--keep-since 7d";
 
   gpu.nvidia.enable = true;
 

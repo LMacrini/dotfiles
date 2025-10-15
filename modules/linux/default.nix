@@ -33,12 +33,6 @@
   };
 
   nix = {
-    gc = {
-      automatic = true;
-      dates = "daily";
-      options = lib.mkDefault "--delete-older-than 14d";
-    };
-
     optimise.automatic = true;
 
     settings = {
@@ -169,11 +163,6 @@
 
   environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
   programs.command-not-found.dbPath = "/etc/programs.sqlite";
-
-  environment.sessionVariables = {
-    NH_FLAKE = "/home/lioma/dotfiles";
-    NH_NOM = 1;
-  };
 
   environment.systemPackages = with pkgs; [
     glib

@@ -74,7 +74,10 @@
     };
 
     packages = with pkgs;
-      lib.mkIf config.guiApps [
+      [
+        nix-output-monitor
+      ]
+      ++ lib.optionals config.guiApps [
         bitwarden-desktop
         (discord.override {
           moonlight = inputs.moonlight.packages.${system}.moonlight;
@@ -415,6 +418,13 @@
           whosWatching.enabled = true;
         };
       };
+    };
+
+    nh = {
+      enable = true;
+      package = pkgs.unstable.nh;
+
+      flake = "${config.home.homeDirectory}/dotfiles";
     };
 
     rmpc = {
