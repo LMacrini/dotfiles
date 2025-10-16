@@ -73,7 +73,7 @@
 
     clean = {
       enable = true;
-      extraArgs = lib.mkDefault "--keep-since 14d";
+      extraArgs = lib.mkDefault "--keep 3 --keep-since 14d";
       dates = "daily";
     };
   };

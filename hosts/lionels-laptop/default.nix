@@ -7,7 +7,7 @@
     ./hardware-configuration.nix
   ];
 
-  programs.nh.clean.extraArgs = "--keep-since 7d";
+  programs.nh.clean.extraArgs = "--keep 3 --keep-since 7d";
 
   gpu.nvidia.enable = true;
 
