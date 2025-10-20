@@ -78,8 +78,9 @@ in
           "Mod+Comma".action = consume-or-expel-window-left;
           "Mod+Period".action = consume-or-expel-window-right;
 
-          "Super+Shift+S".action = screenshot {
-            show-pointer = false;
+          "Super+Shift+S" = {
+            repeat = false;
+            action.screenshot.show-pointer = false;
           };
 
           "Mod+W".action = set-dynamic-cast-window;
