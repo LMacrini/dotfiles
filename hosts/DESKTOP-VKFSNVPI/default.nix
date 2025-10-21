@@ -1,4 +1,8 @@
-{...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -17,7 +21,7 @@
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-  users.users.lioma.extraGroups = ["libvirtd"];
+  users.users.lioma.extraGroups = ["docker" "libvirtd"];
 
   networking.hostName = "DESKTOP-VKFSNVPI";
 
@@ -31,4 +35,11 @@
   stateVersion = "24.11";
 
   ssh.enable = true;
+
+  environment.systemPackages = [
+    inputs.winboat.packages.x86_64-linux.winboat
+    pkgs.freerdp
+  ];
+
+  virtualisation.docker.enable = true;
 }

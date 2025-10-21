@@ -69,6 +69,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    winboat = {
+      url = "github:tibixdev/winboat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nixcord.url = "github:kaylorben/nixcord";
   };
 
