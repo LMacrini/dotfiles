@@ -216,6 +216,7 @@
       enable = true;
       defaultApplications = let
         archives = ["peazip-extract-smart.desktop"];
+        audio = videos ++ ["app.drey.EarTag.desktop"];
         browsers = ["floorp.desktop" "chromium-browser.desktop"];
         images = ["org.gnome.eog.desktop" "gimp.desktop"];
         videos = ["io.github.celluloid_player.Celluloid.desktop" "vlc.desktop"];
@@ -227,6 +228,10 @@
         "application/x-tar" = archives;
         "application/x-xz" = archives;
         "application/zip" = archives;
+
+        "audio/*" = audio;
+        "audio/mpeg" = audio;
+        "audio/x-opus+ogg" = audio;
 
         "inode/directory" = ["thunar.desktop" "org.gnome.Nautilus.desktop" "pcmanfm.desktop"];
         "x-scheme-handler/https" = browsers;
