@@ -15,7 +15,6 @@
       wine
       fjordlauncher
       heroic
-      lutris
       protonplus
     ];
 
@@ -23,7 +22,6 @@
       packages = [
         "io.github.everestapi.Olympus"
         "org.vinegarhq.Sober"
-        # "net.lutris.Lutris"
       ];
     };
   };
