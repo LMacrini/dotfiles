@@ -225,6 +225,7 @@
         "application/pdf" = ["sioyek.desktop"] ++ browsers;
         "application/gzip" = archives;
         "application/x-7z-compressed" = archives;
+        "application/x-bzip2" = archives;
         "application/x-tar" = archives;
         "application/x-xz" = archives;
         "application/zip" = archives;
