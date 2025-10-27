@@ -13,6 +13,10 @@
 
   networking.hostName = "amanojaku";
 
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  users.users.lioma.extraGroups = ["docker" "libvirtd"];
+
   games.light.enable = true;
   games.launchers.enable = true;
 
