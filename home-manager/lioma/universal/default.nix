@@ -75,10 +75,10 @@
       ]
       ++ lib.optionals config.guiApps [
         bitwarden-desktop
-        (discord.override {
+        (unstable.discord.override {
           moonlight = inputs.moonlight.packages.${system}.moonlight;
           withOpenASAR = true;
-          withMoonlight = true;
+          withEquicord = true;
         })
         # (unstable.equibop.override {electron = electron_36;})
         keymapp
@@ -227,7 +227,7 @@
 
       [[language]]
       name = "python"
-      language-servers = ["ty", "ruff", "basedpyright", "jedi", "pylsp"]
+      language-servers = ["basedpyright", "ty", "ruff", "jedi", "pylsp"]
 
       [[language]]
       name = "typescript"
