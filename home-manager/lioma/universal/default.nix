@@ -3,12 +3,10 @@
   lib,
   cfg,
   config,
-  inputs,
   ...
 } @ params: {
   imports = [
     ./options.nix
-    inputs.moonlight.homeModules.default
   ];
 
   accounts = {
@@ -76,11 +74,9 @@
       ++ lib.optionals config.guiApps [
         bitwarden-desktop
         (unstable.discord.override {
-          moonlight = inputs.moonlight.packages.${system}.moonlight;
           withOpenASAR = true;
           withEquicord = true;
         })
-        # (unstable.equibop.override {electron = electron_36;})
         keymapp
       ];
   };
@@ -304,118 +300,6 @@
 
     lsd = {
       enable = true;
-    };
-
-    moonlight = {
-      enable = config.guiApps;
-      configs.stable = {
-        repositories = [
-          "https://moonlight-mod.github.io/extensions-dist/repo.json"
-          "https://lare354.github.io/moonlight-plugins/repo.json"
-        ];
-        extensions = {
-          allActivities.enabled = true;
-          ownerCrown.enabled = true;
-          antinonce.enabled = true;
-          betterCodeblocks.enabled = true;
-          betterTags.enabled = true;
-          betterUploadButton.enabled = true;
-          betterYoutubeEmbeds.enabled = true;
-          callIdling.enabled = true;
-          cleanChatBar = {
-            enabled = true;
-            config = {
-              removedButtons = [
-                "gift"
-                "gif"
-                "sticker"
-                "activity"
-              ];
-            };
-          };
-          clearUrls.enabled = true;
-          colorConsistency.enabled = true;
-          copyAvatarUrl.enabled = true;
-          copyWebP.enabled = true;
-          moonlight-css = {
-            enabled = true;
-            config = {
-              paths = [
-                "https://catppuccin.github.io/discord/dist/catppuccin-macchiato-pink.theme.css"
-              ];
-              themeAttributes = true;
-            };
-          }; # TODO: figure this out
-          customSearchEngine = {
-            enabled = true;
-            config = {
-              label = "Search with Twint";
-              url = "https://search.twint.my.id/s?q=%s";
-            };
-          };
-          decor.enabled = true;
-          disableSentry.enabled = true;
-          domOptimizer.enabled = true;
-          doubleClickActions.enabled = true;
-          doubleClickToJoin.enabled = true;
-          favoriteGifSearch.enabled = true;
-          freeScreenShare.enabled = true;
-          freeStickers.enabled = true;
-          freemoji.enabled = true;
-          gameActivityToggle.enabled = true;
-          httpCats.enabled = true;
-          imageViewer.enabled = true;
-          inviteToNowhere.enabled = true;
-          jumpToBlocked.enabled = true;
-          katex.enabled = true;
-          manyAccounts.enabled = true;
-          mediaTweaks.enabled = true;
-          modPlayer.enabled = true;
-          moonbase.enabled = true;
-          nameColor = {
-            enabled = true;
-            config.colorize = "None";
-          };
-          nativeFixes = {
-            enabled = true;
-            config = {
-              linuxAutroscroll = true;
-              vulkan = true;
-              waylandExplicitSync = true;
-              zeroCopy = true;
-            };
-          };
-          neatSettingsContextMenu.enabled = true;
-          noHelp.enabled = true;
-          noReplyChainNag.enabled = true;
-          noTrack.enabled = true;
-          popoutDates.enabled = true;
-          questCompleter.enabled = true;
-          quietLoggers.enabled = true;
-          remindMe.enabled = true;
-          replyChain.enabled = true;
-          roleColoredMessages = {
-            enabled = true;
-            config.pastelize = true;
-          };
-          sendTimestamps.enabled = true;
-          spotifySpoof.enabled = true;
-          streamQualityWorkaround.enabled = true; # TODO: figure out if i want this
-          svgEmbed.enabled = true;
-          typingTweaks = {
-            enabled = true;
-            config = {
-              alternativeFormatting = true;
-              showAvatars = true;
-              showSelfTyping = true;
-            };
-          };
-          unindent.enabled = true;
-          viewJson.enabled = true;
-          volumeManipulator.enabled = true;
-          whosWatching.enabled = true;
-        };
-      };
     };
 
     nh = {
