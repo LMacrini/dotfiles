@@ -29,6 +29,13 @@
   ssh.enable = true;
 
   specialisation = {
+    LTS.configuration = {
+      environment.etc.specialisation.text = "LTS";
+      system.nixos.tags = ["LTS"];
+
+      kernel = "default";
+    };
+
     Work = lib.mkIf false {
       configuration = {
         environment.etc.specialisation.text = "Work";
