@@ -513,10 +513,10 @@
   };
   "refined-github-" = buildFirefoxXpiAddon {
     pname = "refined-github-";
-    version = "25.10.2";
+    version = "25.11.4";
     addonId = "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4590019/refined_github-25.10.2.xpi";
-    sha256 = "bb53d3d1f0b003a5ae705c79402d537141c191f76934bf7aec02b8e891bd16f7";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4612464/refined_github-25.11.4.xpi";
+    sha256 = "240ccda8bd39c1e0d2d0eb4113825856cf7f2bdabd6b323ee164f02ca11a7dea";
     meta = with lib; {
       homepage = "https://github.com/refined-github/refined-github";
       description = "Simplifies the GitHub interface and adds many useful features.";
@@ -582,10 +582,10 @@
   };
   "sponsorblock" = buildFirefoxXpiAddon {
     pname = "sponsorblock";
-    version = "6.0.3";
+    version = "6.1.0";
     addonId = "sponsorBlocker@ajay.app";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4598130/sponsorblock-6.0.3.xpi";
-    sha256 = "accbfb3bb634834a16685cbc66c1a8e5e8ae51c075c7c86d4b7141c67ad4c88b";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4608179/sponsorblock-6.1.0.xpi";
+    sha256 = "48f412540ad0217c52caece0eb84186041b28241b24457aaa8c256565f050844";
     meta = with lib; {
       homepage = "https://sponsor.ajay.app";
       description = "Easily skip YouTube video sponsors. When you visit a YouTube video, the extension will check the database for reported sponsors and automatically skip known sponsors. You can also report sponsors in videos. Other browsers: https://sponsor.ajay.app";
