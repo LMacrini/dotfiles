@@ -17,6 +17,15 @@
     };
   };
 
+  specialisation = {
+    LTS.configuration = {
+      environment.etc.specialisation.text = "LTS";
+      system.nixos.tags = ["LTS"];
+
+      kernel = "default";
+    };
+  };
+
   gpu.amd.enable = true;
 
   virtualisation.libvirtd.enable = true;
