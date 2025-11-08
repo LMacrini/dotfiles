@@ -617,10 +617,10 @@
   };
   "styl-us" = buildFirefoxXpiAddon {
     pname = "styl-us";
-    version = "2.3.16";
+    version = "2.3.17";
     addonId = "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4554444/styl_us-2.3.16.xpi";
-    sha256 = "2cda3445f1e5e5aa95b8b814cc395079185216e10ec42d20811b0350f4c378a8";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4611621/styl_us-2.3.17.xpi";
+    sha256 = "ad952d5fc19bd36d0fd2aecc7d4b4ebf7add538faecab79ad96e1db631857667";
     meta = with lib; {
       homepage = "https://add0n.com/stylus.html";
       description = "Redesign your favorite websites with Stylus, an actively developed and community driven userstyles manager. Easily install custom themes from popular online repositories, or create, edit, and manage your own personalized CSS stylesheets.";
@@ -700,10 +700,10 @@
   };
   "ultimadark" = buildFirefoxXpiAddon {
     pname = "ultimadark";
-    version = "1.6.30";
+    version = "1.6.31";
     addonId = "{7c7f6dea-3957-4bb9-9eec-2ef2b9e5bcec}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4613879/ultimadark-1.6.30.xpi";
-    sha256 = "30da5d616f09383cc14b5f4a6ee46e2b90d4008ecb5d055070dfae66952f639c";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4614765/ultimadark-1.6.31.xpi";
+    sha256 = "664ef13a4d9ddd3c8c43e5503674e0499b8d0cc46dba2f9e0b989c8aca2c2f7c";
     meta = with lib; {
       homepage = "https://github.com/ThomazPom/Moz-Ext-UltimaDark";
       description = "UltimaDark uses agressive and smart techniques to turn even the sunniest websites into realms of darkness.\nAlthough it works well, this is so experimental, it makes lab rats look like seasoned professionals. \nGo ahead, embrace the shadows! 🦇";
@@ -794,10 +794,10 @@
   };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
-    version = "2025.10.28";
+    version = "2025.11.6";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4608182/youtube_tweaks-2025.10.28.xpi";
-    sha256 = "1878ff36cac3fea0aa32763e69288e4f850944aced7513f3246334967fc15a8a";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4613839/youtube_tweaks-2025.11.6.xpi";
+    sha256 = "0a190f4373b7ef7a5f568e9f13a9b7094abc9e7c6deacc1836a41c46812b674e";
     meta = with lib; {
       description = "A collection of tweaks for hiding Shorts, disabling auto-dubbing, disabling 'Video paused. Continue watching?', changing the number of videos per row and more!";
       license = licenses.mit;
