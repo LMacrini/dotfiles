@@ -277,6 +277,9 @@
       keybindings =
         {
           "kitty_mod+enter" = "launch --cwd=current";
+
+          "kitty_mod+t" = "new_tab";
+          "kitty+shift+alt" = "set_tab_title";
         }
         // lib.optionalAttrs (config.programs.tmux.enable || config.programs.zellij.enable) {
           "kitty_mod+t" = "no_op";
@@ -293,6 +296,8 @@
         cursor_trail = 1;
 
         enable_audio_bell = false;
+
+        # kitty_mod = "ctrl+alt";
 
         # shell = "zellij -l welcome";
       };
