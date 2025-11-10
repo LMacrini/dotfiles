@@ -243,6 +243,7 @@
         "image/jpeg" = images;
         "image/png" = images;
         "image/svg+xml" = images;
+        "image/webp" = images;
         "video/*" = videos;
         "video/mp4" = videos;
         "video/x-matroska" = videos;
