@@ -76,6 +76,19 @@
         (unstable.discord.override {
           withOpenASAR = true;
           withEquicord = true;
+
+          equicord = let
+            shyTyping = builtins.fetchGit {
+              url = "https://git.nin0.dev/Sqaaakoi-VencordUserPlugins/shyTyping.git";
+              rev = "a6f6a21cf5a64792cb049067b6e3536636fcfa37";
+            };
+          in
+            unstable.equicord.overrideAttrs {
+              preBuild = ''
+                mkdir ./src/userplugins
+                cp -r ${shyTyping} ./src/userplugins/shyTyping
+              '';
+            };
         })
         keymapp
       ];
