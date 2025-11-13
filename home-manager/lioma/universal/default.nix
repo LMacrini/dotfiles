@@ -74,6 +74,7 @@
       ++ lib.optionals config.guiApps [
         bitwarden-desktop
         (unstable.discord.override {
+          # TODO: 25.11 use stable discord with unstable equicord
           withOpenASAR = true;
           withEquicord = true;
 

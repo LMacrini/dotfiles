@@ -10,7 +10,6 @@
     ./de
     ./emacs
     ./trashService.nix
-    # ./discord.nix
     inputs.catppuccin.homeModules.catppuccin
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.wayland-pipewire-idle-inhibit.homeModules.default
