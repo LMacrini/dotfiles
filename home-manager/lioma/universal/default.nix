@@ -87,7 +87,7 @@
             unstable.equicord.overrideAttrs {
               preBuild = ''
                 mkdir ./src/userplugins
-                cp -r ${shyTyping} ./src/userplugins/shyTyping
+                cp -r ${shyTyping} ./src/userplugins
               '';
             };
         })
