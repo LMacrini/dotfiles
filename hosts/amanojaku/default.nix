@@ -33,7 +33,7 @@
       environment.etc.specialisation.text = "LTS";
       system.nixos.tags = ["LTS"];
 
-      kernel = "default";
+      kernel = "lts";
     };
 
     Work = lib.mkIf false {

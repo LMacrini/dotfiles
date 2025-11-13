@@ -36,7 +36,7 @@
   };
 
   bootloader = null;
-  kernel = "default";
+  kernel = "lts";
 
   liveSystem = true;
 
