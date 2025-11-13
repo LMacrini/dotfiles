@@ -1,9 +1,10 @@
 (setq catppuccin-flavor 'macchiato)
 (load-theme 'catppuccin :no-confirm)
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+(when (display-graphic-p)
+    (menu-bar-mode -1)
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1))
 
 (require 'nerd-icons)
 (setq nerd-icons-font-family "FiraCode Nerd Font Mono")
@@ -72,7 +73,7 @@
    '("u" . meow-prev)
    '("n" . meow-left)
    '("i" . meow-right)
-   
+
    '("j" . meow-search)
    '("/" . meow-visit)
    '("Q" . meow-quit)

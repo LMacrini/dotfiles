@@ -5,7 +5,11 @@
   ...
 }: {
   programs.emacs = {
-    package = pkgs.emacs-unstable-pgtk;
+    package =
+      if config.guiApps
+      then pkgs.emacs-unstable-pgtk
+      else pkgs.emacs-unstable-nox;
+
     extraPackages = epkgs:
       with epkgs; [
         avy
