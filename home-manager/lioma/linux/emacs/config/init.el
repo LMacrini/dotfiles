@@ -7,7 +7,7 @@
     (scroll-bar-mode -1))
 
 (require 'nerd-icons)
-(setq nerd-icons-font-family "FiraCode Nerd Font Mono")
+(setq nerd-icons-font-family "@nerdfont@")
 
 (require 'direnv)
 (direnv-mode)

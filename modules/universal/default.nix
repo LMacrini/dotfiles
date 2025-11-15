@@ -12,6 +12,7 @@
     ./browsers
     ./extra-options.nix
     ./libreoffice.nix
+    ./fonts.nix
     ./shell.nix
   ];
 
@@ -62,8 +63,6 @@
   };
 
   fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-    fira-code
     nasin-nanpa
   ];
 

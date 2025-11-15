@@ -284,8 +284,8 @@
     kitty = {
       enableGitIntegration = true;
       font = {
-        name = "FiraCode Nerd Font Mono";
-        package = pkgs.nerd-fonts.fira-code;
+        name = cfg.fonts.nerdfont.name;
+        package = cfg.fonts.nerdfont.package;
       };
 
       keybindings =

@@ -13,6 +13,7 @@ lib.mkIf (cfg.de.de == "hyprland") {
     hyprland-qtutils
     hyprpaper
     kanata
+    nerd-fonts.fira-code # for waybar
     networkmanagerapplet
     pavucontrol
     playerctl

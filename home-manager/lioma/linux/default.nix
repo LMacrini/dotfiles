@@ -350,7 +350,7 @@
       document-font-name = "Noto Sans Medium 11";
       font-name = "Noto Sans Medium 11";
       gtk-theme = "adw-gtk3-dark";
-      monospace-font-name = "FiraCode Nerd Font Mono 10";
+      monospace-font-name = "${cfg.fonts.nerdfont.nlName} 10";
       show-battery-percentage = cfg.laptop.enable;
     };
 

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  cfg,
   ...
 }: {
   programs.emacs = {
@@ -27,8 +28,14 @@
       ];
   };
 
-  xdg.configFile.emacs = lib.mkIf config.programs.emacs.enable {
-    recursive = true;
-    source = ./config;
+  # xdg.configFile.emacs = lib.mkIf config.programs.emacs.enable {
+  #   recursive = true;
+  #   source = ./config;
+  # };
+  xdg.configFile = lib.mkIf config.programs.emacs.enable {
+    "emacs/init.el".source = pkgs.replaceVars ./config/init.el {
+      nerdfont = cfg.fonts.nerdFont.name;
+    };
+    "emacs/icon.png".source = ./config/icon.png;
   };
 }
