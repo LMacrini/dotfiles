@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   imports = [
@@ -14,6 +15,7 @@
 
   options = {
     games.enable = lib.mkEnableOption "Enables games";
+    games.fixMAS = lib.mkEnableOption "the fix for the Monika After Story installer (probably et al)";
   };
 
   config = {
@@ -28,5 +30,17 @@
     );
 
     games.emulators.enable = lib.mkDefault false;
+
+    programs.steam.package =
+      lib.mkIf config.games.fixMAS
+      <| pkgs.steam.override {
+        extraLibraries = p: [
+          p.openssl_1_1
+        ];
+      };
+
+    nixpkgs.config.permittedInsecurePackages = lib.mkIf config.games.fixMAS [
+      "openssl-1.1.1w"
+    ];
   };
 }
