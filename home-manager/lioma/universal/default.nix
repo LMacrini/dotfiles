@@ -170,6 +170,7 @@
 
           line-number = "relative";
           mouse = false;
+          rulers = [80];
           soft-wrap.enable = true;
         };
 
