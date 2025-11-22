@@ -172,6 +172,7 @@
           mouse = false;
           rulers = [80];
           soft-wrap.enable = true;
+          trim-trailing-whitespace = true;
         };
 
         keys =
