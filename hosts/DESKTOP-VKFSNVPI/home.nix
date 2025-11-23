@@ -63,19 +63,4 @@
     ungoogled-chromium
     unityhub
   ];
-
-  services.flatpak = {
-    remotes = [
-      {
-        name = "launcher.moe";
-        location = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
-      }
-    ];
-    packages = [
-      {
-        appId = "moe.launcher.an-anime-game-launcher";
-        origin = "launcher.moe";
-      }
-    ];
-  };
 }
