@@ -1,6 +1,7 @@
 {
   lib,
   cfg,
+  extraHome,
   config,
   pkgs,
   inputs,
@@ -9,11 +10,16 @@
   imports = [
     ./de
     ./emacs
+    ./options.nix
+    ./packages.nix
     ./trashService.nix
     inputs.catppuccin.homeModules.catppuccin
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.wayland-pipewire-idle-inhibit.homeModules.default
+    extraHome
   ];
+
+  guiApps = lib.mkDefault cfg.guiApps;
 
   catppuccin = {
     accent = "pink";

@@ -45,11 +45,6 @@
       url = "github:sodiboo/niri-flake";
     };
 
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -67,7 +62,6 @@
 
   outputs = {
     nixpkgs,
-    nix-darwin,
     determinate,
     ...
   } @ inputs: let
@@ -153,28 +147,21 @@
       fjordlauncher = inputs.fjordlauncher.packages.${system}.default;
     });
 
-    hm-module = with inputs.home-manager; {
-      "x86_64-linux" = nixosModules.default;
-      "aarch64-darwin" = darwinModules.default;
-    };
-
     extraHome = path:
       if (builtins.pathExists ./hosts/${path}/home.nix)
       then import ./hosts/${path}/home.nix
       else {};
 
-    mkLinuxHost = path:
+    mkHost = path:
       nixpkgs.lib.nixosSystem
       {
         specialArgs = {
           inherit inputs;
-          os = "linux";
           extraHome = extraHome path;
         };
         modules = [
           ./hosts/${path}
-          ./modules/linux
-          ./modules/universal
+          ./modules
           determinate.nixosModules.default
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.catppuccin.nixosModules.catppuccin
@@ -182,7 +169,7 @@
           inputs.nix-gaming.nixosModules.pipewireLowLatency
           inputs.nix-gaming.nixosModules.platformOptimizations
           inputs.nix-gaming.nixosModules.wine
-          hm-module.x86_64-linux
+          inputs.home-manager.nixosModules.default
           {
             nixpkgs.overlays = [
               (import inputs.emacs-overlay)
@@ -195,46 +182,19 @@
         ];
       };
 
-    mkDarwinHost = path:
-      nix-darwin.lib.darwinSystem {
-        specialArgs = {
-          inherit inputs;
-          os = "darwin";
-          extraHome = extraHome path;
-        };
-        modules = [
-          ./hosts/${path}
-          ./modules/darwin
-          ./modules/universal
-          hm-module.aarch64-darwin
-          {nixpkgs.overlays = [overlay.aarch64-darwin];}
-        ];
-      };
-
-    mkHost = system:
-      if system == "x86_64-linux"
-      then mkLinuxHost
-      else if system == "aarch64-darwin"
-      then mkDarwinHost
-      else abort "unsupported system";
-
-    mkHosts = system: hosts:
+    mkHosts = hosts:
       builtins.listToAttrs (map (host: {
           name = host;
-          value = mkHost system host;
+          value = mkHost host;
         })
         hosts);
   in {
-    nixosConfigurations = mkHosts "x86_64-linux" [
+    nixosConfigurations = mkHosts [
       "DESKTOP-VKFSNVPI"
       "amanojaku"
       "lionels-laptop"
       "vm"
       "live"
-    ];
-
-    darwinConfigurations = mkHosts "aarch64-darwin" [
-      "Lionels-MacBook-Air"
     ];
 
     packages = myPkgs;

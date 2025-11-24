@@ -5,10 +5,6 @@
   config,
   ...
 } @ params: {
-  imports = [
-    ./options.nix
-  ];
-
   accounts = {
     email = {
       accounts = {

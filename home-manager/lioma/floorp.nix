@@ -2,7 +2,6 @@
   cfg,
   pkgs,
   lib,
-  os,
   ...
 } @ params: let
   addons = import ./firefox-addons params;
@@ -10,7 +9,7 @@ in {
   enable = lib.mkDefault cfg.browsers.floorp.enable;
 
   package =
-    if os == "linux" && cfg.de.de == "gnome"
+    if cfg.de.de == "gnome"
     then
       pkgs.floorp.override {
         nativeMessagingHosts = [
