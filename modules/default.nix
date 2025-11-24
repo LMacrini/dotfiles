@@ -197,7 +197,7 @@
       cfg = config;
     };
     users = {
-      "${config.mainUser}" = import ../home-manager/lioma;
+      "${config.mainUser}" = import ../home-manager;
     };
     useGlobalPkgs = true;
     useUserPackages = true;
