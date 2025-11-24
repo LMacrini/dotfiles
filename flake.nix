@@ -10,6 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
+
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     emacs-overlay = {
@@ -36,8 +38,6 @@
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    catppuccin.url = "github:catppuccin/nix/release-25.05";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
