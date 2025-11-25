@@ -22,9 +22,9 @@ jobs:
       - name: Update firefox addons
         run: |
           nix run github:nix-community/nur#repos.rycee.mozilla-addons-to-nix \
-                    home-manager/lioma/universal/firefox-addons/addons.json \
-                    home-manager/lioma/universal/firefox-addons/generated-addons.nix
-          nix fmt home-manager/lioma/universal/firefox-addons/generated-addons.nix
+                    home-manager/firefox-addons/addons.json \
+                    home-manager/firefox-addons/generated-addons.nix
+          nix fmt home-manager/firefox-addons/generated-addons.nix
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
