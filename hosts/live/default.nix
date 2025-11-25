@@ -8,6 +8,10 @@
 }: {
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  imports = [
+    "${modulesPath}/installer/cd-dvd/installation-cd-base.nix"
+  ];
+
   networking.wireless.enable = false;
 
   services.displayManager.autoLogin = {

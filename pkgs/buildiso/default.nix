@@ -3,5 +3,8 @@ pkgs.writeTextFile {
   name = "buildiso";
   executable = true;
   destination = "/bin/buildiso";
-  text = builtins.readFile ./buildiso.sh;
+  text = ''
+    #!/usr/bin/env bash
+    nix build .#nixosConfigurations.live.config.system.build.isoImage |& nom
+  '';
 }
