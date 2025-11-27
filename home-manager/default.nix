@@ -30,7 +30,7 @@
       accent = "dark";
     };
 
-    floorp.enable = false;
+    librewolf.enable = false;
     flavor = "macchiato";
     helix.useItalics = true;
     hyprland.enable = false;
@@ -222,7 +222,7 @@
       defaultApplications = let
         archives = ["peazip-extract-smart.desktop"];
         audio = videos ++ ["app.drey.EarTag.desktop"];
-        browsers = ["floorp.desktop" "chromium-browser.desktop"];
+        browsers = ["librewolf.desktop" "chromium-browser.desktop"];
         images = ["org.gnome.eog.desktop" "gimp.desktop"];
         videos = ["io.github.celluloid_player.Celluloid.desktop" "vlc.desktop"];
         editors = ["helix-kitty.desktop" "nvim-kitty.desktop" "org.gnome.gedit.desktop"];
@@ -398,7 +398,7 @@
       favorite-apps = [
         "equibop.desktop"
         "com.mitchellh.ghostty.desktop"
-        "floorp.desktop"
+        "librewolf.desktop"
       ];
       allow-extension-installation = true;
       disable-user-extensions = false;

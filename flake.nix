@@ -2,15 +2,15 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix/release-25.05";
+    catppuccin.url = "github:catppuccin/nix";
 
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
@@ -166,7 +166,6 @@
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.catppuccin.nixosModules.catppuccin
           inputs.niri.nixosModules.niri
-          inputs.nix-gaming.nixosModules.pipewireLowLatency
           inputs.nix-gaming.nixosModules.platformOptimizations
           inputs.nix-gaming.nixosModules.wine
           inputs.home-manager.nixosModules.default

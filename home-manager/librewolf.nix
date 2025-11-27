@@ -1,22 +1,25 @@
 {
   cfg,
+  config,
   pkgs,
   lib,
   ...
 } @ params: let
   addons = import ./firefox-addons params;
 in {
-  enable = lib.mkDefault cfg.browsers.floorp.enable;
+  enable = lib.mkDefault config.guiApps;
 
-  package =
-    if cfg.de.de == "gnome"
-    then
-      pkgs.floorp.override {
-        nativeMessagingHosts = [
-          pkgs.gnome-browser-connector
-        ];
-      }
-    else pkgs.floorp;
+  package = pkgs.librewolf-bin;
+
+  # package =
+  #   if cfg.de.de == "gnome"
+  #   then
+  #     pkgs.librewolf.override {
+  #       nativeMessagingHosts = [
+  #         pkgs.gnome-browser-connector
+  #       ];
+  #     }
+  #   else pkgs.librewolf;
 
   languagePacks = [
     "en-CA"
@@ -162,9 +165,7 @@ in {
 
       settings = {
         "extensions.autoDisableScopes" = 0;
-        "floorp.browser.sidebar.enable" = false;
         "general.autoScroll" = true;
-        "floorp.browser.workspaces.enabled" = false;
         "userChrome.hidden.urlbar_iconbox" = true;
       };
     };

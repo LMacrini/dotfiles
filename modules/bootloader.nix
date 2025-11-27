@@ -34,7 +34,7 @@
           wallpapers = lib.mkOverride 999 [
             "${pkgs.my.imgs}/share/background.jpg"
           ];
-          wallpaperStyle = "streched";
+          wallpaperStyle = "stretched";
           interface = {
             branding = "${config.system.nixos.distroName} ${config.system.nixos.release}";
             brandingColor = 6; # number from 0-7 that corresponds to:

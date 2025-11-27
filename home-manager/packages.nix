@@ -133,14 +133,14 @@
       };
     };
 
-    floorp = import ./floorp.nix params;
+    librewolf = import ./librewolf.nix params;
 
     git = {
       enable = true;
-      aliases = {
-        co = "checkout";
-      };
-      extraConfig = {
+      settings = {
+        alias = {
+          co = "checkout";
+        };
         credential = {
           helper = "store";
         };

@@ -10,7 +10,6 @@
 } @ params: {
   imports = [
     ./bootloader.nix
-    ./browsers
     ./de
     ./extra-options.nix
     ./fonts.nix
@@ -114,6 +113,14 @@
     tumbler.enable = true;
     udisks2.enable = true;
 
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
     printing = {
       enable = true;
       drivers = with pkgs; [
@@ -131,7 +138,6 @@
     udev.extraRules = ''
       KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
     '';
-    pulseaudio.enable = false;
   };
   boot = {
     tmp = {
@@ -150,17 +156,6 @@
     uinput.enable = true;
   };
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-
-    lowLatency = {
-      enable = true;
-    };
-  };
 
   users = {
     mutableUsers = false;
@@ -188,7 +183,7 @@
     noisetorch.enable = true;
   };
 
-  environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+  environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.stdenv.system}.programs-sqlite;
   programs.command-not-found.dbPath = "/etc/programs.sqlite";
 
   home-manager = {

@@ -35,12 +35,12 @@
         };
 
         displayManager = {
-          gdm.enable = dm == "gdm";
           lightdm.enable = dm == "lightdm";
         };
       };
 
       displayManager = {
+        gdm.enable = dm == "gdm";
         sddm = {
           enable = dm == "sddm";
           wayland.enable = true;
