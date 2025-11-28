@@ -24,8 +24,6 @@ in
           "Mod+Shift+Slash".action = show-hotkey-overlay;
           "Mod+Q" = {
             hotkey-overlay.title = "Open a Terminal: kitty";
-            # TODO: figure out if i want to bother with resetting SHLVL
-            # action.spawn = ["env" "-u" "SHLVL" "kitty"];
             action = spawn "kitty";
           };
           "Mod+Shift+E".action = quit;

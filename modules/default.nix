@@ -211,7 +211,7 @@
 
   programs.nh = {
     enable = true;
-    package = pkgs.unstable.nh; # TODO: use stable in 25.11
+    package = pkgs.nh;
 
     clean = {
       enable = true;

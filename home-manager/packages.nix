@@ -69,8 +69,7 @@
       ]
       ++ lib.optionals config.guiApps [
         bitwarden-desktop
-        (unstable.discord.override {
-          # TODO: 25.11 use stable discord with unstable equicord
+        (discord.override {
           withOpenASAR = true;
           withEquicord = true;
 
@@ -151,7 +150,7 @@
       enable = true;
       extraPackages = with pkgs; [
         marksman
-        unstable.nil # NOTE: can probably use stable in 25.11, unstable is mostly for pipe operators
+        nil
       ];
 
       defaultEditor = true;
@@ -321,7 +320,7 @@
 
     nh = {
       enable = true;
-      package = pkgs.unstable.nh;
+      package = pkgs.nh;
 
       flake = "${config.home.homeDirectory}/dotfiles";
     };
@@ -398,7 +397,7 @@
         config.programs.ghostty.enable
       ]);
 
-      # TODO: revisit in 25.11, this shouldn't be required
+      # TODO: this shouldn't be required
       inherit
         (config.home.shell)
         enableBashIntegration
@@ -412,7 +411,7 @@
         show_startup_tips = false;
         session_serialization = false; # TODO: change when they save properly
         support_kitty_keyboard_protocol = false; # HACK: remove this line when helix's version updates past 25.07.01
-        # TODO: check on this in 25.11
+        # TODO: check on this in 26.05
       };
     };
 

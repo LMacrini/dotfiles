@@ -26,7 +26,7 @@
     enable = true;
 
     cursors = {
-      enable = false; # TODO: 25.11
+      enable = false;
       accent = "dark";
     };
 

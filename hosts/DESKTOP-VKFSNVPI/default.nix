@@ -42,7 +42,7 @@
   ssh.enable = true;
 
   environment.systemPackages = [
-    # pkgs.unstable.winboat
+    # pkgs.winboat
     pkgs.freerdp
   ];
 

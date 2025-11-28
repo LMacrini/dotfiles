@@ -74,7 +74,7 @@
             lib.mkMerge [
               (
                 lib.mkIf (dm == "tuigreet")
-                ("${lib.getExe pkgs.greetd.tuigreet} --cmd ${sessionCmd.${config.de.de}}"
+                ("${lib.getExe pkgs.tuigreet} --cmd ${sessionCmd.${config.de.de}}"
                   + " -trg \"login? :3\" --asterisks --asterisks-char ♥")
               )
 

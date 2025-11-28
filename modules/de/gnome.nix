@@ -9,7 +9,7 @@
       gnome = {
         gnome-browser-connector.enable = true;
       };
-      xserver.desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable = true;
     };
 
     environment.gnome.excludePackages = with pkgs; [
