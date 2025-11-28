@@ -178,13 +178,16 @@
       enable = true;
       binfmt = true;
     };
+    command-not-found = {
+      enable = true;
+      dbPath = "/etc/programs.sqlite";
+    };
     light.enable = true;
     nano.enable = false;
     noisetorch.enable = true;
   };
 
   environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.stdenv.system}.programs-sqlite;
-  programs.command-not-found.dbPath = "/etc/programs.sqlite";
 
   home-manager = {
     extraSpecialArgs = {
