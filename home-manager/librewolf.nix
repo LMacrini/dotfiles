@@ -166,9 +166,17 @@ in {
       settings = {
         "extensions.autoDisableScopes" = 0;
         "general.autoScroll" = true;
-        "userChrome.hidden.urlbar_iconbox" = true;
         "image.jxl.enabled" = true;
+        "middlemouse.paste" = false;
       };
+
+      userChrome =
+        #css
+        ''
+          #identity-box {
+              display: none;
+          }
+        '';
     };
   };
 }
