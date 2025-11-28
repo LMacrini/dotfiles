@@ -167,6 +167,7 @@ in {
         "extensions.autoDisableScopes" = 0;
         "general.autoScroll" = true;
         "userChrome.hidden.urlbar_iconbox" = true;
+        "image.jxl.enabled" = true;
       };
     };
   };
