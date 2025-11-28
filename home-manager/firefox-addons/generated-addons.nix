@@ -24,10 +24,10 @@
   };
   "bitwarden-password-manager" = buildFirefoxXpiAddon {
     pname = "bitwarden-password-manager";
-    version = "2025.11.0";
+    version = "2025.11.1";
     addonId = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4619294/bitwarden_password_manager-2025.11.0.xpi";
-    sha256 = "6be183d581fb81aa19e9fe658aa533aeea91185b54917700952ea3a576cacfc6";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4624303/bitwarden_password_manager-2025.11.1.xpi";
+    sha256 = "d5a0ce8bb3eecd6cc5d716b15f36b50ac8dcc368704ff137c12e465fd7924afa";
     meta = with lib; {
       homepage = "https://bitwarden.com";
       description = "At home, at work, or on the go, Bitwarden easily secures all your passwords, passkeys, and sensitive information.";
@@ -700,10 +700,10 @@
   };
   "ultimadark" = buildFirefoxXpiAddon {
     pname = "ultimadark";
-    version = "1.6.35";
+    version = "1.6.37";
     addonId = "{7c7f6dea-3957-4bb9-9eec-2ef2b9e5bcec}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4625274/ultimadark-1.6.35.xpi";
-    sha256 = "16e40cd404708de1b2f825681ff5026fc83d78c04bedd5e25cea929c420dffc6";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4629619/ultimadark-1.6.37.xpi";
+    sha256 = "3bbd889797f72858b4dae94b43b036143c1a21076153a69114627ed72bafec00";
     meta = with lib; {
       homepage = "https://github.com/ThomazPom/Moz-Ext-UltimaDark";
       description = "UltimaDark uses agressive and smart techniques to turn even the sunniest websites into realms of darkness.\nAlthough it works well, this is so experimental, it makes lab rats look like seasoned professionals. \nGo ahead, embrace the shadows! 🦇";
@@ -794,10 +794,10 @@
   };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
-    version = "2025.11.19";
+    version = "2025.11.27.1";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4622782/youtube_tweaks-2025.11.19.xpi";
-    sha256 = "c0d2e43635e024cd926781355904a4fd3ca864c3eb7b3c670aa9dcead7b6fad4";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4629469/youtube_tweaks-2025.11.27.1.xpi";
+    sha256 = "e50b815ac53ba585136d6e5e602f707fd2e7af696e8576ec4582e8f5f13ac6f2";
     meta = with lib; {
       description = "A collection of tweaks for hiding Shorts, disabling auto-dubbing, disabling 'Video paused. Continue watching?', changing the number of videos per row and more!";
       license = licenses.mit;
