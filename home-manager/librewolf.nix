@@ -9,17 +9,15 @@
 in {
   enable = lib.mkDefault config.guiApps;
 
-  package = pkgs.librewolf-bin;
-
-  # package =
-  #   if cfg.de.de == "gnome"
-  #   then
-  #     pkgs.librewolf.override {
-  #       nativeMessagingHosts = [
-  #         pkgs.gnome-browser-connector
-  #       ];
-  #     }
-  #   else pkgs.librewolf;
+  package =
+    if cfg.de.de == "gnome"
+    then
+      pkgs.librewolf.override {
+        nativeMessagingHosts = [
+          pkgs.gnome-browser-connector
+        ];
+      }
+    else pkgs.librewolf;
 
   languagePacks = [
     "en-CA"
