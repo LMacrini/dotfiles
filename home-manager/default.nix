@@ -96,7 +96,7 @@
         # "org.gnome.Decibels"
       ];
       update = {
-        onActivation = true;
+        onActivation = false;
         auto = {
           enable = true;
           onCalendar = "weekly";
