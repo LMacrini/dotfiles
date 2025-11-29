@@ -168,6 +168,7 @@ in {
         "general.autoScroll" = true;
         "image.jxl.enabled" = true;
         "middlemouse.paste" = false;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };
 
       userChrome =
