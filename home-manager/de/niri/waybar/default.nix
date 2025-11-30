@@ -22,9 +22,9 @@
       separate-outputs = true;
 
       rewrite = {
-        " (.*) - YouTube — Ablaze Floorp" = "   $1";
-        "  NixOS Search - (.*) — Ablaze Floorp" = "  󱄅 $1";
-        " (.*) — Ablaze Floorp" = "   $1";
+        " (.*) - YouTube — LibreWolf" = "   $1";
+        "  NixOS Search - (.*) — LibreWolf" = "  󱄅 $1";
+        " (.*) — LibreWolf" = "   $1";
       };
     };
 
