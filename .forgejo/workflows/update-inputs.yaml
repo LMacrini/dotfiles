@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, amd64]
     permissions:
       contents: write
     steps:
@@ -47,6 +47,10 @@ jobs:
           else
             echo "changes=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Validate changes
+        if: steps.git-check.outputs.changes == 'true'
+        run: nix flake check
 
       - name: Commit and push changes
         if: steps.git-check.outputs.changes == 'true'
