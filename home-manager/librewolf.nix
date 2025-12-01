@@ -129,6 +129,7 @@ in {
           catppuccin-macchiato-pink
           consent-o-matic
           dearrow
+          indie-wiki-buddy
           libredirect
           localcdn-fork-of-decentraleyes
           nixpkgs-pr-tracker
