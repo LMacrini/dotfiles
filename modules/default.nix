@@ -191,7 +191,9 @@
 
   systemd.tmpfiles = {
     rules = [
-      "v /home/lioma/.face 0644 lioma lioma - ${pkgs.my.imgs}/share/pfp9696"
+      "L+ /home/lioma/.face - - - - ${pkgs.my.imgs}/share/pfp9696.png"
+      "f+ /var/lib/AccountsService/users/lioma 0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/lioma\\n"
+      "L+ /var/lib/AccountsService/icons/lioma - - - - ${pkgs.my.imgs}/share/pfp9696.png"
     ];
   };
 
