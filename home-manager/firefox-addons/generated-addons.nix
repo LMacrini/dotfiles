@@ -437,6 +437,27 @@
       platforms = platforms.all;
     };
   };
+  "libredirect" = buildFirefoxXpiAddon {
+    pname = "libredirect";
+    version = "3.2.0";
+    addonId = "7esoorv3@alefvanoon.anonaddy.me";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4522826/libredirect-3.2.0.xpi";
+    sha256 = "ba4cf8fe97275d7082fea085a09796481122845455df1af524a7210fff3ecf3c";
+    meta = with lib; {
+      homepage = "https://libredirect.github.io";
+      description = "Redirects YouTube, Twitter, TikTok... requests to alternative privacy friendly frontends.";
+      license = licenses.gpl3;
+      mozPermissions = [
+        "webRequest"
+        "webRequestBlocking"
+        "storage"
+        "clipboardWrite"
+        "contextMenus"
+        "<all_urls>"
+      ];
+      platforms = platforms.all;
+    };
+  };
   "localcdn-fork-of-decentraleyes" = buildFirefoxXpiAddon {
     pname = "localcdn-fork-of-decentraleyes";
     version = "2.6.82";
