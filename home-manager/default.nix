@@ -319,12 +319,6 @@
       source = ./home/Templates;
       recursive = true;
     };
-
-    ".face" = {
-      source = "${pkgs.my.imgs}/share/pfp9696.png";
-      executable = false;
-      recursive = false;
-    };
   };
 
   programs = {

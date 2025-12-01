@@ -189,6 +189,12 @@
 
   environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.stdenv.system}.programs-sqlite;
 
+  systemd.tmpfiles = {
+    rules = [
+      "v /home/lioma/.face 0644 lioma lioma - ${pkgs.my.imgs}/share/pfp9696"
+    ];
+  };
+
   home-manager = {
     extraSpecialArgs = {
       inherit (params) inputs extraHome;
