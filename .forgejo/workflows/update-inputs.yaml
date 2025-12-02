@@ -50,7 +50,7 @@ jobs:
 
       - name: Validate changes
         if: steps.git-check.outputs.changes == 'true'
-        run: nix flake check
+        run: nix flake check --extra-experimental-features pipe-operators
 
       - name: Commit and push changes
         if: steps.git-check.outputs.changes == 'true'
