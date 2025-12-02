@@ -190,10 +190,12 @@
   environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.stdenv.system}.programs-sqlite;
 
   systemd.tmpfiles = {
-    rules = [
-      "L+ /home/${config.mainUser}/.face - - - - ${pkgs.my.imgs}/share/pfp9696.png"
+    rules = let
+      pfp = "${pkgs.my.imgs}/share/pfp9696.png";
+    in [
+      "L+ /home/${config.mainUser}/.face - - - - ${pfp}"
       "f+ /var/lib/AccountsService/users/${config.mainUser} 0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${config.mainUser}\\n"
-      "L+ /var/lib/AccountsService/icons/${config.mainUser} - - - - ${pkgs.my.imgs}/share/pfp9696.png"
+      "L+ /var/lib/AccountsService/icons/${config.mainUser} - - - - ${pfp}"
     ];
   };
 
