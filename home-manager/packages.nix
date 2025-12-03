@@ -278,6 +278,21 @@
       };
     };
 
+    kakoune = {
+      enable = true;
+
+      colorSchemePackage = pkgs.kakounePlugins.kakoune-catppuccin;
+      config = {
+        colorScheme = "catppuccin_macchiato";
+      };
+
+      plugins = with pkgs.kakounePlugins; [
+        fzf-kak
+        hop-kak
+        zig-kak
+      ];
+    };
+
     kitty = {
       enableGitIntegration = true;
       font = {
