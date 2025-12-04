@@ -683,10 +683,10 @@
   };
   "ublock-origin" = buildFirefoxXpiAddon {
     pname = "ublock-origin";
-    version = "1.67.0";
+    version = "1.68.0";
     addonId = "uBlock0@raymondhill.net";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4598854/ublock_origin-1.67.0.xpi";
-    sha256 = "b83c6ec49f817a8d05d288b53dbc7005cceccf82e9490d8683b3120aab3c133a";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4629131/ublock_origin-1.68.0.xpi";
+    sha256 = "5caf4abda494018841222a12156919bbdd8cad82a783c38c36b22dd642704315";
     meta = with lib; {
       homepage = "https://github.com/gorhill/uBlock#ublock-origin";
       description = "Finally, an efficient wide-spectrum content blocker. Easy on CPU and memory.";
@@ -721,10 +721,10 @@
   };
   "ultimadark" = buildFirefoxXpiAddon {
     pname = "ultimadark";
-    version = "1.6.37";
+    version = "1.6.38";
     addonId = "{7c7f6dea-3957-4bb9-9eec-2ef2b9e5bcec}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4629619/ultimadark-1.6.37.xpi";
-    sha256 = "3bbd889797f72858b4dae94b43b036143c1a21076153a69114627ed72bafec00";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4634443/ultimadark-1.6.38.xpi";
+    sha256 = "10309a5f85b5acdf1f9df11ec77298e51a7baeac881546a0ba486f48b82e369f";
     meta = with lib; {
       homepage = "https://github.com/ThomazPom/Moz-Ext-UltimaDark";
       description = "UltimaDark uses agressive and smart techniques to turn even the sunniest websites into realms of darkness.\nAlthough it works well, this is so experimental, it makes lab rats look like seasoned professionals. \nGo ahead, embrace the shadows! 🦇";
