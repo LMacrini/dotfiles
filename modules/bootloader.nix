@@ -7,12 +7,13 @@
   options = with lib; {
     bootloader = mkOption {
       default = "limine";
-      type = with types;
-        nullOr (enum [
+      type =
+        types.nullOr
+        <| types.enum [
           "grub"
           "limine"
           "systemd"
-        ]);
+        ];
     };
   };
 

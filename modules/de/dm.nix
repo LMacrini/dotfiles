@@ -7,7 +7,8 @@
   options = with lib; {
     dm = mkOption {
       type =
-        types.enum [
+        types.nullOr
+        <| types.enum [
           "gdm"
           "ly"
           "tuigreet"
@@ -17,8 +18,7 @@
           # for some reason sddm and lightdm don't work, so i'm leaving them commented out for now
           # "sddm"
           # "lightdm"
-        ]
-        |> types.nullOr;
+        ];
       default = "gdm";
     };
   };

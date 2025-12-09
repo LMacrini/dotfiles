@@ -16,13 +16,13 @@
       de = mkOption {
         default = "niri";
         type =
-          types.enum [
+          types.nullOr
+          <| types.enum [
             "hyprland"
             "gnome"
             "budgie"
             "niri"
-          ]
-          |> types.nullOr;
+          ];
         example = "gnome";
       };
     };
