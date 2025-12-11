@@ -279,12 +279,15 @@
     };
 
     kakoune = {
-      enable = true;
-
       colorSchemePackage = pkgs.kakounePlugins.kakoune-catppuccin;
       config = {
         colorScheme = "catppuccin_macchiato";
       };
+
+      extraConfig =
+        # kak
+        ''
+        '';
 
       plugins = with pkgs.kakounePlugins; [
         fzf-kak
