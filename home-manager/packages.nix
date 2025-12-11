@@ -317,6 +317,8 @@
       };
 
       settings = {
+        allow_remote_control = true;
+
         confirm_os_window_close = 0;
 
         cursor_trail = 1;
