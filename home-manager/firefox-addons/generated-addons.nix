@@ -116,10 +116,10 @@
   };
   "dearrow" = buildFirefoxXpiAddon {
     pname = "dearrow";
-    version = "2.1.11";
+    version = "2.2.1";
     addonId = "deArrow@ajay.app";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4597677/dearrow-2.1.11.xpi";
-    sha256 = "a9f386c3d8ef128a571ede229a0d2f14bedb1c8ad646f43fb82282ae92992242";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4634684/dearrow-2.2.1.xpi";
+    sha256 = "9fefe049ccc9995bd0ccf517efff8d651cbfe7352af3f98d21ad028f7728c053";
     meta = with lib; {
       homepage = "https://dearrow.ajay.app";
       description = "Crowdsourcing titles and thumbnails to be descriptive and not sensational";
@@ -815,10 +815,10 @@
   };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
-    version = "2025.11.27.1";
+    version = "2025.12.10.1";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4629469/youtube_tweaks-2025.11.27.1.xpi";
-    sha256 = "e50b815ac53ba585136d6e5e602f707fd2e7af696e8576ec4582e8f5f13ac6f2";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4639234/youtube_tweaks-2025.12.10.1.xpi";
+    sha256 = "88604beed995e6eaef8c8e49ddf47cc42c1b16c82631644e37ce4a55de979219";
     meta = with lib; {
       description = "A collection of tweaks for hiding Shorts, disabling auto-dubbing, disabling 'Video paused. Continue watching?', changing the number of videos per row and more!";
       license = licenses.mit;
