@@ -476,7 +476,7 @@
       old-files-age = 30;
       recent-files-age = 30;
       remove-old-temp-files = true;
-      remove-old-trash-files = true;
+      remove-old-trash-files = cfg.de.de == "gnome";
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {
