@@ -25,11 +25,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     programsdb = {
@@ -134,8 +129,6 @@
         withHyprland = true;
       };
 
-      gaming = inputs.nix-gaming.packages.${system};
-
       my = myPkgs.${system};
 
       fjordlauncher = inputs.fjordlauncher.packages.${system}.default;
@@ -159,8 +152,6 @@
           inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.catppuccin.nixosModules.catppuccin
           inputs.niri.nixosModules.niri
-          inputs.nix-gaming.nixosModules.platformOptimizations
-          inputs.nix-gaming.nixosModules.wine
           inputs.home-manager.nixosModules.default
           {
             nixpkgs.overlays = [
