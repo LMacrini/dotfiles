@@ -34,7 +34,7 @@
   # };
   xdg.configFile = lib.mkIf config.programs.emacs.enable {
     "emacs/init.el".source = pkgs.replaceVars ./config/init.el {
-      nerdfont = cfg.fonts.nerdFont.name;
+      nerdfont = cfg.fonts.nerdfont.name;
     };
     "emacs/icon.png".source = ./config/icon.png;
   };
