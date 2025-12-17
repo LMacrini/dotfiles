@@ -146,7 +146,10 @@ in
         hot-corners.enable = false;
       };
 
-      hotkey-overlay.skip-at-startup = lib.mkDefault true;
+      hotkey-overlay = {
+        hide-not-bound = true;
+        skip-at-startup = lib.mkDefault true;
+      };
 
       input = {
         focus-follows-mouse = {
