@@ -24,10 +24,10 @@
   };
   "bitwarden-password-manager" = buildFirefoxXpiAddon {
     pname = "bitwarden-password-manager";
-    version = "2025.11.2";
+    version = "2025.12.0";
     addonId = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4633659/bitwarden_password_manager-2025.11.2.xpi";
-    sha256 = "0fcda36efb4c8b54913d4536e43b07f6c1ea4daaa8969ff45bac77509af5f861";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4640726/bitwarden_password_manager-2025.12.0.xpi";
+    sha256 = "0256a61e84e23903fd379f5971150a8b23a53a126da62d276d57e514408839cd";
     meta = with lib; {
       homepage = "https://bitwarden.com";
       description = "At home, at work, or on the go, Bitwarden easily secures all your passwords, passkeys, and sensitive information.";
@@ -479,46 +479,6 @@
       platforms = platforms.all;
     };
   };
-  "nekocap" = buildFirefoxXpiAddon {
-    pname = "nekocap";
-    version = "1.18.1";
-    addonId = "nekocaption@gmail.com";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4553284/nekocap-1.18.1.xpi";
-    sha256 = "893bbbe069eb7e990b9229362e42c54c900d9e72f391902895e92920c388cbc2";
-    meta = with lib; {
-      homepage = "https://nekocap.com";
-      description = "Create and upload community captions for YouTube videos (and more) with this easy to use extension that supports SSA/ASS rendering.";
-      license = licenses.gpl3;
-      mozPermissions = [
-        "storage"
-        "webNavigation"
-        "identity"
-        "https://*.youtube.com/*"
-        "https://*.tver.jp/*"
-        "https://*.nicovideo.jp/*"
-        "https://*.vimeo.com/*"
-        "https://*.bilibili.com/*"
-        "https://*.netflix.com/*"
-        "https://*.primevideo.com/*"
-        "https://*.twitter.com/*"
-        "https://*.x.com/*"
-        "https://*.wetv.vip/*"
-        "https://*.tiktok.com/*"
-        "https://*.iq.com/*"
-        "https://*.abema.tv/*"
-        "https://*.dailymotion.com/*"
-        "https://*.bilibili.tv/*"
-        "https://*.nogidoga.com/*"
-        "https://*.cu.tbs.co.jp/*"
-        "https://*.instagram.com/*"
-        "https://*.unext.jp/*"
-        "https://*.lemino.docomo.ne.jp/*"
-        "https://*.oned.net/*"
-        "https://*.archive.org/*"
-      ];
-      platforms = platforms.all;
-    };
-  };
   "nixpkgs-pr-tracker" = buildFirefoxXpiAddon {
     pname = "nixpkgs-pr-tracker";
     version = "0.1.2";
@@ -603,10 +563,10 @@
   };
   "sponsorblock" = buildFirefoxXpiAddon {
     pname = "sponsorblock";
-    version = "6.1.0";
+    version = "6.1.2";
     addonId = "sponsorBlocker@ajay.app";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4608179/sponsorblock-6.1.0.xpi";
-    sha256 = "48f412540ad0217c52caece0eb84186041b28241b24457aaa8c256565f050844";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4644570/sponsorblock-6.1.2.xpi";
+    sha256 = "598f66c9eb6bbab2bd5f87376b632a5860f442d3694e233610f5b37f8b6e3f10";
     meta = with lib; {
       homepage = "https://sponsor.ajay.app";
       description = "Easily skip YouTube video sponsors. When you visit a YouTube video, the extension will check the database for reported sponsors and automatically skip known sponsors. You can also report sponsors in videos. Other browsers: https://sponsor.ajay.app";
@@ -815,10 +775,10 @@
   };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
-    version = "2025.12.10.1";
+    version = "2025.12.17";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4639234/youtube_tweaks-2025.12.10.1.xpi";
-    sha256 = "88604beed995e6eaef8c8e49ddf47cc42c1b16c82631644e37ce4a55de979219";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4644757/youtube_tweaks-2025.12.17.xpi";
+    sha256 = "0b1744932c1bc8b8364d6ee8fbea4a3e5df4125693f41ec5fbfac7c544020790";
     meta = with lib; {
       description = "A collection of tweaks for hiding Shorts, disabling auto-dubbing, disabling 'Video paused. Continue watching?', changing the number of videos per row and more!";
       license = licenses.mit;
