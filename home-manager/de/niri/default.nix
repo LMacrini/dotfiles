@@ -229,6 +229,9 @@ in
             {
               title = "Python Turtle Graphics";
             }
+            {
+              title = "Vulkan";
+            }
           ];
           open-floating = true;
         }
