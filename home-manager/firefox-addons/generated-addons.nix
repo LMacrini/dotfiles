@@ -681,10 +681,10 @@
   };
   "ultimadark" = buildFirefoxXpiAddon {
     pname = "ultimadark";
-    version = "1.6.51";
+    version = "1.6.53";
     addonId = "{7c7f6dea-3957-4bb9-9eec-2ef2b9e5bcec}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4648219/ultimadark-1.6.51.xpi";
-    sha256 = "3c81dcec2b326a4ce0d7c3273c3b28c03f9a5cf4d7019354ebd59dbf431f9d01";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4649127/ultimadark-1.6.53.xpi";
+    sha256 = "a92518e124961dfa72f728ba2163b24b96f8a43f9fe61799831aeccbb109b52e";
     meta = with lib; {
       homepage = "https://github.com/ThomazPom/Moz-Ext-UltimaDark";
       description = "UltimaDark uses agressive and smart techniques to turn even the sunniest websites into realms of darkness.\nAlthough it works well, this is so experimental, it makes lab rats look like seasoned professionals. \nGo ahead, embrace the shadows! 🦇";
