@@ -165,7 +165,7 @@
 
           line-number = "relative";
           mouse = false;
-          rulers = [80];
+          rulers = [80 100];
           soft-wrap.enable = true;
           trim-trailing-whitespace = true;
         };
