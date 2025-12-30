@@ -351,7 +351,6 @@
 
     starship = {
       enable = true;
-      enableTransience = true;
       settings = import ./starship.nix;
     };
 
@@ -508,7 +507,6 @@
       extraConfig =
         # nu
         ''
-          $env.TRANSIENT_PROMPT_COMMAND = {starship module character | $"\n($in)"}
           def to_command [s: string] {
               mut idx = $s | str index-of " "
               if $idx == -1 {
@@ -540,6 +538,11 @@
                   ^$cmd2.0 $cmd2.1
               }
           }
+        ''
+        + lib.optionalString (config.programs.starship.enableTransience)
+        # nu
+        ''
+          $env.TRANSIENT_PROMPT_COMMAND = {starship module character | $"\n($in)"}
         '';
     };
 
@@ -570,15 +573,19 @@
         #
         # 1500 (mkAfter): Last to run configuration
         after =
-          lib.mkOrder 1500 # zsh
-          
+          lib.mkOrder 1500
+          <|
+          # zsh
+          ''
+            autoload -Uz add-zle-hook-widget
+            add-zle-hook-widget zle-line-finish transient-prompt
+          ''
+          + lib.optionalString (config.programs.starship.enableTransience)
+          # zsh
           ''
             transient-prompt () {
               PROMPT=$(starship module character) zle .reset-prompt
             }
-
-            autoload -Uz add-zle-hook-widget
-            add-zle-hook-widget zle-line-finish transient-prompt
           '';
       in
         lib.mkMerge [
