@@ -681,10 +681,10 @@
   };
   "ultimadark" = buildFirefoxXpiAddon {
     pname = "ultimadark";
-    version = "1.6.53";
+    version = "1.6.54";
     addonId = "{7c7f6dea-3957-4bb9-9eec-2ef2b9e5bcec}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4649127/ultimadark-1.6.53.xpi";
-    sha256 = "a92518e124961dfa72f728ba2163b24b96f8a43f9fe61799831aeccbb109b52e";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4653241/ultimadark-1.6.54.xpi";
+    sha256 = "c2a40e23eb9ad041dccafa96b2b71f3ce55bb0d6fba7806d2e48ccfbe542c3bf";
     meta = with lib; {
       homepage = "https://github.com/ThomazPom/Moz-Ext-UltimaDark";
       description = "UltimaDark uses agressive and smart techniques to turn even the sunniest websites into realms of darkness.\nAlthough it works well, this is so experimental, it makes lab rats look like seasoned professionals. \nGo ahead, embrace the shadows! 🦇";
@@ -775,10 +775,10 @@
   };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
-    version = "2025.12.17";
+    version = "2025.12.29";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4644757/youtube_tweaks-2025.12.17.xpi";
-    sha256 = "0b1744932c1bc8b8364d6ee8fbea4a3e5df4125693f41ec5fbfac7c544020790";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4652757/youtube_tweaks-2025.12.29.xpi";
+    sha256 = "7ebd9374ac18d6da21492aa6b0cb1d559f759eb8c87fb43fe3c2c90d35b64bd5";
     meta = with lib; {
       description = "A collection of tweaks for hiding Shorts, disabling auto-dubbing, disabling 'Video paused. Continue watching?', changing the number of videos per row and more!";
       license = licenses.mit;
