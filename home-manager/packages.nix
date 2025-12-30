@@ -66,6 +66,7 @@
     packages = with pkgs;
       [
         nix-output-monitor
+        rip2
       ]
       ++ lib.optionals config.guiApps [
         bitwarden-desktop

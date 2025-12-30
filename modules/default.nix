@@ -242,8 +242,8 @@
     git
     jujutsu
     skim
-    gh
     fd
+    rip2
     ripgrep
     tlrc
 
