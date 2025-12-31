@@ -67,6 +67,7 @@
       [
         nix-output-monitor
         rip2
+        weechat
       ]
       ++ lib.optionals config.guiApps [
         bitwarden-desktop
