@@ -54,10 +54,10 @@
   };
   "bonjourr-startpage" = buildFirefoxXpiAddon {
     pname = "bonjourr-startpage";
-    version = "21.2.1";
+    version = "22.0.0";
     addonId = "{4f391a9e-8717-4ba6-a5b1-488a34931fcb}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4575253/bonjourr_startpage-21.2.1.xpi";
-    sha256 = "f694c2fa42d60c806af9aa1560dc8dd1debd5b3cf1ee52651ab777d2e51ba772";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4649474/bonjourr_startpage-22.0.0.xpi";
+    sha256 = "59d41cf35dce5f873b6682c5a73117a7b4c73395d764f8ab0243d9136f58e999";
     meta = with lib; {
       homepage = "https://bonjourr.fr";
       description = "Improve your web browsing experience with Bonjourr, a beautiful, customizable and lightweight homepage inspired by iOS.";
@@ -681,10 +681,10 @@
   };
   "ultimadark" = buildFirefoxXpiAddon {
     pname = "ultimadark";
-    version = "1.6.54";
+    version = "1.6.55";
     addonId = "{7c7f6dea-3957-4bb9-9eec-2ef2b9e5bcec}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4653241/ultimadark-1.6.54.xpi";
-    sha256 = "c2a40e23eb9ad041dccafa96b2b71f3ce55bb0d6fba7806d2e48ccfbe542c3bf";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4654797/ultimadark-1.6.55.xpi";
+    sha256 = "a820807c6561ec80e27321aed0aee53aeb1809d4ca477e8f77724e05d59a1f97";
     meta = with lib; {
       homepage = "https://github.com/ThomazPom/Moz-Ext-UltimaDark";
       description = "UltimaDark uses agressive and smart techniques to turn even the sunniest websites into realms of darkness.\nAlthough it works well, this is so experimental, it makes lab rats look like seasoned professionals. \nGo ahead, embrace the shadows! 🦇";
