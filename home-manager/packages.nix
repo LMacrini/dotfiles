@@ -54,7 +54,6 @@
     shellAliases = {
       cd = "z";
       cls = "clear";
-      nix-shell = "nix-shell --run \"${cfg.shell}\"";
     };
 
     file = {
@@ -345,6 +344,10 @@
       package = pkgs.nh;
 
       flake = "${config.home.homeDirectory}/dotfiles";
+    };
+
+    nix-your-shell = {
+      enable = true;
     };
 
     rmpc = {
