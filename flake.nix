@@ -103,7 +103,7 @@
               in {
                 name = system;
                 value = {
-                  ${name} = pkgs.callPackage package {inherit inputs;};
+                  ${name} = pkgs.callPackage package {};
                 };
               })
               systems;
@@ -128,6 +128,8 @@
         withPam = true;
         withHyprland = true;
       };
+
+      zig = inputs.zig.packages.${system};
 
       my = myPkgs.${system};
 

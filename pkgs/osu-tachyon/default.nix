@@ -6,7 +6,6 @@
   fetchurl,
   fetchzip,
   lib,
-  inputs,
 }: let
   info = builtins.fromJSON (builtins.readFile ./info.json);
 

@@ -2,3 +2,5 @@ result
 result-man
 .direnv
 *.qcow2
+*.zig-cache
+*zig-out
