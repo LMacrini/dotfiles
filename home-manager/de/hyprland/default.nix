@@ -3,8 +3,7 @@
   cfg,
   lib,
   ...
-}:
-lib.mkIf (cfg.de.de == "hyprland") {
+}: {
   home.packages = with pkgs; [
     blueman
     brightnessctl

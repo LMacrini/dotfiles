@@ -1,124 +1,127 @@
-{
-  enable = true;
-  style = builtins.readFile ./style.css;
+{cfg, ...}: {
+  programs.waybar = {
+    enable = true;
+    style = builtins.readFile ./style.css;
 
-  settings.mainBar = {
-    layer = "top";
-    position = "top";
+    settings.mainBar = {
+      layer = "top";
+      position = "top";
 
-    modules-left = ["niri/workspaces" "niri/window"];
-    modules-center = ["clock"];
-    modules-right = [
-      "tray"
-      "idle_inhibitor"
-      "power-profiles-daemon"
-      "custom/notification"
-      "pulseaudio"
-      "battery"
-    ];
-
-    "niri/window" = {
-      format = "  {title}";
-      separate-outputs = true;
-
-      rewrite = {
-        " (.*) - YouTube — LibreWolf" = "   $1";
-        "  NixOS Search - (.*) — LibreWolf" = "  󱄅 $1";
-        " (.*) — LibreWolf" = "   $1";
-      };
-    };
-
-    "niri/workspaces" = {
-      format = "{icon}";
-      format-icons = {
-      };
-    };
-
-    "battery" = {
-      format = " {icon} {capacity}% ";
-      format-charging = " 󱐋{icon} {capacity}% ";
-      format-icons = [
-        "󰁺"
-        "󰁻"
-        "󰁼"
-        "󰁽"
-        "󰁾"
-        "󰁿"
-        "󰂀"
-        "󰂁"
-        "󰂂"
-        "󰁹"
+      modules-left = ["niri/workspaces" "niri/window"];
+      modules-center = ["clock"];
+      modules-right = [
+        "tray"
+        "idle_inhibitor"
+        "power-profiles-daemon"
+        "custom/notification"
+        "pulseaudio"
+        "battery"
       ];
-    };
 
-    "clock" = {
-      format = "{:%F %H:%M}";
-      interval = 1;
-      tooltip-format = "{:%a %b %d %H:%M:%S %Y}";
-    };
+      "niri/window" = {
+        format = "  {title}";
+        separate-outputs = true;
 
-    "custom/notification" = {
-      tooltip = false;
-      format = " {icon} ";
-      format-icons = {
-        notification = "<span foreground='red'><sup></sup></span>";
-        none = "";
-        dnd-notification = "<span foreground='red'><sup></sup></span>";
-        dnd-none = "";
-        inhibited-notification = "<span foreground='red'><sup></sup></span>";
-        inhibited-none = "";
-        dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
-        dnd-inhibited-none = "";
+        rewrite = {
+          " (.*) - YouTube — LibreWolf" = "   $1";
+          "  NixOS Search - (.*) — LibreWolf" = "  󱄅 $1";
+          " (.*) — LibreWolf" = "   $1";
+        };
       };
-      return-type = "json";
-      exec-if = "which swaync-client";
-      exec = "swaync-client -swb";
-      on-click = "swaync-client -d -sw";
-      on-click-right = "swaync-client -t -sw";
-      escape = true;
-    };
 
-    "idle_inhibitor" = {
-      format = " {icon} ";
-      format-icons = {
-        activated = "";
-        deactivated = "";
+      "niri/workspaces" = {
+        format = "{icon}";
+        format-icons = {
+        };
       };
-    };
 
-    "power-profiles-daemon" = {
-      format = " {icon} ";
-      tooltip-format = "Power profile: {profile}\nDriver: {driver}";
-      tooltip = true;
-      format-icons = {
-        default = "";
-        performance = "";
-        balanced = "";
-        power-saver = "";
+      "battery" = {
+        format = " {icon} {capacity}% ";
+        format-charging = " 󱐋{icon} {capacity}% ";
+        format-icons = [
+          "󰁺"
+          "󰁻"
+          "󰁼"
+          "󰁽"
+          "󰁾"
+          "󰁿"
+          "󰂀"
+          "󰂁"
+          "󰂂"
+          "󰁹"
+        ];
       };
-    };
 
-    "pulseaudio" = {
-      on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-      on-click-right = "pavucontrol";
-
-      format = " {icon} {volume}% ";
-      format-icons = {
-        default = ["󰕿" "󰖀" "󰕾"];
-        default-muted = "󰖁";
-        headphone = "󰋋";
-        headphone-muted = "󰟎";
-        headset = "󰋎";
-        headset-muted = "󰋐";
-        "alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo" = "󰋎";
-        "alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo-muted" = "󰋐";
+      "clock" = {
+        format = "{:%F %H:%M}";
+        interval = 1;
+        tooltip-format = "{:%a %b %d %H:%M:%S %Y}";
+        timezone = cfg.time.timeZone;
       };
-    };
 
-    "tray" = {
-      show-passive-items = true;
-      spacing = 10;
-      reverse-direction = true;
+      "custom/notification" = {
+        tooltip = false;
+        format = " {icon} ";
+        format-icons = {
+          notification = "<span foreground='red'><sup></sup></span>";
+          none = "";
+          dnd-notification = "<span foreground='red'><sup></sup></span>";
+          dnd-none = "";
+          inhibited-notification = "<span foreground='red'><sup></sup></span>";
+          inhibited-none = "";
+          dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+          dnd-inhibited-none = "";
+        };
+        return-type = "json";
+        exec-if = "which swaync-client";
+        exec = "swaync-client -swb";
+        on-click = "swaync-client -d -sw";
+        on-click-right = "swaync-client -t -sw";
+        escape = true;
+      };
+
+      "idle_inhibitor" = {
+        format = " {icon} ";
+        format-icons = {
+          activated = "";
+          deactivated = "";
+        };
+      };
+
+      "power-profiles-daemon" = {
+        format = " {icon} ";
+        tooltip-format = "Power profile: {profile}\nDriver: {driver}";
+        tooltip = true;
+        format-icons = {
+          default = "";
+          performance = "";
+          balanced = "";
+          power-saver = "";
+        };
+      };
+
+      "pulseaudio" = {
+        on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        on-click-right = "pavucontrol";
+
+        format = " {icon} {volume}% ";
+        format-icons = {
+          default = ["󰕿" "󰖀" "󰕾"];
+          default-muted = "󰖁";
+          headphone = "󰋋";
+          headphone-muted = "󰟎";
+          headset = "󰋎";
+          headset-muted = "󰋐";
+          "alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo" = "󰋎";
+          "alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo-muted" = "󰋐";
+        };
+      };
+
+      "tray" = {
+        show-passive-items = true;
+        spacing = 10;
+        reverse-direction = true;
+      };
     };
   };
 }
