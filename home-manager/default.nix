@@ -273,6 +273,7 @@
         startupNotify = false;
         exec = "kitty -- hx %f";
       };
+
       kitty-no-tmux = lib.mkIf (config.programs.kitty.enable || config.programs.tmux.enable) {
         name = "kitty (no tmux)";
         icon = "kitty";
@@ -282,6 +283,27 @@
         type = "Application";
         startupNotify = true;
         exec = "env DISABLE_TMUX=1 kitty";
+      };
+
+      weechat = {
+        name = "WeeChat (hidden)";
+        noDisplay = true;
+      };
+
+      weechat-kitty = {
+        name = "WeeChat (kitty)";
+        icon = "weechat";
+        categories = [
+          "Network"
+          "Chat"
+          "IRCClient"
+          "ConsoleOnly"
+        ];
+        comment = "Extensible chat client";
+        genericName = "Chat client";
+        type = "Application";
+        mimeType = ["x-scheme-handler/irc" "x-scheme-handler/ircs"];
+        exec = "kitty -T WeeChat -- weechat %u";
       };
     };
 
