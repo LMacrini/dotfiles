@@ -56,13 +56,6 @@
     git
     my.nixinstall
     my.nixinstall-zig
-    (writeShellScriptBin "fail"
-      ''
-        for i in {1..10}; do
-          echo "$i" >&2
-        done
-        exit 1
-      '')
   ];
 
   services.qemuGuest.enable = true;

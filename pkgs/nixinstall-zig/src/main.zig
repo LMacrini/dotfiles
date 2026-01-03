@@ -196,8 +196,6 @@ fn partitionDrives(
             false,
         )) continue;
 
-        disko = .init(&.{"fail"}, gpa);
-
         disko.stderr_behavior = .Pipe;
         disko.stdout_behavior = .Ignore;
 
