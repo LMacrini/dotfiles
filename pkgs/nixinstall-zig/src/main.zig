@@ -74,7 +74,7 @@ fn partitionDrives(
 
     const default_swap =
         while (try mem_info_reader.interface.takeDelimiter('\n')) |line| {
-            var it = std.mem.tokenizeScalar(u8, line, '\n');
+            var it = std.mem.tokenizeScalar(u8, line, ' ');
 
             if (std.mem.eql(u8, it.next().?, "MemTotal:")) {
                 break try std.fmt.parseInt(u64, it.next().?, 10);
@@ -83,6 +83,7 @@ fn partitionDrives(
 
     while (true) {
         try stdout.writeByte('\n');
+        try stdout.flush();
 
         var lsblk: Child = .init(&.{"lsblk"}, gpa);
         _ = try lsblk.spawnAndWait(io);
