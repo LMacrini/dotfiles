@@ -189,8 +189,8 @@ fn partitionDrives(
             false,
         )) continue;
 
-        disko.stderr_behavior = .Pipe;
-        disko.stdout_behavior = .Ignore;
+        // disko.stderr_behavior = .Pipe;
+        // disko.stdout_behavior = .Ignore;
 
         try disko.spawn(io);
 
