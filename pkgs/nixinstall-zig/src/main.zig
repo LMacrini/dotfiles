@@ -310,8 +310,9 @@ pub fn main() !void {
         const term = try p.wait(io);
 
         if (term != .Exited or term.Exited != 0) {
+            std.log.err("drive partition failed:", .{});
             logErr(io, stderr_r.buffer[0..stderr_r.end]);
-            return error.DrivePartitionFailed;
+            std.process.exit(1);
         }
     }
 }
