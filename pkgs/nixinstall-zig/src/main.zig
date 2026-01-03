@@ -203,7 +203,7 @@ pub fn main() !void {
     else
         std.heap.smp_allocator;
 
-    var threaded: Io.Threaded = .init(gpa, .{});
+    var threaded: Io.Threaded = .init_single_threaded;
     defer threaded.deinit();
     const io = threaded.io();
 
@@ -264,7 +264,7 @@ pub fn main() !void {
         var process: Child = .init(&.{
             "git",
             "clone",
-            "https://git.serversmp.xyz",
+            "https://git.serversmp.xyz/seija/dotfiles",
             "/tmp/config",
         }, gpa);
         _ = try process.spawnAndWait(io);
