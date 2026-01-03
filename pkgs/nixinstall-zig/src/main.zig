@@ -137,6 +137,8 @@ fn partitionDrives(
                         },
                     } * (1 << 20);
 
+                    std.log.debug("{d} {d} {d}", .{ swap_int, default_swap, 32 * (1 << 30) });
+
                     if (swap_int *| 2 > default_swap and !try yesOrNo(
                         stdout,
                         stdin,
