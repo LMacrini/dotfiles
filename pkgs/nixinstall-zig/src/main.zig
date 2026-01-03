@@ -112,7 +112,7 @@ fn partitionDrives(
 
         var disko: Child = if (try yesOrNo(stdout, stdin, "do you want a swap file? [y]", true))
             (while (true) {
-                try stdout.print("how much swap do you want? (in GiB) [{d:0}]", .{default_swap / (1 << 20)});
+                try stdout.print("how much swap do you want? (in GiB) [{d:0}] ", .{default_swap / (1 << 20)});
                 try stdout.flush();
                 const swap_input = stdin.takeDelimiterExclusive('\n') catch |err| switch (err) {
                     error.StreamTooLong => {
@@ -275,9 +275,10 @@ pub fn main() !void {
     }
 
     const shell = std.process.getEnvVarOwned(gpa, "SHELL") catch |err| switch (err) {
-        error.EnvironmentVariableNotFound => "bash",
+        error.EnvironmentVariableNotFound => try gpa.dupe(u8, "bash"),
         else => return err,
     };
+    defer gpa.free(shell);
     var shell_process: Child = .init(&.{shell}, gpa);
 
     var drive_process = try partitionDrives(io, gpa, stdout, stdin, &shell_process);
