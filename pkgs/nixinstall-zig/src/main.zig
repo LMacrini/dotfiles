@@ -113,6 +113,7 @@ fn partitionDrives(
         var disko: Child = if (try yesOrNo(stdout, stdin, "do you want a swap file? [y]", true))
             (while (true) {
                 try stdout.print("how much swap do you want? (in GiB) [{d:0}]", .{default_swap / (1 << 20)});
+                try stdout.flush();
                 const swap_input = stdin.takeDelimiterExclusive('\n') catch |err| switch (err) {
                     error.StreamTooLong => {
                         std.log.err("disk name too long, please try again", .{});
