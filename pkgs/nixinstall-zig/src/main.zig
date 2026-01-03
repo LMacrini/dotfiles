@@ -32,7 +32,7 @@ fn yesOrNo(stdout: *Io.Writer, stdin: *Io.Reader, msg: []const u8, default: bool
 
 fn logErr(io: Io, str: []const u8) void {
     var buf: [4096]u8 = undefined;
-    var stderr: Io.File.Reader = .init(.stderr(), io, &buf);
+    var stderr: Io.File.Writer = .init(.stderr(), io, &buf);
     stderr.interface.writeAll(str) catch {};
     stderr.interface.flush() catch {};
 }
