@@ -126,7 +126,7 @@ fn partitionDrives(
                 if (swap_input.len == 0) {
                     swap = try std.fmt.allocPrint(gpa, "\"{d}k\"", .{default_swap});
                 } else {
-                    const swap_int = std.fmt.parseInt(u64, swap_input, 10) catch |err| switch (err) {
+                    const swap_int = (std.fmt.parseInt(u64, swap_input, 10) catch |err| switch (err) {
                         error.InvalidCharacter => {
                             std.log.err("Invalid character, please try again", .{});
                             continue;
@@ -135,7 +135,7 @@ fn partitionDrives(
                             std.log.err("Number too big, please try again", .{});
                             continue;
                         },
-                    } * (1 << 20);
+                    }) * (1 << 20);
 
                     std.log.debug("{d} {d} {d}", .{ swap_int, default_swap, 32 * (1 << 30) });
 
