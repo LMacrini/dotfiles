@@ -189,8 +189,8 @@ fn partitionDrives(
             false,
         )) continue;
 
-        // disko.stderr_behavior = .Pipe;
-        // disko.stdout_behavior = .Ignore;
+        disko.stderr_behavior = .Pipe;
+        disko.stdout_behavior = .Ignore;
 
         try disko.spawn(io);
 
@@ -201,6 +201,10 @@ fn partitionDrives(
 var dba: std.heap.DebugAllocator(.{}) = .init;
 
 pub fn main() !void {
+    if (std.posix.getuid() != 0) {
+        std.process.fatal("please run nixinstall as root");
+    }
+
     defer _ = if (builtin.mode == .Debug) dba.deinit();
     const gpa = if (builtin.mode == .Debug)
         dba.allocator()
