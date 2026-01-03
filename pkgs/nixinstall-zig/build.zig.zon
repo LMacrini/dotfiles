@@ -1,0 +1,7 @@
+.{
+    .name = .nixinstall_zig,
+    .version = "0.0.1",
+    .minimum_zig_version = "0.16.0-dev.1888+9d497d0d7",
+    .paths = .{""},
+    .fingerprint = 0x9b8abc8d152dce9f,
+}

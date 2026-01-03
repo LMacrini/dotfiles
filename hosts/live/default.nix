@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   modulesPath,
   lib,
@@ -56,6 +55,7 @@
     disko
     git
     my.nixinstall
+    my.nixinstall-zig
   ];
 
   services.qemuGuest.enable = true;
