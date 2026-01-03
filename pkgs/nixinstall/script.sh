@@ -74,7 +74,7 @@ else
       if ! $sure; then
         continue
       fi
-      sudo disko -m destroy,format,mount --yes-wipe-all-disks --arg disk "\"/dev/${drive}\"" --arg swap "\"${swapsize}\"" ./disko/swap.nix
+      sudo disko -m destroy,format,mount --yes-wipe-all-disks --arg disk "\"/dev/${drive}\"" --arg swap "\"${swapsize}G\"" ./disko/swap.nix
     else
       yorn sure "n" "Are you sure you want to continue? This will wipe all information on the drive [n]"
       if ! $sure; then

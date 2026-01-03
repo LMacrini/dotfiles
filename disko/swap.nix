@@ -22,7 +22,7 @@
               };
             };
             root = {
-              end = "-${swap}G";
+              end = "-${swap}";
               content = {
                 type = "filesystem";
                 format = "ext4";
