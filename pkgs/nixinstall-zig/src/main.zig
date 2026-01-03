@@ -309,7 +309,7 @@ pub fn main() !void {
 
         const term = try p.wait(io);
 
-        if (term != .Exited and term.Exited != 0) {
+        if (term != .Exited or term.Exited != 0) {
             logErr(io, stderr_r.buffer[0..stderr_r.end]);
             return error.DrivePartitionFailed;
         }
