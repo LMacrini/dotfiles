@@ -30,6 +30,13 @@ fn yesOrNo(stdout: *Io.Writer, stdin: *Io.Reader, msg: []const u8, default: bool
     };
 }
 
+fn logErr(io: Io, str: []const u8) void {
+    var buf: [4096]u8 = undefined;
+    var stderr: Io.File.Reader = .init(.stderr(), io, &buf);
+    stderr.interface.writeAll(str) catch {};
+    stderr.interface.flush() catch {};
+}
+
 fn getPassword(gpa: std.mem.Allocator, stdin: *Io.Reader) ![]u8 {
     _ = gpa;
     _ = stdin;
@@ -189,6 +196,8 @@ fn partitionDrives(
             false,
         )) continue;
 
+        disko = .init(&.{"fail"}, gpa);
+
         disko.stderr_behavior = .Pipe;
         disko.stdout_behavior = .Ignore;
 
@@ -289,9 +298,19 @@ pub fn main() !void {
     errdefer _ = if (drive_process) |*p| p.kill(io) catch {};
 
     if (drive_process) |*p| {
+        var poller = std.Io.poll(gpa, enum { stderr }, .{
+            .stderr = p.stderr.?,
+        });
+        defer poller.deinit();
+
+        const stderr_r = poller.reader(.stderr);
+
+        while (try poller.poll()) {}
+
         const term = try p.wait(io);
 
         if (term != .Exited and term.Exited != 0) {
+            logErr(io, stderr_r.buffer[0..stderr_r.end]);
             return error.DrivePartitionFailed;
         }
     }
