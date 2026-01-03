@@ -202,7 +202,7 @@ var dba: std.heap.DebugAllocator(.{}) = .init;
 
 pub fn main() !void {
     if (std.posix.getuid() != 0) {
-        std.process.fatal("please run nixinstall as root");
+        std.process.fatal("please run nixinstall as root", .{});
     }
 
     defer _ = if (builtin.mode == .Debug) dba.deinit();
