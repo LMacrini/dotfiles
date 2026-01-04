@@ -467,8 +467,8 @@ pub fn main() !u8 {
 
         const term = try p.wait(io);
 
+        logErr(io, stderr_r.buffer[0..stderr_r.end]);
         if (term != .Exited or term.Exited != 0) {
-            logErr(io, stderr_r.buffer[0..stderr_r.end]);
             return error.DrivePartitionFailed;
         }
     }
@@ -496,6 +496,15 @@ pub fn main() !u8 {
 
     try stdout.writeAll("build complete, you may reboot\n");
     try stdout.flush();
+
+    try Io.Dir.copyFileAbsolute("/tmp/config", "/mnt/home/lioma/dotfiles", io, .{});
+
+    const dotfiles: Io.Dir = try .openDirAbsolute(io, "/mnt/home/lioma/dotfiles", .{
+        .iterate = true,
+    });
+    defer dotfiles.close(io);
+
+    try dotfiles.setOwner(io, 1000, 100);
 
     return 0;
 }
