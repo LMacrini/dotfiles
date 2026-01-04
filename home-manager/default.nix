@@ -414,8 +414,9 @@
         "quick-settings-audio-panel@rayzeq.github.io"
       ];
       favorite-apps = [
-        "equibop.desktop"
-        "com.mitchellh.ghostty.desktop"
+        "org.gnome.Nautilus.desktop"
+        "discord.desktop"
+        "kitty.desktop"
         "librewolf.desktop"
       ];
       allow-extension-installation = true;

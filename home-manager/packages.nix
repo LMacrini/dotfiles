@@ -298,6 +298,8 @@
     };
 
     kitty = {
+      enable = lib.mkDefault config.guiApps;
+
       enableGitIntegration = true;
       font = {
         name = cfg.fonts.nerdfont.name;
