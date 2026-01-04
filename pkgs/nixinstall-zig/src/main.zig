@@ -56,8 +56,8 @@ fn getPassword(gpa: std.mem.Allocator, stdout: *Io.Writer, stdin: *Io.Reader) ![
             break :blk try gpa.dupe(u8, pass);
         };
         errdefer {
-            std.crypto.secureZero(u8, pass);
-            gpa.free(pass);
+            std.crypto.secureZero(u8, pass1);
+            gpa.free(pass1);
         }
 
         try stdout.writeAll("\nplease enter root password again: ");
@@ -69,8 +69,8 @@ fn getPassword(gpa: std.mem.Allocator, stdout: *Io.Writer, stdin: *Io.Reader) ![
         try stdout.writeByte('\n');
         try stdout.flush();
 
-        if (std.mem.eql(u8, pass, pass2)) {
-            return pass;
+        if (std.mem.eql(u8, pass1, pass2)) {
+            return pass1;
         }
 
         try stdout.writeAll("passwords were not the same, please try again\n");
