@@ -37,9 +37,39 @@ fn logErr(io: Io, str: []const u8) void {
     stderr.interface.flush() catch {};
 }
 
-fn getPassword(gpa: std.mem.Allocator, stdin: *Io.Reader) ![]u8 {
-    _ = gpa;
-    _ = stdin;
+fn getPassword(gpa: std.mem.Allocator, stdout: *Io.Writer, stdin: *Io.Reader) ![]u8 {
+    const termios = try std.posix.tcgetattr(std.posix.STDIN_FILENO);
+    defer std.posix.tcsetattr(std.posix.STDIN_FILENO, .FLUSH, termios) catch {};
+
+    var noecho = termios;
+    noecho.lflag.ECHO = false;
+    try std.posix.tcsetattr(std.posix.STDIN_FILENO, .FLUSH, noecho);
+
+    while (true) {
+        try stdout.writeAll("please enter root password: ");
+        try stdout.flush();
+
+        const pass1 = try stdin.takeDelimiterInclusive('\n');
+
+        const result = try gpa.dupe(u8, pass1);
+        errdefer {
+            @memset(result, 0);
+            gpa.free(result);
+        }
+        @memset(pass1, 0);
+
+        try stdout.writeAll("\nplease enter root password again: ");
+        try stdout.flush();
+
+        const pass2 = try stdin.takeDelimiterInclusive('\n');
+        defer @memset(pass2, 0);
+
+        if (std.mem.eql(u8, result, pass2)) {
+            return result;
+        }
+
+        try stdout.writeAll("\npasswords were not the same, please try again\n");
+    }
 }
 
 fn partitionDrives(
@@ -205,11 +235,119 @@ fn partitionDrives(
     }
 }
 
+fn getHostInfo(
+    io: Io,
+    gpa: std.mem.Allocator,
+    stdout: *Io.Writer,
+    stdin: *Io.Reader,
+    shell: *Child,
+) ![]u8 {
+    shell.cwd_dir = try .openDirAbsolute(io, "/tmp/config", .{});
+    defer {
+        shell.cwd_dir.?.close(io);
+        shell.cwd_dir = null;
+    }
+
+    const hosts_dir: Io.Dir = try .openDirAbsolute(io, "/tmp/config/hosts", .{});
+    defer hosts_dir.close(io);
+
+    var host_name = while (true) {
+        try stdout.writeAll(
+            \\which host would you like to build?
+            \\(write new to create one)
+        );
+        try stdout.flush();
+
+        const host = try stdin.takeDelimiterExclusive('\n');
+        stdin.toss(1);
+
+        if (!std.mem.eql(u8, host, "new")) {
+            if (hosts_dir.access(io, host, .{})) {
+                break try gpa.dupe(u8, host);
+            } else |err| switch (err) {
+                error.FileNotFound => {
+                    try stdout.writeAll("host not found, please try again\n");
+                    continue;
+                },
+                else => return err,
+            }
+        }
+
+        _ = try shell.spawnAndWait(io);
+    };
+    errdefer gpa.free(host_name);
+
+    const host_dir = hosts_dir.openDir(io, host_name, .{}) catch |err| switch (err) {
+        error.FileNotFound => unreachable,
+        else => return err,
+    };
+    defer host_dir.close(io);
+
+    const create_hardware_file: bool = if (host_dir.access(io, "hardware-configuration.nix", .{})) blk: {
+        const ans = try yesOrNo(
+            stdout,
+            stdin,
+            "hardware-configuration.nix found in this host, do you wish to replace it? [n]",
+            false,
+        );
+
+        if (ans) try host_dir.deleteFile(io, "hardware-configuration.nix");
+        break :blk ans;
+    } else |err| if (err == error.FileNotFound) true else return err;
+
+    if (create_hardware_file) {
+        var process: Child = .init(&.{
+            "nixos-generate-config",
+            "--root",
+            "/mnt",
+            "--show-hardware-config",
+        }, gpa);
+        process.stdout_behavior = .Pipe;
+        process.stderr_behavior = .Pipe;
+        try process.spawn(io);
+
+        var poller = Io.poll(gpa, enum { stdout, stderr }, .{
+            .stdout = process.stdout.?,
+            .stderr = process.stderr.?,
+        });
+        defer poller.deinit();
+
+        const stdout_r = poller.reader(.stdout);
+        const stderr_r = poller.reader(.stderr);
+
+        while (try poller.poll()) {}
+
+        const term = try process.wait(io);
+
+        if (term != .Exited or term.Exited != 0) {
+            logErr(io, stderr_r.buffer[0..stderr_r.end]);
+            return error.ConfigGenerationFailed;
+        }
+
+        const hardware_file = try host_dir.createFile(io, "hardware-configuration.nix", .{
+            .exclusive = true,
+        });
+        defer hardware_file.close(io);
+
+        var buf: [4096]u8 = undefined;
+        var writer = hardware_file.writer(io, &buf);
+        try writer.interface.writeAll(stdout_r.buffer[0..stdout_r.end]);
+        try writer.interface.flush();
+    }
+
+    host_name = try gpa.realloc(host_name, host_name.len + 2);
+    @memmove(host_name[2..], host_name.ptr);
+    host_name[0..2].* = ".#".*;
+
+    return host_name;
+}
+
 var dba: std.heap.DebugAllocator(.{}) = .init;
 
-pub fn main() !void {
+pub fn main() !u8 {
     if (std.posix.getuid() != 0) {
-        std.process.fatal("please run nixinstall as root", .{});
+        std.log.err("please run nixinstall as root", .{});
+        return 1;
     }
 
     defer _ = if (builtin.mode == .Debug) dba.deinit();
@@ -249,18 +387,26 @@ pub fn main() !void {
         error.InvalidDnsCnameRecord,
         error.HttpConnectionClosing,
         error.TooManyHttpRedirects,
-        => std.process.fatal(
-            \\failed to connect to forgejo ({}). are you connected to the internet?
-            \\if you are connected to the internet but forgejo is down, please try again later
-        , .{err}),
-        else => std.process.fatal("an unexpected error occured when connecting to forgejo: {}", .{err}),
+        => {
+            std.log.err(
+                \\failed to connect to forgejo ({}). are you connected to the internet?
+                \\if you are connected to the internet but forgejo is down, please try again later
+            , .{err});
+            return 1;
+        },
+        else => {
+            std.log.err("an unexpected error occured when connecting to forgejo: {}", .{err});
+            return 1;
+        },
     };
 
     if (online_check.status != .ok) {
         if (online_check.status.phrase()) |phrase| {
-            std.process.fatal("unexpected result: {s} {d}", .{ phrase, @intFromEnum(online_check.status) });
+            std.log.err("unexpected result: {s} {d}", .{ phrase, @intFromEnum(online_check.status) });
+            return 1;
         } else {
-            std.process.fatal("unexpected result: {d}", .{@intFromEnum(online_check.status)});
+            std.log.err("unexpected result: {d}", .{@intFromEnum(online_check.status)});
+            return 1;
         }
     }
 
@@ -292,11 +438,21 @@ pub fn main() !void {
     defer gpa.free(shell);
     var shell_process: Child = .init(&.{shell}, gpa);
 
+    try stdout.writeByte('\n');
+
     var drive_process = try partitionDrives(io, gpa, stdout, stdin, &shell_process);
     errdefer _ = if (drive_process) |*p| p.kill(io) catch {};
 
+    try stdout.writeByte('\n');
+
+    const password = try getPassword(gpa, stdout, stdin);
+    defer {
+        @memset(password, 0);
+        gpa.free(password);
+    }
+
     if (drive_process) |*p| {
-        var poller = std.Io.poll(gpa, enum { stderr }, .{
+        var poller = Io.poll(gpa, enum { stderr }, .{
             .stderr = p.stderr.?,
         });
         defer poller.deinit();
@@ -308,11 +464,48 @@ pub fn main() !void {
         const term = try p.wait(io);
 
         if (term != .Exited or term.Exited != 0) {
-            std.log.err("drive partition failed:", .{});
             logErr(io, stderr_r.buffer[0..stderr_r.end]);
-            std.process.exit(1);
+            return error.DrivePartitionFailed;
         }
     }
+
+    const host = try getHostInfo(io, gpa, stdout, stdin, &shell_process);
+    defer gpa.free(host);
+
+    var install: Child = .init(&.{
+        "nixos-install",
+        "--flake",
+        host,
+        "--no-channel-copy",
+    }, gpa);
+    install.stdout_behavior = .Ignore;
+    install.stderr_behavior = .Pipe;
+    install.stdin_behavior = .Pipe;
+    try install.spawn(io);
+
+    for (0..2) |_| try install.stdin.?.writeStreamingAll(io, password);
+
+    var poller = Io.poll(gpa, enum { stderr }, .{
+        .stderr = install.stderr.?,
+    });
+    defer poller.deinit();
+
+    const stderr_r = poller.reader(.stderr);
+
+    while (try poller.poll()) {}
+
+    const term = try install.wait(io);
+
+    if (term != .Exited or term.Exited != 0) {
+        logErr(io, stderr_r.buffer[0..stderr_r.end]);
+        std.log.err("build failed, please try again");
+        return 1;
+    }
+
+    try stdout.writeAll("build complete, you may reboot\n");
+    try stdout.flush();
+
+    return 0;
 }
 
 const std = @import("std");
