@@ -249,6 +249,9 @@ fn copyDir(io: Io, gpa: std.mem.Allocator, src: Io.Dir, dst: Io.Dir) !void {
     while (try walker.next(io)) |entry| switch (entry.kind) {
         .directory => {
             const dir = dst.createDirPathOpen(io, entry.path, .{
+                .open_options = .{
+                    .iterate = true,
+                },
                 .permissions = .default_dir,
             }) catch {
                 std.log.warn("failed to create directory '{s}'", .{entry.path});
