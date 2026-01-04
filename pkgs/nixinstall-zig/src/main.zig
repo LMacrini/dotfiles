@@ -39,7 +39,9 @@ fn logErr(io: Io, str: []const u8) void {
 
 fn getPassword(gpa: std.mem.Allocator, stdout: *Io.Writer, stdin: *Io.Reader) ![]u8 {
     const termios = try std.posix.tcgetattr(std.posix.STDIN_FILENO);
-    defer std.posix.tcsetattr(std.posix.STDIN_FILENO, .FLUSH, termios) catch {};
+    defer std.posix.tcsetattr(std.posix.STDIN_FILENO, .FLUSH, termios) catch {
+        std.log.warn("failed to reset stdin, you may not see what you type", .{});
+    };
 
     var noecho = termios;
     noecho.lflag.ECHO = false;
