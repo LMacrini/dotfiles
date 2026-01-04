@@ -498,7 +498,7 @@ pub fn main() !u8 {
 
     if (term != .Exited or term.Exited != 0) {
         logErr(io, stderr_r.buffer[0..stderr_r.end]);
-        std.log.err("build failed, please try again");
+        std.log.err("build failed, please try again", .{});
         return 1;
     }
 
