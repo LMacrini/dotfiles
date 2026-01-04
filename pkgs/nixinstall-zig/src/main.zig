@@ -524,6 +524,8 @@ pub fn main() !u8 {
     const dotfiles: Io.Dir = try .createDirPathOpen(.cwd(), io, "/mnt/home/lioma/dotfiles", .{});
     defer dotfiles.close(io);
 
+    try dotfiles.setOwner(io, 1000, 100);
+
     try copyDir(io, gpa, tmp_config, dotfiles);
 
     return 0;
