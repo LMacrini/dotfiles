@@ -482,6 +482,7 @@ pub fn main() !u8 {
         host,
         "--no-channel-copy",
     }, gpa);
+    install.cwd = "/tmp/config";
     install.stdin_behavior = .Pipe;
     try install.spawn(io);
 
