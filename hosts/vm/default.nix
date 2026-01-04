@@ -9,5 +9,7 @@
 
   de.de = "gnome";
 
+  sudoInsults.enable = false;
+
   stateVersion = config.system.nixos.release;
 }
