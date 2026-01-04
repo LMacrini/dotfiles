@@ -53,16 +53,16 @@ fn getPassword(gpa: std.mem.Allocator, stdout: *Io.Writer, stdin: *Io.Reader) ![
 
         const result = try gpa.dupe(u8, pass1);
         errdefer {
-            @memset(result, 0);
+            std.crypto.secureZero(u8, result);
             gpa.free(result);
         }
-        @memset(pass1, 0);
+        std.crypto.secureZero(u8, pass1);
 
         try stdout.writeAll("\nplease enter root password again: ");
         try stdout.flush();
 
         const pass2 = try stdin.takeDelimiterInclusive('\n');
-        defer @memset(pass2, 0);
+        defer std.crypto.secureZero(u8, pass2);
 
         try stdout.writeByte('\n');
         try stdout.flush();
@@ -467,7 +467,7 @@ pub fn main() !u8 {
 
     const password = try getPassword(gpa, stdout, stdin);
     defer {
-        @memset(password, 0);
+        std.crypto.secureZero(u8, password);
         gpa.free(password);
     }
 
