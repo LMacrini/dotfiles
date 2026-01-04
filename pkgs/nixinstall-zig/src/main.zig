@@ -269,15 +269,11 @@ fn copyDir(io: Io, gpa: std.mem.Allocator, src: Io.Dir, dst: Io.Dir) !void {
                 continue;
             };
 
-            // TODO: use the commented version when it's fixed
+            // TODO: use uncomment when it's fixed
             // dst.setFileOwner(io, entry.path, 1000, 100, .{}) catch {
             //     std.log.warn("failed to set owner for file '{s}'", .{entry.path});
             //     continue;
             // };
-            io.vtable.dirSetFileOwner(io.userdata, dst, entry.path, 1000, 100, .{}) catch {
-                std.log.warn("failed to set owner for file '{s}'", .{entry.path});
-                continue;
-            };
         },
         else => return error.Unhandled,
     };
