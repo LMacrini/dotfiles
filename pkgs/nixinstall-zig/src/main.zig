@@ -471,6 +471,8 @@ pub fn main() !u8 {
         gpa.free(password);
     }
 
+    try stdout.writeByte('\n');
+
     if (drive_process) |*p| {
         var poller = Io.poll(gpa, enum { stderr }, .{
             .stderr = p.stderr.?,
