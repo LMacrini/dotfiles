@@ -238,6 +238,23 @@ fn partitionDrives(
     }
 }
 
+fn copyDir(io: Io, src: Io.Dir, dst: Io.Dir) !void {
+    var it = src.iterate();
+    while (try it.next(io)) |entry| switch (entry.kind) {
+        .file => try src.copyFile(entry.name, dst, entry.name, io, .{}),
+        .directory => {
+            const sub_src = try src.openDir(io, entry.name, .{});
+            defer sub_src.close(io);
+
+            const sub_dst = try dst.createDirPathOpen(io, entry.name, .{});
+            defer sub_dst.close(io);
+
+            try copyDir(io, sub_src, sub_dst);
+        },
+        else => return error.Unhandled,
+    };
+}
+
 fn getHostInfo(
     io: Io,
     gpa: std.mem.Allocator,
@@ -245,10 +262,9 @@ fn getHostInfo(
     stdin: *Io.Reader,
     shell: *Child,
 ) ![]u8 {
-    shell.cwd_dir = try .openDirAbsolute(io, "/tmp/config", .{});
+    shell.cwd = "/tmp/config";
     defer {
-        shell.cwd_dir.?.close(io);
-        shell.cwd_dir = null;
+        shell.cwd = null;
     }
 
     const hosts_dir: Io.Dir = try .openDirAbsolute(io, "/tmp/config/hosts", .{});
@@ -498,14 +514,15 @@ pub fn main() !u8 {
     try stdout.writeAll("build complete, you may reboot\n");
     try stdout.flush();
 
-    try Io.Dir.copyFileAbsolute("/tmp/config", "/mnt/home/lioma/dotfiles", io, .{});
-
-    const dotfiles: Io.Dir = try .openDirAbsolute(io, "/mnt/home/lioma/dotfiles", .{
+    const tmp_config: Io.Dir = try .openDirAbsolute(io, "/tmp/config", .{
         .iterate = true,
     });
+    defer tmp_config.close(io);
+
+    const dotfiles: Io.Dir = try .createDirPathOpen(.cwd(), io, "/mnt/home/lioma/dotfiles", .{});
     defer dotfiles.close(io);
 
-    try dotfiles.setOwner(io, 1000, 100);
+    try copyDir(io, tmp_config, dotfiles);
 
     return 0;
 }
