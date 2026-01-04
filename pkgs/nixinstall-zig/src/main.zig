@@ -247,10 +247,38 @@ fn copyDir(io: Io, gpa: std.mem.Allocator, src: Io.Dir, dst: Io.Dir) !void {
     defer walker.deinit();
 
     while (try walker.next(io)) |entry| switch (entry.kind) {
-        .directory => try dst.createDir(io, entry.path, .default_dir),
-        .file => try src.copyFile(entry.path, dst, entry.path, io, .{
-            .permissions = .default_file,
-        }),
+        .directory => {
+            const dir = dst.createDirPathOpen(io, entry.path, .{
+                .permissions = .default_dir,
+            }) catch {
+                std.log.warn("failed to create directory '{s}'", .{entry.path});
+                continue;
+            };
+            defer dir.close(io);
+
+            dir.setOwner(io, 1000, 100) catch {
+                std.log.warn("failed to set owner for directory '{s}'", .{entry.path});
+                continue;
+            };
+        },
+        .file => {
+            src.copyFile(entry.path, dst, entry.path, io, .{
+                .permissions = .default_file,
+            }) catch {
+                std.log.warn("failed to copy file '{s}'", .{entry.path});
+                continue;
+            };
+
+            // TODO: use the commented version when it's fixed
+            // dst.setFileOwner(io, entry.path, 1000, 100, .{}) catch {
+            //     std.log.warn("failed to set owner for file '{s}'", .{entry.path});
+            //     continue;
+            // };
+            io.vtable.dirSetFileOwner(io.userdata, dst, entry.path, 1000, 100, .{}) catch {
+                std.log.warn("failed to set owner for file '{s}'", .{entry.path});
+                continue;
+            };
+        },
         else => return error.Unhandled,
     };
 }
@@ -526,9 +554,9 @@ pub fn main() !u8 {
     });
     defer dotfiles.close(io);
 
-    try copyDir(io, gpa, tmp_config, dotfiles);
-
     try dotfiles.setOwner(io, 1000, 100);
+
+    try copyDir(io, gpa, tmp_config, dotfiles);
 
     return 0;
 }
