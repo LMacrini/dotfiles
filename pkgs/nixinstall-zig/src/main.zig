@@ -521,12 +521,14 @@ pub fn main() !u8 {
     });
     defer tmp_config.close(io);
 
-    const dotfiles: Io.Dir = try .createDirPathOpen(.cwd(), io, "/mnt/home/lioma/dotfiles", .{});
+    const dotfiles: Io.Dir = try .createDirPathOpen(.cwd(), io, "/mnt/home/lioma/dotfiles", .{
+        .iterate = true, // setOwner requires iterate
+    });
     defer dotfiles.close(io);
 
-    try dotfiles.setOwner(io, 1000, 100);
-
     try copyDir(io, gpa, tmp_config, dotfiles);
+
+    try dotfiles.setOwner(io, 1000, 100);
 
     return 0;
 }
