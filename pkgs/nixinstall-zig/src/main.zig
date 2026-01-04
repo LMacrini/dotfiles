@@ -64,11 +64,14 @@ fn getPassword(gpa: std.mem.Allocator, stdout: *Io.Writer, stdin: *Io.Reader) ![
         const pass2 = try stdin.takeDelimiterInclusive('\n');
         defer @memset(pass2, 0);
 
+        try stdout.writeByte('\n');
+        try stdout.flush();
+
         if (std.mem.eql(u8, result, pass2)) {
             return result;
         }
 
-        try stdout.writeAll("\npasswords were not the same, please try again\n");
+        try stdout.writeAll("passwords were not the same, please try again\n");
     }
 }
 
@@ -256,6 +259,7 @@ fn getHostInfo(
             \\which host would you like to build?
             \\(write new to create one)
         );
+        try stdout.writeByte(' '); //gets autoformatted out of the multiline string
         try stdout.flush();
 
         const host = try stdin.takeDelimiterExclusive('\n');
@@ -478,26 +482,14 @@ pub fn main() !u8 {
         host,
         "--no-channel-copy",
     }, gpa);
-    install.stdout_behavior = .Ignore;
-    install.stderr_behavior = .Pipe;
     install.stdin_behavior = .Pipe;
     try install.spawn(io);
 
     for (0..2) |_| try install.stdin.?.writeStreamingAll(io, password);
 
-    var poller = Io.poll(gpa, enum { stderr }, .{
-        .stderr = install.stderr.?,
-    });
-    defer poller.deinit();
-
-    const stderr_r = poller.reader(.stderr);
-
-    while (try poller.poll()) {}
-
     const term = try install.wait(io);
 
     if (term != .Exited or term.Exited != 0) {
-        logErr(io, stderr_r.buffer[0..stderr_r.end]);
         std.log.err("build failed, please try again", .{});
         return 1;
     }
