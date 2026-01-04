@@ -242,19 +242,15 @@ fn partitionDrives(
     }
 }
 
-fn copyDir(io: Io, src: Io.Dir, dst: Io.Dir) !void {
-    var it = src.iterate();
-    while (try it.next(io)) |entry| switch (entry.kind) {
-        .file => try src.copyFile(entry.name, dst, entry.name, io, .{}),
-        .directory => {
-            const sub_src = try src.openDir(io, entry.name, .{});
-            defer sub_src.close(io);
+fn copyDir(io: Io, gpa: std.mem.Allocator, src: Io.Dir, dst: Io.Dir) !void {
+    var walker = try src.walk(gpa);
+    defer walker.deinit();
 
-            const sub_dst = try dst.createDirPathOpen(io, entry.name, .{});
-            defer sub_dst.close(io);
-
-            try copyDir(io, sub_src, sub_dst);
-        },
+    while (try walker.next(io)) |entry| switch (entry.kind) {
+        .directory => try dst.createDir(io, entry.path, .default_dir),
+        .file => try src.copyFile(entry.path, dst, entry.path, io, .{
+            .permissions = .default_file,
+        }),
         else => return error.Unhandled,
     };
 }
@@ -528,7 +524,7 @@ pub fn main() !u8 {
     const dotfiles: Io.Dir = try .createDirPathOpen(.cwd(), io, "/mnt/home/lioma/dotfiles", .{});
     defer dotfiles.close(io);
 
-    try copyDir(io, tmp_config, dotfiles);
+    try copyDir(io, gpa, tmp_config, dotfiles);
 
     return 0;
 }
