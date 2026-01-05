@@ -132,7 +132,6 @@ in {
           indie-wiki-buddy
           libredirect
           localcdn-fork-of-decentraleyes
-          nixpkgs-pr-tracker
           refined-github-
           return-youtube-dislikes
           simple-tab-groups
