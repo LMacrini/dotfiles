@@ -553,9 +553,15 @@ pub fn main() !u8 {
     });
     defer dotfiles.close(io);
 
-    try dotfiles.setOwner(io, 1000, 100);
+    dotfiles.setOwner(io, 1000, 100) catch {
+        std.log.warn("failed to set owner for directory 'dotfiles'", .{});
+    };
 
     try copyDir(io, gpa, tmp_config, dotfiles);
+
+    std.log.info("TODO: fix this hack", .{});
+    var chown: Child = .init(&.{ "chown", "-R", "lioma", "/mnt/home/dotfiles" }, gpa);
+    _ = chown.spawnAndWait(io) catch {};
 
     return 0;
 }
