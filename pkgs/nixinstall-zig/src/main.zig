@@ -405,25 +405,14 @@ fn getHostInfo(
     return host_name;
 }
 
-var dba: std.heap.DebugAllocator(.{}) = .init;
-
-pub fn main(init: std.process.Init.Minimal) !u8 {
+pub fn main(init: std.process.Init) !u8 {
     if (std.posix.getuid() != 0) {
         std.log.err("please run nixinstall as root", .{});
         return 1;
     }
 
-    defer _ = if (builtin.mode == .Debug) dba.deinit();
-    const gpa = if (builtin.mode == .Debug)
-        dba.allocator()
-    else
-        std.heap.smp_allocator;
-
-    var threaded: Io.Threaded = .init(gpa, .{
-        .environ = init.environ,
-    });
-    defer threaded.deinit();
-    const io = threaded.io();
+    const gpa = init.gpa;
+    const io = init.io;
 
     var stdout_buf: [4096]u8 = undefined;
     var stdout_fw: Io.File.Writer = .init(.stdout(), io, &stdout_buf);
@@ -432,9 +421,6 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
     var stdin_buf: [128]u8 = undefined;
     var stdin_fr: Io.File.Reader = .init(.stdin(), io, &stdin_buf);
     const stdin = &stdin_fr.interface;
-
-    var environ_map = try std.process.Environ.createMap(init.environ, gpa);
-    defer environ_map.deinit();
 
     var http_client: std.http.Client = .{ .allocator = gpa, .io = io };
     defer http_client.deinit();
@@ -509,7 +495,7 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
         }
     }
 
-    const shell = environ_map.get("SHELL") orelse "bash";
+    const shell = init.environ_map.get("SHELL") orelse "bash";
     const shell_opts: SpawnOptions = .{
         .argv = &.{shell},
         .cwd = "/tmp/config",
