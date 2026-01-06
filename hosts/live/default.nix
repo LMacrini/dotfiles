@@ -56,6 +56,7 @@
     git
     my.nixinstall
     my.nixinstall-zig
+    zig.nightly
   ];
 
   services.qemuGuest.enable = true;

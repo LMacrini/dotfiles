@@ -346,11 +346,17 @@ fn getHostInfo(
     if (create_hardware_file) {
         var term: std.process.Child.Term = .{ .exited = 0 };
 
+        // TODO: uncomment stuff
+        // it's just not implemented yet
         const hardware_file = try host_dir.createFile(io, "hardware-configuration.nix", .{
             .exclusive = true,
         });
-        defer if (term == .exited and term.exited == 0)
-            hardware_file.close(io);
+        // defer if (term == .exited and term.exited == 0)
+        //     hardware_file.close(io);
+        defer hardware_file.close(io);
+
+        var buf: [4096]u8 = undefined;
+        var writer = hardware_file.writer(io, &buf);
 
         var process = try std.process.spawn(io, .{
             .argv = &.{
@@ -359,15 +365,18 @@ fn getHostInfo(
                 "/mnt",
                 "--show-hardware-config",
             },
-            .stdout = .{ .file = hardware_file },
+            // .stdout = .{ .file = hardware_file },
+            .stdout = .pipe,
             .stderr = .pipe,
         });
 
-        var poller = Io.poll(gpa, enum { stderr }, .{
+        var poller = Io.poll(gpa, enum { stdout, stderr }, .{
+            .stdout = process.stdout.?,
             .stderr = process.stderr.?,
         });
         defer poller.deinit();
 
+        const stdout_r = poller.reader(.stdout);
         const stderr_r = poller.reader(.stderr);
 
         while (try poller.poll()) {}
@@ -377,13 +386,16 @@ fn getHostInfo(
         if (term != .exited or term.exited != 0) {
             logErr(io, stderr_r.buffer[0..stderr_r.end]);
 
-            hardware_file.close(io);
-            host_dir.deleteFile(io, "hardware-configuration.nix") catch {
-                std.log.warn("failed to delete potentially badly generated hardware config", .{});
-            };
+            // hardware_file.close(io);
+            // host_dir.deleteFile(io, "hardware-configuration.nix") catch {
+            //     std.log.warn("failed to delete potentially badly generated hardware config", .{});
+            // };
 
             return error.ConfigGenerationFailed;
         }
+
+        try writer.interface.writeAll(stdout_r.buffer[0..stdout_r.end]);
+        try writer.interface.flush();
     }
 
     host_name = try gpa.realloc(host_name, host_name.len + 2);
@@ -407,7 +419,9 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
     else
         std.heap.smp_allocator;
 
-    var threaded: Io.Threaded = .init_single_threaded;
+    var threaded: Io.Threaded = .init(gpa, .{
+        .environ = init.environ,
+    });
     defer threaded.deinit();
     const io = threaded.io();
 
@@ -491,8 +505,8 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
                     std.log.err("failed to clone repo ({t} {})", .{ term, t });
                 },
             }
+            return error.CloneFailed;
         }
-        return error.CloneFailed;
     }
 
     const shell = environ_map.get("SHELL") orelse "bash";
@@ -578,7 +592,7 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
 
     std.log.info("TODO: fix this hack", .{});
     var chown = std.process.spawn(io, .{
-        .argv = &.{ "chown", "-R", "lioma", "/mnt/home/dotfiles" },
+        .argv = &.{ "chown", "-R", "lioma", "/mnt/home/lioma/dotfiles" },
     }) catch {
         return 0;
     };
