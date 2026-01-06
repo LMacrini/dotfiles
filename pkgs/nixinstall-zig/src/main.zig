@@ -84,7 +84,7 @@ fn partitionDrives(
     gpa: std.mem.Allocator,
     stdout: *Io.Writer,
     stdin: *Io.Reader,
-    shell: *Child,
+    shell_opts: *const SpawnOptions,
 ) !?Child {
     const manual_partition = try yesOrNo(
         stdout,
@@ -103,7 +103,8 @@ fn partitionDrives(
         );
         try stdout.flush();
 
-        _ = try shell.spawnAndWait(io);
+        var shell = try std.process.spawn(io, shell_opts.*);
+        _ = try shell.wait(io);
         return null;
     }
 
@@ -129,8 +130,10 @@ fn partitionDrives(
         try stdout.writeByte('\n');
         try stdout.flush();
 
-        var lsblk: Child = .init(&.{"lsblk"}, gpa);
-        _ = try lsblk.spawnAndWait(io);
+        var lsblk = try std.process.spawn(io, .{
+            .argv = &.{"lsblk"},
+        });
+        _ = try lsblk.wait(io);
 
         try stdout.writeAll(
             \\
@@ -154,7 +157,7 @@ fn partitionDrives(
         var swap: []const u8 = &.{};
         defer gpa.free(swap);
 
-        var disko: Child = if (try yesOrNo(stdout, stdin, "do you want a swap file? [y]", true))
+        if (try yesOrNo(stdout, stdin, "do you want a swap file? [y]", true))
             (while (true) {
                 try stdout.print("how much swap do you want? (in GiB) [{d:0}] ", .{default_swap / (1 << 20)});
                 try stdout.flush();
@@ -200,7 +203,27 @@ fn partitionDrives(
                     swap = try std.fmt.allocPrint(gpa, "\"{d}k\"", .{swap_int});
                 }
 
-                break .init(&.{
+                return try std.process.spawn(io, .{
+                    .argv = &.{
+                        "disko",
+                        "-m",
+                        "destroy,format,mount",
+                        "--yes-wipe-all-disks",
+                        "--arg",
+                        "disk",
+                        disk_path,
+                        "--arg",
+                        "swap",
+                        swap,
+                        "/tmp/config/disko/swap.nix",
+                    },
+                    .stdout = .ignore,
+                    .stderr = .pipe,
+                });
+            })
+        else {
+            return try std.process.spawn(io, .{
+                .argv = &.{
                     "disko",
                     "-m",
                     "destroy,format,mount",
@@ -208,23 +231,12 @@ fn partitionDrives(
                     "--arg",
                     "disk",
                     disk_path,
-                    "--arg",
-                    "swap",
-                    swap,
-                    "/tmp/config/disko/swap.nix",
-                }, gpa);
-            })
-        else
-            .init(&.{
-                "disko",
-                "-m",
-                "destroy,format,mount",
-                "--yes-wipe-all-disks",
-                "--arg",
-                "disk",
-                disk_path,
-                "/tmp/config/disko/no-swap.nix",
-            }, gpa);
+                    "/tmp/config/disko/no-swap.nix",
+                },
+                .stdout = .ignore,
+                .stderr = .pipe,
+            });
+        }
 
         if (!try yesOrNo(
             stdout,
@@ -232,13 +244,6 @@ fn partitionDrives(
             "are you sure you want to continue? this will wipe all information on the drive [n]",
             false,
         )) continue;
-
-        disko.stderr_behavior = .Pipe;
-        disko.stdout_behavior = .Ignore;
-
-        try disko.spawn(io);
-
-        return disko;
     }
 }
 
@@ -287,13 +292,8 @@ fn getHostInfo(
     gpa: std.mem.Allocator,
     stdout: *Io.Writer,
     stdin: *Io.Reader,
-    shell: *Child,
+    shell_opts: *const SpawnOptions,
 ) ![]u8 {
-    shell.cwd = "/tmp/config";
-    defer {
-        shell.cwd = null;
-    }
-
     const hosts_dir: Io.Dir = try .openDirAbsolute(io, "/tmp/config/hosts", .{});
     defer hosts_dir.close(io);
 
@@ -320,7 +320,8 @@ fn getHostInfo(
             }
         }
 
-        _ = try shell.spawnAndWait(io);
+        var shell = try std.process.spawn(io, shell_opts.*);
+        _ = try shell.wait(io);
     };
     errdefer gpa.free(host_name);
 
@@ -343,43 +344,46 @@ fn getHostInfo(
     } else |err| if (err == error.FileNotFound) true else return err;
 
     if (create_hardware_file) {
-        var process: Child = .init(&.{
-            "nixos-generate-config",
-            "--root",
-            "/mnt",
-            "--show-hardware-config",
-        }, gpa);
-        process.stdout_behavior = .Pipe;
-        process.stderr_behavior = .Pipe;
-        try process.spawn(io);
-
-        var poller = Io.poll(gpa, enum { stdout, stderr }, .{
-            .stdout = process.stdout.?,
-            .stderr = process.stderr.?,
-        });
-        defer poller.deinit();
-
-        const stdout_r = poller.reader(.stdout);
-        const stderr_r = poller.reader(.stderr);
-
-        while (try poller.poll()) {}
-
-        const term = try process.wait(io);
-
-        if (term != .Exited or term.Exited != 0) {
-            logErr(io, stderr_r.buffer[0..stderr_r.end]);
-            return error.ConfigGenerationFailed;
-        }
+        var term: std.process.Child.Term = .{ .exited = 0 };
 
         const hardware_file = try host_dir.createFile(io, "hardware-configuration.nix", .{
             .exclusive = true,
         });
-        defer hardware_file.close(io);
+        defer if (term == .exited and term.exited == 0)
+            hardware_file.close(io);
 
-        var buf: [4096]u8 = undefined;
-        var writer = hardware_file.writer(io, &buf);
-        try writer.interface.writeAll(stdout_r.buffer[0..stdout_r.end]);
-        try writer.interface.flush();
+        var process = try std.process.spawn(io, .{
+            .argv = &.{
+                "nixos-generate-config",
+                "--root",
+                "/mnt",
+                "--show-hardware-config",
+            },
+            .stdout = .{ .file = hardware_file },
+            .stderr = .pipe,
+        });
+
+        var poller = Io.poll(gpa, enum { stderr }, .{
+            .stderr = process.stderr.?,
+        });
+        defer poller.deinit();
+
+        const stderr_r = poller.reader(.stderr);
+
+        while (try poller.poll()) {}
+
+        term = try process.wait(io);
+
+        if (term != .exited or term.exited != 0) {
+            logErr(io, stderr_r.buffer[0..stderr_r.end]);
+
+            hardware_file.close(io);
+            host_dir.deleteFile(io, "hardware-configuration.nix") catch {
+                std.log.warn("failed to delete potentially badly generated hardware config", .{});
+            };
+
+            return error.ConfigGenerationFailed;
+        }
     }
 
     host_name = try gpa.realloc(host_name, host_name.len + 2);
@@ -391,7 +395,7 @@ fn getHostInfo(
 
 var dba: std.heap.DebugAllocator(.{}) = .init;
 
-pub fn main() !u8 {
+pub fn main(init: std.process.Init.Minimal) !u8 {
     if (std.posix.getuid() != 0) {
         std.log.err("please run nixinstall as root", .{});
         return 1;
@@ -414,6 +418,9 @@ pub fn main() !u8 {
     var stdin_buf: [128]u8 = undefined;
     var stdin_fr: Io.File.Reader = .init(.stdin(), io, &stdin_buf);
     const stdin = &stdin_fr.interface;
+
+    var environ_map = try std.process.Environ.createMap(init.environ, gpa);
+    defer environ_map.deinit();
 
     var http_client: std.http.Client = .{ .allocator = gpa, .io = io };
     defer http_client.deinit();
@@ -469,26 +476,35 @@ pub fn main() !u8 {
     };
 
     if (clone) {
-        var process: Child = .init(&.{
-            "git",
-            "clone",
-            "https://git.serversmp.xyz/seija/dotfiles",
-            "/tmp/config",
-        }, gpa);
-        _ = try process.spawnAndWait(io);
+        var process = try std.process.spawn(io, .{
+            .argv = &.{
+                "git",
+                "clone",
+                "https://git.serversmp.xyz/seija/dotfiles",
+                "/tmp/config",
+            },
+        });
+        const term = try process.wait(io);
+        if (term != .exited or term.exited != 0) {
+            switch (term) {
+                inline else => |t| {
+                    std.log.err("failed to clone repo ({t} {})", .{ term, t });
+                },
+            }
+        }
+        return error.CloneFailed;
     }
 
-    const shell = std.process.getEnvVarOwned(gpa, "SHELL") catch |err| switch (err) {
-        error.EnvironmentVariableNotFound => try gpa.dupe(u8, "bash"),
-        else => return err,
+    const shell = environ_map.get("SHELL") orelse "bash";
+    const shell_opts: SpawnOptions = .{
+        .argv = &.{shell},
+        .cwd = "/tmp/config",
     };
-    defer gpa.free(shell);
-    var shell_process: Child = .init(&.{shell}, gpa);
 
     try stdout.writeByte('\n');
 
-    var drive_process = try partitionDrives(io, gpa, stdout, stdin, &shell_process);
-    errdefer _ = if (drive_process) |*p| p.kill(io) catch {};
+    var drive_process = try partitionDrives(io, gpa, stdout, stdin, &shell_opts);
+    errdefer _ = if (drive_process) |*p| p.kill(io);
 
     try stdout.writeByte('\n');
 
@@ -512,30 +528,31 @@ pub fn main() !u8 {
 
         const term = try p.wait(io);
 
-        if (term != .Exited or term.Exited != 0) {
+        if (term != .exited or term.exited != 0) {
             logErr(io, stderr_r.buffer[0..stderr_r.end]);
             return error.DrivePartitionFailed;
         }
     }
 
-    const host = try getHostInfo(io, gpa, stdout, stdin, &shell_process);
+    const host = try getHostInfo(io, gpa, stdout, stdin, &shell_opts);
     defer gpa.free(host);
 
-    var install: Child = .init(&.{
-        "nixos-install",
-        "--flake",
-        host,
-        "--no-channel-copy",
-    }, gpa);
-    install.cwd = "/tmp/config";
-    install.stdin_behavior = .Pipe;
-    try install.spawn(io);
+    var install = try std.process.spawn(io, .{
+        .argv = &.{
+            "nixos-install",
+            "--flake",
+            host,
+            "--no-channel-copy",
+        },
+        .cwd = "/tmp/config",
+        .stdin = .pipe,
+    });
 
     for (0..2) |_| try install.stdin.?.writeStreamingAll(io, password);
 
     const term = try install.wait(io);
 
-    if (term != .Exited or term.Exited != 0) {
+    if (term != .exited or term.exited != 0) {
         std.log.err("build failed, please try again", .{});
         return 1;
     }
@@ -560,8 +577,12 @@ pub fn main() !u8 {
     try copyDir(io, gpa, tmp_config, dotfiles);
 
     std.log.info("TODO: fix this hack", .{});
-    var chown: Child = .init(&.{ "chown", "-R", "lioma", "/mnt/home/dotfiles" }, gpa);
-    _ = chown.spawnAndWait(io) catch {};
+    var chown = std.process.spawn(io, .{
+        .argv = &.{ "chown", "-R", "lioma", "/mnt/home/dotfiles" },
+    }) catch {
+        return 0;
+    };
+    _ = chown.wait(io) catch {};
 
     return 0;
 }
@@ -570,3 +591,4 @@ const std = @import("std");
 const builtin = @import("builtin");
 const Io = std.Io;
 const Child = std.process.Child;
+const SpawnOptions = std.process.SpawnOptions;
