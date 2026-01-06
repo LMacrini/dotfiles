@@ -479,19 +479,6 @@
       platforms = platforms.all;
     };
   };
-  "nixpkgs-pr-tracker" = buildFirefoxXpiAddon {
-    pname = "nixpkgs-pr-tracker";
-    version = "0.1.2";
-    addonId = "nixpkgs-pr-tracker@tahayassine.me";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4560332/nixpkgs_pr_tracker-0.1.2.xpi";
-    sha256 = "91a0b64787f503c3f3d89dfefe36a4bfc6bb1724e9e87fd01a1e8a5e79e1a7c8";
-    meta = with lib; {
-      description = "Shows which branch a Nixpkgs PR is merged into.";
-      license = licenses.mit;
-      mozPermissions = ["storage" "https://github.com/*"];
-      platforms = platforms.all;
-    };
-  };
   "refined-github-" = buildFirefoxXpiAddon {
     pname = "refined-github-";
     version = "25.12.12";
