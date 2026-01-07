@@ -481,10 +481,10 @@
   };
   "refined-github-" = buildFirefoxXpiAddon {
     pname = "refined-github-";
-    version = "25.12.12";
+    version = "26.1.6";
     addonId = "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4640952/refined_github-25.12.12.xpi";
-    sha256 = "b22d87cab1bc9e9415183c1d4e6a926e37d758662643092e7ab73ce6717abd2b";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4658607/refined_github-26.1.6.xpi";
+    sha256 = "4cf37aa6880af46a312a87f976f6f73c4d1a485dbb9322680ea069e300eadc74";
     meta = with lib; {
       homepage = "https://github.com/refined-github/refined-github";
       description = "Simplifies the GitHub interface and adds many useful features.";
@@ -668,10 +668,10 @@
   };
   "ultimadark" = buildFirefoxXpiAddon {
     pname = "ultimadark";
-    version = "1.6.58";
+    version = "1.6.60";
     addonId = "{7c7f6dea-3957-4bb9-9eec-2ef2b9e5bcec}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4657323/ultimadark-1.6.58.xpi";
-    sha256 = "9558f42862bc0c805cf090c52ea103118e9251d5c7f949cf868d0da55ab7aa2f";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4659230/ultimadark-1.6.60.xpi";
+    sha256 = "5789b6cfa1ab0b49c2327b2e8c05e572e44b6635cabe2bcf931a5446e42caa4e";
     meta = with lib; {
       homepage = "https://github.com/ThomazPom/Moz-Ext-UltimaDark";
       description = "UltimaDark uses agressive and smart techniques to turn even the sunniest websites into realms of darkness.\nAlthough it works well, this is so experimental, it makes lab rats look like seasoned professionals. \nGo ahead, embrace the shadows! 🦇";
