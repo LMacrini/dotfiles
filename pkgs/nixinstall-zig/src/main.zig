@@ -406,7 +406,7 @@ fn getHostInfo(
 }
 
 pub fn main(init: std.process.Init) !u8 {
-    if (std.posix.getuid() != 0) {
+    if (std.os.linux.getuid() != 0) {
         std.log.err("please run nixinstall as root", .{});
         return 1;
     }
