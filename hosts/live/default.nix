@@ -21,6 +21,8 @@
   de.de = null;
   dm = null;
 
+  sudoInsults.enable = false;
+
   users = {
     mutableUsers = lib.mkForce true;
     users = {
