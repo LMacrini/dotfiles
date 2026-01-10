@@ -64,6 +64,7 @@
 
     packages = with pkgs;
       [
+        alejandra
         nix-output-monitor
         rip2
         weechat
