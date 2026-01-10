@@ -13,8 +13,6 @@
 
   networking.hostName = "amanojaku";
 
-  time.timeZone = "America/Argentina/Buenos_Aires";
-
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
   users.users.lioma.extraGroups = ["docker" "libvirtd"];
