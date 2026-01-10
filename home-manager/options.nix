@@ -1,5 +1,8 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   options = with lib; {
-    guiApps = mkEnableOption "gui apps" // {default = true;};
+    guiApps = mkEnableOption "gui apps" // {
+      default = true;
+    };
   };
 }

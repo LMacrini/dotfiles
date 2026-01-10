@@ -1,4 +1,4 @@
-{stdenvNoCC}:
+{ stdenvNoCC }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   name = "wam-icons";
   src = ./.;

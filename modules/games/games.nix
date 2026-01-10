@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options = {
     games.standalone.enable = lib.mkEnableOption "Enables standalone games";
   };

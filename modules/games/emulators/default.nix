@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./ryubing.nix
     ./dolphin.nix
@@ -13,11 +14,13 @@
   };
 
   config = {
-    games.emulators = let
-      default = config.games.emulators.enable;
-    in {
-      dolphin.enable = lib.mkDefault default;
-      ryubing.enable = lib.mkDefault default;
-    };
+    games.emulators =
+      let
+        default = config.games.emulators.enable;
+      in
+      {
+        dolphin.enable = lib.mkDefault default;
+        ryubing.enable = lib.mkDefault default;
+      };
   };
 }

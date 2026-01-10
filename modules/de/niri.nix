@@ -4,7 +4,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   config = lib.mkIf (config.de.de == "niri") {
     programs.niri.enable = true;
     programs.niri.package = pkgs.niri-stable;

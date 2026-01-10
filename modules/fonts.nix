@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options = with lib; {
     fonts.nerdfont = {
       name = mkOption {
@@ -13,17 +14,19 @@
 
       nlName = mkOption {
         default =
-          if config.fonts.nerdfont.name == "JetBrainsMono NFM"
-          then "JetBrainsMonoNL NFM"
-          else config.fonts.nerdfont.name;
+          if config.fonts.nerdfont.name == "JetBrainsMono NFM" then
+            "JetBrainsMonoNL NFM"
+          else
+            config.fonts.nerdfont.name;
         type = types.str;
       };
 
       propName = mkOption {
         default =
-          if config.fonts.nerdfont.name == "JetBrainsMono NFM"
-          then "JetBrainsMonoNL NFP"
-          else config.fonts.nerdfont.name;
+          if config.fonts.nerdfont.name == "JetBrainsMono NFM" then
+            "JetBrainsMonoNL NFP"
+          else
+            config.fonts.nerdfont.name;
         type = types.str;
       };
 

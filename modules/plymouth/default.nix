@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   options = with lib; {
     plymouth = {
       enable = mkOption {
@@ -45,11 +46,7 @@
           "rd.systemd.show_status=auto"
         ];
 
-        loader.timeout = lib.mkDefault (
-          if config.bootloader == "systemd"
-          then 0
-          else 1
-        );
+        loader.timeout = lib.mkDefault (if config.bootloader == "systemd" then 0 else 1);
       })
     ];
   };

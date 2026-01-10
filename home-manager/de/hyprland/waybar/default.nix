@@ -8,8 +8,11 @@
       margin-right = 10;
       margin-left = 10;
 
-      modules-left = ["hyprland/workspaces" "hyprland/window"];
-      modules-center = ["clock"];
+      modules-left = [
+        "hyprland/workspaces"
+        "hyprland/window"
+      ];
+      modules-center = [ "clock" ];
       modules-right = [
         "tray"
         "idle_inhibitor"
@@ -72,7 +75,11 @@
 
         format = "{icon} {volume}%";
         format-icons = {
-          default = ["󰕿" "󰖀" "󰕾"];
+          default = [
+            "󰕿"
+            "󰖀"
+            "󰕾"
+          ];
           default-muted = "󰖁";
           headphone = "󰋋";
           headphone-muted = "󰟎";

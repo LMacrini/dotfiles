@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     gpu.amd.enable = lib.mkEnableOption "Enables amd gpu";
   };
@@ -12,7 +13,7 @@
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [rocmPackages.clr.icd];
+      extraPackages = with pkgs; [ rocmPackages.clr.icd ];
     };
   };
 }

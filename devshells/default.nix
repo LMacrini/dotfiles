@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 pkgs.mkShellNoCC {
   name = "dotfiles";
   packages = with pkgs; [

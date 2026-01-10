@@ -3,9 +3,11 @@
   lib,
   cfg,
   ...
-}: let
+}:
+let
   hasDe = !(isNull cfg.de.de);
-in {
+in
+{
   home.packages = with pkgs; [
     kanata
   ];

@@ -1,4 +1,5 @@
-{cfg, ...}: {
+{ cfg, ... }:
+{
   programs.waybar = {
     enable = true;
     style = builtins.readFile ./style.css;
@@ -7,8 +8,11 @@
       layer = "top";
       position = "top";
 
-      modules-left = ["niri/workspaces" "niri/window"];
-      modules-center = ["clock"];
+      modules-left = [
+        "niri/workspaces"
+        "niri/window"
+      ];
+      modules-center = [ "clock" ];
       modules-right = [
         "tray"
         "idle_inhibitor"
@@ -106,7 +110,11 @@
 
         format = " {icon} {volume}% ";
         format-icons = {
-          default = ["󰕿" "󰖀" "󰕾"];
+          default = [
+            "󰕿"
+            "󰖀"
+            "󰕾"
+          ];
           default-muted = "󰖁";
           headphone = "󰋋";
           headphone-muted = "󰟎";

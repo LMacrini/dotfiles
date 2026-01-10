@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = {
     games.launchers.enable = lib.mkEnableOption "Enables game launchers";
   };

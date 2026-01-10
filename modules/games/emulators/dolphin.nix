@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     games.emulators.dolphin.enable = lib.mkEnableOption "Enable Dolphin";
   };

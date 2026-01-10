@@ -3,11 +3,12 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = with lib; {
     de.hyprland = {
       monitor = mkOption {
-        default = [];
+        default = [ ];
         type = with types; listOf str;
       };
       quickshell = mkEnableOption "quickshell";
@@ -21,7 +22,8 @@
       hyprland.enable = true;
     };
 
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         (lib.mkIf config.de.hyprland.quickshell quickshell)
       ]

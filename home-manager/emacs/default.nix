@@ -4,15 +4,13 @@
   config,
   cfg,
   ...
-}: {
+}:
+{
   programs.emacs = {
-    package =
-      if config.guiApps
-      then pkgs.emacs-unstable-pgtk
-      else pkgs.emacs-unstable-nox;
+    package = if config.guiApps then pkgs.emacs-unstable-pgtk else pkgs.emacs-unstable-nox;
 
-    extraPackages = epkgs:
-      with epkgs; [
+    extraPackages =
+      epkgs: with epkgs; [
         avy
         catppuccin-theme
         consult

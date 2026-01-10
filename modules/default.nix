@@ -7,7 +7,8 @@
   inputs,
   lib,
   ...
-} @ params: {
+}@params:
+{
   imports = [
     ./bootloader.nix
     ./de
@@ -187,16 +188,19 @@
     noisetorch.enable = true;
   };
 
-  environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.stdenv.system}.programs-sqlite;
+  environment.etc."programs.sqlite".source =
+    inputs.programsdb.packages.${pkgs.stdenv.system}.programs-sqlite;
 
   systemd.tmpfiles = {
-    rules = let
-      pfp = "${pkgs.my.imgs}/share/pfp9696.png";
-    in [
-      "L+ /home/${config.mainUser}/.face - - - - ${pfp}"
-      "f+ /var/lib/AccountsService/users/${config.mainUser} 0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${config.mainUser}\\n"
-      "L+ /var/lib/AccountsService/icons/${config.mainUser} - - - - ${pfp}"
-    ];
+    rules =
+      let
+        pfp = "${pkgs.my.imgs}/share/pfp9696.png";
+      in
+      [
+        "L+ /home/${config.mainUser}/.face - - - - ${pfp}"
+        "f+ /var/lib/AccountsService/users/${config.mainUser} 0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${config.mainUser}\\n"
+        "L+ /var/lib/AccountsService/icons/${config.mainUser} - - - - ${pfp}"
+      ];
   };
 
   home-manager = {
@@ -257,7 +261,10 @@
     inputs.home-manager.packages.${stdenv.system}.default
   ];
 
-  environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"]; # see https://nix-community.github.io/home-manager/options.xhtml#opt-xdg.portal.enable
+  environment.pathsToLink = [
+    "/share/xdg-desktop-portal"
+    "/share/applications"
+  ]; # see https://nix-community.github.io/home-manager/options.xhtml#opt-xdg.portal.enable
 
   environment.localBinInPath = true;
 

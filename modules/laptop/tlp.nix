@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options = {
     laptop.tlp.enable = lib.mkEnableOption "Enable tlp";
   };

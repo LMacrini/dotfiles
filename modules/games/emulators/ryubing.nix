@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     games.emulators.ryubing.enable = lib.mkEnableOption "Enable emulators";
   };

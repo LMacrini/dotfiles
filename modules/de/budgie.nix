@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf (config.de.de == "budgie") {
     services.xserver.desktopManager.budgie.enable = true;
 

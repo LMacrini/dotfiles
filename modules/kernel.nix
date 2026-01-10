@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = with lib; {
     kernel = mkOption {
       default = "zen";
@@ -16,13 +17,15 @@
     };
   };
 
-  config = let
-    kernelMap = with pkgs; {
-      lts = linuxPackages;
-      latest = linuxPackages_latest;
-      zen = linuxPackages_zen;
+  config =
+    let
+      kernelMap = with pkgs; {
+        lts = linuxPackages;
+        latest = linuxPackages_latest;
+        zen = linuxPackages_zen;
+      };
+    in
+    {
+      boot.kernelPackages = kernelMap.${config.kernel};
     };
-  in {
-    boot.kernelPackages = kernelMap.${config.kernel};
-  };
 }

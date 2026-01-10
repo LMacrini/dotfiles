@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   options = with lib; {
     liveSystem = mkOption {
       default = false;
@@ -10,7 +11,9 @@
       type = types.str;
     };
 
-    guiApps = mkEnableOption "gui apps" // {default = true;};
+    guiApps = mkEnableOption "gui apps" // {
+      default = true;
+    };
 
     mainUser = mkOption {
       default = "lioma";

@@ -3,7 +3,8 @@
   inputs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
@@ -15,7 +16,10 @@
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-  users.users.lioma.extraGroups = ["docker" "libvirtd"];
+  users.users.lioma.extraGroups = [
+    "docker"
+    "libvirtd"
+  ];
 
   games.light.enable = true;
   games.launchers.enable = true;
@@ -32,7 +36,7 @@
     Work = lib.mkIf false {
       configuration = {
         environment.etc.specialisation.text = "Work";
-        system.nixos.tags = ["Work"];
+        system.nixos.tags = [ "Work" ];
 
         sudoInsults.enable = false;
 

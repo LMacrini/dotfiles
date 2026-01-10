@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
   ];
@@ -15,12 +16,12 @@
 
   specialisation = {
     hyprland.configuration = {
-      system.nixos.tags = ["hyprland"];
+      system.nixos.tags = [ "hyprland" ];
       de.de = "hyprland";
     };
 
     gnome.configuration = {
-      system.nixos.tags = ["gnome"];
+      system.nixos.tags = [ "gnome" ];
       de.de = "gnome";
     };
   };

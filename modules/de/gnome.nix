@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   config = lib.mkIf (config.de.de == "gnome") {
     services = {
       gnome = {

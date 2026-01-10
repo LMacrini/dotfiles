@@ -6,7 +6,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./de
     ./emacs
@@ -55,8 +56,9 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
 
-  home.packages = with pkgs;
-    []
+  home.packages =
+    with pkgs;
+    [ ]
     ++ lib.optionals config.guiApps [
       cheese
       celluloid
@@ -208,7 +210,8 @@
           "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
         };
       };
-      extraPortals = with pkgs;
+      extraPortals =
+        with pkgs;
         [
           xdg-desktop-portal-gtk
         ]
@@ -219,44 +222,66 @@
 
     mimeApps = {
       enable = true;
-      defaultApplications = let
-        archives = ["peazip-extract-smart.desktop"];
-        audio = videos ++ ["app.drey.EarTag.desktop"];
-        browsers = ["librewolf.desktop" "chromium-browser.desktop"];
-        images = ["org.gnome.eog.desktop" "gimp.desktop"];
-        videos = ["io.github.celluloid_player.Celluloid.desktop" "vlc.desktop"];
-        editors = ["helix-kitty.desktop" "nvim-kitty.desktop" "org.gnome.gedit.desktop"];
-      in {
-        "application/pdf" = ["sioyek.desktop"] ++ browsers;
-        "application/gzip" = archives;
-        "application/x-7z-compressed" = archives;
-        "application/x-bzip2" = archives;
-        "application/x-tar" = archives;
-        "application/x-xz" = archives;
-        "application/zip" = archives;
+      defaultApplications =
+        let
+          archives = [ "peazip-extract-smart.desktop" ];
+          audio = videos ++ [ "app.drey.EarTag.desktop" ];
+          browsers = [
+            "librewolf.desktop"
+            "chromium-browser.desktop"
+          ];
+          images = [
+            "org.gnome.eog.desktop"
+            "gimp.desktop"
+          ];
+          videos = [
+            "io.github.celluloid_player.Celluloid.desktop"
+            "vlc.desktop"
+          ];
+          editors = [
+            "helix-kitty.desktop"
+            "nvim-kitty.desktop"
+            "org.gnome.gedit.desktop"
+          ];
+        in
+        {
+          "application/pdf" = [ "sioyek.desktop" ] ++ browsers;
+          "application/gzip" = archives;
+          "application/x-7z-compressed" = archives;
+          "application/x-bzip2" = archives;
+          "application/x-tar" = archives;
+          "application/x-xz" = archives;
+          "application/zip" = archives;
 
-        "audio/*" = audio;
-        "audio/mpeg" = audio;
-        "audio/x-opus+ogg" = audio;
+          "audio/*" = audio;
+          "audio/mpeg" = audio;
+          "audio/x-opus+ogg" = audio;
 
-        "inode/directory" = ["thunar.desktop" "org.gnome.Nautilus.desktop" "pcmanfm.desktop"];
-        "x-scheme-handler/https" = browsers;
-        "x-scheme-handler/http" = browsers;
-        "text/html" = browsers;
+          "inode/directory" = [
+            "thunar.desktop"
+            "org.gnome.Nautilus.desktop"
+            "pcmanfm.desktop"
+          ];
+          "x-scheme-handler/https" = browsers;
+          "x-scheme-handler/http" = browsers;
+          "text/html" = browsers;
 
-        "x-scheme-handler/terminal" = ["kitty.desktop" "com.mitchellh.ghostty.desktop"];
-        "image/*" = images;
-        "image/gif" = images;
-        "image/jpeg" = images;
-        "image/png" = images;
-        "image/svg+xml" = images;
-        "image/webp" = images;
-        "video/*" = videos;
-        "video/mp4" = videos;
-        "video/x-matroska" = videos;
-        "text/*" = editors;
-        "text/plain" = editors;
-      };
+          "x-scheme-handler/terminal" = [
+            "kitty.desktop"
+            "com.mitchellh.ghostty.desktop"
+          ];
+          "image/*" = images;
+          "image/gif" = images;
+          "image/jpeg" = images;
+          "image/png" = images;
+          "image/svg+xml" = images;
+          "image/webp" = images;
+          "video/*" = videos;
+          "video/mp4" = videos;
+          "video/x-matroska" = videos;
+          "text/*" = editors;
+          "text/plain" = editors;
+        };
     };
 
     desktopEntries = {
@@ -267,7 +292,10 @@
       helix-kitty = {
         name = "Helix (kitty)";
         icon = "helix";
-        categories = ["Utility" "TextEditor"];
+        categories = [
+          "Utility"
+          "TextEditor"
+        ];
         genericName = "Text Editor";
         type = "Application";
         startupNotify = false;
@@ -277,7 +305,10 @@
       kitty-no-tmux = lib.mkIf (config.programs.kitty.enable || config.programs.tmux.enable) {
         name = "kitty (no tmux)";
         icon = "kitty";
-        categories = ["System" "TerminalEmulator"];
+        categories = [
+          "System"
+          "TerminalEmulator"
+        ];
         comment = "Fast, feature-rich, GPU based terminal";
         genericName = "Terminal Emulator";
         type = "Application";
@@ -302,7 +333,10 @@
         comment = "Extensible chat client";
         genericName = "Chat client";
         type = "Application";
-        mimeType = ["x-scheme-handler/irc" "x-scheme-handler/ircs"];
+        mimeType = [
+          "x-scheme-handler/irc"
+          "x-scheme-handler/ircs"
+        ];
         exec = "kitty -T WeeChat -- weechat %u";
       };
     };
@@ -351,7 +385,7 @@
 
   dconf.settings = {
     "org/gnome/mutter" = {
-      experimental-features = ["scale-monitor-framebuffer"];
+      experimental-features = [ "scale-monitor-framebuffer" ];
       dynamic-workspaces = true;
       workspaces-only-on-primary = true;
     };
@@ -428,11 +462,11 @@
         "<Shift><Super>S"
         "Print"
       ];
-      toggle-application = ["<Alt>space"];
+      toggle-application = [ "<Alt>space" ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      screenreader = [];
+      screenreader = [ ];
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
@@ -475,7 +509,7 @@
     };
 
     "org/gnome/shell/extensions/arcmenu" = {
-      arcmenu-hotkey = ["<Super>t"];
+      arcmenu-hotkey = [ "<Super>t" ];
       menu-button-appearance = "None";
       menu-layout = "Runner";
       position-in-panel = "Center";
@@ -492,9 +526,9 @@
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      activate-window-menu = ["<Shift><Control><Alt>1"];
-      switch-to-workspace-left = ["<Ctrl><Super>Left"];
-      switch-to-workspace-right = ["<Ctrl><Super>Right"];
+      activate-window-menu = [ "<Shift><Control><Alt>1" ];
+      switch-to-workspace-left = [ "<Ctrl><Super>Left" ];
+      switch-to-workspace-right = [ "<Ctrl><Super>Right" ];
     };
 
     "org/gnome/desktop/privacy" = {

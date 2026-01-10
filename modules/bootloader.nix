@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = with lib; {
     bootloader = mkOption {
       default = "limine";
@@ -44,11 +45,7 @@
         };
 
         extraConfig = ''
-          quiet: ${
-            if config.plymouth.quietBoot
-            then "yes"
-            else "no"
-          }
+          quiet: ${if config.plymouth.quietBoot then "yes" else "no"}
         '';
       };
     };

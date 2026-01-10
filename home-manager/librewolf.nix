@@ -4,20 +4,22 @@
   pkgs,
   lib,
   ...
-} @ params: let
+}@params:
+let
   addons = import ./firefox-addons params;
-in {
+in
+{
   enable = lib.mkDefault config.guiApps;
 
   package =
-    if cfg.de.de == "gnome"
-    then
+    if cfg.de.de == "gnome" then
       pkgs.librewolf.override {
         nativeMessagingHosts = [
           pkgs.gnome-browser-connector
         ];
       }
-    else pkgs.librewolf;
+    else
+      pkgs.librewolf;
 
   languagePacks = [
     "en-CA"
@@ -79,7 +81,7 @@ in {
               }
             ];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@np"];
+            definedAliases = [ "@np" ];
           };
 
           nix-options = {
@@ -100,7 +102,7 @@ in {
               }
             ];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@no"];
+            definedAliases = [ "@no" ];
           };
 
           twint-search = {
@@ -111,7 +113,7 @@ in {
               }
             ];
             # suggest_url = "https://search.twint.my.id/c?q=%s";
-            definedAliases = ["@tw"];
+            definedAliases = [ "@tw" ];
           };
 
           "bing@search.mozilla.orgdefault".metaData.hidden = true;

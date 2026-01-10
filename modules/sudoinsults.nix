@@ -2,9 +2,12 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = with lib; {
-    sudoInsults.enable = mkEnableOption "sudo insults" // {default = true;};
+    sudoInsults.enable = mkEnableOption "sudo insults" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf config.sudoInsults.enable {

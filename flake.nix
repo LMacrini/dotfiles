@@ -53,143 +53,153 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
-    defaultSystems = [
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
+  outputs =
+    { nixpkgs, ... }@inputs:
+    let
+      defaultSystems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
 
-    forAllSystems = f: builtins.mapAttrs f nixpkgs.legacyPackages;
+      forAllSystems = f: builtins.mapAttrs f nixpkgs.legacyPackages;
 
-    myPkgs = let
-      pkgsDir = ./pkgs;
-      rawPkgs = builtins.readDir pkgsDir;
-      pkgsList = nixpkgs.lib.attrsToList rawPkgs;
+      myPkgs =
+        let
+          pkgsDir = ./pkgs;
+          rawPkgs = builtins.readDir pkgsDir;
+          pkgsList = nixpkgs.lib.attrsToList rawPkgs;
 
-      parsedPkgs =
-        map (
-          {
-            name,
-            value,
-          }:
-            if value == "directory"
-            then {
-              inherit name;
-              package = pkgsDir + "/${name}";
-              systems =
-                if builtins.pathExists (pkgsDir + "/${name}/systems.nix")
-                then import (pkgsDir + "/${name}/systems.nix")
-                else defaultSystems;
-            }
-            else builtins.abort "non directory found"
-        )
-        pkgsList;
+          parsedPkgs = map (
+            {
+              name,
+              value,
+            }:
+            if value == "directory" then
+              {
+                inherit name;
+                package = pkgsDir + "/${name}";
+                systems =
+                  if builtins.pathExists (pkgsDir + "/${name}/systems.nix") then
+                    import (pkgsDir + "/${name}/systems.nix")
+                  else
+                    defaultSystems;
+              }
+            else
+              builtins.abort "non directory found"
+          ) pkgsList;
 
-      systemPkgsList =
-        map (
-          {
-            name,
-            package,
-            systems,
-          }: let
-            systemPackages =
-              map (system: let
-                pkgs = import nixpkgs {
-                  inherit system;
-                  overlays = [overlay.${system}];
-                  config.allowUnfree = true;
-                };
-              in {
-                name = system;
-                value = {
-                  ${name} = pkgs.callPackage package {};
-                };
-              })
-              systems;
-          in
+          systemPkgsList = map (
+            {
+              name,
+              package,
+              systems,
+            }:
+            let
+              systemPackages = map (
+                system:
+                let
+                  pkgs = import nixpkgs {
+                    inherit system;
+                    overlays = [ overlay.${system} ];
+                    config.allowUnfree = true;
+                  };
+                in
+                {
+                  name = system;
+                  value = {
+                    ${name} = pkgs.callPackage package { };
+                  };
+                }
+              ) systems;
+            in
             builtins.listToAttrs systemPackages
-        )
-        parsedPkgs;
-    in
-      builtins.foldl' nixpkgs.lib.recursiveUpdate {} systemPkgsList;
+          ) parsedPkgs;
+        in
+        builtins.foldl' nixpkgs.lib.recursiveUpdate { } systemPkgsList;
 
-    eachSystem = nixpkgs.lib.genAttrs defaultSystems;
-    overlay = eachSystem (system: next: prev: {
-      unstable = import inputs.nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = prev.config.allowUnfree;
-      };
+      eachSystem = nixpkgs.lib.genAttrs defaultSystems;
+      overlay = eachSystem (
+        system: next: prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = prev.config.allowUnfree;
+          };
 
-      quickshell = inputs.quickshell.packages.${system}.default.override {
-        withQtSvg = true;
-        withWayland = true;
-        withPipewire = true;
-        withPam = true;
-        withHyprland = true;
-      };
+          quickshell = inputs.quickshell.packages.${system}.default.override {
+            withQtSvg = true;
+            withWayland = true;
+            withPipewire = true;
+            withPam = true;
+            withHyprland = true;
+          };
 
-      zig = inputs.zig.packages.${system};
+          zig = inputs.zig.packages.${system};
 
-      my = myPkgs.${system};
+          my = myPkgs.${system};
 
-      fjordlauncher = inputs.fjordlauncher.packages.${system}.default;
-    });
+          fjordlauncher = inputs.fjordlauncher.packages.${system}.default;
+        }
+      );
 
-    extraHome = path:
-      if (builtins.pathExists ./hosts/${path}/home.nix)
-      then import ./hosts/${path}/home.nix
-      else {};
+      extraHome =
+        path:
+        if (builtins.pathExists ./hosts/${path}/home.nix) then import ./hosts/${path}/home.nix else { };
 
-    mkHost = path:
-      nixpkgs.lib.nixosSystem
-      {
-        specialArgs = {
-          inherit inputs;
-          extraHome = extraHome path;
+      mkHost =
+        path:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            extraHome = extraHome path;
+          };
+          modules = [
+            ./hosts/${path}
+            ./modules
+            inputs.nix-flatpak.nixosModules.nix-flatpak
+            inputs.catppuccin.nixosModules.catppuccin
+            inputs.niri.nixosModules.niri
+            inputs.home-manager.nixosModules.default
+            {
+              nixpkgs.overlays = [
+                (import inputs.emacs-overlay)
+                overlay.x86_64-linux
+                (_: prev: {
+                  gdm = prev.my.gdm-wam;
+                })
+              ];
+            }
+          ];
         };
-        modules = [
-          ./hosts/${path}
-          ./modules
-          inputs.nix-flatpak.nixosModules.nix-flatpak
-          inputs.catppuccin.nixosModules.catppuccin
-          inputs.niri.nixosModules.niri
-          inputs.home-manager.nixosModules.default
-          {
-            nixpkgs.overlays = [
-              (import inputs.emacs-overlay)
-              overlay.x86_64-linux
-              (_: prev: {
-                gdm = prev.my.gdm-wam;
-              })
-            ];
-          }
-        ];
-      };
 
-    mkHosts = hosts:
-      builtins.listToAttrs (map (host: {
-          name = host;
-          value = mkHost host;
-        })
-        hosts);
-  in {
-    nixosConfigurations = mkHosts [
-      "DESKTOP-VKFSNVPI"
-      "amanojaku"
-      "lionels-laptop"
-      "vm"
-      "live"
-    ];
+      mkHosts =
+        hosts:
+        builtins.listToAttrs (
+          map (host: {
+            name = host;
+            value = mkHost host;
+          }) hosts
+        );
+    in
+    {
+      nixosConfigurations = mkHosts [
+        "DESKTOP-VKFSNVPI"
+        "amanojaku"
+        "lionels-laptop"
+        "vm"
+        "live"
+      ];
 
-    packages = myPkgs;
+      packages = myPkgs;
 
-    formatter = forAllSystems (system: pkgs: pkgs.alejandra);
+      formatter = forAllSystems (system: pkgs: pkgs.nixfmt-rfc-style);
 
-    devShells = forAllSystems (system: pkgs: {
-      default = import ./devshells {
-        pkgs = pkgs.extend overlay.${system};
-      };
-    });
-  };
+      devShells = forAllSystems (
+        system: pkgs: {
+          default = import ./devshells {
+            pkgs = pkgs.extend overlay.${system};
+          };
+        }
+      );
+    };
 }

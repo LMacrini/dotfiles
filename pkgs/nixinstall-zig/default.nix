@@ -1,4 +1,4 @@
-{zig}:
+{ zig }:
 zig.nightly.makePackage {
   pname = "nixinstall-zig";
   version = "0.2.0";

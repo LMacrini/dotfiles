@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./hardware-configuration.nix
   ];
@@ -16,7 +17,7 @@
   specialisation = {
     LTS.configuration = {
       environment.etc.specialisation.text = "LTS";
-      system.nixos.tags = ["LTS"];
+      system.nixos.tags = [ "LTS" ];
 
       kernel = "lts";
     };
@@ -26,7 +27,10 @@
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-  users.users.lioma.extraGroups = ["docker" "libvirtd"];
+  users.users.lioma.extraGroups = [
+    "docker"
+    "libvirtd"
+  ];
 
   networking.hostName = "DESKTOP-VKFSNVPI";
 

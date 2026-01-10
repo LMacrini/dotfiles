@@ -3,7 +3,8 @@
   cfg,
   lib,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     blueman
     brightnessctl
@@ -46,16 +47,14 @@
     wlogout = {
       enable = true;
       layout =
-        (
-          lib.optionals (!cfg.liveSystem) [
-            {
-              label = "lock";
-              action = "hyprlock";
-              text = "Lock";
-              keybind = "l";
-            }
-          ]
-        )
+        (lib.optionals (!cfg.liveSystem) [
+          {
+            label = "lock";
+            action = "hyprlock";
+            text = "Lock";
+            keybind = "l";
+          }
+        ])
         ++ [
           {
             label = "hibernate";
@@ -169,7 +168,7 @@
     enable = true;
     systemd = {
       enable = false;
-      variables = ["--all"];
+      variables = [ "--all" ];
       enableXdgAutostart = true;
     };
 
@@ -184,36 +183,32 @@
         shake.enabled = false;
       };
 
-      exec-once =
+      exec-once = [
+        ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
+        "hyprpaper"
+        "hypridle"
+        "waybar"
+        "kanata"
+        "blueman-applet"
+        "nm-applet"
+        "sway-audio-idle-inhibit"
+      ]
+      ++ (lib.optionals cfg.liveSystem [ "kitty --hold nmtui" ]);
+
+      exec-shutdown =
+        let
+          pkill = n: "pkill ${n} || pkill -9 ${n}";
+        in
         [
-          ''systemd-inhibit --who="Hyprland config" --why="wlogout keybind" --what=handle-power-key --mode=block sleep infinity & echo $! > /tmp/.hyprland-systemd-inhibit''
-          "hyprpaper"
-          "hypridle"
-          "waybar"
-          "kanata"
-          "blueman-applet"
-          "nm-applet"
-          "sway-audio-idle-inhibit"
-        ]
-        ++ (
-          lib.optionals cfg.liveSystem
-          ["kitty --hold nmtui"]
-        );
-
-      exec-shutdown = let
-        pkill = n: "pkill ${n} || pkill -9 ${n}";
-      in [
-        ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)"''
-        (pkill "kanata")
-        (pkill "blueman-applet")
-        (pkill "nm-applet")
-      ];
-
-      monitor =
-        cfg.de.hyprland.monitor
-        ++ [
-          ", preffered, auto, 1"
+          ''kill -9 "$(cat /tmp/.hyprland-systemd-inhibit)"''
+          (pkill "kanata")
+          (pkill "blueman-applet")
+          (pkill "nm-applet")
         ];
+
+      monitor = cfg.de.hyprland.monitor ++ [
+        ", preffered, auto, 1"
+      ];
 
       layerrule = "blur,waybar";
 
@@ -267,45 +262,47 @@
         ", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
       ];
 
-      bind =
-        [
-          "$mod, T, exec, pkill wofi || wofi"
-          "ALT, Space, exec, pkill wofi || wofi"
-          "$mod, Q, exec, kitty"
-          "$mod, C, killactive"
-          "$mod, F, fullscreen"
-          "$mod SHIFT, F, togglefloating"
-          "$mod ALT, K, exec, pkill kanata && kanata"
-          ''SUPER SHIFT, S, exec, pkill slurp || grim -g "$(slurp -dw 0)" - | wl-copy''
-          "$mod, right, movefocus, r"
-          "$mod, left, movefocus, l"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
-          "$mod SHIFT, right, movewindow, r"
-          "$mod SHIFT, left, movewindow, l"
-          "$mod SHIFT, down, movewindow, d"
-          "$mod SHIFT, up, movewindow, u"
-          "SUPER CONTROL, right, workspace, +1"
-          "SUPER CONTROL, left, workspace, -1"
-          "SUPER SHIFT CONTROL, right, movecurrentworkspacetomonitor, +1"
-          "SUPER SHIFT CONTROL, left, movecurrentworkspacetomonitor, -1"
+      bind = [
+        "$mod, T, exec, pkill wofi || wofi"
+        "ALT, Space, exec, pkill wofi || wofi"
+        "$mod, Q, exec, kitty"
+        "$mod, C, killactive"
+        "$mod, F, fullscreen"
+        "$mod SHIFT, F, togglefloating"
+        "$mod ALT, K, exec, pkill kanata && kanata"
+        ''SUPER SHIFT, S, exec, pkill slurp || grim -g "$(slurp -dw 0)" - | wl-copy''
+        "$mod, right, movefocus, r"
+        "$mod, left, movefocus, l"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, down, movewindow, d"
+        "$mod SHIFT, up, movewindow, u"
+        "SUPER CONTROL, right, workspace, +1"
+        "SUPER CONTROL, left, workspace, -1"
+        "SUPER SHIFT CONTROL, right, movecurrentworkspacetomonitor, +1"
+        "SUPER SHIFT CONTROL, left, movecurrentworkspacetomonitor, -1"
 
-          "$mod, R, togglespecialworkspace, magic"
-          "$mod SHIFT, R, movetoworkspace, special:magic"
-        ]
-        ++ (
-          # workspaces
-          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-          builtins.concatLists (builtins.genList (
-              i: let
-                ws = i + 1;
-              in [
-                "$mod, code:1${toString i}, workspace, ${toString ws}"
-                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-              ]
-            )
-            9)
-        );
+        "$mod, R, togglespecialworkspace, magic"
+        "$mod SHIFT, R, movetoworkspace, special:magic"
+      ]
+      ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+        builtins.concatLists (
+          builtins.genList (
+            i:
+            let
+              ws = i + 1;
+            in
+            [
+              "$mod, code:1${toString i}, workspace, ${toString ws}"
+              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            ]
+          ) 9
+        )
+      );
 
       bindm = [
         "$mod, mouse:272, movewindow"

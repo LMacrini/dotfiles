@@ -32,28 +32,27 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     makeWrapper
   ];
 
-  buildInputs =
-    [
-      alsa-lib
-      at-spi2-atk
-      cairo
-      cups
-      dbus
-      electron
-      glib
-      gtk3
-      libgbm
-      libxkbcommon
-      nss
-    ]
-    ++ (with xorg; [
-      libX11
-      libXcomposite
-      libXdamage
-      libXext
-      libXfixes
-      libXrandr
-    ]);
+  buildInputs = [
+    alsa-lib
+    at-spi2-atk
+    cairo
+    cups
+    dbus
+    electron
+    glib
+    gtk3
+    libgbm
+    libxkbcommon
+    nss
+  ]
+  ++ (with xorg; [
+    libX11
+    libXcomposite
+    libXdamage
+    libXext
+    libXfixes
+    libXrandr
+  ]);
 
   desktopItems = makeDesktopItem {
     name = "re-lunatic-player";

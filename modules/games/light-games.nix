@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = {
     games.light.enable = lib.mkEnableOption "Enables light games";
   };

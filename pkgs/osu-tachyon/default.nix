@@ -6,7 +6,8 @@
   fetchurl,
   fetchzip,
   lib,
-}: let
+}:
+let
   info = builtins.fromJSON (builtins.readFile ./info.json);
 
   pname = "osu-tachyon";
@@ -14,21 +15,13 @@
 
   platform = lib.getAttr stdenvNoCC.system info.platforms;
 
-  fetcher =
-    if platform.unpack
-    then fetchzip
-    else fetchurl;
+  fetcher = if platform.unpack then fetchzip else fetchurl;
 
-  arguments =
-    {
-      inherit (platform) hash;
-      url = "https://github.com/ppy/osu/releases/download/${info.version}/${platform.file}";
-    }
-    // (
-      if platform.unpack
-      then {stripRoot = false;}
-      else {}
-    );
+  arguments = {
+    inherit (platform) hash;
+    url = "https://github.com/ppy/osu/releases/download/${info.version}/${platform.file}";
+  }
+  // (if platform.unpack then { stripRoot = false; } else { });
 
   src = fetcher arguments;
 
@@ -40,7 +33,7 @@
       cc-by-nc-40
       mit
     ];
-    sourceProvenance = with lib.sourceTypes; [binaryNativeCode];
+    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
     maintainers = with lib.maintainers; [
       gepbird
       stepbrobd
@@ -56,28 +49,41 @@
 
   passthru.updateScript = ./update.sh;
 in
-  if stdenvNoCC.isDarwin
-  then
-    stdenvNoCC.mkDerivation {
-      inherit pname version src meta passthru;
+if stdenvNoCC.isDarwin then
+  stdenvNoCC.mkDerivation {
+    inherit
+      pname
+      version
+      src
+      meta
+      passthru
+      ;
 
-      installPhase = ''
-        runHook preInstall
-        APP_DIR="$out/Applications"
-        mkdir -p "$APP_DIR"
-        cp -r . "$APP_DIR"
-        runHook postInstall
-      '';
-    }
-  else
-    appimageTools.wrapType2 {
-      inherit pname version src meta passthru;
+    installPhase = ''
+      runHook preInstall
+      APP_DIR="$out/Applications"
+      mkdir -p "$APP_DIR"
+      cp -r . "$APP_DIR"
+      runHook postInstall
+    '';
+  }
+else
+  appimageTools.wrapType2 {
+    inherit
+      pname
+      version
+      src
+      meta
+      passthru
+      ;
 
-      extraPkgs = pkgs: with pkgs; [icu];
+    extraPkgs = pkgs: with pkgs; [ icu ];
 
-      extraInstallCommands = let
-        contents = appimageTools.extract {inherit pname version src;};
-      in ''
+    extraInstallCommands =
+      let
+        contents = appimageTools.extract { inherit pname version src; };
+      in
+      ''
         . ${makeWrapper}/nix-support/setup-hook
         mv -v $out/bin/${pname} $out/bin/osu!
 
@@ -90,4 +96,4 @@ in
           install -D ${contents}/osu.png $out/share/icons/hicolor/''${i}x$i/apps/osu.png
         done
       '';
-    }
+  }

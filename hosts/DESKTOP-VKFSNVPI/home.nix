@@ -1,11 +1,20 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.niri.settings = {
     input = {
       tablet = {
         map-to-output = "DP-1";
         calibration-matrix = [
-          [1.25 0.0 0.0]
-          [0.0 2.5 0.0]
+          [
+            1.25
+            0.0
+            0.0
+          ]
+          [
+            0.0
+            2.5
+            0.0
+          ]
         ];
       };
     };
@@ -35,7 +44,13 @@
       };
     };
     spawn-at-startup = [
-      {command = ["noisetorch" "-i" "alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo"];}
+      {
+        command = [
+          "noisetorch"
+          "-i"
+          "alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo"
+        ];
+      }
     ];
   };
 

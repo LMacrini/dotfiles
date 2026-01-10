@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options = with lib; {
     shell = mkOption {
       default = "fish";
@@ -18,33 +19,42 @@
     };
   };
 
-  config = let
-    map = set: str: set.${str};
-    shellPkg =
-      map {
+  config =
+    let
+      map = set: str: set.${str};
+      shellPkg = map {
         "bash" = pkgs.bash;
         "fish" = pkgs.fish;
         "nu" = pkgs.nushell;
         "zsh" = pkgs.zsh;
-      }
-      config.shell;
-  in {
-    users = {
-      # defaultUserShell = shellPkg;
+      } config.shell;
+    in
+    {
       users = {
-        lioma.shell = shellPkg;
+        # defaultUserShell = shellPkg;
+        users = {
+          lioma.shell = shellPkg;
+        };
       };
+
+      programs = {
+        zsh.enable = lib.mkDefault (config.shell == "zsh");
+        fish.enable = lib.mkDefault (config.shell == "fish");
+      };
+
+      environment.systemPackages =
+        lib.mkIf
+          (
+            !(lib.elem config.shell [
+              "bash"
+              "fish"
+              "zsh"
+            ])
+          )
+          [
+            shellPkg
+          ];
+
+      environment.shells = [ shellPkg ];
     };
-
-    programs = {
-      zsh.enable = lib.mkDefault (config.shell == "zsh");
-      fish.enable = lib.mkDefault (config.shell == "fish");
-    };
-
-    environment.systemPackages = lib.mkIf (!(lib.elem config.shell ["bash" "fish" "zsh"])) [
-      shellPkg
-    ];
-
-    environment.shells = [shellPkg];
-  };
 }

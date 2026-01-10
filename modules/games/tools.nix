@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   options = {
     games.tools.enable = lib.mkEnableOption "Enables game tools";
   };

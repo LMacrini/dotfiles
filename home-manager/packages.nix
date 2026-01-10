@@ -4,7 +4,8 @@
   cfg,
   config,
   ...
-} @ params: {
+}@params:
+{
   accounts = {
     email = {
       accounts = {
@@ -62,9 +63,12 @@
       };
     };
 
-    packages = with pkgs;
+    packages =
+      with pkgs;
       [
-        alejandra
+        (nixfmt-tree.override {
+          nixfmtPackage = nixfmt-rfc-style;
+        })
         nix-output-monitor
         rip2
         weechat
@@ -75,12 +79,13 @@
           withOpenASAR = true;
           withEquicord = true;
 
-          equicord = let
-            shyTyping = builtins.fetchGit {
-              url = "https://git.serversmp.xyz/seija/shyTyping";
-              rev = "14818441174f899a57aff300df2d13a6ded4f667";
-            };
-          in
+          equicord =
+            let
+              shyTyping = builtins.fetchGit {
+                url = "https://git.serversmp.xyz/seija/shyTyping";
+                rev = "14818441174f899a57aff300df2d13a6ded4f667";
+              };
+            in
             unstable.equicord.overrideAttrs {
               preBuild = ''
                 mkdir ./src/userplugins
@@ -171,34 +176,41 @@
 
           line-number = "relative";
           mouse = false;
-          rulers = [80 100];
+          rulers = [
+            80
+            100
+          ];
           soft-wrap.enable = true;
           trim-trailing-whitespace = true;
         };
 
         keys =
-          lib.recursiveUpdate {
-            insert = {
-              up = "no_op";
-              down = "no_op";
-              left = "no_op";
-              right = "no_op";
-              pageup = "no_op";
-              pagedown = "no_op";
-              home = "no_op";
-              end = "no_op";
-            };
-          } (lib.optionalAttrs (config.programs.kitty.enable || config.programs.ghostty.enable) {
-            normal = {
-              tab = "move_parent_node_end";
-              S-tab = "move_parent_node_start";
-            };
+          lib.recursiveUpdate
+            {
+              insert = {
+                up = "no_op";
+                down = "no_op";
+                left = "no_op";
+                right = "no_op";
+                pageup = "no_op";
+                pagedown = "no_op";
+                home = "no_op";
+                end = "no_op";
+              };
+            }
+            (
+              lib.optionalAttrs (config.programs.kitty.enable || config.programs.ghostty.enable) {
+                normal = {
+                  tab = "move_parent_node_end";
+                  S-tab = "move_parent_node_start";
+                };
 
-            select = {
-              tab = "extend_parent_node_end";
-              S-tab = "extend_parent_node_start";
-            };
-          });
+                select = {
+                  tab = "extend_parent_node_end";
+                  S-tab = "extend_parent_node_start";
+                };
+              }
+            );
       };
       # NOTE: i am really mad, i think the way that helix works makes the generated toml not work properly
       # languages = {
@@ -267,8 +279,21 @@
 
       settings = {
         aliases = {
-          tug = ["bookmark" "move" "main" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
-          tugb = ["bookmark" "move" "--to" "@-"];
+          tug = [
+            "bookmark"
+            "move"
+            "main"
+            "--from"
+            "heads(::@- & bookmarks())"
+            "--to"
+            "@-"
+          ];
+          tugb = [
+            "bookmark"
+            "move"
+            "--to"
+            "@-"
+          ];
         };
 
         user = {
@@ -292,8 +317,7 @@
 
       extraConfig =
         # kak
-        ''
-        '';
+        '''';
 
       plugins = with pkgs.kakounePlugins; [
         fzf-kak
@@ -311,17 +335,16 @@
         package = cfg.fonts.nerdfont.package;
       };
 
-      keybindings =
-        {
-          "kitty_mod+enter" = "launch --cwd=current";
+      keybindings = {
+        "kitty_mod+enter" = "launch --cwd=current";
 
-          "kitty_mod+t" = "new_tab";
-          "kitty+shift+alt" = "set_tab_title";
-        }
-        // lib.optionalAttrs (config.programs.tmux.enable || config.programs.zellij.enable) {
-          "kitty_mod+t" = "no_op";
-          "kitty_mod+enter" = "no_op";
-        };
+        "kitty_mod+t" = "new_tab";
+        "kitty+shift+alt" = "set_tab_title";
+      }
+      // lib.optionalAttrs (config.programs.tmux.enable || config.programs.zellij.enable) {
+        "kitty_mod+t" = "no_op";
+        "kitty_mod+enter" = "no_op";
+      };
 
       shellIntegration = {
         mode = "no-cursor";
@@ -423,14 +446,15 @@
     };
 
     zellij = {
-      enable = lib.mkDefault (builtins.all (x: !x) [
-        config.programs.kitty.enable
-        config.programs.ghostty.enable
-      ]);
+      enable = lib.mkDefault (
+        builtins.all (x: !x) [
+          config.programs.kitty.enable
+          config.programs.ghostty.enable
+        ]
+      );
 
       # TODO: this shouldn't be required
-      inherit
-        (config.home.shell)
+      inherit (config.home.shell)
         enableBashIntegration
         enableFishIntegration
         enableZshIntegration
@@ -479,24 +503,27 @@
           '';
       };
 
-      interactiveShellInit = with config.programs; # fish
-      
+      interactiveShellInit =
+        with config.programs; # fish
+
         ''
           set fish_greeting
           bind \cz 'fg 2>/dev/null; commandline -f repaint'
         ''
-        + lib.optionalString (zellij.enable && zellij.enableFishIntegration) # fish
-        
-        ''
-          eval (${lib.getExe zellij.package} setup --generate-completion fish | string collect)
-        ''
-        + lib.optionalString tmux.enable # fish
-        
-        ''
-          if not set -q TMUX; and not set -q DISABLE_TMUX
-            tmux attach -t shell >/dev/null 2>&1; or tmux new -s shell
-          end
-        '';
+        +
+          lib.optionalString (zellij.enable && zellij.enableFishIntegration) # fish
+
+            ''
+              eval (${lib.getExe zellij.package} setup --generate-completion fish | string collect)
+            ''
+        +
+          lib.optionalString tmux.enable # fish
+
+            ''
+              if not set -q TMUX; and not set -q DISABLE_TMUX
+                tmux attach -t shell >/dev/null 2>&1; or tmux new -s shell
+              end
+            '';
 
       shellAbbrs = {
         zbw = "zig build -Dno-bin --watch -fincremental --prominent-compile-errors";
@@ -551,11 +578,12 @@
               }
           }
         ''
-        + lib.optionalString (config.programs.starship.enableTransience)
-        # nu
-        ''
-          $env.TRANSIENT_PROMPT_COMMAND = {starship module character | $"\n($in)"}
-        '';
+        +
+          lib.optionalString (config.programs.starship.enableTransience)
+            # nu
+            ''
+              $env.TRANSIENT_PROMPT_COMMAND = {starship module character | $"\n($in)"}
+            '';
     };
 
     zsh = {
@@ -575,31 +603,33 @@
         ];
       };
 
-      initContent = let
-        # NOTE: Common order values:
-        # 500 (mkBefore): Early initialization (replaces initExtraFirst)
-        #
-        # 550: Before completion initialization (replaces initExtraBeforeCompInit)
-        #
-        # 1000 (default): General configuration (replaces initExtra)
-        #
-        # 1500 (mkAfter): Last to run configuration
-        after =
-          lib.mkOrder 1500
-          <|
-          # zsh
-          ''
-            autoload -Uz add-zle-hook-widget
-            add-zle-hook-widget zle-line-finish transient-prompt
-          ''
-          + lib.optionalString (config.programs.starship.enableTransience)
-          # zsh
-          ''
-            transient-prompt () {
-              PROMPT=$(starship module character) zle .reset-prompt
-            }
-          '';
-      in
+      initContent =
+        let
+          # NOTE: Common order values:
+          # 500 (mkBefore): Early initialization (replaces initExtraFirst)
+          #
+          # 550: Before completion initialization (replaces initExtraBeforeCompInit)
+          #
+          # 1000 (default): General configuration (replaces initExtra)
+          #
+          # 1500 (mkAfter): Last to run configuration
+          after =
+            lib.mkOrder 1500
+            <|
+              # zsh
+              ''
+                autoload -Uz add-zle-hook-widget
+                add-zle-hook-widget zle-line-finish transient-prompt
+              ''
+              +
+                lib.optionalString (config.programs.starship.enableTransience)
+                  # zsh
+                  ''
+                    transient-prompt () {
+                      PROMPT=$(starship module character) zle .reset-prompt
+                    }
+                  '';
+        in
         lib.mkMerge [
           after
         ];
