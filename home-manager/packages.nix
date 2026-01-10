@@ -144,6 +144,10 @@
         credential = {
           helper = "store";
         };
+        user = {
+          email = "seijamail@duck.com";
+          name = "Seija";
+        };
       };
     };
 
@@ -267,8 +271,8 @@
         };
 
         user = {
-          email = "liomacrini@gmail.com";
-          name = "LMacrini";
+          email = "seijamail@duck.com";
+          name = "Seija";
         };
 
         ui = {
