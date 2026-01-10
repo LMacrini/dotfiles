@@ -41,7 +41,7 @@
         indent_style = "tabs";
       };
 
-      "*.{nix,hs,json,jsonc,json5,yaml,toml}" = {
+      "*.{nix,hs,json,jsonc,json5,yaml,yml,toml}" = {
         indent_size = 2;
       };
     };
