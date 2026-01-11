@@ -252,6 +252,7 @@
     tlrc
 
     bat
+    croc
     p7zip-rar
     unzip
     ffmpeg
