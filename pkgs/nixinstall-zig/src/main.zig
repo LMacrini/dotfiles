@@ -238,6 +238,7 @@ fn partitionDrives(
             });
         }
 
+        // TODO: don't early return so this runs or smth
         if (!try yesOrNo(
             stdout,
             stdin,
@@ -415,11 +416,11 @@ pub fn main(init: std.process.Init) !u8 {
     const io = init.io;
 
     var stdout_buf: [4096]u8 = undefined;
-    var stdout_fw: Io.File.Writer = .init(.stdout(), io, &stdout_buf);
+    var stdout_fw: Io.File.Writer = .initStreaming(.stdout(), io, &stdout_buf);
     const stdout = &stdout_fw.interface;
 
     var stdin_buf: [128]u8 = undefined;
-    var stdin_fr: Io.File.Reader = .init(.stdin(), io, &stdin_buf);
+    var stdin_fr: Io.File.Reader = .initStreaming(.stdin(), io, &stdin_buf);
     const stdin = &stdin_fr.interface;
 
     var http_client: std.http.Client = .{ .allocator = gpa, .io = io };
