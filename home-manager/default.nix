@@ -154,11 +154,6 @@
         force = true;
       };
 
-      fastfetch = {
-        source = ./home/config/fastfetch;
-        recursive = true;
-      };
-
       "fourmolu.yaml".source = ./home/config/fourmolu.yaml;
 
       ghostty = {
