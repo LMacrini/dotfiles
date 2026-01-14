@@ -406,14 +406,29 @@ fn getHostInfo(
     return host_name;
 }
 
-pub fn main(init: std.process.Init) !u8 {
+const use_debug_allocator = builtin.mode == .Debug;
+var debug_allocator: std.heap.DebugAllocator(.{}) = .init;
+
+pub fn main(init: std.process.Init.Minimal) !u8 {
     if (std.os.linux.getuid() != 0) {
         std.log.err("please run nixinstall as root", .{});
         return 1;
     }
 
-    const gpa = init.gpa;
-    const io = init.io;
+    const gpa = if (use_debug_allocator)
+        debug_allocator.allocator()
+    else
+        std.heap.smp_allocator;
+
+    defer if (use_debug_allocator) {
+        _ = debug_allocator.deinit();
+    };
+
+    var threaded: Io.Threaded = .init(gpa, .{
+        .environ = init.environ,
+    });
+    defer threaded.deinit();
+    const io = threaded.io();
 
     var stdout_buf: [4096]u8 = undefined;
     var stdout_fw: Io.File.Writer = .initStreaming(.stdout(), io, &stdout_buf);
@@ -496,7 +511,7 @@ pub fn main(init: std.process.Init) !u8 {
         }
     }
 
-    const shell = init.environ_map.get("SHELL") orelse "bash";
+    const shell = init.environ.getPosix("SHELL") orelse "bash";
     const shell_opts: SpawnOptions = .{
         .argv = &.{shell},
         .cwd = "/tmp/config",
