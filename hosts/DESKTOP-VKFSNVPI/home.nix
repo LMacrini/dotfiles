@@ -78,9 +78,7 @@
 
   home.packages = with pkgs; [
     archipelago
-    dconf-editor
     teams-for-linux
-    ungoogled-chromium
     unityhub
   ];
 }
