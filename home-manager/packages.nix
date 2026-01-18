@@ -318,7 +318,7 @@
 
       extraConfig =
         # kak
-        '''';
+        "";
 
       plugins = with pkgs.kakounePlugins; [
         fzf-kak
