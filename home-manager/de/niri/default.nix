@@ -11,6 +11,7 @@ let
   swaylock = lib.getExe config.programs.swaylock.package;
   systemctl = lib.getExe' pkgs.systemd "systemctl";
   wpctl = lib.getExe' pkgs.wireplumber "wpctl";
+  anyrun = lib.getExe config.programs.anyrun.package;
 in
 {
   imports = [
@@ -25,6 +26,12 @@ in
           rofi
           "-show"
           "drun"
+        ];
+      };
+      spawn-anyrun = {
+        hotkey-overlay.title = "Run an Application: anyrun";
+        action.spawn = [
+          anyrun
         ];
       };
     in
@@ -42,8 +49,8 @@ in
 
           "Mod+C".action = close-window;
 
-          "Alt+Space" = spawn-rofi;
-          "Mod+T" = spawn-rofi;
+          "Alt+Space" = spawn-anyrun;
+          "Mod+T" = spawn-anyrun;
 
           "Mod+Left".action = focus-column-left;
           "Mod+Down".action = focus-window-down;
@@ -260,7 +267,7 @@ in
 
   programs = {
     rofi = {
-      enable = true;
+      # enable = true;
       extraConfig = {
         display-drun = ":3 ";
         show-icons = true;
@@ -277,6 +284,27 @@ in
         plugins = with pkgs; [
           rofi-calc
         ];
+      };
+    };
+    anyrun = {
+      enable = true;
+      config = {
+        x = {
+          fraction = 0.5;
+        };
+        y = {
+          fraction = 0.3;
+        };
+
+        plugins =
+          [
+            "applications"
+            "symbols"
+            "rink"
+            "nix_run"
+            "niri_focus"
+          ]
+          |> map (s: "${config.programs.anyrun.package}/lib/lib${s}.so");
       };
     };
     kitty.enable = true;
