@@ -12,6 +12,7 @@ let
   systemctl = lib.getExe' pkgs.systemd "systemctl";
   wpctl = lib.getExe' pkgs.wireplumber "wpctl";
   anyrun = lib.getExe config.programs.anyrun.package;
+  wlogout = lib.getExe config.programs.wlogout.package;
 in
 {
   imports = [
@@ -30,9 +31,7 @@ in
       };
       spawn-anyrun = {
         hotkey-overlay.title = "Run an Application: anyrun";
-        action.spawn = [
-          anyrun
-        ];
+        action.spawn-sh = "pkill anyrun || ${anyrun}";
       };
     in
     {
@@ -86,7 +85,7 @@ in
           "Mod+L" = {
             repeat = false;
             hotkey-overlay.title = "Open Logout Menu: wlogout";
-            action = spawn "sh" "-c" "pkill wlogout || wlogout";
+            action = spawn-sh "pkill wlogout || ${wlogout}";
           };
           "Mod+R".action = switch-preset-column-width;
           "Mod+Shift+R".action = switch-preset-window-height;
