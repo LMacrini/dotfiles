@@ -68,7 +68,7 @@
       gimp3
       gnome-disk-utility
       peazip
-      pkgs.resources # what a genius idea to have a variable named resources
+      resources
       my.re-lunatic-player
       vlc
 
