@@ -40,6 +40,7 @@
   config = {
     fonts.packages = [
       config.fonts.nerdfont.package
+      pkgs.nasin-nanpa-helvetica
     ];
   };
 }

@@ -222,10 +222,6 @@
     DETSYS_IDS_TELEMETRY = "disabled";
   };
 
-  fonts.packages = with pkgs; [
-    nasin-nanpa
-  ];
-
   programs.nh = {
     enable = true;
     package = pkgs.nh;
