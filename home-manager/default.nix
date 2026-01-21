@@ -195,6 +195,7 @@
     };
     dataFile =
       let
+        ifFcitx5 = lib.mkIf (config.i18n.inputMethod.enable && config.i18n.inputMethod.type == "fcitx5");
         ilo-sitelen = pkgs.stdenvNoCC.mkDerivation {
           name = "ilo-sitelen";
           version = "1.0";
@@ -230,17 +231,17 @@
           force = true;
         };
 
-        "fcitx5/table/ilo-sitelen.dict" = {
+        "fcitx5/table/ilo-sitelen.dict" = ifFcitx5 {
           source = ilo-sitelen + "/share/ilo-sitelen.dict";
         };
 
-        "fcitx5/inputmethod/ilo-sitelen.conf" = {
+        "fcitx5/inputmethod/ilo-sitelen.conf" = ifFcitx5 {
           source = ilo-sitelen + "/share/ilo-sitelen.conf";
         };
       };
 
     portal = {
-      enable = true;
+      enable = cfg.de.de != null;
       config = {
         common = {
           default = [
@@ -283,7 +284,7 @@
     };
 
     mimeApps = {
-      enable = true;
+      enable = lib.mkDefault config.guiApps;
       defaultApplications =
         let
           archives = [ "peazip-extract-smart.desktop" ];
