@@ -122,10 +122,10 @@
   };
   "dearrow" = buildFirefoxXpiAddon {
     pname = "dearrow";
-    version = "2.2.1";
+    version = "2.2.3";
     addonId = "deArrow@ajay.app";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4634684/dearrow-2.2.1.xpi";
-    sha256 = "9fefe049ccc9995bd0ccf517efff8d651cbfe7352af3f98d21ad028f7728c053";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4656721/dearrow-2.2.3.xpi";
+    sha256 = "7d5986ce0d92019c10f0ad62ab23a3293ec83c0f090a3c8c57379efb9455820c";
     meta = with lib; {
       homepage = "https://dearrow.ajay.app";
       description = "Crowdsourcing titles and thumbnails to be descriptive and not sensational";
