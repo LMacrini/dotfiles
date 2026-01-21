@@ -77,6 +77,7 @@
       qpwgraph
     ];
 
+  # NOTE: see xdg.dataFile in this file for toki pona stuff
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
@@ -86,6 +87,20 @@
         fcitx5-mozc
         fcitx5-gtk
       ];
+
+      settings = {
+        inputMethod = {
+          GroupOrder."0" = "Default";
+          "Groups/0" = {
+            Name = "Default";
+            "Default Layout" = "us";
+            DefaultIm = "keyboard-us";
+          };
+
+          "Groups/0/Items/0".Name = "keyboard-us";
+          "Groups/0/Items/1".Name = "ilo-sitelen";
+        };
+      };
     };
   };
 
@@ -178,11 +193,41 @@
         recursive = true;
       };
     };
-    dataFile = {
-      "applications/mimeapps.list" = {
-        force = true;
+    dataFile =
+      let
+        ilo-sitelen = pkgs.stdenvNoCC.mkDerivation {
+          name = "ilo-sitelen";
+          version = "1.0";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "balt-dev";
+            repo = "ilo-sitelen";
+            rev = "3c6e0010ef51f740737f8ae1ee43402e9de5cd51";
+            hash = "sha256-Mx/u63ZE8uMrdAG/4MsOtQr0Mm5V3Yp9AH0n6y1jBew=";
+          };
+
+          installPhase = ''
+            mkdir -p $out/share
+            cp -r $src/table $out/share
+            cp -r $src/inputmethod $out/share
+          '';
+        };
+      in
+      {
+        "applications/mimeapps.list" = {
+          force = true;
+        };
+
+        "fcitx5/table" = {
+          source = ilo-sitelen + "/share/table";
+          recursive = true;
+        };
+
+        "fcitx5/inputmethod" = {
+          source = ilo-sitelen + "/share/inputmethod";
+          recursive = true;
+        };
       };
-    };
 
     portal = {
       enable = true;
