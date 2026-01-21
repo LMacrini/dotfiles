@@ -77,6 +77,18 @@
       qpwgraph
     ];
 
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        qt6Packages.fcitx5-chinese-addons
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
+  };
+
   home.sessionVariables = {
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     MOZ_ENABLE_WAYLAND = 1;
