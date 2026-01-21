@@ -199,6 +199,10 @@
           name = "ilo-sitelen";
           version = "1.0";
 
+          patches = [
+            ./ilo-sitelen.patch
+          ];
+
           src = pkgs.fetchFromGitHub {
             owner = "balt-dev";
             repo = "ilo-sitelen";
@@ -206,10 +210,18 @@
             hash = "sha256-Mx/u63ZE8uMrdAG/4MsOtQr0Mm5V3Yp9AH0n6y1jBew=";
           };
 
+          nativeBuildInputs = [
+            pkgs.libime
+          ];
+
+          buildPhase = ''
+            libime_tabledict ./table/ilo-sitelen.txt ./table/ilo-sitelen.dict
+          '';
+
           installPhase = ''
             mkdir -p $out/share
-            cp -r $src/table $out/share
-            cp -r $src/inputmethod $out/share
+            cp ./table/ilo-sitelen.dict $out/share
+            cp $src/inputmethod/ilo-sitelen.conf $out/share
           '';
         };
       in
@@ -218,14 +230,12 @@
           force = true;
         };
 
-        "fcitx5/table" = {
-          source = ilo-sitelen + "/share/table";
-          recursive = true;
+        "fcitx5/table/ilo-sitelen.dict" = {
+          source = ilo-sitelen + "/share/ilo-sitelen.dict";
         };
 
-        "fcitx5/inputmethod" = {
-          source = ilo-sitelen + "/share/inputmethod";
-          recursive = true;
+        "fcitx5/inputmethod/ilo-sitelen.conf" = {
+          source = ilo-sitelen + "/share/ilo-sitelen.conf";
         };
       };
 

@@ -1,0 +1,21 @@
+diff --git a/table/ilo-sitelen.txt b/table/ilo-sitelen.txt
+index 7121211..e68a84c 100644
+--- a/table/ilo-sitelen.txt
++++ b/table/ilo-sitelen.txt
+@@ -1,4 +1,4 @@
+-KeyCode=aeijklmnopstuw
++KeyCode=aeijklmnopstuw[]+-.:
+ Length=15
+ [Data]
+ a 󱤀
+@@ -142,3 +142,9 @@ pake 󱦠
+ apeja 󱦡
+ majuna 󱦢
+ powe 󱦣
++[ 󱦐
++] 󱦑
+++ 󱦕
++- 󱦖
++. 󱦜
++: 󱦝
+
