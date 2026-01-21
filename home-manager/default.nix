@@ -436,13 +436,6 @@
     };
   };
 
-  home.file = {
-    "Templates" = {
-      source = ./home/Templates;
-      recursive = true;
-    };
-  };
-
   programs = {
     sioyek.enable = config.guiApps;
   };
