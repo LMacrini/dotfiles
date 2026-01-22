@@ -129,6 +129,7 @@
         show-passive-items = true;
         spacing = 10;
         reverse-direction = true;
+        sort-by-app-id = true;
       };
     };
   };
