@@ -83,8 +83,8 @@
           equicord =
             let
               shyTyping = builtins.fetchGit {
-                url = "https://git.serversmp.xyz/seija/shyTyping";
-                rev = "14818441174f899a57aff300df2d13a6ded4f667";
+                url = "https://git.nin0.dev/Sqaaakoi-VencordUserPlugins/shyTyping";
+                rev = "a6f6a21cf5a64792cb049067b6e3536636fcfa37";
               };
             in
             unstable.equicord.overrideAttrs {
