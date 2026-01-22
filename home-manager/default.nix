@@ -196,6 +196,29 @@
     dataFile =
       let
         ifFcitx5 = lib.mkIf (config.i18n.inputMethod.enable && config.i18n.inputMethod.type == "fcitx5");
+
+        replace = pkgs.writeShellScriptBin "replace" ''
+          export LC_ALL=C.UTF-8
+          export LANG=C.UTF-8
+
+          input=$1
+          output=$2
+
+          while IFS= read -r line; do
+              while [[ "$line" == *"<U"*">"* ]]; do
+                  prefix=''${line%%<U*}
+                  rest=''${line#*<U}
+                  hex=''${rest%%>*}
+                  suffix=''${rest#*>}
+
+                  char=$(printf "\\u''${hex}")
+
+                  line="''${prefix}''${char}''${suffix}"
+              done
+              printf '%s\n' "$line"
+          done < $input > $output
+        '';
+
         ilo-sitelen = pkgs.stdenvNoCC.mkDerivation {
           name = "ilo-sitelen";
           version = "1.0";
@@ -213,15 +236,17 @@
 
           nativeBuildInputs = [
             pkgs.libime
+            replace
           ];
 
           buildPhase = ''
-            libime_tabledict ./table/ilo-sitelen.txt ./table/ilo-sitelen.dict
+            replace ./table/ilo-sitelen.txt ./table.txt
+            libime_tabledict ./table.txt ./ilo-sitelen.dict
           '';
 
           installPhase = ''
             mkdir -p $out/share
-            cp ./table/ilo-sitelen.dict $out/share
+            cp ./ilo-sitelen.dict $out/share
             cp $src/inputmethod/ilo-sitelen.conf $out/share
           '';
         };
