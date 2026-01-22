@@ -101,6 +101,8 @@
           "Groups/0/Items/1".Name = "ilo-sitelen";
         };
       };
+
+      waylandFrontend = true;
     };
   };
 
