@@ -177,7 +177,7 @@
     enable = true;
 
     configFile = {
-      "mimeapps.list" = {
+      "mimeapps.list" = lib.mkIf config.xdg.mimeApps.enable {
         force = true;
       };
 
@@ -252,7 +252,7 @@
         };
       in
       {
-        "applications/mimeapps.list" = {
+        "applications/mimeapps.list" = lib.mkIf config.xdg.mimeApps.enable {
           force = true;
         };
 
