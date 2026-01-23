@@ -265,26 +265,7 @@ in
     };
 
   programs = {
-    rofi = {
-      # enable = true;
-      extraConfig = {
-        display-drun = ":3 ";
-        show-icons = true;
-      };
-      modes = [
-        "drun"
-        "window"
-        "run"
-        "ssh"
-        "filebrowser"
-        "calc"
-      ];
-      package = pkgs.rofi.override {
-        plugins = with pkgs; [
-          rofi-calc
-        ];
-      };
-    };
+
     anyrun = {
       enable = true;
       config = {
