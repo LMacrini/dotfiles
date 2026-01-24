@@ -212,6 +212,7 @@ in
       spawn-at-startup = [
         { command = [ "kanata" ]; }
         { command = [ "waybar" ]; }
+        { command = [ "kitty" ]; }
       ];
 
       switch-events = {
