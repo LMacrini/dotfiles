@@ -162,7 +162,7 @@
       enable = true;
       extraPackages = with pkgs; [
         marksman
-        nil
+        nixd
       ];
 
       defaultEditor = true;

@@ -143,6 +143,7 @@ in
           ublock-origin
           ultimadark
           violentmonkey
+          youtube-nonstop
           youtube-tweaks
         ];
         settings = {

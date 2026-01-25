@@ -16,7 +16,7 @@
       wine
       fjordlauncher
       heroic
-      protonplus
+      unstable.protonplus
     ];
 
     services.flatpak = {
