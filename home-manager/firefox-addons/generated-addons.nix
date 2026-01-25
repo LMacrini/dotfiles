@@ -766,6 +766,23 @@
       platforms = platforms.all;
     };
   };
+  "youtube-nonstop" = buildFirefoxXpiAddon {
+    pname = "youtube-nonstop";
+    version = "0.9.2";
+    addonId = "{0d7cafdd-501c-49ca-8ebb-e3341caaa55e}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4187690/youtube_nonstop-0.9.2.xpi";
+    sha256 = "7659d180f76ea908ea81b84ed9bdd188624eaaa62b88accbe6d8ad4e8caeff38";
+    meta = with lib; {
+      homepage = "https://github.com/lawfx/YoutubeNonStop";
+      description = "Tired of getting that \"Video paused. Continue watching?\" confirmation dialog?\nThis extension autoclicks it, so you can listen to your favorite music uninterrupted.\n\nWorking on YouTube and YouTube Music!";
+      license = licenses.mit;
+      mozPermissions = [
+        "https://www.youtube.com/*"
+        "https://music.youtube.com/*"
+      ];
+      platforms = platforms.all;
+    };
+  };
   "youtube-tweaks" = buildFirefoxXpiAddon {
     pname = "youtube-tweaks";
     version = "2025.12.29";
