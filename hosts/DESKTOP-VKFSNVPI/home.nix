@@ -72,10 +72,6 @@
     };
   };
 
-  services.flatpak.packages = [
-    "moe.launcher.sleepy-launcher"
-  ];
-
   home.packages = with pkgs; [
     archipelago
     teams-for-linux
