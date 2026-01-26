@@ -261,7 +261,7 @@ in
 
       xwayland-satellite = {
         enable = true;
-        path = lib.getExe pkgs.xwayland-satellite-stable;
+        path = lib.getExe pkgs.xwayland-satellite;
       };
     };
 
