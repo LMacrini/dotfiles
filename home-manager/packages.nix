@@ -247,6 +247,10 @@
       name = "zig"
 
       [[language]]
+      name = "java"
+      formatter = { command = 'google-java-format', args = ["-"] }
+
+      [[language]]
       name = "javascript"
       formatter = { command = 'prettier', args = ["--parser", "typescript"] }
       auto-format = true
