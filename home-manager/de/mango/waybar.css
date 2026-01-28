@@ -1,0 +1,9 @@
+#workspaces button {
+  border-radius: 0;
+  box-shadow: inset 0px 2px 0px transparent;
+  transition: box-shadow 0.2s ease;
+}
+
+#workspaces button.active {
+  box-shadow: inset 0px 2px 0px white;
+}

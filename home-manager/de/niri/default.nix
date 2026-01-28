@@ -394,19 +394,7 @@ in
         '';
     };
     kitty.enable = true;
-    swaylock = {
-      enable = true;
-      package = pkgs.swaylock-effects;
-      settings = {
-        clock = true;
-        daemonize = true;
-        effect-blur = "7x5";
-        fade-in = 1;
-        image = "${pkgs.my.imgs}/share/background.jpg";
-        indicator = true;
-        ring-color = lib.mkForce "717df1";
-      };
-    };
+    swaylock.enable = true;
 
     wlogout = {
       enable = true;
@@ -455,34 +443,7 @@ in
     blueman-applet.enable = true;
     network-manager-applet.enable = true;
 
-    swayidle = {
-      enable = true;
-      events = [
-        {
-          event = "before-sleep";
-          command = "${swaylock} --fade-in 0";
-        }
-        {
-          event = "lock";
-          command = "${swaylock} --grace 10";
-        }
-      ];
-      timeouts = [
-        {
-          timeout = 150;
-          command = "${brightnessctl} -s set 10";
-          resumeCommand = "${brightnessctl} -r";
-        }
-        {
-          timeout = 300;
-          command = "${loginctl} lock-session";
-        }
-        {
-          timeout = 900;
-          command = "${systemctl} suspend";
-        }
-      ];
-    };
+    swayidle.enable = true;
     swaync.enable = true;
 
     trash.enable = true;

@@ -38,6 +38,11 @@
       url = "github:sodiboo/niri-flake";
     };
 
+    mango = {
+      url = "github:dreammaomao/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -159,6 +164,7 @@
             inputs.nix-flatpak.nixosModules.nix-flatpak
             inputs.catppuccin.nixosModules.catppuccin
             inputs.niri.nixosModules.niri
+            inputs.mango.nixosModules.mango
             inputs.home-manager.nixosModules.default
             {
               nixpkgs.overlays = [

@@ -10,6 +10,7 @@
     ./budgie.nix
     ./hyprland.nix
     ./niri.nix
+    ./mango.nix
   ];
 
   options = with lib; {
@@ -23,8 +24,18 @@
             "gnome"
             "budgie"
             "niri"
+            "mango"
           ];
         example = "gnome";
+      };
+
+      mangoMonitors = mkOption {
+        default = "";
+        type = types.str;
+        example = ''
+          monitorrule=eDP-1,0.55,1,tile,0,2,0,0,2880,1920,120
+        '';
+        description = "https://mangowc.vercel.app/docs/configuration/monitors";
       };
     };
   };

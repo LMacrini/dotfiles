@@ -33,6 +33,16 @@
   ssh.enable = true;
 
   specialisation = {
+    Mango.configuration = {
+      environment.etc.specialisation.text = "Mango";
+      system.nixos.tags = [ "Mango" ];
+
+      de.de = "mango";
+      de.mangoMonitors = ''
+        monitorrule=eDP-1,0.55,1,tile,0,2,0,0,2880,1920,120
+      '';
+    };
+
     Work = lib.mkIf false {
       configuration = {
         environment.etc.specialisation.text = "Work";
