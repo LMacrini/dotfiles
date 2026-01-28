@@ -101,7 +101,8 @@
         bind = NONE,XF86MonBrightnessDown,spawn,brightnessctl s 10%-
 
         bind = SUPER,Q,spawn,kitty
-        bind = ALT,space,spawn_shell,rofi -show drun
+        bind = SUPER,T,spawn,rofi -show drun
+        bind = ALT,space,spawn,rofi -show drun
         bind = SUPER,C,killclient
         bind = SUPER,Return,zoom
 

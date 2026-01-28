@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -6,12 +6,18 @@
 
   dm = "gdm";
   de = {
+    de = "mango";
     hyprland = {
       monitor = [
         "DP-1,2560x1440@144,0x0,1"
         "HDMI-A-2,1920x1080@144,2560x180,1"
       ];
     };
+
+    mango.extraOptions = ''
+      monitorrule = DP-1,0.55,1,tile,1,0,0,2560,1440,144
+      exec-once = ${lib.getExe pkgs.wlr-randr} --output HDMI-A-2 --pos 2560,180 --mode 1920x1080@144.001Hz
+    '';
   };
 
   specialisation = {
