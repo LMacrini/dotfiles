@@ -164,7 +164,6 @@
             inputs.nix-flatpak.nixosModules.nix-flatpak
             inputs.catppuccin.nixosModules.catppuccin
             inputs.niri.nixosModules.niri
-            inputs.mango.nixosModules.mango
             inputs.home-manager.nixosModules.default
             {
               nixpkgs.overlays = [

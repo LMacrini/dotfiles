@@ -15,12 +15,34 @@
     brightnessctl
     grim
     kanata
-    nautilus
     slurp
     wireplumber
     wl-clipboard
+    xfce.thunar
     xwayland-satellite
   ];
+
+  xdg.portal = {
+    config.mango = {
+      default = [
+        "gtk"
+      ];
+
+      "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+      "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+      "org.freedesktop.impl.portal.ScreenShot" = "wlr";
+    };
+
+    extraPortals = with pkgs; [
+      unstable.xdg-desktop-portal-wlr
+    ];
+  };
+
+  xdg.configFile."xdg-desktop-portal-wlr/mango".text = /* ini */ ''
+    [screencast]
+    chooser_cmd = ${lib.getExe pkgs.bemenu} -b
+    chooser_type = dmenu
+  '';
 
   programs = {
     kitty.enable = true;
@@ -65,7 +87,7 @@
 
   wayland.windowManager.mango = {
     enable = true;
-    package = cfg.programs.mango.package;
+    package = pkgs.emptyDirectory;
 
     # HACK: causes autostart to be generated even if i don't have anything
     # to autostart
