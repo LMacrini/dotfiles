@@ -38,7 +38,7 @@
       system.nixos.tags = [ "Mango" ];
 
       de.de = "mango";
-      de.mangoMonitors = ''
+      de.mango.extraOptions = ''
         monitorrule=eDP-1,0.55,1,tile,0,2,0,0,2880,1920,120
       '';
     };

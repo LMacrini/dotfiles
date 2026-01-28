@@ -146,6 +146,7 @@
         mousebind = NONE,btn_right,killclient,0
         enable_hotarea = 0
 
+        cursor_hide_timeout = 5
         new_is_master = 0
         smartgaps = 1
         drag_tile_to_tile = 1
@@ -164,6 +165,6 @@
           ''
         ) 9
       )
-      + cfg.de.mangoMonitors;
+      + cfg.de.mango.extraOptions;
   };
 }

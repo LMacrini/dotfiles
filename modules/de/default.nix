@@ -29,7 +29,7 @@
         example = "gnome";
       };
 
-      mangoMonitors = mkOption {
+      mango.extraOptions = mkOption {
         default = "";
         type = types.str;
         example = ''
