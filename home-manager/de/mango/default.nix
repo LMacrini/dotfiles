@@ -37,11 +37,12 @@
           "dwl/window"
         ];
 
+        "ext/workspaces" = {
+          on-click = "activate";
+        };
+
         "dwl/window" = {
           format = "  {title}";
-          on-click = "activate";
-          separate-outputs = true;
-
           rewrite = {
             " (.*) - YouTube — LibreWolf" = "   $1";
             "  NixOS Search - (.*) — LibreWolf" = "  󱄅 $1";
@@ -99,6 +100,7 @@
         bind = NONE,XF86AudioMicMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
         bind = NONE,XF86MonBrightnessUp,spawn,brightnessctl s 10%+
         bind = NONE,XF86MonBrightnessDown,spawn,brightnessctl s 10%-
+        bind = NONE,XF86PowerOff,spawn_shell,loginctl lock-session && systemctl suspend
 
         bind = SUPER,Q,spawn,kitty
         bind = SUPER,T,spawn,rofi -show drun
