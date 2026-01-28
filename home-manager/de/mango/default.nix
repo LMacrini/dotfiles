@@ -91,7 +91,7 @@
         gesturebind = NONE,right,3,viewtoleft_have_client
         switchbind = fold,spawn,systemctl suspend
 
-        # bind = SUPER+SHIFT,S,spawn_shell,pkill slurp || grim -g "$(slurp -dw 0)" - | wl-copy
+        bind = SUPER+SHIFT,S,spawn_shell,pkill slurp || grim -g "$(slurp -dw 0)" - | wl-copy
 
         bind = NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
         bind = NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
