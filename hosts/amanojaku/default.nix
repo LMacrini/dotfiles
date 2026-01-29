@@ -12,7 +12,7 @@
 
   de.de = "mango";
   de.mango.extraOptions = ''
-    monitorrule=eDP-1,0.55,1,tile,0,2,0,0,2880,1920,120
+    monitorrule=name:eDP-1,width:2880,height:1920,refresh:120,scale:2
   '';
 
   gpu.amd.enable = true;

@@ -15,8 +15,10 @@
     };
 
     mango.extraOptions = ''
-      monitorrule = DP-1,0.55,1,tile,1,0,0,2560,1440,144
-      exec-once = ${lib.getExe pkgs.wlr-randr} --output HDMI-A-2 --pos 2560,180 --mode 1920x1080@144.001Hz
+      # monitorrule = DP-1,0.55,1,tile,1,0,0,2560,1440,144
+      # exec-once = ${lib.getExe pkgs.wlr-randr} --output HDMI-A-2 --pos 2560,180 --mode 1920x1080@144.001Hz
+      monitorrule = name:DP-1,width:2560,height:1440,refresh:144
+      monitorrule = name:HDMI-A-2,width:1920,height:1080,refresh:144.001,x:2560,y:180
     '';
   };
 
