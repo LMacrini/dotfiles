@@ -91,7 +91,14 @@
 
     # HACK: causes autostart to be generated even if i don't have anything
     # to autostart
-    autostart_sh = " ";
+    autostart_sh = ''
+      systemd-inhibit --who="mangowc config" \
+          --why="power button keybind" \
+          --what=handle-power-key \
+          --mode=block \
+          sleep infinity \
+          & echo $! > /tmp/.mangowc-systemd-inhibit
+    '';
 
     settings =
       /* conf */ ''
