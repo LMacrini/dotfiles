@@ -129,7 +129,7 @@
         bind = NONE,XF86AudioMicMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
         bind = NONE,XF86MonBrightnessUp,spawn,brightnessctl s 10%+
         bind = NONE,XF86MonBrightnessDown,spawn,brightnessctl s 10%-
-        bind = NONE,XF86PowerOff,spawn_shell,loginctl lock-session && systemctl suspend
+        bind = NONE,XF86PowerOff,spawn,systemctl suspend
 
         bind = SUPER,Q,spawn,kitty
         bind = SUPER,T,spawn,rofi -show drun
