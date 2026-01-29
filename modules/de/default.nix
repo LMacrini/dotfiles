@@ -40,7 +40,9 @@
     };
   };
 
-  config = lib.mkIf (config.de.de == null) {
-    guiApps = lib.mkDefault false;
+  config = {
+    guiApps = lib.mkDefault config.de.de != null;
+
+    niri-flake.cache.enable = config.de.de == "niri";
   };
 }
