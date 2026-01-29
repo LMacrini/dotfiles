@@ -75,6 +75,7 @@
                     gnome = "gnome";
                     hyprland = "hyprland";
                     niri = "niri-session";
+                    mango = "mango";
                   };
                 in
                 lib.mkMerge [

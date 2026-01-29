@@ -11,6 +11,7 @@
   ];
 
   de.de = "mango";
+  dm = "tuigreet";
   de.mango.extraOptions = ''
     monitorrule=name:eDP-1,width:2880,height:1920,refresh:120,scale:2
   '';
