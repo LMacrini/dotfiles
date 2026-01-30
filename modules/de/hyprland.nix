@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -11,7 +10,6 @@
         default = [ ];
         type = with types; listOf str;
       };
-      quickshell = mkEnableOption "quickshell";
     };
   };
 
@@ -21,12 +19,5 @@
     programs = {
       hyprland.enable = true;
     };
-
-    environment.systemPackages =
-      with pkgs;
-      [
-        (lib.mkIf config.de.hyprland.quickshell quickshell)
-      ]
-      |> builtins.filter (x: x != null);
   };
 }

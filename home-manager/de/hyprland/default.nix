@@ -22,13 +22,6 @@
     xfce.thunar
   ];
 
-  home.file = {
-    ".config/quickshell" = lib.mkIf cfg.de.hyprland.quickshell {
-      source = ./quickshell;
-      recursive = true;
-    };
-  };
-
   programs = {
     kitty.enable = true;
 

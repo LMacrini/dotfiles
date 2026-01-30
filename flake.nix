@@ -43,11 +43,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     fjordlauncher = {
       url = "github:unmojang/fjordlauncher";
     };
@@ -129,14 +124,6 @@
           unstable = import inputs.nixpkgs-unstable {
             inherit system;
             config.allowUnfree = prev.config.allowUnfree;
-          };
-
-          quickshell = inputs.quickshell.packages.${system}.default.override {
-            withQtSvg = true;
-            withWayland = true;
-            withPipewire = true;
-            withPam = true;
-            withHyprland = true;
           };
 
           zig = inputs.zig.packages.${system};
