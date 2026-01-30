@@ -95,14 +95,20 @@ in
                 id = "NotificationHistory";
               }
               {
-                id = "Battery";
-                displayMode = "alwaysShow";
-              }
-              {
                 id = "Volume";
               }
               {
                 id = "Brightness";
+              }
+              {
+                id = "Bluetooth";
+              }
+              {
+                id = "Network";
+              }
+              {
+                id = "Battery";
+                displayMode = "alwaysShow";
               }
               {
                 id = "ControlCenter";
