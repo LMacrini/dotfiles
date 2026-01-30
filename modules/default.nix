@@ -73,6 +73,10 @@
         "${config.mainUser}"
         "@wheel"
       ];
+
+      keep-outputs = true; # direnv
+      warn-dirty = false;
+      builders-use-substitutes = true;
     };
   };
 
