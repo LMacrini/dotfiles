@@ -61,6 +61,23 @@ in
 
     noctalia-shell = {
       enable = lib.mkDefault true;
+      plugins = {
+        sources = [
+          {
+            enabled = true;
+            name = "Official Noctalia Plugins";
+            url = "https://github.com/noctalia-dev/noctalia-plugins";
+          }
+        ];
+
+        states = {
+          kaomoji-provider = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+        };
+      };
+
       settings = {
         appLauncher = {
           terminalCommand = "kitty -e";
