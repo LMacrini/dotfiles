@@ -263,7 +263,7 @@ in
 
         bind = SUPER,Q,spawn,kitty
         bind = SUPER,T,spawn,${launcher}
-        bind = ALT,space,${launcher}
+        bind = ALT,space,spawn,${launcher}
         bind = SUPER,C,killclient
         bind = SUPER,Return,zoom
         bind = SUPER,L,spawn,${sessionMenu}
