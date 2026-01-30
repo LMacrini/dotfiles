@@ -109,7 +109,7 @@
         brightnessctl = lib.getExe pkgs.brightnessctl;
       in
       {
-        events = [
+        events = lib.mkDefault [
           {
             event = "before-sleep";
             command = "${swaylock} --fade-in 0";

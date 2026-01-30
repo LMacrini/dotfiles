@@ -366,6 +366,26 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769738379,
+        "narHash": "sha256-lHF26Slq87+QQk3Od/3I1LgSIi0XNwaCXbyGpqzqBrQ=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "68395280222a2cd14c9f1dd552934bd50b947ac4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "type": "github"
+      }
+    },
     "programsdb": {
       "inputs": {
         "nixpkgs": [
@@ -399,6 +419,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "noctalia": "noctalia",
         "programsdb": "programsdb",
         "wayland-pipewire-idle-inhibit": "wayland-pipewire-idle-inhibit",
         "zig": "zig"

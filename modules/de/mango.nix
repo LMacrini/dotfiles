@@ -23,9 +23,8 @@ in
     };
 
     security.pam.services = {
-      swaylock = {
-        enable = true;
-      };
+      swaylock = { };
+      noctalia = { };
     };
   };
 }

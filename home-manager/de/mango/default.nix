@@ -6,9 +6,13 @@
   lib,
   ...
 }:
+let
+  useNoctalia = config.programs.noctalia-shell.enable;
+in
 {
   imports = [
     inputs.mango.hmModules.mango
+    inputs.noctalia.homeModules.default
   ];
 
   home.packages = with pkgs; [
@@ -44,13 +48,114 @@
     chooser_type = dmenu
   '';
 
+  home.file.".cache/noctalia/wallpapers.json" = lib.mkIf useNoctalia {
+    text = builtins.toJSON {
+      defaultWallpaper = "${pkgs.my.imgs}/share/background.jpg";
+    };
+  };
+
   programs = {
     kitty.enable = true;
-    rofi.enable = true;
-    swaylock.enable = true;
+    rofi.enable = !useNoctalia;
+    swaylock.enable = !useNoctalia;
+
+    noctalia-shell = {
+      settings = {
+        appLauncher = {
+          terminalCommand = "kitty -e";
+          enableSettingsSearch = false;
+        };
+
+        bar = {
+          outerCorners = false;
+
+          widgets = {
+            left = [
+              {
+                id = "Workspace";
+                hideUnoccupied = true;
+              }
+              {
+                id = "ActiveWindow";
+              }
+            ];
+            center = [
+              {
+                id = "Clock";
+              }
+            ];
+            right = [
+              {
+                id = "MediaMini";
+              }
+              {
+                id = "Tray";
+              }
+              {
+                id = "NotificationHistory";
+              }
+              {
+                id = "Battery";
+                displayMode = "alwaysShow";
+              }
+              {
+                id = "Volume";
+              }
+              {
+                id = "Brightness";
+              }
+              {
+                id = "ControlCenter";
+                icon = "";
+                customIconPath = "${pkgs.my.imgs}/share/logo.png";
+              }
+            ];
+          };
+        };
+
+        general = {
+          enableShadows = false;
+          compactLockScreen = true;
+          allowPasswordWithFprintd = true;
+          lockOnSuspend = false; # already handled by swayidle
+        };
+
+        controlCenter = {
+          shortcuts = {
+            left = [
+              {
+                id = "PowerProfile";
+              }
+              {
+                id = "NoctaliaPerformance";
+              }
+            ];
+
+            right = [
+              {
+                id = "KeepAwake";
+              }
+              {
+                id = "NightLight";
+              }
+            ];
+          };
+        };
+
+        colorSchemes.predefinedScheme = "Catppuccin";
+        location = {
+          name = lib.mkDefault "Ottawa, Canada";
+          analogClockInCalendar = true;
+          showCalendarWeather = false;
+          firstDayOfWeek = 0;
+        };
+
+        dock.enabled = false;
+      };
+    };
 
     waybar = {
-      enable = true;
+      enable = !useNoctalia;
       style = ./waybar.css;
 
       settings.mainBar = {
@@ -76,13 +181,29 @@
   };
 
   services = {
-    blueman-applet.enable = true;
-    network-manager-applet.enable = true;
-    swaync.enable = true;
-    swayidle.enable = true;
+    blueman-applet.enable = !useNoctalia;
+    network-manager-applet.enable = !useNoctalia;
+    swaync.enable = !useNoctalia;
+    swayidle = {
+      enable = true;
+      events =
+        let
+          lockCmd = "${lib.getExe config.programs.noctalia-shell.package} ipc call lockScreen lock";
+        in
+        lib.mkIf useNoctalia [
+          {
+            event = "before-sleep";
+            command = lockCmd;
+          }
+          {
+            event = "lock";
+            command = lockCmd;
+          }
+        ];
+    };
     trash.enable = true;
-    wayland-pipewire-idle-inhibit.enable = true;
-    wpaperd.enable = true;
+    wayland-pipewire-idle-inhibit.enable = !useNoctalia; # TODO: find out if noctalia actually does this
+    wpaperd.enable = !useNoctalia;
   };
 
   wayland.windowManager.mango = {
@@ -101,10 +222,19 @@
     '';
 
     settings =
+      let
+        bar = if useNoctalia then "noctalia-shell" else "waybar";
+        launcher = if useNoctalia then "noctalia-shell ipc call launcher toggle" else "rofi -show drun";
+        sessionMenu =
+          if useNoctalia then
+            "noctalia-shell ipc call sessionMenu toggle"
+          else
+            builtins.warn "TODO: wlogout" "";
+      in
       /* conf */ ''
         exec-once = kanata
         exec-once = kitty
-        exec-once = waybar
+        exec-once = ${bar}
 
         env = DISPLAY,:3
         exec = xwayland-satellite :3
@@ -132,10 +262,11 @@
         bind = NONE,XF86PowerOff,spawn,systemctl suspend
 
         bind = SUPER,Q,spawn,kitty
-        bind = SUPER,T,spawn,rofi -show drun
-        bind = ALT,space,spawn,rofi -show drun
+        bind = SUPER,T,spawn,${launcher}
+        bind = ALT,space,${launcher}
         bind = SUPER,C,killclient
         bind = SUPER,Return,zoom
+        bind = SUPER,L,spawn,${sessionMenu}
 
         bind = SUPER,N,focusstack,next
         bind = SUPER,E,focusstack,prev
