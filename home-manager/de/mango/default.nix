@@ -60,6 +60,7 @@ in
     swaylock.enable = !useNoctalia;
 
     noctalia-shell = {
+      enable = lib.mkDefault true;
       settings = {
         appLauncher = {
           terminalCommand = "kitty -e";
