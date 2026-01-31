@@ -278,6 +278,8 @@ in
         gesturebind = NONE,right,3,viewtoleft_have_client
         switchbind = fold,spawn,systemctl suspend
 
+        windowrule = isopensilent:1,isglobal:1,offsetx:100,offsety:100,appid:steam,title:^notificationtoasts_\d+_desktop$
+
         bind = SUPER+SHIFT,S,spawn_shell,pkill slurp || grim -g "$(slurp -dw 0)" - | wl-copy
 
         bind = NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
