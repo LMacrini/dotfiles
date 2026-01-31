@@ -226,7 +226,7 @@ in
         ];
     };
     trash.enable = true;
-    wayland-pipewire-idle-inhibit.enable = !useNoctalia; # TODO: find out if noctalia actually does this
+    wayland-pipewire-idle-inhibit.enable = true;
     wpaperd.enable = !useNoctalia;
   };
 
