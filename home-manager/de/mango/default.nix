@@ -285,6 +285,8 @@ in
         bind = NONE,XF86MonBrightnessDown,spawn,brightnessctl s 10%-
         bind = NONE,XF86PowerOff,spawn,systemctl suspend
 
+        bind = SUPER,space,spawn,fcitx5-remote -t
+
         bind = SUPER,Q,spawn,kitty
         bind = SUPER,T,spawn,${launcher}
         bind = ALT,space,spawn,${launcher}
