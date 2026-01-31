@@ -15,6 +15,7 @@
     };
 
     mango.extraOptions = ''
+      exec-once = noisetorch -i alsa_output.usb-SteelSeries_Arctis_Nova_3-00.analog-stereo
       monitorrule = name:DP-1,width:2560,height:1440,refresh:144,x:0,y:0
       monitorrule = name:HDMI-A-2,width:1920,height:1080,refresh:144.001,x:2560,y:180
     '';
