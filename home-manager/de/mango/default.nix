@@ -101,6 +101,7 @@ in
             right = [
               {
                 id = "MediaMini";
+                maxWidth = 300;
               }
               {
                 id = "Tray";
