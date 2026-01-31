@@ -91,10 +91,6 @@ in
             left = [
               {
                 id = "Workspace";
-                hideUnoccupied = true;
-              }
-              {
-                id = "ActiveWindow";
               }
             ];
             center = [
@@ -108,6 +104,12 @@ in
               }
               {
                 id = "Tray";
+                blacklist = [
+                  "Fcitx*"
+                ];
+                colorizeIcons = true;
+                drawerEnabled = true;
+                hidePassive = true;
               }
               {
                 id = "NotificationHistory";
