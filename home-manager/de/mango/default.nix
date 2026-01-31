@@ -108,7 +108,7 @@ in
                   "Fcitx*"
                 ];
                 colorizeIcons = true;
-                drawerEnabled = true;
+                drawerEnabled = false;
                 hidePassive = true;
               }
               {
