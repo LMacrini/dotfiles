@@ -44,7 +44,7 @@ in
 
   xdg.configFile."xdg-desktop-portal-wlr/mango".text = /* ini */ ''
     [screencast]
-    chooser_cmd = ${lib.getExe pkgs.bemenu} -b
+    chooser_cmd = ${lib.getExe pkgs.bemenu} -bi
     chooser_type = dmenu
   '';
 
