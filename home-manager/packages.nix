@@ -101,6 +101,12 @@
   services = {
     mpd = {
       enable = true;
+      extraConfig = /* conf */ ''
+        audio_output {
+          type "pipewire"
+          name "PipeWire Sound Server"
+        }
+      '';
     };
     mpd-mpris.enable = true;
 
