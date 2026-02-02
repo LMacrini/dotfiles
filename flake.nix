@@ -164,9 +164,6 @@
               nixpkgs.overlays = [
                 (import inputs.emacs-overlay)
                 overlay
-                (_: prev: {
-                  gdm = prev.my.gdm-wam;
-                })
               ];
             }
           ];

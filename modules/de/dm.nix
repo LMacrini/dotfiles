@@ -29,6 +29,12 @@
       inherit (config) dm;
     in
     {
+      nixpkgs.overlays = lib.mkIf (config.dm == "gdm") [
+        (_: prev: {
+          gdm = prev.my.gdm-wam;
+        })
+      ];
+
       services = {
         xserver = {
           enable = true;
