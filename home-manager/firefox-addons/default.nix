@@ -38,7 +38,8 @@ let
 
   generatedPackages = import ./generated-addons.nix {
     inherit buildFirefoxXpiAddon;
-    inherit (pkgs) fetchurl lib stdenv;
+    inherit (pkgs) fetchurl lib;
+    stdenv = pkgs.stdenvNoCC;
   };
 
   packages = generatedPackages // { };
