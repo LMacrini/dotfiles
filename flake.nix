@@ -106,7 +106,7 @@
                 let
                   pkgs = import nixpkgs {
                     inherit system;
-                    overlays = [ overlay.${system} ];
+                    overlays = [ overlay ];
                     config.allowUnfree = true;
                   };
                 in
@@ -124,8 +124,12 @@
         builtins.foldl' nixpkgs.lib.recursiveUpdate { } systemPkgsList;
 
       eachSystem = nixpkgs.lib.genAttrs defaultSystems;
-      overlay = eachSystem (
-        system: next: prev: {
+      overlay =
+        next: prev:
+        let
+          system = prev.stdenv.hostPlatform.system;
+        in
+        {
           unstable = import inputs.nixpkgs-unstable {
             inherit system;
             config.allowUnfree = prev.config.allowUnfree;
@@ -136,8 +140,7 @@
           my = myPkgs.${system};
 
           fjordlauncher = inputs.fjordlauncher.packages.${system}.default;
-        }
-      );
+        };
 
       extraHome =
         path:
@@ -160,7 +163,7 @@
             {
               nixpkgs.overlays = [
                 (import inputs.emacs-overlay)
-                overlay.x86_64-linux
+                overlay
                 (_: prev: {
                   gdm = prev.my.gdm-wam;
                 })
@@ -194,7 +197,7 @@
       devShells = forAllSystems (
         system: pkgs: {
           default = import ./devshells {
-            pkgs = pkgs.extend overlay.${system};
+            pkgs = pkgs.extend overlay;
           };
         }
       );
