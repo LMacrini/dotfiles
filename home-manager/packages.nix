@@ -130,7 +130,7 @@
             command = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
           }
           {
-            timeout = 900;
+            timeout = if (cfg.laptop.enable) then 420 else 900;
             command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
           }
         ];
