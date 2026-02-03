@@ -60,7 +60,7 @@ in
     swaylock.enable = !useNoctalia;
 
     noctalia-shell = {
-      enable = lib.mkDefault true;
+      enable = lib.mkDefault false;
       plugins = {
         sources = [
           {
