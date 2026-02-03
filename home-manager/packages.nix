@@ -102,6 +102,7 @@
     mpd = {
       enable = true;
     };
+    mpd-mpris.enable = true;
 
     swayidle =
       let
