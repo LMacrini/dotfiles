@@ -30,8 +30,8 @@
     in
     {
       nixpkgs.overlays = lib.mkIf (config.dm == "gdm") [
-        (_: prev: {
-          gdm = prev.my.gdm-wam;
+        (next: _: {
+          gdm = next.my.gdm-wam;
         })
       ];
 
