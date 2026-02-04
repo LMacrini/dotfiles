@@ -88,6 +88,14 @@
               };
             in
             unstable.equicord.overrideAttrs {
+              version = "2026-01-25";
+              src = pkgs.fetchFromGitHub {
+                owner = "Equicord";
+                repo = "Equicord";
+                tag = "2026-01-25";
+                hash = "sha256-v1WVQJrCfxzQR388RE4G1nJTAEW1ltmLnlFOjdyfIvY=";
+              };
+
               preBuild = ''
                 mkdir ./src/userplugins
                 cp -r ${shyTyping} ./src/userplugins
