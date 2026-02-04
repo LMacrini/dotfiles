@@ -17,6 +17,11 @@
         Service = {
           Type = "oneshot";
           ExecStart =
+            let
+              find = lib.getExe pkgs.findutils;
+              grep = lib.getExe pkgs.gnugrep;
+              cut = lib.getExe' pkgs.coreutils "cut";
+            in
             lib.getExe
             <|
               pkgs.writeShellScriptBin "clean-trash"
@@ -27,8 +32,8 @@
 
                   now=$(date +%s)
 
-                  find "$TRASH_INFO_DIR" -type f -name '*.trashinfo' | while read -r info_file; do
-                      deletion_date=$(grep '^DeletionDate=' "$info_file" | cut -d'=' -f2)
+                  ${find} "$TRASH_INFO_DIR" -type f -name '*.trashinfo' | while read -r info_file; do
+                      deletion_date=$(${grep} '^DeletionDate=' "$info_file" | ${cut} -d'=' -f2)
                       deletion_epoch=$(date -d "$deletion_date" +%s 2>/dev/null)
 
                       if [[ -n "$deletion_epoch" && $((now - deletion_epoch)) -ge 2592000 ]]; then
