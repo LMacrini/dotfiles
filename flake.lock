@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770173358,
-        "narHash": "sha256-kMyJJMEqaKK/iEEPfN11MMynIzUbd0aOmkkpmZvoYwk=",
+        "lastModified": 1770259639,
+        "narHash": "sha256-rRYPYlA8thn2/eKNJ0bNGxkPAyElEBzee4p63rgayVQ=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "645bdac55e78f17033009cc63a2217cd38c6db9a",
+        "rev": "41dbf65dfc87f9f86d2b2dc06e187bec7cdc9623",
         "type": "github"
       },
       "original": {
@@ -104,11 +104,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769580047,
-        "narHash": "sha256-tNqCP/+2+peAXXQ2V8RwsBkenlfWMERb+Uy6xmevyhM=",
+        "lastModified": 1770260404,
+        "narHash": "sha256-3iVX1+7YUIt23hBx1WZsUllhbmP2EnXrV8tCRbLxHc8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "366d78c2856de6ab3411c15c1cb4fb4c2bf5c826",
+        "rev": "0d782ee42c86b196acff08acfbf41bb7d13eed5b",
         "type": "github"
       },
       "original": {
@@ -143,11 +143,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1770169526,
-        "narHash": "sha256-GYe2+1AT3lGAXPjcd0BDZ+AclFK+Z6NiGJ2F4rM2rLc=",
+        "lastModified": 1770213044,
+        "narHash": "sha256-NBKogN62YygzLfGuUAWobUafXBj9P241k1nSwJWGBUQ=",
         "owner": "dreammaomao",
         "repo": "mango",
-        "rev": "8ba259fbb7737e4cef29ca20c731ed0a93e4017d",
+        "rev": "65fcd58949ce55eca3195bdbc6f935058fc3b33c",
         "type": "github"
       },
       "original": {
@@ -166,11 +166,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1770169657,
-        "narHash": "sha256-wiWbmO2xUoqh5DuSBYVLGOICo9AOcYq9mNPsvCtL7SM=",
+        "lastModified": 1770239937,
+        "narHash": "sha256-X4FvHUfWqHPvWJOE490Sb4IqurPMeEKfTYCJjw9Ffd8=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "4c962a3fd37ef268337ed113cbffabfd1fe3ca5c",
+        "rev": "e07a2ed1fb2ec4100e9316ec4e8dd3ca46f55755",
         "type": "github"
       },
       "original": {
@@ -307,11 +307,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1770115704,
-        "narHash": "sha256-KHFT9UWOF2yRPlAnSXQJh6uVcgNcWlFqqiAZ7OVlHNc=",
+        "lastModified": 1770181073,
+        "narHash": "sha256-ksTL7P9QC1WfZasNlaAdLOzqD8x5EPyods69YBqxSfk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e6eae2ee2110f3d31110d5c222cd395303343b08",
+        "rev": "bf922a59c5c9998a6584645f7d0de689512e444c",
         "type": "github"
       },
       "original": {
@@ -336,11 +336,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1770115704,
-        "narHash": "sha256-KHFT9UWOF2yRPlAnSXQJh6uVcgNcWlFqqiAZ7OVlHNc=",
+        "lastModified": 1770181073,
+        "narHash": "sha256-ksTL7P9QC1WfZasNlaAdLOzqD8x5EPyods69YBqxSfk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e6eae2ee2110f3d31110d5c222cd395303343b08",
+        "rev": "bf922a59c5c9998a6584645f7d0de689512e444c",
         "type": "github"
       },
       "original": {
@@ -373,11 +373,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770172223,
-        "narHash": "sha256-56bggqkTHMqh6FJVzEFhaqNYC/QdaLe4SVZ/Tez/wgo=",
+        "lastModified": 1770260186,
+        "narHash": "sha256-RrGvq5L9yozDDpu1s1dJeeOKjS8jq7FwdP/SkQnkd+A=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "34a25f78d26036f722fbeacd59787d04db6c1bb2",
+        "rev": "cf4c1dac68f82519c8bdd98c747b94ddcdc97466",
         "type": "github"
       },
       "original": {
@@ -394,11 +394,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1770139770,
-        "narHash": "sha256-CBo/gaZxruwB8H5QApkUrR7S2VcqHxcJ3MNd4/GBhLw=",
+        "lastModified": 1770254412,
+        "narHash": "sha256-jssKAJWXJjWQbyT1COInIXuTipT1Ih2Hfh/I6hO8SzI=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "0a63b6be2386187f3aa3cc061dedb1ebf22ea6cd",
+        "rev": "c097beca1dead7d6b1e63b47db6a4e37af1a4d54",
         "type": "github"
       },
       "original": {
