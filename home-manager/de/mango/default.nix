@@ -237,6 +237,17 @@ in
     enable = true;
     package = pkgs.emptyDirectory;
 
+    systemd.variables = [
+      "DISPLAY"
+      "WAYLAND_DISPLAY"
+      "XDG_CURRENT_DESKTOP"
+      "XDG_SESSION_TYPE"
+      "NIXOS_OZONE_WL"
+      "XCURSOR_THEME"
+      "XCURSOR_SIZE"
+      "PATH"
+    ];
+
     # HACK: causes autostart to be generated even if i don't have anything
     # to autostart
     autostart_sh = ''
