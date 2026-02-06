@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
   ];
 
-  dm = "gdm";
+  dm = "tuigreet";
   de = {
     de = "mango";
     hyprland = {

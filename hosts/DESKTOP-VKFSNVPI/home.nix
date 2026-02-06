@@ -1,6 +1,11 @@
-{ pkgs, ... }:
 {
-  programs.niri.settings = {
+  pkgs,
+  lib,
+  cfg,
+  ...
+}:
+{
+  programs.niri.settings = lib.mkIf (cfg.de.de == "niri") {
     input = {
       tablet = {
         map-to-output = "DP-1";
