@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770345981,
-        "narHash": "sha256-CpT25uXVGnvWykPlbdj5w/cEES/CKB/9WVzMLS2nIEA=",
+        "lastModified": 1770429449,
+        "narHash": "sha256-e/2yL05KOr2pXRm5utKwzRWfZAcvnZrlA86EBDzYn60=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "fc8318565c8e2feb29c9e6a739acade323750b35",
+        "rev": "7897f7cbd9a4402429a5c9d814ca95cf98135ec6",
         "type": "github"
       },
       "original": {
@@ -81,7 +81,10 @@
     },
     "flake-parts_2": {
       "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_2"
+        "nixpkgs-lib": [
+          "wayland-pipewire-idle-inhibit",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1768135262,
@@ -143,11 +146,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1770334989,
-        "narHash": "sha256-QPSy50fW/6LyQxJkcR+lvFUQkGgucuvTZuM7llEQX88=",
+        "lastModified": 1770365657,
+        "narHash": "sha256-pXny9cvfkfvVu0/jBc4cPlUcUbSCpCQEVNFZOuncyVM=",
         "owner": "dreammaomao",
         "repo": "mango",
-        "rev": "00a7e579c94bd786cf1fd379b5b666e475dd4735",
+        "rev": "4586319bef10c44506615cfab43870b502245f06",
         "type": "github"
       },
       "original": {
@@ -166,11 +169,11 @@
         "xwayland-satellite-unstable": "xwayland-satellite-unstable"
       },
       "locked": {
-        "lastModified": 1770271466,
-        "narHash": "sha256-Pyc3p/V7ruQplnU31r+umLSNlSGwOOoHzhWfzfLmiiw=",
+        "lastModified": 1770400632,
+        "narHash": "sha256-TsOt49sYfzmxSTj2wKHKK2ZToCByLJLxPbwbu1brDt0=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "76e1d271485b00a5d98aeb1dd76408594741c039",
+        "rev": "652dbeb0ac2c481dee5b57be972c6fd6feb38adc",
         "type": "github"
       },
       "original": {
@@ -199,11 +202,11 @@
     "niri-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1770092965,
-        "narHash": "sha256-++K1ftjwPqMJzIO8t2GsdkYQzC2LLA5A1w21Uo+SLz4=",
+        "lastModified": 1770394936,
+        "narHash": "sha256-Pa0fkyLYUR+pZh7phPENDUo4mJIweaAm0uV83iUUlX8=",
         "owner": "YaLTeR",
         "repo": "niri",
-        "rev": "189917c93329c86ac2ddd89f459c26a028d590ba",
+        "rev": "549148d27779d024255a84535b42b947f1c2a113",
         "type": "github"
       },
       "original": {
@@ -266,21 +269,6 @@
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
         "rev": "656a64127e9d791a334452c6b6606d17539476e2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
-    "nixpkgs-lib_2": {
-      "locked": {
-        "lastModified": 1765674936,
-        "narHash": "sha256-k00uTP4JNfmejrCLJOwdObYC9jHRrr/5M/a/8L2EIdo=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "2075416fcb47225d9b68ac469a5c4801a9c4dd85",
         "type": "github"
       },
       "original": {
@@ -373,11 +361,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770344037,
-        "narHash": "sha256-YTKkdEnTe2pSGVoU3u33EjZNtvyw7qlYd9nHL4pS1ZQ=",
+        "lastModified": 1770432265,
+        "narHash": "sha256-Xmapwanh7MxUYY072ZXa6qBkprxIKylt4skv+VfycMw=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "953f757f1b84a5c95cf90147b88facb5c0e339ce",
+        "rev": "1067575848a12b4aa78b898397b505e6ca38be5e",
         "type": "github"
       },
       "original": {
@@ -394,11 +382,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1770300621,
-        "narHash": "sha256-Wp6rdsW6TVSOuQzlYd8/WwLQ4QiRQ1vo9HNRZ+q7JnE=",
+        "lastModified": 1770431415,
+        "narHash": "sha256-T++u9WcDGf48U6lEeu8JkjkJK4dF6D8I0iGkIL1k83k=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "a70c5a9b97b99b9d698ae73b653d8ecc47b86690",
+        "rev": "173d58a781fd86ed79c94298edb2c11f77ad7c29",
         "type": "github"
       },
       "original": {
@@ -525,11 +513,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1769990493,
-        "narHash": "sha256-egW16NA3HOCB97L8pxFW1ZHfAB2/rLKZIHCrrpXH1T8=",
+        "lastModified": 1770348283,
+        "narHash": "sha256-//G3QRfA5gF5ktos3D/mIxGb9nnEMBxlH1Pga2tNTFo=",
         "owner": "rafaelrc7",
         "repo": "wayland-pipewire-idle-inhibit",
-        "rev": "909c403332250d774d7adbd882a9185f25d61a5a",
+        "rev": "675a182a46cd82f9b3ec58abad3f6c5ee1537e98",
         "type": "github"
       },
       "original": {
