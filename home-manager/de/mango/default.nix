@@ -22,7 +22,8 @@ in
     slurp
     wireplumber
     wl-clipboard
-    xfce.thunar
+    kdePackages.dolphin
+    kdePackages.qtsvg
     xwayland-satellite
   ];
 
@@ -41,6 +42,59 @@ in
       xdg-desktop-portal-wlr
     ];
   };
+
+  gtk =
+    let
+      css = /* css */ ''
+        headerbar.default-decoration {
+          margin-bottom: 50px;
+          margin-top: -100px;
+        }
+
+        window.csd,             /* gtk4? */
+        window.csd decoration { /* gtk3 */
+          box-shadow: none;
+        }
+      '';
+    in
+    {
+      gtk3.extraCss = css;
+      gtk4.extraCss = css;
+    };
+
+  qt =
+    let
+      catppuccinQtct = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "qt5ct";
+        rev = "cb585307edebccf74b8ae8f66ea14f21e6666535";
+        hash = "sha256-wDj6kQ2LQyMuEvTQP6NifYFdsDLT+fMCe3Fxr8S783w=";
+      };
+
+      qtct = {
+        Appearance = {
+          custom_palette = true;
+          color_scheme_path = "${catppuccinQtct}/themes/catppuccin-macchiato-pink";
+          icon_theme = "Papirus-Dark";
+        };
+      };
+    in
+    {
+      enable = true;
+      style.name = "kvantum";
+      platformTheme.name = "qtct"; # TODO: 26.05, catppuccin-nix qt5ct
+
+      qt5ctSettings = qtct;
+      qt6ctSettings = qtct;
+
+      kde.settings = {
+        kdeglobals = {
+          Icons = {
+            Theme = "Papirus-Dark";
+          };
+        };
+      };
+    };
 
   xdg.configFile."xdg-desktop-portal-wlr/mango".text = /* ini */ ''
     [screencast]
