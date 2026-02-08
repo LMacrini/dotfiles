@@ -91,6 +91,10 @@ in
 
       kde.settings = {
         kdeglobals = {
+          General = {
+            TerminalApplication = "kitty";
+          };
+
           Icons = {
             Theme = "Papirus-Dark";
           };
