@@ -105,6 +105,7 @@ in
             ShowFullPath = true;
             ShowStatusBar = "FullWidth";
             RememberOpenedTabs = false;
+            ShowSelectionToggle = false;
           };
         };
       };
