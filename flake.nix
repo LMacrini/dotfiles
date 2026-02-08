@@ -69,7 +69,71 @@
 
       forAllSystems = f: builtins.mapAttrs f nixpkgs.legacyPackages;
 
-      myPkgs =
+      eachSystem = nixpkgs.lib.genAttrs defaultSystems;
+      overlay =
+        next: prev:
+        let
+          system = prev.stdenv.hostPlatform.system;
+        in
+        {
+          unstable = import inputs.nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = prev.config.allowUnfree;
+          };
+
+          zig = inputs.zig.packages.${system};
+
+          my = inputs.self.packages.${system};
+
+          fjordlauncher = inputs.fjordlauncher.packages.${system}.default;
+        };
+
+      extraHome =
+        path:
+        if (builtins.pathExists ./hosts/${path}/home.nix) then import ./hosts/${path}/home.nix else { };
+
+      mkHost =
+        path:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            extraHome = extraHome path;
+          };
+          modules = [
+            ./hosts/${path}
+            ./modules
+            inputs.nix-flatpak.nixosModules.nix-flatpak
+            inputs.catppuccin.nixosModules.catppuccin
+            inputs.niri.nixosModules.niri
+            inputs.home-manager.nixosModules.default
+            {
+              nixpkgs.overlays = [
+                (import inputs.emacs-overlay)
+                overlay
+              ];
+            }
+          ];
+        };
+
+      mkHosts =
+        hosts:
+        builtins.listToAttrs (
+          map (host: {
+            name = host;
+            value = mkHost host;
+          }) hosts
+        );
+    in
+    {
+      nixosConfigurations = mkHosts [
+        "DESKTOP-VKFSNVPI"
+        "amanojaku"
+        "lionels-laptop"
+        "vm"
+        "live"
+      ];
+
+      packages =
         let
           pkgsDir = ./pkgs;
           rawPkgs = builtins.readDir pkgsDir;
@@ -122,72 +186,6 @@
           ) parsedPkgs;
         in
         builtins.foldl' nixpkgs.lib.recursiveUpdate { } systemPkgsList;
-
-      eachSystem = nixpkgs.lib.genAttrs defaultSystems;
-      overlay =
-        next: prev:
-        let
-          system = prev.stdenv.hostPlatform.system;
-        in
-        {
-          unstable = import inputs.nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = prev.config.allowUnfree;
-          };
-
-          zig = inputs.zig.packages.${system};
-
-          my = myPkgs.${system};
-
-          fjordlauncher = inputs.fjordlauncher.packages.${system}.default;
-        };
-
-      extraHome =
-        path:
-        if (builtins.pathExists ./hosts/${path}/home.nix) then import ./hosts/${path}/home.nix else { };
-
-      mkHost =
-        path:
-        nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            extraHome = extraHome path;
-          };
-          modules = [
-            ./hosts/${path}
-            ./modules
-            inputs.nix-flatpak.nixosModules.nix-flatpak
-            inputs.catppuccin.nixosModules.catppuccin
-            inputs.niri.nixosModules.niri
-            inputs.home-manager.nixosModules.default
-            {
-              nixpkgs.overlays = [
-                (import inputs.emacs-overlay)
-                overlay
-              ];
-            }
-          ];
-        };
-
-      mkHosts =
-        hosts:
-        builtins.listToAttrs (
-          map (host: {
-            name = host;
-            value = mkHost host;
-          }) hosts
-        );
-    in
-    {
-      nixosConfigurations = mkHosts [
-        "DESKTOP-VKFSNVPI"
-        "amanojaku"
-        "lionels-laptop"
-        "vm"
-        "live"
-      ];
-
-      packages = myPkgs;
 
       formatter = forAllSystems (system: pkgs: pkgs.nixfmt-rfc-style);
 
