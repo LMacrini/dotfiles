@@ -102,6 +102,9 @@ in
     chooser_type = dmenu
   '';
 
+  xdg.configFile."menus/applications.menu".text =
+    builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
   home.file.".cache/noctalia/wallpapers.json" = lib.mkIf useNoctalia {
     text = builtins.toJSON {
       defaultWallpaper = "${pkgs.my.imgs}/share/background.jpg";
