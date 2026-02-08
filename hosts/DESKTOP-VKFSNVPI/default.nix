@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -35,7 +35,6 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
   users.users.lioma.extraGroups = [
-    "docker"
     "libvirtd"
   ];
 
@@ -51,11 +50,4 @@
   stateVersion = "24.11";
 
   ssh.enable = true;
-
-  environment.systemPackages = [
-    # pkgs.winboat
-    pkgs.freerdp
-  ];
-
-  virtualisation.docker.enable = true;
 }
