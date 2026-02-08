@@ -92,6 +92,17 @@ in
           Icons = {
             Theme = "Papirus-Dark";
           };
+
+          "KFileDialog Settings" = {
+            "Breadcrumb Navigation" = true;
+          };
+        };
+
+        dolphinrc = {
+          General = {
+            ShowFullPath = true;
+            ShowStatusBar = "FullWidth";
+          };
         };
       };
     };
