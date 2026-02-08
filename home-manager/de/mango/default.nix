@@ -104,6 +104,7 @@ in
           General = {
             ShowFullPath = true;
             ShowStatusBar = "FullWidth";
+            RememberOpenedTabs = false;
           };
         };
       };
