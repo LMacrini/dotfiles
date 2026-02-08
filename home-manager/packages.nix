@@ -87,20 +87,20 @@
                 rev = "a6f6a21cf5a64792cb049067b6e3536636fcfa37";
               };
             in
-            unstable.equicord.overrideAttrs {
-              version = "2026-01-25";
+            unstable.equicord.overrideAttrs (finalAttrs: {
+              version = "v1.14.2.0";
               src = pkgs.fetchFromGitHub {
                 owner = "Equicord";
                 repo = "Equicord";
-                tag = "2026-01-25";
-                hash = "sha256-v1WVQJrCfxzQR388RE4G1nJTAEW1ltmLnlFOjdyfIvY=";
+                tag = finalAttrs.version;
+                hash = "sha256-pEFU1E+BqAAAz2ywPrS1MejhZ/g47iG/4BBey+2F7Hw=";
               };
 
               preBuild = ''
                 mkdir ./src/userplugins
                 cp -r ${shyTyping} ./src/userplugins
               '';
-            };
+            });
         })
         keymapp
       ];
