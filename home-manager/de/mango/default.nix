@@ -36,10 +36,12 @@ in
       "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
       "org.freedesktop.impl.portal.ScreenCast" = "wlr";
       "org.freedesktop.impl.portal.ScreenShot" = "wlr";
+      "org.freedesktop.impl.portal.FileChooser" = "kde";
     };
 
     extraPortals = with pkgs; [
       xdg-desktop-portal-wlr
+      kdePackages.xdg-desktop-portal-kde
     ];
   };
 
