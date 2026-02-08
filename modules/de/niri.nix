@@ -10,6 +10,11 @@
     programs.niri.enable = true;
     programs.niri.package = pkgs.niri-stable;
 
+    services = {
+      gnome.gnome-keyring.enable = true;
+      gvfs.enable = true;
+    };
+
     # seems to fix wlogout icons
     # see: https://discourse.nixos.org/t/help-loadin-svgs-in-gtk-css/65542
     programs.gdk-pixbuf.modulePackages = [

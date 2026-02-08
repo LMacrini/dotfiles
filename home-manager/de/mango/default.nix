@@ -15,28 +15,31 @@ in
     inputs.noctalia.homeModules.default
   ];
 
-  home.packages = with pkgs; [
-    brightnessctl
-    grim
-    kanata
-    slurp
-    wireplumber
-    wl-clipboard
-    kdePackages.dolphin
-    kdePackages.qtsvg
-    xwayland-satellite
-  ];
+  home.packages =
+    with pkgs;
+    [
+      brightnessctl
+      grim
+      kanata
+      slurp
+      wireplumber
+      wl-clipboard
+      xwayland-satellite
+    ]
+    ++ (with pkgs.kdePackages; [
+      dolphin
+      kde-cli-tools
+      qtsvg
+    ]);
 
   xdg.portal = {
     config.mango = {
       default = [
-        "gtk"
+        "kde"
       ];
 
-      "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
       "org.freedesktop.impl.portal.ScreenCast" = "wlr";
       "org.freedesktop.impl.portal.ScreenShot" = "wlr";
-      "org.freedesktop.impl.portal.FileChooser" = "kde";
     };
 
     extraPortals = with pkgs; [
