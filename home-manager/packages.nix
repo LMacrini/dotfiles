@@ -66,7 +66,6 @@
     packages =
       with pkgs;
       [
-        unstable.flow-control
         (nixfmt-tree.override {
           nixfmtPackage = nixfmt-rfc-style;
         })
