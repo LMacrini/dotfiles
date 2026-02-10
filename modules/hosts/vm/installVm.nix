@@ -18,6 +18,8 @@
       ${self'.formatter} $HARDWARE
 
       sudo nixos-install --flake .#vm --no-channel-copy
+
+      sudo cp -r . /mnt/dotfiles
     '';
   };
 }
