@@ -4,9 +4,15 @@
   ...
 }: {
   flake.nixosConfigurations.vm = inputs.nixpkgs.lib.nixosSystem {
-    imports = with self.nixosModule; [
+    modules = [
+      self.nixosModules.vm_host
+    ];
+  };
+
+  flake.nixosModules.vm_host = {
+    imports = with self.nixosModules; [
       base
-      self.diskoModules.vm
+      self.diskoConfigurations.vm
     ];
 
     networking.hostName = "vm";
