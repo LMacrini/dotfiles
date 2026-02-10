@@ -1,9 +1,9 @@
 {
-  flake.diskoConfigurations.vm = {disk, ...}: {
+  flake.diskoConfigurations.vm = {
     disko.devices = {
       disk = {
         main = {
-          device = disk;
+          device = "/dev/disk/by-id/some-id";
           type = "disk";
           content = {
             type = "gpt";
