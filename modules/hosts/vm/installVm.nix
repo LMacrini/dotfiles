@@ -6,6 +6,8 @@
     ...
   }: {
     packages.installVm = pkgs.writeShellScriptBin "install-vm" ''
+      set -euo pipefail
+
       sudo ${lib.getExe inputs'.disko.packages.disko} -m destroy,format,mount --yes-wipe-all-disks --arg disk ${./_disko.nix} $1
 
       HARDWARE=./modules/hosts/vm/hardware-configuration.nix
