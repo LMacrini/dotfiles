@@ -5,11 +5,11 @@
 }: {
   flake.nixosConfigurations.vm = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.vm_host
+      self.nixosModules.vmHost
     ];
   };
 
-  flake.nixosModules.vm_host = {
+  flake.nixosModules.vmHost = {
     imports = with self.nixosModules; [
       base
     ];
