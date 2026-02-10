@@ -14,7 +14,7 @@
       {
         echo "{flake.nixosModules.vmHost="
         nixos-generate-config --root /mnt --show-hardware-config
-        echo "};}"
+        echo ";}"
       } > $HARDWARE
       git add $HARDWARE
       ${lib.getExe self'.formatter} $HARDWARE
