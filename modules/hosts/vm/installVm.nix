@@ -17,7 +17,7 @@
         echo "};}"
       } > $HARDWARE
       git add $HARDWARE
-      ${self'.formatter} $HARDWARE
+      ${lib.getExe self'.formatter} $HARDWARE
 
       sudo nixos-install --flake .#vm --no-channel-copy
 
