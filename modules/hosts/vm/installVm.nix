@@ -12,6 +12,7 @@
 
       cd $(mktemp -d)
       git clone https://git.serversmp.xyz/seija/dotfiles .
+      git checkout v2 # NOTE: temporary until v2 is the main branch
 
       sudo ${lib.getExe inputs'.disko.packages.disko} -m destroy,format,mount --yes-wipe-all-disks --arg disk \"$1\" ${./_disko.nix}
 
