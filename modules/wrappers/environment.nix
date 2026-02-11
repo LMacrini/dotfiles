@@ -13,11 +13,16 @@
       package = self'.packages.fish;
 
       runtimeInputs = [
+        pkgs.nix
+        pkgs.manix
+        pkgs.nix-inspect
+        pkgs.nix-output-monitor
         self'.packages.nh
 
         pkgs.git
 
         self'.packages.helix
+        self'.packages.jujutsu
       ];
 
       env = {
