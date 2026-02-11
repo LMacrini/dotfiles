@@ -12,7 +12,21 @@
   flake.nixosModules.lionels-laptop = {
     imports = with self.nixosModules; [
       base
+      mango
     ];
+
+    preferences.monitors = {
+      eDP-1 = {
+        width = 1920;
+        height = 1920;
+
+        x = 0;
+        y = 0;
+
+        scale = 1.0;
+        refreshRate = 144.0;
+      };
+    };
 
     networking.hostName = "lionels-laptop";
 

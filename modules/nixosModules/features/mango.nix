@@ -3,7 +3,11 @@
   lib,
   ...
 }: {
-  flake.nixosModules.mango = {pkgs, ...}: let
+  flake.nixosModules.mango = {
+    pkgs,
+    config,
+    ...
+  }: let
     mango = self.packages.${pkgs.stdenv.system}.mango;
   in {
     environment.systemPackages = [
@@ -47,6 +51,21 @@
     services = {
       displayManager.sessionPackages = [mango];
       graphical-desktop.enable = true;
+    };
+
+    systemd.user.services.monitors = {
+      after = ["graphical-session.target"];
+      description = "Configure monitors";
+
+      serviceConfig = {
+        Type = "simple";
+      };
+
+      script =
+        lib.mapAttrsToList (name: conf: "${lib.getExe pkgs.wlr-randr} --output ${name} --mode ${toString conf.width}x${toString conf.height}@${toString conf.refreshRate} --pos ${toString conf.x},${toString conf.y} --scale ${toString conf.scale}") config.preferences.monitors
+        |> builtins.concatStringsSep "\n";
+
+      wantedBy = ["graphical-session.target"];
     };
   };
 }
