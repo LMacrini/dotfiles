@@ -9,19 +9,17 @@
     ];
   };
 
-  flake.nixosModules.vmHost = {
-    config,
-    ...
-  }: {
+  flake.nixosModules.vmHost = {config, ...}: {
     imports = with self.nixosModules; [
       base
+      mango
     ];
 
-    services.desktopManager.plasma6.enable = true;
-    services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
+    # services.desktopManager.plasma6.enable = true;
+    # services.displayManager.sddm = {
+    #   enable = true;
+    #   wayland.enable = true;
+    # };
 
     networking.hostName = "vm";
 
