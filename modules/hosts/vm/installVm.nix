@@ -8,6 +8,11 @@
     packages.installVm = pkgs.writeShellScriptBin "install-vm" ''
       set -euo pipefail
 
+      : "''${1:?Usage: install-vm <disk>}"
+
+      cd $(mktemp -d)
+      git clone https://git.serversmp.xyz/seija/dotfiles .
+
       sudo ${lib.getExe inputs'.disko.packages.disko} -m destroy,format,mount --yes-wipe-all-disks --arg disk \"$1\" ${./_disko.nix}
 
       HARDWARE=./modules/hosts/vm/hardware-configuration.nix
