@@ -19,9 +19,10 @@
       git add $HARDWARE
       ${lib.getExe self'.formatter} $HARDWARE
 
-      sudo nixos-install --flake .#vm --no-channel-copy
+      sudo nixos-install --flake .#vm --no-channel-copy --extra-experimental-features "flakes pipe-operators"
 
-      sudo cp -r . /mnt/dotfiles
+      sudo cp -r . /mnt/home/lioma/dotfiles
+      sudo chown --recursive lioma /mnt/home/lioma/dotfiles
     '';
   };
 }

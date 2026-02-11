@@ -11,6 +11,8 @@
         ${lib.getExe pkgs.nix-your-shell} fish | source
         ${lib.getExe pkgs.zoxide} init fish | source
         ${lib.getExe pkgs.direnv} hook fish | source
+
+        alias cd z
       '';
   in {
     packages.fish = inputs.wrappers.lib.wrapPackage {
