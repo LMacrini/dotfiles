@@ -2,6 +2,8 @@
   flake.nixosModules.lionels-laptop = {
     imports = [inputs.disko.nixosModules.disko];
 
+    networking.hostId = "a7afb3fc";
+
     disko.devices = {
       disk = {
         root = {
