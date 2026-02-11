@@ -16,6 +16,9 @@
     packages.fish = inputs.wrappers.lib.wrapPackage {
       inherit pkgs;
       package = pkgs.fish;
+      runtimeInputs = with pkgs; [
+        zoxide
+      ];
 
       flags = {
         "-C" = "source ${config}";
