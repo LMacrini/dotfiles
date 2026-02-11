@@ -19,6 +19,7 @@
       inherit pkgs;
       package = pkgs.fish;
       runtimeInputs = with pkgs; [
+        direnv
         zoxide
       ];
 
