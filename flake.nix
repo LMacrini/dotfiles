@@ -1,6 +1,6 @@
 {
-  nixConf = {
-    experimental-features = "pipe-operators";
+  nixConfig = {
+    experimental-features = "flakes pipe-operators";
   };
 
   inputs = {
