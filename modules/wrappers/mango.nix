@@ -21,7 +21,7 @@
         ];
 
         flags = {
-          "-c" = config;
+          "-c" = "${config}";
         };
       };
   };
