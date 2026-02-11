@@ -3,7 +3,7 @@
   self,
   ...
 }: {
-  flake.nixosConfigurations.lionels-laptop = inputs.nixkpgs.lib.nixosSystem {
+  flake.nixosConfigurations.lionels-laptop = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.lionels-laptop
     ];
