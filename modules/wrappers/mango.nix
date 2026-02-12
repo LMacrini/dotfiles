@@ -1,6 +1,7 @@
 {inputs, ...}: {
   perSystem = {
     inputs',
+    self',
     pkgs,
     ...
   }: {
@@ -10,6 +11,7 @@
         # conf
         ''
           exec-once = kitty
+          exec-once = wpaperd
         '';
     in
       inputs.wrappers.lib.wrapPackage {
@@ -18,6 +20,7 @@
 
         runtimeInputs = with pkgs; [
           kitty
+          self'.packages.wpaperd
         ];
 
         flags = {
