@@ -38,7 +38,7 @@
     networking.wireless.enable = false;
 
     environment.systemPackages = [
-      self.packages.${pkgs.stdenv.system}.installVm
+      pkgs.self.installVm
     ];
   };
 }

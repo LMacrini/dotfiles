@@ -1,5 +1,15 @@
-{self, inputs, lib, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   flake.nixosModules.base = {
+    nixpkgs.overlays = [
+      (final: prev: {
+        self = self.packages.${prev.stdenv.system};
+      })
+    ];
+
     nix = {
       channel.enable = false;
 

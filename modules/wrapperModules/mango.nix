@@ -142,12 +142,12 @@
       extraPackages = with pkgs; [
         brightnessctl
         grim
-        self.packages.${pkgs.stdenv.system}.kitty
         slurp
         wireplumber
         wl-clipboard
         xwayland-satellite
 
+        selfpkgs.kitty
         selfpkgs.wpaperd
       ];
 
