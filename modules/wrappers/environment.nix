@@ -23,6 +23,7 @@
 
         self'.packages.helix
         self'.packages.jujutsu
+        self'.packages.qalc
       ];
 
       env = {
