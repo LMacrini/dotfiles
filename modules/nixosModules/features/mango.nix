@@ -20,7 +20,7 @@
 
     environment.systemPackages = [
       mango
-      pkgs.kitty
+      self.packages.${pkgs.stdenv.system}.kitty
     ];
 
     xdg.portal = {
