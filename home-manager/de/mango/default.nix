@@ -29,6 +29,8 @@ in
     ++ (with pkgs.kdePackages; [
       dolphin
       kde-cli-tools
+      kwallet
+      kwalletmanager
       qtsvg
     ]);
 
