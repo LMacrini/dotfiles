@@ -8,8 +8,16 @@
     config,
     ...
   }: let
-    mango = self.packages.${pkgs.stdenv.system}.mango;
+    mango =
+      (self.wrapperModules.mango.apply {
+        inherit pkgs;
+        inherit (config.preferences) monitors;
+      }).wrapper;
   in {
+    imports = [
+      self.nixosModules.desktop
+    ];
+
     environment.systemPackages = [
       mango
       pkgs.kitty
@@ -54,19 +62,19 @@
       graphical-desktop.enable = true;
     };
 
-    systemd.user.services.monitors = {
-      after = ["graphical-session.target"];
-      description = "Configure monitors";
+    # systemd.user.services.monitors = {
+    #   after = ["graphical-session.target"];
+    #   description = "Configure monitors";
 
-      serviceConfig = {
-        Type = "simple";
-      };
+    #   serviceConfig = {
+    #     Type = "simple";
+    #   };
 
-      script =
-        lib.mapAttrsToList (name: conf: "${lib.getExe pkgs.wlr-randr} --output ${name} --mode ${toString conf.width}x${toString conf.height}@${toString conf.refreshRate} --pos ${toString conf.x},${toString conf.y} --scale ${toString conf.scale}") config.preferences.monitors
-        |> builtins.concatStringsSep "\n";
+    #   script =
+    #     lib.mapAttrsToList (name: conf: "${lib.getExe pkgs.wlr-randr} --output ${name} --mode ${toString conf.width}x${toString conf.height}@${toString conf.refreshRate} --pos ${toString conf.x},${toString conf.y} --scale ${toString conf.scale}") config.preferences.monitors
+    #     |> builtins.concatStringsSep "\n";
 
-      wantedBy = ["graphical-session.target"];
-    };
+    #   wantedBy = ["graphical-session.target"];
+    # };
   };
 }
