@@ -30,12 +30,17 @@
         with (lib.mapAttrs (_: toString) v); "monitorrule=name:${n},width:${width},height:${height},refresh:${refreshRate},x:${x},y:${y},scale:${scale}")
       |> builtins.concatStringsSep "\n";
 
+    wpaperdConf = pkgs.writeText "wpaperd.toml" ''
+      [any]
+      path = ${config.wallpaper}
+    '';
+
     conf =
       pkgs.writeText "mango.conf"
       # conf
       ''
         exec-once = kitty
-        exec-once = wpaperd
+        exec-once = wpaperd -dc ${wpaperdConf}
 
         env = DISPLAY,:3
         exec = xwayland-satellite :3
@@ -134,6 +139,10 @@
 
         type = self.lib.types.monitors;
       };
+
+      wallpaper = mkOption {
+        type = types.path;
+      };
     };
 
     config = {
@@ -145,10 +154,10 @@
         slurp
         wireplumber
         wl-clipboard
+        wpaperd
         xwayland-satellite
 
         selfpkgs.kitty
-        selfpkgs.wpaperd
       ];
 
       flags = {

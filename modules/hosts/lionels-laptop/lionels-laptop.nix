@@ -10,9 +10,8 @@
   };
 
   flake.nixosModules.lionels-laptop = {
-    imports = with self.nixosModules; [
-      base
-      mango
+    imports = [
+      self.nixosModules.mango
     ];
 
     preferences.monitors = {

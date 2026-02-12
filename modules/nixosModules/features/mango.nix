@@ -12,10 +12,13 @@
       (self.wrapperModules.mango.apply {
         inherit pkgs;
         inherit (config.preferences) monitors;
+
+        wallpaper = config.wallpaper.image;
       }).wrapper;
   in {
     imports = [
       self.nixosModules.desktop
+      self.nixosModules.wallpaper
     ];
 
     environment.systemPackages = [

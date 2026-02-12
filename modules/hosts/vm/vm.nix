@@ -10,9 +10,8 @@
   };
 
   flake.nixosModules.vmHost = {config, ...}: {
-    imports = with self.nixosModules; [
-      base
-      mango
+    imports = [
+      self.nixosModules.mango
     ];
 
     # services.desktopManager.plasma6.enable = true;
