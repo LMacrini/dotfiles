@@ -27,7 +27,7 @@
     monitors =
       config.monitors
       |> lib.mapAttrsToList (n: v:
-        with (lib.mapAttrs (_: toString) v); "name:${n},width:${width},height:${height},refresh:${refreshRate},x:${x},y:${y},scale:${scale}")
+        with (lib.mapAttrs (_: toString) v); "monitorrule=name:${n},width:${width},height:${height},refresh:${refreshRate},x:${x},y:${y},scale:${scale}")
       |> builtins.concatStringsSep "\n";
 
     conf =
