@@ -32,7 +32,7 @@
 
     wpaperdConf = pkgs.writeText "wpaperd.toml" ''
       [any]
-      path = ${config.wallpaper}
+      path = "${config.wallpaper}"
     '';
 
     conf =
