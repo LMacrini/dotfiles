@@ -12,6 +12,7 @@
   in {
     environment.systemPackages = [
       mango
+      pkgs.kitty
     ];
 
     xdg.portal = {
