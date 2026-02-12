@@ -24,7 +24,7 @@
               & echo $! > /tmp/.mangowc-systemd-inhibit
         '';
 
-      launcher = lib.getExe pkgs.rofi;
+      launcher = "${lib.getExe pkgs.rofi} -show drun";
       sessionMenu = builtins.warn "TODO: wlogout" "";
 
       config =
