@@ -144,7 +144,9 @@
     };
 
     config = {
-      package = inputs.mango.packages.${pkgs.stdenv.system}.default;
+      package = inputs.mango.packages.${pkgs.stdenv.system}.mango.override {
+        enableXWayland = false;
+      };
 
       extraPackages = with pkgs; [
         brightnessctl
