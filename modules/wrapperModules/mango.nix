@@ -135,8 +135,6 @@
   in {
     options = with lib; {
       monitors = mkOption {
-        default = {};
-
         type = self.lib.types.monitors;
       };
 
