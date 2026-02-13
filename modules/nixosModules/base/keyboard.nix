@@ -27,6 +27,10 @@
         };
 
         wantedBy = ["sysinit.target"];
+
+        unitConfig = {
+          DefaultDependencies = false;
+        };
       };
     };
   };
