@@ -37,8 +37,10 @@
 
     networking.wireless.enable = false;
 
+    kanata.enable = false;
     environment.systemPackages = [
       pkgs.self.installVm
+      pkgs.self.kanata
     ];
   };
 }
