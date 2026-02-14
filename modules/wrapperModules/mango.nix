@@ -129,6 +129,18 @@
         drag_tile_to_tile = 1
 
         ${monitors}
+        ${lib.concatStrings
+          <| builtins.genList (
+            i: let
+              tag = toString <| i + 1;
+            in ''
+              bind=SUPER,${tag},view,${tag}
+              bind=SUPER+SHIFT,${tag},tag,${tag}
+              bind=SUPER+CTRL,${tag},toggleview,${tag}
+              bind=SUPER+CTRL+SHIFT,${tag},toggletag,${tag}
+            ''
+          )
+          9}
       '';
 
     selfpkgs = self.packages.${pkgs.stdenv.system};
