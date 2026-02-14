@@ -20,11 +20,17 @@
         ${builtins.concatStringsSep "\n" lines}
 
         status is-interactive; and begin
-          ${lib.getExe pkgs.nix-your-shell} fish | source
-          ${lib.getExe pkgs.zoxide} init fish | source
-          ${lib.getExe pkgs.direnv} hook fish | source
+          direnv hook fish | source
+          nix-your-shell fish | source
+          zoxide init fish | source
 
           alias cd z
+          alias ls lsd
+          alias ll "lsd -l"
+          alias la "lsd -A"
+          alias lt "lsd --tree"
+          alias lla "lsd -lA"
+          alias llt "lsd -l --tree"
 
           set fish_greeting
         end
@@ -35,6 +41,8 @@
       package = pkgs.fish;
       runtimeInputs = with pkgs; [
         direnv
+        lsd
+        nix-your-shell
         zoxide
       ];
 
