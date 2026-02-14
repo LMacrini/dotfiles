@@ -12,6 +12,7 @@
   flake.nixosModules.lionels-laptop = {
     imports = [
       self.nixosModules.mango
+      self.nixosModules.discord
     ];
 
     preferences.monitors = {
