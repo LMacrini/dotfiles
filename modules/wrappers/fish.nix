@@ -20,7 +20,6 @@
         ${builtins.concatStringsSep "\n" lines}
 
         status is-interactive; and begin
-          direnv hook fish | source
           nix-your-shell fish | source
           zoxide init fish | source
 
@@ -33,6 +32,10 @@
           alias llt "lsd -l --tree"
 
           set fish_greeting
+
+          if type -q direnv
+            direnv hook fish | source
+          end
         end
       '';
   in {
@@ -40,7 +43,6 @@
       inherit pkgs;
       package = pkgs.fish;
       runtimeInputs = with pkgs; [
-        direnv
         lsd
         nix-your-shell
         zoxide
