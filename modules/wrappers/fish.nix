@@ -40,6 +40,7 @@
 
       flags = {
         "-C" = "source ${config}";
+        "-N" = true;
       };
     };
   };
