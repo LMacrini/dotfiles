@@ -29,7 +29,6 @@
               "ZSA Technology Labs Ergodox EZ Keyboard"
               "ZSA Technology Labs Ergodox EZ Consumer Control"
             )
-            linux-continue-if-no-devs-found yes
             process-unmapped-keys false
           '';
 
