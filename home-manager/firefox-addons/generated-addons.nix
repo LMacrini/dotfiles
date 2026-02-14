@@ -485,6 +485,46 @@
       platforms = platforms.all;
     };
   };
+  "nekocap" = buildFirefoxXpiAddon {
+    pname = "nekocap";
+    version = "1.21.0";
+    addonId = "nekocaption@gmail.com";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4670586/nekocap-1.21.0.xpi";
+    sha256 = "6f66f5520ee42ec53ffe3f6d4e0c67618b905911ef66fd75e2e57e7720da4004";
+    meta = with lib; {
+      homepage = "https://nekocap.com";
+      description = "Create and upload community captions for YouTube videos (and more) with this easy to use extension that supports SSA/ASS rendering.";
+      license = licenses.gpl3;
+      mozPermissions = [
+        "storage"
+        "webNavigation"
+        "identity"
+        "https://*.youtube.com/*"
+        "https://*.tver.jp/*"
+        "https://*.nicovideo.jp/*"
+        "https://*.vimeo.com/*"
+        "https://*.bilibili.com/*"
+        "https://*.netflix.com/*"
+        "https://*.primevideo.com/*"
+        "https://*.twitter.com/*"
+        "https://*.x.com/*"
+        "https://*.wetv.vip/*"
+        "https://*.tiktok.com/*"
+        "https://*.iq.com/*"
+        "https://*.abema.tv/*"
+        "https://*.dailymotion.com/*"
+        "https://*.bilibili.tv/*"
+        "https://*.nogidoga.com/*"
+        "https://*.cu.tbs.co.jp/*"
+        "https://*.instagram.com/*"
+        "https://*.unext.jp/*"
+        "https://*.lemino.docomo.ne.jp/*"
+        "https://*.oned.net/*"
+        "https://*.archive.org/*"
+      ];
+      platforms = platforms.all;
+    };
+  };
   "refined-github-" = buildFirefoxXpiAddon {
     pname = "refined-github-";
     version = "26.2.3";
