@@ -88,12 +88,19 @@
             in
             unstable.equicord.overrideAttrs (
               finalAttrs: _: {
-                version = "v1.14.2.0";
+                version = "2026-02-15";
                 src = pkgs.fetchFromGitHub {
                   owner = "Equicord";
                   repo = "Equicord";
                   tag = finalAttrs.version;
-                  hash = "sha256-uk4kF6i00jAnHQ8ldjTjO4zv0S+OmMZ5zOqfRb8XWS8=";
+                  hash = "sha256-R052zfDkCZwHmE9te5kuTpGz9EwmazVixT/6UzAh43M=";
+                };
+
+                pnpmDeps = pkgs.fetchPnpmDeps {
+                  inherit (finalAttrs) pname version src;
+                  pnpm = pkgs.pnpm_10;
+                  fetcherVersion = 1;
+                  hash = "sha256-um8CmR4H+sck6sOpIpnISPhYn/rvXNfSn6i/EgQFvk0=";
                 };
 
                 preBuild = ''
@@ -103,6 +110,7 @@
               }
             );
         })
+        fluffychat
         keymapp
       ];
   };
