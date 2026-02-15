@@ -38,6 +38,11 @@
       url = "github:sodiboo/niri-flake";
     };
 
+    nur = {
+      url = "github:nix-community/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mango = {
       url = "github:dreammaomao/mango";
       inputs.nixpkgs.follows = "nixpkgs";

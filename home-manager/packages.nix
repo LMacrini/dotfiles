@@ -112,6 +112,8 @@
         })
         element-desktop
         keymapp
+
+        nur.repos.forkprince.helium-nightly
       ];
   };
 
