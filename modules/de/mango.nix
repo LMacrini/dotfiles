@@ -13,6 +13,7 @@ in
 {
   config = lib.mkIf (config.de.de == "mango") {
     environment.systemPackages = [ package ];
+
     programs.xwayland.enable = false;
     security.polkit.enable = true;
 

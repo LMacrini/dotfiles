@@ -29,8 +29,6 @@ in
     ++ (with pkgs.kdePackages; [
       dolphin
       kde-cli-tools
-      kwallet
-      kwalletmanager
       qtsvg
     ]);
 
@@ -42,6 +40,7 @@ in
 
       "org.freedesktop.impl.portal.ScreenCast" = "wlr";
       "org.freedesktop.impl.portal.ScreenShot" = "wlr";
+      "org.freedesktop.impl.portal.Secrets" = "gnome-keyring";
     };
 
     extraPortals = with pkgs; [
@@ -106,6 +105,12 @@ in
 
           "KFileDialog Settings" = {
             "Breadcrumb Navigation" = true;
+          };
+        };
+
+        kwalletrc = {
+          "org.freedesktop.secrets" = {
+            apiEnabled = true;
           };
         };
 
