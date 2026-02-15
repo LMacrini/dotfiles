@@ -317,6 +317,7 @@
           archives = [ "peazip-extract-smart.desktop" ];
           audio = videos ++ [ "app.drey.EarTag.desktop" ];
           browsers = [
+            "helium.desktop"
             "librewolf.desktop"
             "chromium-browser.desktop"
           ];
