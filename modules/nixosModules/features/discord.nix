@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   flake.nixosModules.discord = {pkgs, ...}: let
     userplugins = {
       shyTyping = builtins.fetchGit {
@@ -7,30 +7,28 @@
       };
     };
 
-    equicord = pkgs.equicord.overrideAttrs (finalAttrs: _: {
-      version = "v1.14.2.0";
-      src = pkgs.fetchFromGitHub {
-        owner = "Equicord";
-        repo = "Equicord";
-        tag = finalAttrs.version;
-      };
-
+    equicord = pkgs.nur.repos.forkprince.equicord.overrideAttrs (finalAttrs: _: {
       preBuild = ''
         mkdir ./src/userplugins
-        ${userplugins
-          |> builtins.mapAttrs (
+        ${
+          userplugins
+          |> lib.mapAttrsToList (
             name: value: "cp -r ${value} ./src/userplugins/${name}"
-          )}
+          )
+          |> builtins.concatStringsSep "\n"
+        }
       '';
     });
 
     discord = pkgs.discord.override {
       inherit equicord;
 
-      withOpenAsar = true;
+      withOpenASAR = true;
       withEquicord = true;
     };
   in {
+    nixpkgs.config.allowUnfree = true;
+
     environment.systemPackages = [discord];
   };
 }

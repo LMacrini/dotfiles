@@ -8,6 +8,7 @@
       (final: prev: {
         self = self.packages.${prev.stdenv.system};
       })
+      inputs.nur.overlays.default
     ];
 
     nix = {
