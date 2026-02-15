@@ -110,7 +110,7 @@
               }
             );
         })
-        fluffychat
+        element-desktop
         keymapp
       ];
   };
