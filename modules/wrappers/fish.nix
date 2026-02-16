@@ -8,18 +8,24 @@
     inputs',
     ...
   }: let
-    themeConfig = builtins.readFile "${inputs'.catppuccin.packages.fish}/Catppuccin Macchiato.theme";
-    match = builtins.split "(fish_color_.*?)$" themeConfig;
-    themeConfs = builtins.elemAt (builtins.elemAt match 1) 0;
-    lines = lib.splitString "\n" themeConfs |> builtins.map (s: "set -g ${s}");
+    match =
+      builtins.readFile "${inputs'.catppuccin.packages.fish}/Catppuccin Macchiato.theme"
+      |> builtins.split "(fish_color_.*?)$";
+
+    theme =
+      builtins.elemAt (builtins.elemAt match 1) 0
+      |> lib.splitString "\n"
+      |> builtins.map (s: "set -g ${s}")
+      |> builtins.concatStringsSep "\n";
 
     config =
       pkgs.writeText "config.fish"
       # fish
       ''
-        ${builtins.concatStringsSep "\n" lines}
+        ${theme}
 
         status is-interactive; and begin
+          atuin init fish | source
           nix-your-shell fish | source
           zoxide init fish | source
 
@@ -43,6 +49,7 @@
       inherit pkgs;
       package = pkgs.fish;
       runtimeInputs = with pkgs; [
+        atuin
         lsd
         nix-your-shell
         zoxide
