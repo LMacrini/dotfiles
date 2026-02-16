@@ -60,6 +60,8 @@
 
         rum.misc = {
           gtk = {
+            enable = true;
+
             # probably not necessary
             packages = [
               config.cursor.package
