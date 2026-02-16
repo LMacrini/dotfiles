@@ -41,6 +41,8 @@
     fonts.packages = [
       config.fonts.nerdfont.package
       pkgs.nasin-nanpa-helvetica
+      pkgs.noto-fonts
+      pkgs.noto-fonts-cjk-sans
     ];
   };
 }
