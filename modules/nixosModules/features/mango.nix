@@ -85,9 +85,10 @@
 
       launcher = "rofi -show drun";
       sessionMenu = builtins.warn "TODO: wlogout" "wlogout";
-      wpaperdConf = pkgs.writeText "wpaperd.toml" ''
-
-      '';
+      tomlFormat = pkgs.formats.toml {};
+      wpaperdConf = tomlFormat.generate "wpaperd.toml" {
+        any.path = "${config.wallpaper.image}";
+      };
     in {
       packages = with pkgs; [
         rofi
