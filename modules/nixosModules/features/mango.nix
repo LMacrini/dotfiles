@@ -85,10 +85,36 @@
 
       launcher = "rofi -show drun";
       sessionMenu = builtins.warn "TODO: wlogout" "wlogout";
+
       tomlFormat = pkgs.formats.toml {};
       wpaperdConf = tomlFormat.generate "wpaperd.toml" {
         any.path = "${config.wallpaper.image}";
       };
+
+      waybar =
+        (self.wrapperModules.waybar.apply {
+          inherit pkgs;
+
+          settings = {
+            modules-left = [
+              "ext/workspaces"
+              "dwl/window"
+            ];
+
+            "ext/workspaces" = {
+              on-click = "activate";
+            };
+
+            "dwl/window" = {
+              format = "  {title}";
+              rewrite = {
+                " (.*) - YouTube — LibreWolf" = "   $1";
+                "  NixOS Search - (.*) — LibreWolf" = "  󱄅 $1";
+                " (.*) — LibreWolf" = "   $1";
+              };
+            };
+          };
+        }).wrapper;
     in {
       packages = with pkgs; [
         rofi
@@ -96,6 +122,7 @@
         wpaperd
 
         pkgs.self.kitty
+        waybar
 
         # redundant but technically i do use them
         dbus
@@ -106,7 +133,11 @@
         # conf
         ''
           exec-once = kitty
+          exec-once = waybar
           exec-once = wpaperd -dc ${wpaperdConf}
+
+          exec-once = ${lib.getExe pkgs.networkmanagerapplet}
+          exec-once = ${lib.getExe' pkgs.blueman "blueman-applet"}
 
           env = DISPLAY,:3
           exec = xwayland-satellite :3
