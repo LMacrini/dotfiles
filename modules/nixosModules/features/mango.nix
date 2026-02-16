@@ -28,18 +28,17 @@
 
       config = {
         mango = {
-          default = [
-            "kde"
-          ];
+          default = "gtk";
 
-          "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
-          "org.freedesktop.impl.portal.ScreenShot" = ["wlr"];
           "org.freedesktop.impl.portal.Inhibit" = [];
+          "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+          "org.freedesktop.impl.portal.ScreenShot" = "wlr";
+          "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
         };
       };
 
-      extraPortals = [
-        pkgs.kdePackages.xdg-desktop-portal-kde
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
       ];
 
       wlr = {
@@ -60,6 +59,7 @@
     services = {
       displayManager.sessionPackages = [mango];
       graphical-desktop.enable = true;
+      gnome.gnome-keyring.enable = true;
     };
 
     hjem.users.lioma = let
@@ -114,6 +114,20 @@
               };
             };
           };
+
+          "style.css".content =
+            # css
+            ''
+              #workspaces button {
+                border-radius: 0;
+                box-shadow: inset 0px 2px 0px transparent;
+                transition: box-shadow 0.2s ease;
+              }
+
+              #workspaces button.active {
+                box-shadow: inset 0px 2px 0px white;
+              }
+            '';
         }).wrapper;
     in {
       packages = with pkgs; [
@@ -132,6 +146,9 @@
       xdg.config.files."mango/config.conf".text =
         # conf
         ''
+          env = XCURSOR_THEME,${config.cursor.name}
+          env = XCURSOR_SIZE,${toString config.cursor.size}
+
           exec-once = kitty
           exec-once = waybar
           exec-once = wpaperd -dc ${wpaperdConf}
