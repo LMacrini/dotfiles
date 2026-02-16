@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  self,
+  lib,
+  ...
+}: {
   flake.nixosModules.discord = {pkgs, ...}: let
     userplugins = {
       shyTyping = builtins.fetchGit {
@@ -27,8 +31,14 @@
       withEquicord = true;
     };
   in {
+    imports = [
+      self.nixosModules.hjem
+    ];
+
     nixpkgs.config.allowUnfree = true;
 
-    environment.systemPackages = [discord];
+    hjem.users.lioma.packages = [
+      discord
+    ];
   };
 }

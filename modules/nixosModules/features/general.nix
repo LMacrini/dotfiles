@@ -1,7 +1,8 @@
 {self, ...}: {
   flake.nixosModules.general = {
-    imports = [
-      self.nixosModules.discord
+    imports = with self.nixosModules; [
+      discord
+      helium
     ];
   };
 }
