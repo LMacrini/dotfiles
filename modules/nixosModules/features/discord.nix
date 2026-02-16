@@ -31,10 +31,6 @@
       withEquicord = true;
     };
   in {
-    imports = [
-      self.nixosModules.hjem
-    ];
-
     nixpkgs.config.allowUnfree = true;
 
     hjem.users.lioma.packages = [
