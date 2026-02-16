@@ -31,10 +31,14 @@
       iconTheme = {
         name = mkOption {
           default = "Papirus-Dark";
-          package = pkgs.catppuccin-papirus-folders.override {
+          type = types.str;
+        };
+        package = mkOption {
+          default = pkgs.catppuccin-papirus-folders.override {
             accent = "pink";
             flavor = "macchiato";
           };
+          type = types.package;
         };
       };
     };
