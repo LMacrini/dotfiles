@@ -66,6 +66,7 @@
             packages = [
               config.cursor.package
               config.iconTheme.package
+              pkgs.adw-gtk3
             ];
 
             settings = {
@@ -73,6 +74,7 @@
               cursor-theme = config.cursor.name;
               cursor-theme-size = config.cursor.size;
               icon-theme-name = config.iconTheme.name;
+              theme-name = "adw-gtk3-dark";
             };
           };
         };
