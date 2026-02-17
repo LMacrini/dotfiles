@@ -59,7 +59,7 @@
         CONFIG=$XDG_CONFIG_HOME
         XDG_CONFIG_HOME=/tmp/fish_conf
         mkdir -p /tmp/fish_conf/fish
-        export __fish_initialized=3800
+        export __fish_initialized=999999
       '';
 
       flags = {
