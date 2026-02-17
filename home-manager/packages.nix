@@ -347,7 +347,14 @@
           tug = [
             "bookmark"
             "move"
-            "main"
+            "--from"
+            "trunk()"
+            "--to"
+            "@-"
+          ];
+          tuga = [
+            "bookmark"
+            "move"
             "--from"
             "heads(::@- & bookmarks())"
             "--to"
@@ -367,7 +374,10 @@
         };
 
         ui = {
-          default-command = "log";
+          default-command = [
+            "log"
+            "--reversed"
+          ];
           diff-editor = ":builtin";
           paginate = "never";
         };
