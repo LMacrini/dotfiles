@@ -63,7 +63,7 @@
 
       flags = {
         "-C" = [
-          "set -x XDG_CONFIG_HOME $CONFIG"
+          "set -gx XDG_CONFIG_HOME $CONFIG"
           "source ${config}"
           "fish -Nc \"sleep 2; rm -r $tmp\" &"
         ];
