@@ -348,7 +348,7 @@
             "bookmark"
             "move"
             "--from"
-            "trunk()"
+            "trunk() & ::@-"
             "--to"
             "@-"
           ];
