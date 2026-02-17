@@ -55,8 +55,18 @@
         zoxide
       ];
 
+      preHook = ''
+        CONFIG=$XDG_CONFIG_HOME
+        XDG_CONFIG_HOME=/tmp/fish_conf
+        mkdir -p /tmp/fish_conf/fish
+        export __fish_initialized=3800
+      '';
+
       flags = {
-        "-C" = "source ${config}";
+        "-C" = [
+          "set -x XDG_CONFIG_HOME $CONFIG"
+          "source ${config}"
+        ];
       };
     };
   };
