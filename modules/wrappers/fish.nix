@@ -56,9 +56,10 @@
       ];
 
       preHook = ''
+        tmp=$(mktemp -d)
         CONFIG=$XDG_CONFIG_HOME
-        XDG_CONFIG_HOME=/tmp/fish_conf
-        mkdir -p /tmp/fish_conf/fish
+        XDG_CONFIG_HOME=$tmp
+        mkdir "$tmp"/fish
         export __fish_initialized=999999
       '';
 
@@ -66,6 +67,7 @@
         "-C" = [
           "set -x XDG_CONFIG_HOME $CONFIG"
           "source ${config}"
+          "fish -Nc \"sleep 2; rm -r $tmp\" &"
         ];
       };
     };
