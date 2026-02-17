@@ -25,7 +25,6 @@
         ${theme}
 
         status is-interactive; and begin
-          atuin init fish | source
           nix-your-shell fish | source
           zoxide init fish | source
 
@@ -49,7 +48,6 @@
       inherit pkgs;
       package = pkgs.fish;
       runtimeInputs = with pkgs; [
-        atuin
         lsd
         nix-your-shell
         zoxide
