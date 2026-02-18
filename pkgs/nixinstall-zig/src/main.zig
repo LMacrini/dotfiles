@@ -347,17 +347,11 @@ fn getHostInfo(
     if (create_hardware_file) {
         var term: std.process.Child.Term = .{ .exited = 0 };
 
-        // TODO: uncomment stuff
-        // it's just not implemented yet
         const hardware_file = try host_dir.createFile(io, "hardware-configuration.nix", .{
             .exclusive = true,
         });
-        // defer if (term == .exited and term.exited == 0)
-        //     hardware_file.close(io);
-        defer hardware_file.close(io);
-
-        var buf: [4096]u8 = undefined;
-        var writer = hardware_file.writer(io, &buf);
+        defer if (term == .exited and term.exited == 0)
+            hardware_file.close(io);
 
         var process = try std.process.spawn(io, .{
             .argv = &.{
@@ -366,8 +360,7 @@ fn getHostInfo(
                 "/mnt",
                 "--show-hardware-config",
             },
-            // .stdout = .{ .file = hardware_file },
-            .stdout = .pipe,
+            .stdout = .{ .file = hardware_file },
             .stderr = .pipe,
         });
 
@@ -386,16 +379,13 @@ fn getHostInfo(
         if (term != .exited or term.exited != 0) {
             logErr(io, multi_reader.reader(1).buffered());
 
-            // hardware_file.close(io);
-            // host_dir.deleteFile(io, "hardware-configuration.nix") catch {
-            //     std.log.warn("failed to delete potentially badly generated hardware config", .{});
-            // };
+            hardware_file.close(io);
+            host_dir.deleteFile(io, "hardware-configuration.nix") catch {
+                std.log.warn("failed to delete potentially badly generated hardware config", .{});
+            };
 
             return error.ConfigGenerationFailed;
         }
-
-        try writer.interface.writeAll(multi_reader.reader(0).buffered());
-        try writer.interface.flush();
     }
 
     host_name = try gpa.realloc(host_name, host_name.len + 2);
