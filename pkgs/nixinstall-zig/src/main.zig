@@ -278,7 +278,13 @@ fn copyDir(io: Io, gpa: std.mem.Allocator, src: Io.Dir, dst: Io.Dir) !void {
                 continue;
             };
 
-            // TODO: use uncomment when it's fixed
+            const res = std.os.linux.fchownat(dst.handle, entry.path, 1000, 100, 0);
+            const errno = std.posix.errno(res);
+            if (errno != .SUCCESS) {
+                std.log.warn("failed to set owner for file '{s}': {t}", .{ entry.path, errno });
+            }
+
+            // TODO: use this instead of fchownat when it's fixed
             // dst.setFileOwner(io, entry.path, 1000, 100, .{}) catch {
             //     std.log.warn("failed to set owner for file '{s}'", .{entry.path});
             //     continue;
@@ -622,14 +628,6 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
     };
 
     try copyDir(io, gpa, conf_dir, dotfiles);
-
-    std.log.info("TODO: fix this hack", .{});
-    var chown = std.process.spawn(io, .{
-        .argv = &.{ "chown", "-R", "lioma", "/mnt/home/lioma/dotfiles" },
-    }) catch {
-        return 0;
-    };
-    _ = chown.wait(io) catch {};
 
     return 0;
 }
