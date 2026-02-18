@@ -344,7 +344,9 @@ fn getHostInfo(
         break :blk ans;
     } else |err| if (err == error.FileNotFound) true else return err;
 
-    if (create_hardware_file) {
+    // TODO: get rid of false and delete other if when "setUpChildIo" doesn't
+    // panic with TODO on .file
+    if (false and create_hardware_file) {
         var term: std.process.Child.Term = .{ .exited = 0 };
 
         const hardware_file = try host_dir.createFile(io, "hardware-configuration.nix", .{
@@ -384,6 +386,48 @@ fn getHostInfo(
 
             return error.ConfigGenerationFailed;
         }
+    }
+    if (create_hardware_file) {
+        var term: std.process.Child.Term = .{ .exited = 0 };
+
+        const hardware_file = try host_dir.createFile(io, "hardware-configuration.nix", .{
+            .exclusive = true,
+        });
+        defer if (term == .exited and term.exited == 0)
+            hardware_file.close(io);
+
+        var process = try std.process.spawn(io, .{
+            .argv = &.{
+                "nixos-generate-config",
+                "--root",
+                "/mnt",
+                "--show-hardware-config",
+            },
+            .stdout = .pipe,
+            .stderr = .pipe,
+        });
+
+        var mr_buf: Io.File.MultiReader.Buffer(2) = undefined;
+        var multi_reader: Io.File.MultiReader = undefined;
+        multi_reader.init(gpa, io, mr_buf.toStreams(), &.{ process.stdout.?, process.stderr.? });
+
+        try multi_reader.fillRemaining(.none);
+        try multi_reader.checkAnyError();
+
+        term = try process.wait(io);
+
+        if (term != .exited or term.exited != 0) {
+            logErr(io, multi_reader.reader(1).buffered());
+
+            hardware_file.close(io);
+            host_dir.deleteFile(io, "hardware-configuration.nix") catch {
+                std.log.warn("failed to delete potentially badly generated hardware config", .{});
+            };
+
+            return error.ConfigGenerationFailed;
+        }
+
+        try hardware_file.writePositionalAll(io, multi_reader.reader(0).buffered(), 0);
     }
 
     host_name = try gpa.realloc(host_name, host_name.len + 2);
