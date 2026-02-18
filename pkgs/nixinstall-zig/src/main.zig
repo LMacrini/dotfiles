@@ -410,6 +410,7 @@ fn getHostInfo(
         var mr_buf: Io.File.MultiReader.Buffer(2) = undefined;
         var multi_reader: Io.File.MultiReader = undefined;
         multi_reader.init(gpa, io, mr_buf.toStreams(), &.{ process.stdout.?, process.stderr.? });
+        defer multi_reader.deinit();
 
         try multi_reader.fillRemaining(.none);
         try multi_reader.checkAnyError();
