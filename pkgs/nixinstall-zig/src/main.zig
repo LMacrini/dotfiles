@@ -364,20 +364,18 @@ fn getHostInfo(
             .stderr = .pipe,
         });
 
-        var mr_buf: Io.File.MultiReader.Buffer(2) = undefined;
-        var multi_reader: Io.File.MultiReader = undefined;
-        multi_reader.init(gpa, io, mr_buf.toStreams(), &.{ process.stdout.?, process.stderr.? });
+        var aw: Io.Writer.Allocating = .init(gpa);
+        defer aw.deinit();
 
-        while (multi_reader.fill(64, .none)) |_| {} else |err| switch (err) {
-            error.EndOfStream => {},
-            else => return err,
-        }
-        try multi_reader.checkAnyError();
+        var buf: [4096]u8 = undefined;
+        var reader = process.stdout.?.reader(io, &buf);
+
+        _ = try reader.interface.streamRemaining(&aw.writer);
 
         term = try process.wait(io);
 
         if (term != .exited or term.exited != 0) {
-            logErr(io, multi_reader.reader(1).buffered());
+            logErr(io, aw.written());
 
             hardware_file.close(io);
             host_dir.deleteFile(io, "hardware-configuration.nix") catch {
