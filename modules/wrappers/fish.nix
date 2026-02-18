@@ -43,10 +43,12 @@
           end
         end
       '';
+
+    unwrapped = pkgs.fish;
   in {
     packages.fish = inputs.wrappers.lib.wrapPackage {
       inherit pkgs;
-      package = pkgs.fish;
+      package = unwrapped;
       runtimeInputs = with pkgs; [
         lsd
         nix-your-shell
@@ -65,7 +67,7 @@
         "-C" = [
           "set -gx XDG_CONFIG_HOME $CONFIG"
           "source ${config}"
-          "fish -Nc \"sleep 2; rm -r $tmp\" &"
+          "${lib.getExe unwrapped} -Nc \"sleep 2; rm -r $tmp\" &"
         ];
       };
     };
