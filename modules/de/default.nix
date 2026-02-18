@@ -41,7 +41,7 @@
   };
 
   config = {
-    guiApps = lib.mkDefault config.de.de != null;
+    guiApps = lib.mkDefault (config.de.de != null);
 
     niri-flake.cache.enable = config.de.de == "niri";
   };
