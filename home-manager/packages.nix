@@ -344,6 +344,12 @@
 
       settings = {
         aliases = {
+          s = [
+            "bookmark"
+            "set"
+            "--revision"
+            "@-"
+          ];
           tug = [
             "bookmark"
             "move"
