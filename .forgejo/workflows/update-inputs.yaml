@@ -31,7 +31,6 @@ jobs:
       - name: Update packages
         run: |
           nix flake update
-          ./.forgejo/update.sh ./pkgs/osu-tachyon/info.json
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
