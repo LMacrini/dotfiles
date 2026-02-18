@@ -371,21 +371,20 @@ fn getHostInfo(
             .stderr = .pipe,
         });
 
-        var poller = Io.poll(gpa, enum { stdout, stderr }, .{
-            .stdout = process.stdout.?,
-            .stderr = process.stderr.?,
-        });
-        defer poller.deinit();
+        var mr_buf: Io.File.MultiReader.Buffer(2) = undefined;
+        var multi_reader: Io.File.MultiReader = undefined;
+        multi_reader.init(gpa, io, mr_buf.toStreams(), &.{ process.stdout.?, process.stderr.? });
 
-        const stdout_r = poller.reader(.stdout);
-        const stderr_r = poller.reader(.stderr);
-
-        while (try poller.poll()) {}
+        while (multi_reader.fill(64, .none)) |_| {} else |err| switch (err) {
+            error.EndOfStream => {},
+            else => return err,
+        }
+        try multi_reader.checkAnyError();
 
         term = try process.wait(io);
 
         if (term != .exited or term.exited != 0) {
-            logErr(io, stderr_r.buffer[0..stderr_r.end]);
+            logErr(io, multi_reader.reader(1).buffered());
 
             // hardware_file.close(io);
             // host_dir.deleteFile(io, "hardware-configuration.nix") catch {
@@ -395,7 +394,7 @@ fn getHostInfo(
             return error.ConfigGenerationFailed;
         }
 
-        try writer.interface.writeAll(stdout_r.buffer[0..stdout_r.end]);
+        try writer.interface.writeAll(multi_reader.reader(0).buffered());
         try writer.interface.flush();
     }
 
@@ -511,10 +510,15 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
         }
     }
 
+    const conf_dir: Io.Dir = try .openDirAbsolute(io, "/tmp/config", .{
+        .iterate = true,
+    });
+    defer conf_dir.close(io);
+
     const shell = init.environ.getPosix("SHELL") orelse "bash";
     const shell_opts: SpawnOptions = .{
         .argv = &.{shell},
-        .cwd = "/tmp/config",
+        .cwd = .{ .dir = conf_dir },
     };
 
     try stdout.writeByte('\n');
@@ -533,19 +537,18 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
     try stdout.writeByte('\n');
 
     if (drive_process) |*p| {
-        var poller = Io.poll(gpa, enum { stderr }, .{
-            .stderr = p.stderr.?,
-        });
-        defer poller.deinit();
+        var aw: Io.Writer.Allocating = .init(gpa);
+        defer aw.deinit();
 
-        const stderr_r = poller.reader(.stderr);
+        var buf: [4096]u8 = undefined;
+        var reader = p.stderr.?.reader(io, &buf);
 
-        while (try poller.poll()) {}
+        _ = try reader.interface.streamRemaining(&aw.writer);
 
         const term = try p.wait(io);
 
         if (term != .exited or term.exited != 0) {
-            logErr(io, stderr_r.buffer[0..stderr_r.end]);
+            logErr(io, aw.written());
             return error.DrivePartitionFailed;
         }
     }
@@ -560,7 +563,7 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
             host,
             "--no-channel-copy",
         },
-        .cwd = "/tmp/config",
+        .cwd = .{ .dir = conf_dir },
         .stdin = .pipe,
     });
 
@@ -576,11 +579,6 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
     try stdout.writeAll("build complete, you may reboot\n");
     try stdout.flush();
 
-    const tmp_config: Io.Dir = try .openDirAbsolute(io, "/tmp/config", .{
-        .iterate = true,
-    });
-    defer tmp_config.close(io);
-
     const dotfiles: Io.Dir = try .createDirPathOpen(.cwd(), io, "/mnt/home/lioma/dotfiles", .{
         .open_options = .{ .iterate = true }, // setOwner requires iterate
     });
@@ -590,7 +588,7 @@ pub fn main(init: std.process.Init.Minimal) !u8 {
         std.log.warn("failed to set owner for directory 'dotfiles'", .{});
     };
 
-    try copyDir(io, gpa, tmp_config, dotfiles);
+    try copyDir(io, gpa, conf_dir, dotfiles);
 
     std.log.info("TODO: fix this hack", .{});
     var chown = std.process.spawn(io, .{
