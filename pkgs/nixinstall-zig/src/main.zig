@@ -279,7 +279,7 @@ fn copyDir(io: Io, gpa: std.mem.Allocator, src: Io.Dir, dst: Io.Dir) !void {
             };
 
             const res = std.os.linux.fchownat(dst.handle, entry.path, 1000, 100, 0);
-            const errno = std.posix.errno(res);
+            const errno = std.os.linux.errno(res);
             if (errno != .SUCCESS) {
                 std.log.warn("failed to set owner for file '{s}': {t}", .{ entry.path, errno });
             }
