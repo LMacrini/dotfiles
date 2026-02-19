@@ -3,7 +3,6 @@
     packages.helix =
       (inputs.wrappers.wrapperModules.helix.apply {
         inherit pkgs;
-        env.PATH = with pkgs; "\$PATH:${nixd}/bin:${marksman}/bin";
         settings = {
           theme = "catppuccin_macchiato";
 
