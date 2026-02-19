@@ -15,6 +15,7 @@
   in {
     imports = [
       self.nixosModules.desktop
+      self.nixosModules.ly
       self.nixosModules.wallpaper
     ];
 
