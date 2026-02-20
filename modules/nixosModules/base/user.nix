@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   flake.nixosModules.base = {pkgs, ...}: {
     users.mutableUsers = false;
 
@@ -17,7 +17,10 @@
       shell = pkgs.self.environment;
     };
 
-    users.users.root.hashedPassword = "$y$j9T$Ni.Y0RqtQScu7Xm/hC5yl/$aXMkEyOLTBuPlH7nDGOI/1iWlmiiH1GpJXemgYw1eq.";
+    users.users.root = {
+      hashedPassword = "$y$j9T$Ni.Y0RqtQScu7Xm/hC5yl/$aXMkEyOLTBuPlH7nDGOI/1iWlmiiH1GpJXemgYw1eq.";
+      initialHashedPassword = lib.mkForce null;
+    };
 
     environment.shells = [
       pkgs.self.environment
