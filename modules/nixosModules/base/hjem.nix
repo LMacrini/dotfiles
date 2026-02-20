@@ -13,11 +13,11 @@
         enable = true;
         directory = "/home/lioma";
         user = "lioma";
+
+        rum.environment.hideWarning = true;
       };
 
       clobberByDefault = true;
-
-      rum.environment.hideWarnings = true;
     };
   };
 }
