@@ -16,6 +16,8 @@
       };
 
       clobberByDefault = true;
+
+      rum.environment.hideWarnings = true;
     };
   };
 }
