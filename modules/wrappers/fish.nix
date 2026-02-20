@@ -57,7 +57,9 @@
 
       preHook = ''
         export __fish_initialized=999999
-        mkdir -p "$XDG_CONFIG_HOME/fish"
+        if [ "''${XDG_CONFIG_HOME:-}" != "" ]; then
+            mkdir -p "$XDG_CONFIG_HOME/fish"
+        fi
       '';
 
       flags = {
