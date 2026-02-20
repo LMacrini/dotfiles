@@ -147,10 +147,8 @@
       xdg.config.files."mango/config.conf".text =
         # conf
         ''
-          # env = XCURSOR_THEME,${config.cursor.name}
-          # env = XCURSOR_SIZE,${toString config.cursor.size}
-
-          exec-once = ${config.hjem.users.lioma.environment.loadEnv}
+          env = XCURSOR_THEME,${config.cursor.name}
+          env = XCURSOR_SIZE,${toString config.cursor.size}
 
           exec-once = kitty
           exec-once = waybar

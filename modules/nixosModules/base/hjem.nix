@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.base = {
+  flake.nixosModules.base = {config, ...}: {
     imports = [
       inputs.hjem.nixosModules.default
     ];
@@ -15,6 +15,11 @@
         user = "lioma";
 
         rum.environment.hideWarning = true;
+
+        files.".profile" = {
+          executable = true;
+          source = config.hjem.users.lioma.environment.loadEnv;
+        };
       };
 
       clobberByDefault = true;
