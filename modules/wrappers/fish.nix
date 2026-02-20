@@ -56,19 +56,12 @@
       ];
 
       preHook = ''
-        tmp=$(mktemp -d)
-        CONFIG=$XDG_CONFIG_HOME
-        XDG_CONFIG_HOME=$tmp
-        mkdir "$tmp"/fish
         export __fish_initialized=999999
+        mkdir -p "$XDG_CONFIG_HOME/fish"
       '';
 
       flags = {
-        "-C" = [
-          "set -gx XDG_CONFIG_HOME $CONFIG"
-          "source ${config}"
-          "${lib.getExe unwrapped} -Nc \"sleep 2; rm -r $tmp\" &"
-        ];
+        "-C" = "source ${config}";
       };
     };
   };
