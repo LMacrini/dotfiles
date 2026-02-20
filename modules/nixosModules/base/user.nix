@@ -16,5 +16,9 @@
 
       shell = pkgs.self.environment;
     };
+
+    environment.shells = [
+      pkgs.self.environment
+    ];
   };
 }
