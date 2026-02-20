@@ -4,7 +4,14 @@
   lib,
   ...
 }: {
-  flake.nixosModules.mango = {
+  flake.aspects.mango.deps = [
+    "desktop"
+    "hjem"
+    "ly"
+    "wallpaper"
+  ];
+
+  flake.aspects.mango.module = {
     pkgs,
     config,
     ...
@@ -13,12 +20,6 @@
       enableXWayland = false;
     };
   in {
-    imports = [
-      self.nixosModules.desktop
-      self.nixosModules.ly
-      self.nixosModules.wallpaper
-    ];
-
     environment.systemPackages = [
       mango
       pkgs.self.kitty

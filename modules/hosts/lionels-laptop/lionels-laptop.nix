@@ -10,10 +10,14 @@
   };
 
   flake.nixosModules.lionels-laptop = {
-    imports = [
-      self.nixosModules.mango
-      self.nixosModules.general
-    ];
+    imports =
+      [
+        self.nixosModules.base
+      ]
+      ++ self.lib.aspects [
+        "general"
+        "mango"
+      ];
 
     preferences.monitors = {
       eDP-1 = {

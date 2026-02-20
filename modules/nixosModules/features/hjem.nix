@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.base = {config, ...}: {
+  flake.aspects.hjem.module = {config, ...}: {
     imports = [
       inputs.hjem.nixosModules.default
     ];

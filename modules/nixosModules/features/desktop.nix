@@ -1,17 +1,13 @@
-{
-  self,
-  lib,
-  ...
-}: {
-  flake.nixosModules.desktop = {
+{lib, ...}: {
+  flake.aspects.desktop.deps = [
+    "hjem"
+  ];
+
+  flake.aspects.desktop.module = {
     config,
     pkgs,
     ...
   }: {
-    imports = [
-      self.nixosModules.base
-    ];
-
     options = with lib; {
       cursor = {
         name = mkOption {

@@ -1,11 +1,13 @@
-{self, ...}: {
-  flake.nixosModules.general = {pkgs, ...}: {
-    imports = with self.nixosModules; [
-      discord
+{
+  flake.aspects.general = {
+    deps = [
+      "discord"
     ];
 
-    environment.systemPackages = [
-      pkgs.librewolf
-    ];
+    module = {pkgs, ...}: {
+      environment.systemPackages = [
+        pkgs.librewolf
+      ];
+    };
   };
 }

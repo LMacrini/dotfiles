@@ -1,5 +1,9 @@
 {lib, ...}: {
-  flake.nixosModules.discord = {pkgs, ...}: let
+  flake.aspects.discord.deps = [
+    "hjem"
+  ];
+
+  flake.aspects.discord.module = {pkgs, ...}: let
     userplugins = {
       shyTyping = builtins.fetchGit {
         url = "https://git.nin0.dev/Sqaaakoi-VencordUserPlugins/shyTyping";

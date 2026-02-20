@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.ly = {
+  flake.aspects.ly.module = {
     services.displayManager.ly = {
       enable = true;
       settings = {

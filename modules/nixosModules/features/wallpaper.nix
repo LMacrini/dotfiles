@@ -3,7 +3,7 @@
   self,
   ...
 }: {
-  flake.nixosModules.wallpaper = {
+  flake.aspects.wallpaper.module = {
     options = with lib; {
       wallpaper.image = mkOption {
         type = types.path;
