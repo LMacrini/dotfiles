@@ -62,6 +62,11 @@
           config.cursor.package
         ];
 
+        environment.sessionVariables = {
+          XCURSOR_THEME = config.cursor.name;
+          XCURSOR_SIZE = config.cursor.size;
+        };
+
         rum.misc = {
           gtk = {
             enable = true;
