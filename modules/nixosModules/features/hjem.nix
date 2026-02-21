@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  self,
   ...
 }: {
   flake.aspects.hjem.module = {
@@ -42,6 +43,8 @@
     hjem = {
       extraModules = [
         inputs.hjem-rum.hjemModules.default
+
+        self.hjemModules.wayland-pipewire-idle-inhibit
       ];
 
       users.lioma = {
