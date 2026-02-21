@@ -53,6 +53,10 @@
         };
       };
 
+      services = {
+        blueman.enable = true;
+      };
+
       programs.dconf.profiles.user.databases = [
         {
           lockAll = true;
