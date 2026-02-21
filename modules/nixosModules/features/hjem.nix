@@ -53,9 +53,17 @@
           directoriesList = lib.attrValues dirs;
           mkdir = dir: ''[[ -L ${dir} ]] || run mkdir -p $VERBOSE_ARG ${dir}'';
         in {
+          after = [
+            "hjem-activation@lioma.service"
+          ];
+          requires = [
+            "hjem-activation@lioma.service"
+          ];
+
           restartTriggers = [
             directoriesList
           ];
+
           script = lib.concatMapStringsSep "\n" mkdir directoriesList;
         };
 
