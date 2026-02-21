@@ -158,7 +158,7 @@
           env = DISPLAY,:3
           exec = xwayland-satellite :3
 
-          exec-once = ${autostart}
+          exec-once = ${lib.getExe autostart}
 
           trackpad_natural_scrolling = 1
           click_method = 2
