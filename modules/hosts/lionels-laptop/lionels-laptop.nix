@@ -9,16 +9,20 @@
   };
 
   flake.nixosModules.lionels-laptop = {
-    preferences.monitors = {
-      eDP-1 = {
-        width = 1920;
-        height = 1920;
+    preferences = {
+      laptop.enable = true;
 
-        x = 0;
-        y = 0;
+      monitors = {
+        eDP-1 = {
+          width = 1920;
+          height = 1920;
 
-        scale = 1.0;
-        refreshRate = 144.0;
+          x = 0;
+          y = 0;
+
+          scale = 1.0;
+          refreshRate = 144.0;
+        };
       };
     };
 
