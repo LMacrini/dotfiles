@@ -129,10 +129,6 @@
               Type = "simple";
               Restart = "always";
             };
-
-            unitConfig = {
-              ConditionEnvironment = "WAYLAND_DISPLAY";
-            };
           };
         };
       };
