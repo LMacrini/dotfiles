@@ -33,13 +33,8 @@
       after = [
         "hjem-activate@lioma.service"
       ];
-      requires = [
-        "hjem-activate@lioma.service"
-      ];
-
-      restartTriggers = [
-        directoriesList
-      ];
+      partOf = ["hjem.target"];
+      wantedBy = ["hjem.target"];
 
       script = lib.concatMapStringsSep "\n" mkdir directoriesList;
     };
