@@ -53,14 +53,46 @@
         };
       };
 
-      hjem.users.lioma = {
+      programs.dconf.profiles.user.databases = [
+        {
+          lockAll = true;
+          settings."org/gnome/desktop/interface" = {
+            icon-theme = config.iconTheme.name;
+          };
+        }
+      ];
+
+      hjem.users.lioma = let
+        # NOTE: possibly extremely unnecessary
+        defaultIndexThemePackage = pkgs.writeTextFile {
+          name = "index.theme";
+          destination = "/share/icons/default/index.theme";
+          text = ''
+            [Icon Theme]
+            Name=Default
+            Comment=Default Cursor Theme
+            Inherits=${config.cursor.name}
+          '';
+        };
+      in {
         packages = [
           config.cursor.package
+          defaultIndexThemePackage
         ];
 
         environment.sessionVariables = {
           XCURSOR_THEME = config.cursor.name;
           XCURSOR_SIZE = config.cursor.size;
+        };
+
+        files = {
+          ".icons/default/index.theme".source = "${defaultIndexThemePackage}/share/icons/default/index.theme";
+          ".icons/${config.cursor.name}".source = "${config.cursor.package}/share/icons/${config.cursor.name}";
+        };
+
+        xdg.data.files = {
+          "icons/default/index.theme".source = "${defaultIndexThemePackage}/share/icons/default/index.theme";
+          "icons/${config.cursor.name}".source = "${config.cursor.package}/share/icons/${config.cursor.name}";
         };
 
         rum.misc = {
