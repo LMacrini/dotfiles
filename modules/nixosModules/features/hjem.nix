@@ -28,7 +28,7 @@
 
     systemd.services.createXdgUserDirectories = let
       directoriesList = lib.attrValues dirs;
-      mkdir = dir: ''[[ -L ${dir} ]] || run mkdir -p $VERBOSE_ARG ${dir}'';
+      mkdir = dir: ''[[ -L ${dir} ]] || mkdir -p ${dir}'';
     in {
       after = [
         "hjem-activate@lioma.service"
