@@ -1,6 +1,7 @@
 {
   lib,
   self,
+  inputs,
   ...
 }: {
   flake.lib = {
@@ -17,6 +18,19 @@
         |> lib.flatten
         |> lib.uniqueStrings
         |> map (aspect: self.aspects.${aspect}.module);
+
+    nixosSystem = {
+      module,
+      aspects ? [],
+    }:
+      inputs.nixpkgs.lib.nixosSystem {
+        modules =
+          [
+            module
+            self.nixosModules.base
+          ]
+          ++ self.lib.aspects aspects;
+      };
 
     types = with lib; {
       monitors =

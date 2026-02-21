@@ -1,14 +1,11 @@
 {
-  inputs,
   self,
   lib,
   ...
 }: {
   flake.packages."x86_64-linux".iso =
-    (inputs.nixpkgs.lib.nixosSystem {
-      modules = [
-        self.nixosModules.iso
-      ];
+    (self.lib.nixosSystem {
+      module = self.nixosModules.iso;
     }).config.system.build.isoImage;
 
   flake.nixosModules.iso = {
@@ -16,8 +13,7 @@
     pkgs,
     ...
   }: {
-    imports = with self.nixosModules; [
-      base
+    imports = [
       "${modulesPath}/installer/cd-dvd/installation-cd-base.nix"
     ];
 

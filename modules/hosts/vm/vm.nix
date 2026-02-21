@@ -1,19 +1,9 @@
-{
-  inputs,
-  self,
-  ...
-}: {
-  flake.nixosConfigurations.vm = inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      self.nixosModules.vmHost
-    ];
+{self, ...}: {
+  flake.nixosConfigurations.vm = self.lib.nixosSystem {
+    module = self.nixosModules.vmHost;
   };
 
   flake.nixosModules.vmHost = {config, ...}: {
-    imports = [
-      self.nixosModules.base
-    ];
-
     services.desktopManager.plasma6.enable = true;
     services.displayManager.sddm = {
       enable = true;

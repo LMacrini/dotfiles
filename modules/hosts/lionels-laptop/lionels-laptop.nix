@@ -1,24 +1,14 @@
-{
-  inputs,
-  self,
-  ...
-}: {
-  flake.nixosConfigurations.lionels-laptop = inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      self.nixosModules.lionels-laptop
+{self, ...}: {
+  flake.nixosConfigurations.lionels-laptop = self.lib.nixosSystem {
+    aspects = [
+      "general"
+      "mango"
     ];
+
+    module = self.nixosModules.lionels-laptop;
   };
 
   flake.nixosModules.lionels-laptop = {
-    imports =
-      [
-        self.nixosModules.base
-      ]
-      ++ self.lib.aspects [
-        "general"
-        "mango"
-      ];
-
     preferences.monitors = {
       eDP-1 = {
         width = 1920;
