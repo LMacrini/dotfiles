@@ -7,26 +7,44 @@
     config,
     pkgs,
     ...
-  }: {
+  }: let
+    home = config.hjem.users.lioma.directory;
+    dirs = {
+      DOCUMENTS = "${home}/Documents";
+      DOWNLOAD = "${home}/Downloads";
+      GAMES = "${home}/Games";
+      MUSIC = "${home}/Music";
+      PICTURES = "${home}/Pictures";
+      PROJECTS = "${home}/Projects";
+      PUBLICSHARE = "${home}/Public";
+      VIDEOS = "${home}/Videos";
+    };
+
+    bindings = lib.mapAttrs' (k: lib.nameValuePair "XDG_${k}_DIR") dirs;
+  in {
     imports = [
       inputs.hjem.nixosModules.default
     ];
 
-    hjem = let
-      home = config.hjem.users.lioma.directory;
-      dirs = {
-        DOCUMENTS = "${home}/Documents";
-        DOWNLOAD = "${home}/Downloads";
-        GAMES = "${home}/Games";
-        MUSIC = "${home}/Music";
-        PICTURES = "${home}/Pictures";
-        PROJECTS = "${home}/Projects";
-        PUBLICSHARE = "${home}/Public";
-        VIDEOS = "${home}/Videos";
-      };
-
-      bindings = lib.mapAttrs' (k: lib.nameValuePair "XDG_${k}_DIR") dirs;
+    systemd.services.createXdgUserDirectories = let
+      directoriesList = lib.attrValues dirs;
+      mkdir = dir: ''[[ -L ${dir} ]] || run mkdir -p $VERBOSE_ARG ${dir}'';
     in {
+      after = [
+        "hjem-activation@lioma.service"
+      ];
+      requires = [
+        "hjem-activation@lioma.service"
+      ];
+
+      restartTriggers = [
+        directoriesList
+      ];
+
+      script = lib.concatMapStringsSep "\n" mkdir directoriesList;
+    };
+
+    hjem = {
       extraModules = [
         inputs.hjem-rum.hjemModules.default
       ];
@@ -48,24 +66,6 @@
         ];
 
         environment.sessionVariables = bindings;
-
-        systemd.services.createXdgUserDirectories = let
-          directoriesList = lib.attrValues dirs;
-          mkdir = dir: ''[[ -L ${dir} ]] || run mkdir -p $VERBOSE_ARG ${dir}'';
-        in {
-          after = [
-            "hjem-activation@lioma.service"
-          ];
-          requires = [
-            "hjem-activation@lioma.service"
-          ];
-
-          restartTriggers = [
-            directoriesList
-          ];
-
-          script = lib.concatMapStringsSep "\n" mkdir directoriesList;
-        };
 
         xdg.config.files = {
           "user-dirs.dirs" = {
