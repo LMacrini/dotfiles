@@ -40,11 +40,19 @@
       script = lib.concatMapStringsSep "\n" mkdir directoriesList;
     };
 
-    hjem = {
+    hjem = let
+      mod = {
+        options = with lib; {
+          wayland.systemd.target = mkOption {
+            type = types.strMatching "[a-zA-Z0-9@%:_.\\-]+[.]target";
+            default = "graphical-session.target";
+          };
+        };
+      };
+    in {
       extraModules = [
         inputs.hjem-rum.hjemModules.default
-
-        self.hjemModules.wayland-pipewire-idle-inhibit
+        mod
       ];
 
       users.lioma = {

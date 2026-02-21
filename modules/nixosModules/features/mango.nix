@@ -9,6 +9,7 @@
     "hjem"
     "ly"
     "wallpaper"
+    "wayland-pipewire-idle-inhibit"
   ];
 
   flake.aspects.mango.module = {
@@ -82,7 +83,7 @@
       monitors =
         config.preferences.monitors
         |> lib.mapAttrsToList (n: v:
-          with (lib.mapAttrs (_: toString) v); "monitorrule=name:${n},width:${width},height:${height},refresh:${refreshRate},x:${x},y:${y},scale:${scale}")
+          with v; "monitorrule=name:${n},width:${width},height:${height},refresh:${refreshRate},x:${x},y:${y},scale:${scale}")
         |> builtins.concatStringsSep "\n";
 
       launcher = "rofi -show drun";
@@ -162,11 +163,6 @@
       in {
         gtk3 = css;
         gtk4 = css;
-      };
-
-      services.wayland-pipewire-idle-inhibit = {
-        enable = true;
-        systemdTarget = "mango-session.target";
       };
 
       systemd.targets.mango-session = {
