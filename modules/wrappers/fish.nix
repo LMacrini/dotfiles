@@ -35,6 +35,7 @@
           alias lt "lsd --tree"
           alias lla "lsd -lA"
           alias llt "lsd -l --tree"
+          alias l "lsd -alh"
 
           set fish_greeting
 
