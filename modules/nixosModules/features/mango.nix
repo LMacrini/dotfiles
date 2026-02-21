@@ -167,7 +167,7 @@
       };
 
       services.swayidle = let
-        swaylock = lib.getExe pkgs.swaylock;
+        swaylock = lib.getExe pkgs.self.swaylock;
       in {
         events = [
           {
