@@ -145,6 +145,56 @@
         systemd
       ];
 
+      rum.misc.gtk.css = let
+        css =
+          # css
+          ''
+            headerbar.default-decoration {
+              margin-bottom: 50px;
+              margin-top: -100px;
+            }
+
+            window.csd,             /* gtk4? */
+            window.csd decoration { /* gtk3 */
+              box-shadow: none;
+            }
+          '';
+      in {
+        gtk3 = css;
+        gtk4 = css;
+      };
+
+      systemd.targets.mango-session = {
+        after = ["graphical-session-pre.target"];
+        bindsTo = ["graphical-session.target"];
+        wants = ["graphical-session-pre.target"];
+        description = "mango compositor session";
+        documentation = ["man:systemd.special(7)"];
+      };
+
+      systemd.services.wayland-pipewire-idle-inhibit = let
+        tomlFormat = pkgs.formats.toml {};
+        config = tomlFormat.generate "wayland-pipewire-idle-inhibit.toml" {
+          # settings here
+        };
+      in {
+        description = "Inhibit Wayland idling when media is played through pipewire";
+        documentation = ["https://github.com/rafaelrc7/wayland-pipewire-idle-inhibit"];
+        after = [
+          "pipewire.service"
+          "mango-session.target"
+        ];
+        wants = ["pipewire.service"];
+        wantedBy = ["mango-session.target"];
+
+        script = "${lib.getExe pkgs.wayland-pipewire-idle-inhibit} -c ${config}";
+
+        serviceConfig = {
+          Restart = "always";
+          RestartSec = 10;
+        };
+      };
+
       xdg.config.files."mango/config.conf".text =
         # conf
         ''
