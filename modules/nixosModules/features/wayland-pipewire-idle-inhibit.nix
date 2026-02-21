@@ -29,7 +29,7 @@
             systemdTarget = mkOption {
               type = self.lib.types.systemd.target;
               default = config.wayland.systemd.target;
-              defaultText = "config.wayland.systemd.target";
+              defaultText = literalExpression "config.wayland.systemd.target";
               example = "mango-session.target";
             };
           };

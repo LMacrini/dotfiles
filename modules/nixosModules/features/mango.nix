@@ -8,6 +8,7 @@
     "desktop"
     "hjem"
     "ly"
+    "swayidle"
     "wallpaper"
     "wayland-pipewire-idle-inhibit"
   ];
