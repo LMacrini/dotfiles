@@ -31,10 +31,10 @@
       mkdir = dir: ''[[ -L ${dir} ]] || run mkdir -p $VERBOSE_ARG ${dir}'';
     in {
       after = [
-        "hjem-activation@lioma.service"
+        "hjem-activate@lioma.service"
       ];
       requires = [
-        "hjem-activation@lioma.service"
+        "hjem-activate@lioma.service"
       ];
 
       restartTriggers = [
