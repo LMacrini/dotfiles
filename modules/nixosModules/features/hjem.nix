@@ -44,7 +44,7 @@
       mod = {
         options = with lib; {
           wayland.systemd.target = mkOption {
-            type = types.strMatching "[a-zA-Z0-9@%:_.\\-]+[.]target";
+            type = self.lib.types.systemd.target;
             default = "graphical-session.target";
           };
         };

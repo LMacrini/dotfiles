@@ -165,6 +165,8 @@
         gtk4 = css;
       };
 
+      wayland.systemd.target = "mango-session.target";
+
       systemd.targets.mango-session = {
         after = ["graphical-session-pre.target"];
         bindsTo = ["graphical-session.target"];
