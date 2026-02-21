@@ -166,6 +166,21 @@
         gtk4 = css;
       };
 
+      services.swayidle = let
+        swaylock = lib.getExe pkgs.swaylock;
+      in {
+        events = [
+          {
+            event = "before-sleep";
+            command = "${swaylock} --fade-in 0";
+          }
+          {
+            event = "lock";
+            command = "${swaylock} --grace 10";
+          }
+        ];
+      };
+
       wayland.systemd.target = "mango-session.target";
 
       systemd.targets.mango-session = {
@@ -174,6 +189,8 @@
         wants = ["graphical-session-pre.target"];
         description = "mango compositor session";
         documentation = ["man:systemd.special(7)"];
+
+        wantedBy = ["graphical-session.target"];
       };
 
       xdg.config.files."mango/config.conf".text =

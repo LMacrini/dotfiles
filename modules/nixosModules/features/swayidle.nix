@@ -2,12 +2,12 @@
   flake.aspects.swayidle = {
     deps = ["hjem"];
 
-    module = let
-      mod = {
-        config,
-        pkgs,
-        ...
-      }: let
+    module = {
+      config,
+      pkgs,
+      ...
+    }: let
+      mod = {config, ...}: let
         cfg = config.services.swayidle;
       in {
         options.services.swayidle = with lib; let
@@ -104,10 +104,6 @@
             partOf = [cfg.systemdTarget];
             wantedBy = [cfg.systemdTarget];
 
-            # environment = {
-            #   PATH = lib.mkForce <| lib.makeBinPath [pkgs.bash];
-            # };
-
             script = let
               mkTimeout = t:
                 [
@@ -145,6 +141,24 @@
         extraModules = [mod];
         users.lioma.services.swayidle = {
           enable = true;
+          timeouts = [
+            {
+              timeout = 150;
+              command = "${lib.getExe pkgs.brightnessctl} -s set 10";
+              resumeCommand = "${lib.getExe pkgs.brightnessctl} -r";
+            }
+            {
+              timeout = 300;
+              command = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
+            }
+            {
+              timeout =
+                if (config.preferences.laptop.enable)
+                then 420
+                else 900;
+              command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
+            }
+          ];
         };
       };
     };
