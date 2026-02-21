@@ -58,7 +58,10 @@
       configPackages = [mango];
     };
 
-    security.polkit.enable = true; # should be on by default but doesn't hurt
+    security = {
+      pam.services.swaylock = {};
+      polkit.enable = true; # should be on by default but doesn't hurt
+    };
 
     services = {
       displayManager.sessionPackages = [mango];
