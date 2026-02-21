@@ -57,6 +57,10 @@
         blueman.enable = true;
       };
 
+      hardware = {
+        bluetooth.enable = true;
+      };
+
       programs.dconf.profiles.user.databases = [
         {
           lockAll = true;
