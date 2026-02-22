@@ -65,6 +65,13 @@
         {
           lockAll = true;
           settings."org/gnome/desktop/interface" = {
+            accent-color = "pink";
+            clock-format = "24h";
+            color-scheme = "prefer-dark";
+            gtk-theme = "adw-gtk3-dark";
+
+            cursor-size = lib.gvariant.mkInt32 config.cursor.size;
+            cursor-theme = config.cursor.name;
             icon-theme = config.iconTheme.name;
           };
         }

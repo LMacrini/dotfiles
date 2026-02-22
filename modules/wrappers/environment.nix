@@ -14,12 +14,13 @@
 
       runtimeInputs = [
         pkgs.nix
-        pkgs.manix
         pkgs.nix-inspect
         pkgs.nix-output-monitor
         self'.packages.nh
 
+        pkgs.bat
         pkgs.git
+        pkgs.ripgrep
 
         self'.packages.helix
         self'.packages.jujutsu

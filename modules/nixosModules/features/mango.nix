@@ -138,9 +138,15 @@
         }).wrapper;
     in {
       packages = with pkgs; [
+        brightnessctl
+        grim
         rofi
+        slurp
+        wireplumber
+        wl-clipboard
         wlogout
         wpaperd
+        xwayland-satellite
 
         pkgs.self.kitty
         waybar
