@@ -113,6 +113,7 @@
         element-desktop
         keymapp
 
+        nur.repos.forkprince.fluxer-bin
         nur.repos.forkprince.helium-nightly
       ];
   };
