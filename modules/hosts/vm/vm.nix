@@ -10,6 +10,8 @@
       wayland.enable = true;
     };
 
+    services.kanata.enable = false;
+
     networking.hostName = "vm";
 
     system.stateVersion = config.system.nixos.release;

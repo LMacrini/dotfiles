@@ -17,8 +17,11 @@
       "${modulesPath}/installer/cd-dvd/installation-cd-base.nix"
     ];
 
-    services.getty = {
-      autologinUser = lib.mkForce "lioma";
+    services = {
+      getty = {
+        autologinUser = lib.mkForce "lioma";
+      };
+      kanata.enable = false;
     };
 
     security.sudo.wheelNeedsPassword = false;
