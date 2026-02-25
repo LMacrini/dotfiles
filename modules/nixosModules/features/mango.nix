@@ -74,7 +74,6 @@
         pkgs.writeShellScriptBin "autostart.sh"
         # bash
         ''
-          dbus-update-activation-environment --systemd --all
           systemctl --user reset-failed
           systemd-inhibit --who="mangowc config" \
               --why="power button keybind" \
@@ -151,8 +150,7 @@
         pkgs.self.kitty
         waybar
 
-        # redundant but technically i do use them
-        dbus
+        # redundant but technically i do use it
         systemd
       ];
 
