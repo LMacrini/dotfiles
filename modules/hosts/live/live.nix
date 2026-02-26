@@ -26,6 +26,8 @@
 
     security.sudo.wheelNeedsPassword = false;
 
+    boot.loader.limine.enable = lib.mkForce false;
+
     users = {
       mutableUsers = lib.mkForce true;
       users = {
