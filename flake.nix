@@ -4,6 +4,8 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
+    channel.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
+
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
