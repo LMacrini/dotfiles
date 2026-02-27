@@ -55,6 +55,7 @@
 
     fjordlauncher = {
       url = "github:unmojang/fjordlauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     wayland-pipewire-idle-inhibit = {
