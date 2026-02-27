@@ -48,7 +48,18 @@
               return
             end
 
-            set packages (sqlite3 /etc/programs.sqlite "select package from programs where name = \"$program\" and system = \"${system}\";")
+            set packages (
+              sqlite3 -cmd ".parameter init" \
+                  -cmd ".parameter set @program \"$program\"" \
+                  /etc/programs.sqlite \
+                  "select package from programs where name = @program and system = \"${system}\";" \
+                  2>/dev/null
+            )
+
+            if test $status -ne 0
+              echo "$program: command not found (programs database error)" >&2
+              return
+            end
 
             if test (count $packages) -eq 0
               echo "$program: command not found in PATH or in nixpkgs"
