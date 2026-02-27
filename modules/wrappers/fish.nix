@@ -6,6 +6,7 @@
   perSystem = {
     pkgs,
     inputs',
+    system,
     ...
   }: let
     match =
@@ -39,6 +40,34 @@
 
           set fish_greeting
 
+          function fish_command_not_found
+            set program $argv[1]
+
+            if not test -f /etc/programs.sqlite
+              echo "$program: command not found" >&2
+              return
+            end
+
+            set packages (sqlite3 /etc/programs.sqlite "select package from programs where name = \"$program\" and system = \"${system}\";")
+
+            if test (count $packages) -eq 0
+              echo "$program: command not found in PATH or in nixpkgs"
+              return
+            else if test (count $packages) -eq 1
+              echo "The program '$program' is not in your PATH. You can make it available in an" >&2
+              echo "ephemeral shell by using the following package from nixpkgs:" >&2
+              echo "  $packages[1]"
+              return
+            end
+
+            echo "The program '$program' is not in your PATH. It is provided by several packages." >&2
+            echo "You can make it available in an ephemeral shell by using one of the following" >&2
+            echo "packages from nixpkgs:" >&2
+            for package in $packages
+              echo "  $package" >&2
+            end
+          end
+
           if type -q direnv
             direnv hook fish | source
           end
@@ -59,6 +88,7 @@
       runtimeInputs = with pkgs; [
         lsd
         nix-your-shell
+        sqlite
         zoxide
       ];
 
