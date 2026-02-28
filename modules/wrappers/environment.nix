@@ -17,6 +17,7 @@
         pkgs.nix-inspect
         pkgs.nix-output-monitor
         self'.packages.nh
+        self'.formatter
 
         pkgs.bat
         pkgs.git
