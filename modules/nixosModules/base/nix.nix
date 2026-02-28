@@ -11,7 +11,7 @@
       inputs.nur.overlays.default
     ];
 
-    environment.etc."programs.sqlite".source = "${inputs.channel}/programs.sqlite";
+    environment.etc."programs.sqlite".source = "${inputs.nixpkgs}/programs.sqlite";
 
     nix = {
       channel.enable = false;

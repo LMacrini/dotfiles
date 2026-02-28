@@ -21,19 +21,6 @@
         "type": "github"
       }
     },
-    "channel": {
-      "locked": {
-        "lastModified": 1772047000,
-        "narHash": "sha256-8rDP2AfBFi0DI9idtlWeK73XWJScPvwgokuYkSnVY/Y=",
-        "rev": "1267bb4920d0fc06ea916734c11b0bf004bbe17e",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.6561.1267bb4920d0/nixexprs.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz"
-      }
-    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -218,18 +205,15 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1771903837,
-        "narHash": "sha256-sdaqdnsQCv3iifzxwB22tUwN/fSHoN7j2myFW5EIkGk=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "e764fc9a405871f1f6ca3d1394fb422e0a0c3951",
-        "type": "github"
+        "lastModified": 1772047000,
+        "narHash": "sha256-8rDP2AfBFi0DI9idtlWeK73XWJScPvwgokuYkSnVY/Y=",
+        "rev": "1267bb4920d0fc06ea916734c11b0bf004bbe17e",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.6561.1267bb4920d0/nixexprs.tar.xz"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.11",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz"
       }
     },
     "nur": {
@@ -258,7 +242,6 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
-        "channel": "channel",
         "disko": "disko",
         "flake-parts": "flake-parts",
         "hjem": "hjem",
