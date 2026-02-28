@@ -200,7 +200,17 @@
         wantedBy = ["graphical-session.target"];
       };
 
-      xdg.config.files."mango/config.conf".text =
+      xdg.config.files."mango/config.conf".source =
+        (
+          f:
+            pkgs.runCommand "mango.conf" {
+              nativeBuildInputs = [mango];
+            } ''
+              mango -c ${f} -p
+              cp ${f} $out
+            ''
+        )
+        <| pkgs.writeText "mango.conf"
         # conf
         ''
           exec-once = kitty
