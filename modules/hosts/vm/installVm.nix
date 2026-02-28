@@ -11,8 +11,9 @@
       : "''${1:?Usage: install-vm <disk>}"
 
       cd $(mktemp -d)
-      git clone https://git.serversmp.xyz/seija/dotfiles .
-      git checkout v2 # NOTE: temporary until v2 is the main branch
+
+      # NOTE: remove `-b v2` when v2 becomes main
+      jj git clone https://git.serversmp.xyz/seija/dotfiles -b v2 .
 
       sudo ${lib.getExe inputs'.disko.packages.disko} -m destroy,format,mount --yes-wipe-all-disks --arg disk \"$1\" ${./_disko.nix}
 
@@ -22,10 +23,10 @@
         nixos-generate-config --root /mnt --show-hardware-config
         echo ";}"
       } > $HARDWARE
-      git add $HARDWARE
+      jj git export
       ${lib.getExe self'.formatter} $HARDWARE
 
-      sudo nixos-install --flake .#vm --no-channel-copy
+      echo "\n\n" | sudo nixos-install --flake .#vm --no-channel-copy
 
       sudo cp -r . /mnt/home/lioma/dotfiles
       sudo chown --recursive lioma /mnt/home/lioma/dotfiles
