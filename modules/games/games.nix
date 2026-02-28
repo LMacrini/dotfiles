@@ -11,7 +11,7 @@
 
   config = lib.mkIf config.games.standalone.enable {
     home-manager.users.lioma.home.packages = with pkgs; [
-      nur.repos.forkprince.osu-tachyon
+      prince.osu-tachyon
     ];
   };
 }

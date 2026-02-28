@@ -92,6 +92,9 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     inputs.nur.overlays.default
+    (next: prev: {
+      prince = prev.nur.repos.forkprince;
+    })
   ];
 
   # Enable networking

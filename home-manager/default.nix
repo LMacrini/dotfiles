@@ -69,7 +69,7 @@
       gnome-disk-utility
       peazip
       resources
-      nur.repos.forkprince.re-lunatic-player
+      prince.re-lunatic-player
       vlc
 
       # decide which to use
