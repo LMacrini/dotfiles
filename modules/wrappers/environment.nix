@@ -20,7 +20,6 @@
         self'.formatter
 
         pkgs.bat
-        pkgs.git
         pkgs.ripgrep
 
         self'.packages.helix

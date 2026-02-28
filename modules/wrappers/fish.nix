@@ -83,6 +83,10 @@
             direnv hook fish | source
           end
 
+          if type -q jj; and not type -q git
+            abbr --add git jj git
+          end
+
           if set -q KITTY_INSTALLATION_DIR
             set --global KITTY_SHELL_INTEGRATION "no-rc no-cursor"
             source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
