@@ -62,12 +62,12 @@
             end
 
             if test (count $packages) -eq 0
-              echo "$program: command not found in PATH or in nixpkgs"
+              echo "$program: command not found in PATH or in nixpkgs" >&2
               return
             else if test (count $packages) -eq 1
               echo "The program '$program' is not in your PATH. You can make it available in an" >&2
               echo "ephemeral shell by using the following package from nixpkgs:" >&2
-              echo "  $packages[1]"
+              echo "  $packages[1]" >&2
               return
             end
 
