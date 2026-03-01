@@ -5,10 +5,11 @@
 }: {
   flake.nixosModules.base = {
     nixpkgs.overlays = [
+      inputs.nur.overlays.default
       (final: prev: {
         self = self.packages.${prev.stdenv.system};
+        prince = prev.nur.repos.forkprince;
       })
-      inputs.nur.overlays.default
     ];
 
     environment.etc."programs.sqlite".source = "${inputs.nixpkgs}/programs.sqlite";

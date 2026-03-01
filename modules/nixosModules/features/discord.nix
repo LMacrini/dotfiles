@@ -11,7 +11,7 @@
       };
     };
 
-    equicord = pkgs.nur.repos.forkprince.equicord.overrideAttrs (finalAttrs: _: {
+    equicord = pkgs.prince.equicord.overrideAttrs (finalAttrs: _: {
       preBuild = ''
         mkdir ./src/userplugins
         ${
