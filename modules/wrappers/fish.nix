@@ -31,12 +31,12 @@
 
           alias cd z
           alias ls lsd
-          alias ll "lsd -l"
-          alias la "lsd -A"
-          alias lt "lsd --tree"
-          alias lla "lsd -lA"
-          alias llt "lsd -l --tree"
-          alias l "lsd -alh"
+          abbr --add ll ls -l
+          abbr --add la ls -A
+          abbr --add lt ls --tree
+          abbr --add lla ls -lA
+          abbr --add llt ls -l --tree
+          abbr --add l ls -alh
 
           set fish_greeting
 
