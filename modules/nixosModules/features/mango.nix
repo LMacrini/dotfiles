@@ -18,6 +18,10 @@
     config,
     ...
   }: let
+    # NOTE: in 26.05, can use nixpkgs version (probably)
+    # might be a good idea to use unstable nixpkgs,
+    # or maybe just keep using the flake until
+    # updates slow down, unsure
     mango = inputs.mango.packages.${pkgs.stdenv.system}.mango.override {
       enableXWayland = false;
     };
