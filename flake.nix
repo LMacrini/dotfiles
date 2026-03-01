@@ -35,7 +35,7 @@
     };
 
     mango = {
-      url = "github:dreammaomao/mangowc";
+      url = "github:mangowm/mango";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
