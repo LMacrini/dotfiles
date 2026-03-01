@@ -169,15 +169,15 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1772293017,
-        "narHash": "sha256-MwkaFghaoT1KjyQn0MYjI1NpiCntCNsCdLuhrGxZ3LQ=",
-        "owner": "dreammaomao",
+        "lastModified": 1772337777,
+        "narHash": "sha256-kZF47c8eVlAWkUDzAcH7d+6Cks+YdhQDH1A0X0v7DBo=",
+        "owner": "mangowm",
         "repo": "mango",
-        "rev": "94380a3e0724597247199a1f32e19f2cda4c0b42",
+        "rev": "243848f43e96e0e6c79210e014219b25c6d35e86",
         "type": "github"
       },
       "original": {
-        "owner": "dreammaomao",
+        "owner": "mangowm",
         "repo": "mango",
         "type": "github"
       }
