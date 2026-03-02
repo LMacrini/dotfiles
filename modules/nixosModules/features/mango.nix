@@ -144,6 +144,7 @@
         brightnessctl
         grim
         rofi
+        satty
         slurp
         wireplumber
         wl-clipboard
@@ -246,6 +247,7 @@
           xkb_rules_variant = mac
 
           bind = SUPER+SHIFT,S,spawn_shell,pkill slurp || grim -g "$(slurp -dw 0)" - | wl-copy
+          bind = SUPER+CTRL,S,spawn_shell,grim -t ppm - | satty -c /dev/null -f - -o - | wl-copy
 
           bind = NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
           bind = NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
