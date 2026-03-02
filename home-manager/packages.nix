@@ -110,7 +110,6 @@
               }
             );
         })
-        element-desktop
         keymapp
 
         prince.fluxer-bin
