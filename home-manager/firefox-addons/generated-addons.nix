@@ -737,10 +737,10 @@
   };
   "vimium-ff" = buildFirefoxXpiAddon {
     pname = "vimium-ff";
-    version = "2.3.1";
+    version = "2.4.0";
     addonId = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4618554/vimium_ff-2.3.1.xpi";
-    sha256 = "2c1b861cb41939c2a26e4e60b95d1e74e465e807c2c549a30c909c1923591473";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4698049/vimium_ff-2.4.0.xpi";
+    sha256 = "9ad35d0857031770e5c2f419789a5dfa8ea2fa3de7056c1dd32ca0bc81bb4d37";
     meta = with lib; {
       homepage = "https://github.com/philc/vimium";
       description = "The Hacker's Browser. Vimium provides keyboard shortcuts for navigation and control in the spirit of Vim.";
