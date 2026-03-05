@@ -10,7 +10,7 @@
 
   flake.nixosModules.iso = {
     modulesPath,
-    pkgs,
+    self',
     ...
   }: {
     imports = [
@@ -39,7 +39,7 @@
     networking.wireless.enable = false;
 
     environment.systemPackages = [
-      pkgs.self.installVm
+      self'.packages.installVm
     ];
   };
 }

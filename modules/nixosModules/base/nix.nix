@@ -3,11 +3,10 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.base = {
+  flake.nixosModules.base = {self', ...}: {
     nixpkgs.overlays = [
       inputs.nur.overlays.default
       (final: prev: {
-        self = self.packages.${prev.stdenv.system};
         prince = prev.nur.repos.forkprince;
       })
     ];

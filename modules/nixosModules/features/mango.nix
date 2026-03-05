@@ -16,8 +16,9 @@
     pkgs,
     config,
     inputs',
+    self',
     ...
-  }: let
+  } @ args: let
     # NOTE: in 26.05, can use nixpkgs version (probably)
     # might be a good idea to use unstable nixpkgs,
     # or maybe just keep using the flake until
@@ -28,7 +29,7 @@
   in {
     environment.systemPackages = [
       mango
-      pkgs.self.kitty
+      self'.packages.kitty
     ];
 
     xdg.portal = {
@@ -154,7 +155,7 @@
         wpaperd
         xwayland-satellite
 
-        pkgs.self.kitty
+        self'.packages.kitty
         waybar
 
         # redundant but technically i do use it
@@ -181,7 +182,7 @@
       };
 
       services.swayidle = let
-        swaylock = lib.getExe pkgs.self.swaylock;
+        swaylock = lib.getExe self'.packages.swaylock;
       in {
         events = [
           {

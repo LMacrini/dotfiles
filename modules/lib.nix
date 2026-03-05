@@ -15,26 +15,32 @@
       module,
       aspects ? [],
       system ? "x86_64-linux",
-    }:
+    }: let
+      makePrime = builtins.mapAttrs (_: attr:
+        if builtins.hasAttr system attr
+        then attr.${system}
+        else null);
+    in
       inputs.nixpkgs.lib.nixosSystem {
         inherit system;
+
+        specialArgs = {
+          inputs' =
+            builtins.mapAttrs (
+              _: flake: makePrime flake
+            )
+            inputs;
+          self' = makePrime self;
+        };
 
         modules =
           [
             module
             self.nixosModules.base
-
             {
-              config._module.args.inputs' =
-                builtins.mapAttrs (
-                  _: flake:
-                    builtins.mapAttrs (_: attr:
-                      if builtins.hasAttr system attr
-                      then attr.${system}
-                      else null)
-                    flake
-                )
-                inputs;
+              config._module.args = {
+                inherit system;
+              };
             }
           ]
           ++ self.lib.aspects aspects;

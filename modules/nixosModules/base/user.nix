@@ -1,5 +1,5 @@
 {lib, ...}: {
-  flake.nixosModules.base = {pkgs, ...}: {
+  flake.nixosModules.base = {self', ...}: {
     users.mutableUsers = false;
 
     users.users.lioma = {
@@ -14,7 +14,7 @@
       ];
       hashedPassword = "$y$j9T$MVARZZBLm43XHuw9mceTd1$Ij0wQ0GJ5YwJinZlm0e4IWK2Bq8VHN/Kbe3xvQ58B22";
 
-      shell = pkgs.self.environment;
+      shell = self'.packages.environment;
     };
 
     users.users.root = {
@@ -23,7 +23,7 @@
     };
 
     environment.shells = [
-      pkgs.self.environment
+      self'.packages.environment
     ];
   };
 }
