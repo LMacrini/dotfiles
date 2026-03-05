@@ -4,7 +4,7 @@
   ...
 }:
 let
-  buildFirefoxXpiAddon = lib.makeOverridable (
+  buildMozillaXpiAddon = lib.makeOverridable (
     {
       stdenv ? pkgs.stdenvNoCC,
       fetchurl ? pkgs.fetchurl,
@@ -37,7 +37,7 @@ let
   );
 
   generatedPackages = import ./generated-addons.nix {
-    inherit buildFirefoxXpiAddon;
+    inherit buildMozillaXpiAddon;
     inherit (pkgs) fetchurl lib;
     stdenv = pkgs.stdenvNoCC;
   };
