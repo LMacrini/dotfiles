@@ -16,22 +16,13 @@
       aspects ? [],
       system ? "x86_64-linux",
     }: let
-      makePrime = builtins.mapAttrs (_: attr:
-        if builtins.hasAttr system attr
-        then attr.${system}
-        else null);
+      makePrime = a:
+        a
+        |> lib.filterAttrs (_: v: builtins.isAttrs v && builtins.hasAttr system v)
+        |> builtins.mapAttrs (_: attr: attr.${system});
     in
       inputs.nixpkgs.lib.nixosSystem {
         inherit system;
-
-        specialArgs = {
-          inputs' =
-            builtins.mapAttrs (
-              _: flake: makePrime flake
-            )
-            inputs;
-          self' = makePrime self;
-        };
 
         modules =
           [
@@ -40,6 +31,12 @@
             {
               config._module.args = {
                 inherit system;
+                inputs' =
+                  builtins.mapAttrs (
+                    _: flake: makePrime flake
+                  )
+                  inputs;
+                self' = makePrime self;
               };
             }
           ]
