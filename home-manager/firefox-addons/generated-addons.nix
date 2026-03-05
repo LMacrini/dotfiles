@@ -1,11 +1,11 @@
 {
-  buildFirefoxXpiAddon,
+  buildMozillaXpiAddon,
   fetchurl,
   lib,
   stdenv,
 }:
 {
-  "annotations-restored" = buildFirefoxXpiAddon {
+  "annotations-restored" = buildMozillaXpiAddon {
     pname = "annotations-restored";
     version = "1.2";
     addonId = "{0731d555-4732-4047-99f9-38a388ffa044}";
@@ -23,7 +23,7 @@
       platforms = platforms.all;
     };
   };
-  "bitwarden-password-manager" = buildFirefoxXpiAddon {
+  "bitwarden-password-manager" = buildMozillaXpiAddon {
     pname = "bitwarden-password-manager";
     version = "2026.1.1";
     addonId = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
@@ -53,7 +53,7 @@
       platforms = platforms.all;
     };
   };
-  "bonjourr-startpage" = buildFirefoxXpiAddon {
+  "bonjourr-startpage" = buildMozillaXpiAddon {
     pname = "bonjourr-startpage";
     version = "22.0.0";
     addonId = "{4f391a9e-8717-4ba6-a5b1-488a34931fcb}";
@@ -67,7 +67,7 @@
       platforms = platforms.all;
     };
   };
-  "catppuccin-macchiato-pink" = buildFirefoxXpiAddon {
+  "catppuccin-macchiato-pink" = buildMozillaXpiAddon {
     pname = "catppuccin-macchiato-pink";
     version = "1.1";
     addonId = "{f6a92958-4dd7-4f80-bda3-936d3af8e63f}";
@@ -80,7 +80,7 @@
       platforms = platforms.all;
     };
   };
-  "consent-o-matic" = buildFirefoxXpiAddon {
+  "consent-o-matic" = buildMozillaXpiAddon {
     pname = "consent-o-matic";
     version = "1.1.5";
     addonId = "gdpr@cavi.au.dk";
@@ -99,7 +99,7 @@
       platforms = platforms.all;
     };
   };
-  "darkreader" = buildFirefoxXpiAddon {
+  "darkreader" = buildMozillaXpiAddon {
     pname = "darkreader";
     version = "4.9.123";
     addonId = "addon@darkreader.org";
@@ -120,7 +120,7 @@
       platforms = platforms.all;
     };
   };
-  "dearrow" = buildFirefoxXpiAddon {
+  "dearrow" = buildMozillaXpiAddon {
     pname = "dearrow";
     version = "2.2.3";
     addonId = "deArrow@ajay.app";
@@ -144,7 +144,7 @@
       platforms = platforms.all;
     };
   };
-  "decentraleyes" = buildFirefoxXpiAddon {
+  "decentraleyes" = buildMozillaXpiAddon {
     pname = "decentraleyes";
     version = "3.0.0";
     addonId = "jid1-BoFifL9Vbdl2zQ@jetpack";
@@ -166,7 +166,7 @@
       platforms = platforms.all;
     };
   };
-  "firefox-color" = buildFirefoxXpiAddon {
+  "firefox-color" = buildMozillaXpiAddon {
     pname = "firefox-color";
     version = "2.1.7";
     addonId = "FirefoxColor@mozilla.com";
@@ -185,7 +185,7 @@
       platforms = platforms.all;
     };
   };
-  "indie-wiki-buddy" = buildFirefoxXpiAddon {
+  "indie-wiki-buddy" = buildMozillaXpiAddon {
     pname = "indie-wiki-buddy";
     version = "3.14.1";
     addonId = "{cb31ec5d-c49a-4e5a-b240-16c767444f62}";
@@ -443,7 +443,7 @@
       platforms = platforms.all;
     };
   };
-  "libredirect" = buildFirefoxXpiAddon {
+  "libredirect" = buildMozillaXpiAddon {
     pname = "libredirect";
     version = "3.2.0";
     addonId = "7esoorv3@alefvanoon.anonaddy.me";
@@ -464,7 +464,7 @@
       platforms = platforms.all;
     };
   };
-  "localcdn-fork-of-decentraleyes" = buildFirefoxXpiAddon {
+  "localcdn-fork-of-decentraleyes" = buildMozillaXpiAddon {
     pname = "localcdn-fork-of-decentraleyes";
     version = "2.6.83";
     addonId = "{b86e4813-687a-43e6-ab65-0bde4ab75758}";
@@ -485,7 +485,7 @@
       platforms = platforms.all;
     };
   };
-  "nekocap" = buildFirefoxXpiAddon {
+  "nekocap" = buildMozillaXpiAddon {
     pname = "nekocap";
     version = "1.21.0";
     addonId = "nekocaption@gmail.com";
@@ -525,7 +525,7 @@
       platforms = platforms.all;
     };
   };
-  "refined-github-" = buildFirefoxXpiAddon {
+  "refined-github-" = buildMozillaXpiAddon {
     pname = "refined-github-";
     version = "26.3.3";
     addonId = "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}";
@@ -547,7 +547,7 @@
       platforms = platforms.all;
     };
   };
-  "return-youtube-dislikes" = buildFirefoxXpiAddon {
+  "return-youtube-dislikes" = buildMozillaXpiAddon {
     pname = "return-youtube-dislikes";
     version = "3.0.0.18";
     addonId = "{762f9885-5a13-4abd-9c77-433dcd38b8fd}";
@@ -565,7 +565,7 @@
       platforms = platforms.all;
     };
   };
-  "simple-tab-groups" = buildFirefoxXpiAddon {
+  "simple-tab-groups" = buildMozillaXpiAddon {
     pname = "simple-tab-groups";
     version = "5.3.2";
     addonId = "simple-tab-groups@drive4ik";
@@ -594,7 +594,7 @@
       platforms = platforms.all;
     };
   };
-  "sponsorblock" = buildFirefoxXpiAddon {
+  "sponsorblock" = buildMozillaXpiAddon {
     pname = "sponsorblock";
     version = "6.1.2";
     addonId = "sponsorBlocker@ajay.app";
@@ -615,7 +615,7 @@
       platforms = platforms.all;
     };
   };
-  "stop-malware-content" = buildFirefoxXpiAddon {
+  "stop-malware-content" = buildMozillaXpiAddon {
     pname = "stop-malware-content";
     version = "1.4.5";
     addonId = "{f58788c2-383d-4453-9e7d-afdcca0c9e65}";
@@ -629,7 +629,7 @@
       platforms = platforms.all;
     };
   };
-  "styl-us" = buildFirefoxXpiAddon {
+  "styl-us" = buildMozillaXpiAddon {
     pname = "styl-us";
     version = "2.3.19";
     addonId = "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}";
@@ -654,7 +654,7 @@
       platforms = platforms.all;
     };
   };
-  "traduzir-paginas-web" = buildFirefoxXpiAddon {
+  "traduzir-paginas-web" = buildMozillaXpiAddon {
     pname = "traduzir-paginas-web";
     version = "10.1.1.1";
     addonId = "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}";
@@ -674,7 +674,7 @@
       platforms = platforms.all;
     };
   };
-  "ublock-origin" = buildFirefoxXpiAddon {
+  "ublock-origin" = buildMozillaXpiAddon {
     pname = "ublock-origin";
     version = "1.69.0";
     addonId = "uBlock0@raymondhill.net";
@@ -712,7 +712,7 @@
       platforms = platforms.all;
     };
   };
-  "ultimadark" = buildFirefoxXpiAddon {
+  "ultimadark" = buildMozillaXpiAddon {
     pname = "ultimadark";
     version = "1.6.60";
     addonId = "{7c7f6dea-3957-4bb9-9eec-2ef2b9e5bcec}";
@@ -735,7 +735,7 @@
       platforms = platforms.all;
     };
   };
-  "vimium-ff" = buildFirefoxXpiAddon {
+  "vimium-ff" = buildMozillaXpiAddon {
     pname = "vimium-ff";
     version = "2.4.0";
     addonId = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
@@ -764,7 +764,7 @@
       platforms = platforms.all;
     };
   };
-  "violentmonkey" = buildFirefoxXpiAddon {
+  "violentmonkey" = buildMozillaXpiAddon {
     pname = "violentmonkey";
     version = "2.34.0";
     addonId = "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}";
@@ -789,7 +789,7 @@
       platforms = platforms.all;
     };
   };
-  "youtube-anti-translate" = buildFirefoxXpiAddon {
+  "youtube-anti-translate" = buildMozillaXpiAddon {
     pname = "youtube-anti-translate";
     version = "1.19.12";
     addonId = "{458160b9-32eb-4f4c-87d1-89ad3bdeb9dc}";
@@ -806,7 +806,7 @@
       platforms = platforms.all;
     };
   };
-  "youtube-nonstop" = buildFirefoxXpiAddon {
+  "youtube-nonstop" = buildMozillaXpiAddon {
     pname = "youtube-nonstop";
     version = "0.9.2";
     addonId = "{0d7cafdd-501c-49ca-8ebb-e3341caaa55e}";
@@ -823,7 +823,7 @@
       platforms = platforms.all;
     };
   };
-  "youtube-tweaks" = buildFirefoxXpiAddon {
+  "youtube-tweaks" = buildMozillaXpiAddon {
     pname = "youtube-tweaks";
     version = "2026.2.12";
     addonId = "{d867162c-4c38-4c5f-aca4-db6a6592d7da}";
