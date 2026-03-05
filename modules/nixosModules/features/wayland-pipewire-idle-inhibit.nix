@@ -19,7 +19,11 @@
       in {
         options = with lib; {
           services.wayland-pipewire-idle-inhibit = {
-            enable = mkEnableOption "wayland pipewire idle inhibit" // {default = true;};
+            enable =
+              mkEnableOption "wayland pipewire idle inhibit"
+              // {
+                default = true;
+              };
 
             settings = mkOption {
               type = tomlFormat.type;

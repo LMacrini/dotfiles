@@ -6,7 +6,5 @@
       vendorId = "seios";
       vendorName = "SeiOS";
     };
-
-    nixpkgs.hostPlatform = "x86_64-linux";
   };
 }

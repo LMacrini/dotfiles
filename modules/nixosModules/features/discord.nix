@@ -11,18 +11,18 @@
       };
     };
 
-    equicord = pkgs.prince.equicord.overrideAttrs (finalAttrs: _: {
-      preBuild = ''
-        mkdir ./src/userplugins
-        ${
-          userplugins
-          |> lib.mapAttrsToList (
-            name: value: "cp -r ${value} ./src/userplugins/${name}"
-          )
-          |> builtins.concatStringsSep "\n"
-        }
-      '';
-    });
+    equicord = pkgs.prince.equicord.overrideAttrs (
+      finalAttrs: _: {
+        preBuild = ''
+          mkdir ./src/userplugins
+          ${
+            userplugins
+            |> lib.mapAttrsToList (name: value: "cp -r ${value} ./src/userplugins/${name}")
+            |> builtins.concatStringsSep "\n"
+          }
+        '';
+      }
+    );
 
     discord = pkgs.discord.override {
       inherit equicord;

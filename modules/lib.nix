@@ -6,28 +6,36 @@
 }: {
   flake.lib = {
     aspects = let
-      getAll = aspects:
-        aspects
-        ++ map (aspect:
-          self.aspects.${aspect}.deps
-          |> getAll)
-        aspects;
+      getAll = aspects: aspects ++ map (aspect: self.aspects.${aspect}.deps |> getAll) aspects;
     in
       aspects:
-        getAll aspects
-        |> lib.flatten
-        |> lib.uniqueStrings
-        |> map (aspect: self.aspects.${aspect}.module);
+        getAll aspects |> lib.flatten |> lib.uniqueStrings |> map (aspect: self.aspects.${aspect}.module);
 
     nixosSystem = {
       module,
       aspects ? [],
+      system ? "x86_64-linux",
     }:
       inputs.nixpkgs.lib.nixosSystem {
+        inherit system;
+
         modules =
           [
             module
             self.nixosModules.base
+
+            {
+              config._module.args.inputs' =
+                builtins.mapAttrs (
+                  _: flake:
+                    builtins.mapAttrs (_: attr:
+                      if builtins.hasAttr system attr
+                      then attr.${system}
+                      else null)
+                    flake
+                )
+                inputs;
+            }
           ]
           ++ self.lib.aspects aspects;
       };

@@ -14,9 +14,11 @@
         package = lib.mkForce pkgs.swaylock-effects;
         inherit pkgs;
         settings = let
-          catppuccin = lib.importJSON (pkgs.runCommand "converted.json" {nativeBuildInputs = [pkgs.jc];} ''
-            jc --ini < ${inputs'.catppuccin.packages.swaylock}/macchiato.conf > $out
-          '');
+          catppuccin = lib.importJSON (
+            pkgs.runCommand "converted.json" {nativeBuildInputs = [pkgs.jc];} ''
+              jc --ini < ${inputs'.catppuccin.packages.swaylock}/macchiato.conf > $out
+            ''
+          );
         in
           catppuccin
           // {

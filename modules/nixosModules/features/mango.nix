@@ -1,6 +1,5 @@
 {
   self,
-  inputs,
   lib,
   ...
 }: {
@@ -16,13 +15,14 @@
   flake.aspects.mango.module = {
     pkgs,
     config,
+    inputs',
     ...
   }: let
     # NOTE: in 26.05, can use nixpkgs version (probably)
     # might be a good idea to use unstable nixpkgs,
     # or maybe just keep using the flake until
     # updates slow down, unsure
-    mango = inputs.mango.packages.${pkgs.stdenv.system}.mango.override {
+    mango = inputs'.mango.packages.mango.override {
       enableXWayland = false;
     };
   in {
@@ -89,8 +89,10 @@
 
       monitors =
         config.preferences.monitors
-        |> lib.mapAttrsToList (n: v:
-          with v; "monitorrule=name:${n},width:${width},height:${height},refresh:${refreshRate},x:${x},y:${y},scale:${scale}")
+        |> lib.mapAttrsToList (
+          n: v:
+            with v; "monitorrule=name:${n},width:${width},height:${height},refresh:${refreshRate},x:${x},y:${y},scale:${scale}"
+        )
         |> builtins.concatStringsSep "\n";
 
       launcher = "rofi -show drun";
@@ -208,9 +210,11 @@
       xdg.config.files."mango/config.conf".source =
         (
           f:
-            pkgs.runCommand "mango.conf" {
+            pkgs.runCommand "mango.conf"
+            {
               nativeBuildInputs = [mango];
-            } ''
+            }
+            ''
               mango -c ${f} -p
               cp ${f} $out
             ''
@@ -311,7 +315,8 @@
           drag_tile_to_tile = 1
 
           ${monitors}
-          ${lib.concatStrings
+          ${
+            lib.concatStrings
             <| builtins.genList (
               i: let
                 tag = toString <| i + 1;
@@ -322,7 +327,8 @@
                 bind=SUPER+CTRL+SHIFT,${tag},toggletag,${tag}
               ''
             )
-            9}
+            9
+          }
         '';
     };
   };
