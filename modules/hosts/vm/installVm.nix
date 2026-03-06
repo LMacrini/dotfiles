@@ -12,8 +12,7 @@
 
       cd $(mktemp -d)
 
-      # NOTE: remove `-b v2` when v2 becomes main
-      jj git clone https://git.serversmp.xyz/seija/dotfiles -b v2 .
+      jj git clone https://git.serversmp.xyz/seija/dotfiles
 
       sudo ${lib.getExe inputs'.disko.packages.disko} -m destroy,format,mount --yes-wipe-all-disks --arg disk \"$1\" ${./_disko.nix}
 
