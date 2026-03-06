@@ -7,6 +7,8 @@
     };
     import-tree.url = "github:vic/import-tree";
 
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";

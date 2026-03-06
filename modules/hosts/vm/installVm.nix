@@ -28,8 +28,10 @@
 
       echo "\n\n" | sudo nixos-install --flake .#vm --no-channel-copy
 
-      sudo cp -r . /mnt/home/lioma/dotfiles
-      sudo chown --recursive lioma /mnt/home/lioma/dotfiles
+      conf_dir="/mnt''${NH_FLAKE:-/home/lioma/seiconf}"
+
+      sudo cp -r . $conf_dir
+      sudo chown --recursive lioma $conf_dir
     '';
   };
 }

@@ -16,11 +16,16 @@
         pkgs.nix
         pkgs.nix-inspect
         pkgs.nix-output-monitor
-        self'.packages.nh
+        pkgs.nh
         self'.formatter
 
         pkgs.bat
         pkgs.ripgrep
+        pkgs.tlrc
+        pkgs.rip2
+        pkgs.p7zip
+        pkgs.unzip
+        pkgs.ffmpeg
 
         self'.packages.helix
         self'.packages.jujutsu

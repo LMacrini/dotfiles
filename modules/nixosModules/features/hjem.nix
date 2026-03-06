@@ -47,6 +47,10 @@
             type = self.lib.types.systemd.target;
             default = "graphical-session.target";
           };
+
+          configDirectory = mkOption {
+            type = types.str;
+          };
         };
       };
     in {
@@ -55,9 +59,12 @@
         mod
       ];
 
-      users.lioma = {
+      users.lioma = let
+        cfg = config.hjem.users.lioma;
+      in {
         enable = true;
         directory = "/home/lioma";
+        configDirectory = "${cfg.directory}/seiconf";
         user = "lioma";
 
         rum.environment.hideWarning = true;
@@ -71,7 +78,11 @@
           pkgs.xdg-user-dirs
         ];
 
-        environment.sessionVariables = bindings;
+        environment.sessionVariables =
+          bindings
+          // {
+            NH_FLAKE = cfg.configDirectory;
+          };
 
         xdg.config.files = {
           "user-dirs.dirs" = {
@@ -80,6 +91,14 @@
           };
 
           "user-dirs.conf".text = "enabled=False";
+
+          "fish/conf.d/hjem-environment.fish" = lib.mkIf (cfg.environment.sessionVariables != {}) {
+            text =
+              lib.concatMapAttrsStringSep "\n" (
+                name: value: "set -gx ${lib.escapeShellArg name} ${lib.escapeShellArg (toString value)}"
+              )
+              cfg.environment.sessionVariables;
+          };
         };
       };
 

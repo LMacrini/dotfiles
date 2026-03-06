@@ -5,6 +5,7 @@
 }: {
   flake.packages."x86_64-linux".iso =
     (self.lib.nixosSystem {
+      aspects = ["hjem"];
       module = self.nixosModules.iso;
     }).config.system.build.isoImage;
 

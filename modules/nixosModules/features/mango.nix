@@ -18,7 +18,7 @@
     inputs',
     self',
     ...
-  } @ args: let
+  }: let
     # NOTE: in 26.05, can use nixpkgs version (probably)
     # might be a good idea to use unstable nixpkgs,
     # or maybe just keep using the flake until
@@ -29,7 +29,6 @@
   in {
     environment.systemPackages = [
       mango
-      self'.packages.kitty
     ];
 
     xdg.portal = {

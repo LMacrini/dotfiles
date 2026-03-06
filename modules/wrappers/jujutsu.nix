@@ -10,7 +10,7 @@
           };
 
           ui = {
-            default-command = "log";
+            default-command = ["log" "--reversed"];
             diff-editor = ":builtin";
             paginate = "never";
           };
