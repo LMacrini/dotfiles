@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772706147,
-        "narHash": "sha256-C0UMYQg3KBU6+L8TLfQ/s60O6/Tiu/JpN8C/WiIH9DU=",
+        "lastModified": 1772762584,
+        "narHash": "sha256-jKszHiMdklsClvUjCnNWtYrpljce0Bc3h7JtOV/iMqQ=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "54af2ae96631311dc4d2686a07e4f472fb36f516",
+        "rev": "82c1d02f0a95ac631859d9e863f3646beb828674",
         "type": "github"
       },
       "original": {
@@ -372,11 +372,11 @@
         "noctalia-qs": "noctalia-qs"
       },
       "locked": {
-        "lastModified": 1772734051,
-        "narHash": "sha256-sHoPkKYFB/F70Iyp07xKeCnM2M4fIDy7u43k8qpVMdQ=",
+        "lastModified": 1772755279,
+        "narHash": "sha256-vDeyLhCqy2weSYD/5LtX4kXXc/pBwd1rUqcPkzCGTKs=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "187071c13bfe62463677d86a056f9dec1d8fb2b4",
+        "rev": "52a7165b46117ac7dcf41be1f9df6f1e1a538b13",
         "type": "github"
       },
       "original": {
@@ -414,11 +414,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772725591,
-        "narHash": "sha256-I5WiAHsTkgUNOEtNvysNC7zVt4VNV0Ve3qsuiTQ9RiI=",
+        "lastModified": 1772763520,
+        "narHash": "sha256-o7G8kMrTw/aJI3aIZIGu4o+kcIyPcW7+fbas/2z8Eec=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "3567b1d67fc040f0a9206b1824069b68fe172f05",
+        "rev": "11dfad46832758dd4b8fc2a6d9df6dfb3bd1c94e",
         "type": "github"
       },
       "original": {
@@ -435,11 +435,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1772697300,
-        "narHash": "sha256-WCff4J8cv61B52GUlFkzHSuTTUPwdXxjANvFw+gXDxI=",
+        "lastModified": 1772747060,
+        "narHash": "sha256-ObM/q0cfE7C3pg//kQWkTGU8XIq9urH3lQ3naxCQdRw=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "c19b8a567176de0d78e001640266128170bdc438",
+        "rev": "7bf6f284b78003d83b22de3318b6e8af9430f775",
         "type": "github"
       },
       "original": {
@@ -620,11 +620,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772718810,
-        "narHash": "sha256-E1yxmyjmv/mkhExiYNfylnBKBH1N4p81agw8mHQsX2Y=",
+        "lastModified": 1772765538,
+        "narHash": "sha256-HSr+Ae9S4QiBUi5E0ct203ZChqw/kbUqzFBbDKtzp0M=",
         "owner": "silversquirl",
         "repo": "zig-flake",
-        "rev": "f9e7be2575771c6873e8642e9e32c724ac26aef9",
+        "rev": "3d0b426f78d4a95d72d2db2b8d5c3eed823f7975",
         "type": "github"
       },
       "original": {
