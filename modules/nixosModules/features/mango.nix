@@ -71,6 +71,8 @@
       displayManager.sessionPackages = [mango];
       graphical-desktop.enable = true;
       gnome.gnome-keyring.enable = true;
+
+      logind.settings.Login.HandleLidSwitch = "ignore";
     };
 
     hjem.users.lioma = let
