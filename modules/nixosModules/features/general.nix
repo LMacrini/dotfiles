@@ -2,12 +2,9 @@
   flake.aspects.general = {
     deps = [
       "discord"
+      "browser"
     ];
 
-    module = {pkgs, ...}: {
-      environment.systemPackages = [
-        pkgs.librewolf
-      ];
-    };
+    module = {pkgs, ...}: {};
   };
 }

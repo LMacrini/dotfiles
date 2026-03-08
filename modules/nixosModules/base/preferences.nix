@@ -3,17 +3,24 @@
   self,
   ...
 }: {
-  flake.nixosModules.base = with lib; {
-    options.preferences = {
-      laptop = {
-        enable = mkEnableOption "laptop settings";
+  flake.nixosModules.base = {config, ...}:
+    with lib; {
+      options.preferences = {
+        laptop = {
+          enable = mkEnableOption "laptop settings";
+        };
+
+        monitors = mkOption {
+          default = {};
+
+          type = self.lib.types.monitors;
+        };
       };
 
-      monitors = mkOption {
-        default = {};
-
-        type = self.lib.types.monitors;
+      config = let
+        cfg = config.preferences;
+      in {
+        services.upower.enable = cfg.laptop.enable;
       };
     };
-  };
 }

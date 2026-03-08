@@ -39,6 +39,7 @@
           abbr --add l ls -alh
 
           set fish_greeting
+          bind \cz 'fg 2>/dev/null; commandline -f repaint'
 
           function fish_command_not_found
             set program $argv[1]
