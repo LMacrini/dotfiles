@@ -147,7 +147,7 @@
       packages = with pkgs; [
         brightnessctl
         grim
-        rofi
+        self'.packages.rofi
         satty
         slurp
         wireplumber
