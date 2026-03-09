@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   flake.aspects.general = {
     deps = [
       "discord"
@@ -6,7 +6,15 @@
       "hjem"
     ];
 
-    module = {pkgs, ...}: {
+    module = {
+      pkgs,
+      inputs',
+      ...
+    }: {
+      programs = {
+        steam.package = lib.mkDefault inputs'.millennium.packages.millennium-steam;
+      };
+
       hjem.users.lioma = {
         rum.programs.direnv.enable = true;
         xdg.config.files."direnv/direnv.toml" = let

@@ -109,7 +109,9 @@
                 bitwarden-password-manager
                 bonjourr-startpage
                 catppuccin-macchiato-pink
+                dearrow
                 refined-github-
+                simple-tab-groups
                 ublock-origin
               ];
             };

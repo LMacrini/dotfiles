@@ -9,15 +9,16 @@
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
-    hjem = {
-      url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hjem = {
+    #   url = "github:feel-co/hjem";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    hjem.follows = "hjem-rum/hjem";
     hjem-rum = {
       url = "github:snugnug/hjem-rum";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        hjem.follows = "hjem";
+        # hjem.follows = "hjem";
       };
     };
 
@@ -50,6 +51,11 @@
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
       };
+    };
+
+    millennium = {
+      url = "github:steamclienthomebrew/millennium?dir=packages/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

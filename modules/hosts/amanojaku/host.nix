@@ -30,6 +30,10 @@
 
     services.openssh.enable = true;
 
+    programs = {
+      steam.enable = true;
+    };
+
     hjem.users.lioma.packages = with pkgs; [
       libreoffice
       prince.fluxer-bin
