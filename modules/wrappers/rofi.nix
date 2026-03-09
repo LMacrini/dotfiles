@@ -3,10 +3,10 @@
     inputs',
     pkgs,
     ...
-  }: {
-    packages.rofi = let
-      catppuccin = inputs'.catppuccin.packages.rofi;
-    in
+  }: let
+    catppuccin = inputs'.catppuccin.packages.rofi;
+  in {
+    packages.rofi =
       (inputs.wrappers.wrapperModules.rofi.apply {
         inherit pkgs;
 

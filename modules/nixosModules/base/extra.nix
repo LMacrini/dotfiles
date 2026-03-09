@@ -1,10 +1,13 @@
 {lib, ...}: {
-  flake.nixosModules.base = {
+  flake.nixosModules.base = {pkgs, ...}: {
     boot.tmp.cleanOnBoot = true;
 
     services.openssh.settings.UseDns = lib.mkDefault true;
 
     programs = {
+      gdk-pixbuf.modulePackages = [
+        pkgs.librsvg
+      ];
       nano.enable = false;
       vim = {
         enable = true;

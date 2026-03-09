@@ -98,7 +98,7 @@
         |> builtins.concatStringsSep "\n";
 
       launcher = "rofi -show drun";
-      sessionMenu = builtins.warn "TODO: wlogout" "wlogout";
+      sessionMenu = "wlogout";
 
       tomlFormat = pkgs.formats.toml {};
       wpaperdConf = tomlFormat.generate "wpaperd.toml" {
@@ -147,17 +147,17 @@
       packages = with pkgs; [
         brightnessctl
         grim
-        self'.packages.rofi
         satty
         slurp
         wireplumber
         wl-clipboard
-        wlogout
         wpaperd
         xwayland-satellite
 
         self'.packages.kitty
+        self'.packages.rofi
         waybar
+        self'.packages.wlogout
 
         # redundant but technically i do use it
         systemd
