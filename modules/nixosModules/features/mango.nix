@@ -53,7 +53,7 @@
         enable = true;
         settings = {
           screencast = {
-            chooser_cmd = "${lib.getExe pkgs.bemenu} -bi";
+            chooser_cmd = "${lib.getExe self'.packages.rofi} -i";
             chooser_type = "dmenu";
           };
         };
