@@ -546,7 +546,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
-        "wrappers": "wrappers"
+        "wrappers": "wrappers",
+        "zig": "zig"
       }
     },
     "rust-overlay": {
@@ -687,6 +688,26 @@
       "original": {
         "owner": "lassulus",
         "repo": "wrappers",
+        "type": "github"
+      }
+    },
+    "zig": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773071152,
+        "narHash": "sha256-ChlrXdfeYWjtPqVcsKlpeTpnLkjOF5pspR/HPJZ2Hxg=",
+        "owner": "silversquirl",
+        "repo": "zig-flake",
+        "rev": "f1e691f41624a4040a3f001942c53613bfdd3469",
+        "type": "github"
+      },
+      "original": {
+        "owner": "silversquirl",
+        "repo": "zig-flake",
         "type": "github"
       }
     },

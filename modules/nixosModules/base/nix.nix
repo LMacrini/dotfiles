@@ -21,6 +21,7 @@
       registry = {
         config.flake = self;
         nixpkgs.flake = inputs.nixpkgs;
+        zig.flake = inputs.zig;
       };
 
       settings = {

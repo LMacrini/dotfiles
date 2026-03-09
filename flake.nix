@@ -53,6 +53,11 @@
       };
     };
 
+    zig = {
+      url = "github:silversquirl/zig-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     millennium = {
       url = "github:steamclienthomebrew/millennium?dir=packages/nix";
       inputs.nixpkgs.follows = "nixpkgs";
