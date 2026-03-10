@@ -92,6 +92,7 @@
       in {
         packages = [
           config.cursor.package
+          config.iconTheme.package
           defaultIndexThemePackage
         ];
 
