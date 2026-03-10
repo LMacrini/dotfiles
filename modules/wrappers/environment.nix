@@ -16,6 +16,7 @@
         pkgs.nix
         pkgs.nix-inspect
         pkgs.nix-output-monitor
+        pkgs.nixd
         pkgs.nh
         self'.formatter
 
