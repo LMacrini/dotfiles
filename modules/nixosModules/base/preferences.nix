@@ -20,7 +20,7 @@
       config = let
         cfg = config.preferences;
       in {
-        services.upower.enable = cfg.laptop.enable;
+        services.upower.enable = lib.mkDefault cfg.laptop.enable;
       };
     };
 }
