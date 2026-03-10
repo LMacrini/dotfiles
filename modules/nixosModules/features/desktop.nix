@@ -104,6 +104,7 @@
         files = {
           ".icons/default/index.theme".source = "${defaultIndexThemePackage}/share/icons/default/index.theme";
           ".icons/${config.cursor.name}".source = "${config.cursor.package}/share/icons/${config.cursor.name}";
+          ".icons/${config.iconTheme.name}".source = "${config.iconTheme.package}/share/icons/${config.iconTheme.name}";
         };
 
         xdg.data.files = {

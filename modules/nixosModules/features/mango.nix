@@ -1,5 +1,6 @@
 {
   self,
+  inputs,
   lib,
   ...
 }: {
@@ -8,6 +9,7 @@
     "hjem"
     "ly"
     "swayidle"
+    "swaync"
     "wallpaper"
     "wayland-pipewire-idle-inhibit"
   ];
@@ -105,6 +107,16 @@
         any.path = "${config.wallpaper.image}";
       };
 
+      wpaperd = inputs.wrappers.lib.wrapPackage {
+        inherit pkgs;
+        package = pkgs.wpaperd;
+
+        flags = {
+          "-d" = true;
+          "-c" = toString wpaperdConf;
+        };
+      };
+
       waybar =
         (self.wrapperModules.waybar.apply {
           inherit pkgs;
@@ -162,6 +174,10 @@
         # redundant but technically i do use it
         systemd
       ];
+
+      environment.sessionVariables = {
+        TERMINAL = "kitty";
+      };
 
       rum.misc.gtk.css = let
         css =
@@ -226,7 +242,7 @@
         ''
           exec-once = kitty
           exec-once = waybar
-          exec-once = wpaperd -dc ${wpaperdConf}
+          exec-once = wpaperd
 
           exec-once = ${lib.getExe pkgs.networkmanagerapplet}
           exec-once = ${lib.getExe' pkgs.blueman "blueman-applet"}

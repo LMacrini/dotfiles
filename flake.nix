@@ -9,16 +9,15 @@
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
-    # hjem = {
-    #   url = "github:feel-co/hjem";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    hjem.follows = "hjem-rum/hjem";
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hjem-rum = {
       url = "github:snugnug/hjem-rum";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        # hjem.follows = "hjem";
+        hjem.follows = "hjem";
       };
     };
 
