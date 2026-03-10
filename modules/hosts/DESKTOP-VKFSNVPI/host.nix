@@ -19,7 +19,7 @@
           refreshRate = 144.0;
         };
 
-        HDMI-A-I = {
+        HDMI-A-2 = {
           x = 2560;
           y = 180;
           width = 1920;
@@ -29,6 +29,8 @@
         };
       };
     };
+
+    boot.kernelPackages = pkgs.linuxPackages_zen;
 
     programs = {
       steam.enable = true;
