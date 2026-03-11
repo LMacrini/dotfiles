@@ -29,6 +29,12 @@
           COMMA_CACHING = 0; # i want it to ask me every time
         };
 
+        files.".XCompose".text = ''
+          include "%L"
+
+          <Multi_key> <q> <e> <d> : "∎" U250E # END OF PROOF
+        '';
+
         rum.programs.direnv.enable = true;
         xdg.config.files."direnv/direnv.toml" = let
           tomlFormat = pkgs.formats.toml {};
