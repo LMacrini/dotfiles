@@ -211,10 +211,11 @@
             pkgs.runCommand "mango.conf"
             {
               nativeBuildInputs = [mango];
+              conf = f;
             }
             ''
-              mango -c ${f} -p
-              cp ${f} $out
+              mango -c $conf -p
+              cp $conf $out
             ''
         )
         <| pkgs.writeText "mango.conf" ''

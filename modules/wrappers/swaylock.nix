@@ -15,8 +15,11 @@
         inherit pkgs;
         settings = let
           catppuccin = lib.importJSON (
-            pkgs.runCommand "converted.json" {nativeBuildInputs = [pkgs.jc];} ''
-              jc --ini < ${inputs'.catppuccin.packages.swaylock}/macchiato.conf > $out
+            pkgs.runCommand "converted.json" {
+              nativeBuildInputs = [pkgs.jc];
+              conf = "${inputs'.catppuccin.packages.swaylock}/macchiato.conf";
+            } ''
+              jc --ini < $conf > $out
             ''
           );
         in
