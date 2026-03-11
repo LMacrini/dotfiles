@@ -12,7 +12,7 @@
 
       cd $(mktemp -d)
 
-      jj git clone https://git.serversmp.xyz/seija/dotfiles
+      jj git clone https://git.serversmp.xyz/seija/seiconf
 
       sudo ${lib.getExe inputs'.disko.packages.disko} -m destroy,format,mount --yes-wipe-all-disks --arg disk \"$1\" ${./_disko.nix}
 
