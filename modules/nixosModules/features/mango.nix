@@ -244,7 +244,7 @@
           windowrule = isopensilent:1,isglobal:1,offsetx:100,offsety:100,appid:steam,title:^notificationtoasts_\d+_desktop$
 
           xkb_rules_layout = us
-          xkb_rules_variant = mac
+          xkb_rules_options = compose:ralt
 
           bind = SUPER+SHIFT,S,spawn_shell,pkill slurp || grim -g "$(slurp -dw 0)" - | wl-copy
           bind = SUPER+CTRL,S,spawn_shell,grim -t ppm - | satty -c /dev/null -f - -o - | wl-copy
