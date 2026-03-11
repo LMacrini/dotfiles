@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  inputs,
+  ...
+}: {
   flake.aspects.general = {
     deps = [
       "discord"
@@ -11,11 +15,20 @@
       inputs',
       ...
     }: {
+      imports = [
+        inputs.nix-index-database.nixosModules.default
+      ];
+
       programs = {
+        nix-index-database.comma.enable = true;
         steam.package = lib.mkDefault inputs'.millennium.packages.millennium-steam;
       };
 
       hjem.users.lioma = {
+        environment.sessionVariables = {
+          COMMA_CACHING = 0; # i want it to ask me every time
+        };
+
         rum.programs.direnv.enable = true;
         xdg.config.files."direnv/direnv.toml" = let
           tomlFormat = pkgs.formats.toml {};
