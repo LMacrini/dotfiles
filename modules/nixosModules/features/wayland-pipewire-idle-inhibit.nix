@@ -50,11 +50,10 @@
             wants = ["pipewire.service"];
             wantedBy = [cfg.systemdTarget];
 
-            script = "${lib.getExe pkgs.wayland-pipewire-idle-inhibit} -c ${settings}";
-
             serviceConfig = {
-              Restart = "always";
+              Restart = "on-failure";
               RestartSec = 10;
+              ExecStart = "${lib.getExe pkgs.wayland-pipewire-idle-inhibit} -c ${settings}";
             };
           };
         };

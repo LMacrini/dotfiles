@@ -39,12 +39,12 @@
           style
         ];
 
-        script = "${lib.getExe package} -c ${conf} -s ${style}";
-
         serviceConfig = {
           Type = "dbus";
           BusName = "org.freedesktop.Notifications";
           Restart = "on-failure";
+          RestartSec = "5";
+          ExecStart = "${lib.getExe package} -c ${conf} -s ${style}";
         };
       };
     };

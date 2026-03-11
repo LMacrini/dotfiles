@@ -1,6 +1,5 @@
 {
   self,
-  inputs,
   lib,
   ...
 }: {
@@ -10,7 +9,7 @@
     "ly"
     "swayidle"
     "swaync"
-    "wallpaper"
+    "wpaperd"
     "wayland-pipewire-idle-inhibit"
   ];
 
@@ -99,21 +98,6 @@
       launcher = "rofi -show drun";
       sessionMenu = "wlogout";
 
-      tomlFormat = pkgs.formats.toml {};
-      wpaperdConf = tomlFormat.generate "wpaperd.toml" {
-        any.path = "${config.wallpaper.image}";
-      };
-
-      wpaperd = inputs.wrappers.lib.wrapPackage {
-        inherit pkgs;
-        package = pkgs.wpaperd;
-
-        flags = {
-          "-d" = true;
-          "-c" = toString wpaperdConf;
-        };
-      };
-
       waybar =
         (self.wrapperModules.waybar.apply {
           inherit pkgs;
@@ -160,7 +144,6 @@
         slurp
         wireplumber
         wl-clipboard
-        wpaperd
         xwayland-satellite
 
         self'.packages.kitty
@@ -237,7 +220,6 @@
         <| pkgs.writeText "mango.conf" ''
           exec-once = kitty
           exec-once = waybar
-          exec-once = wpaperd
 
           exec-once = ${lib.getExe pkgs.networkmanagerapplet}
           exec-once = ${lib.getExe' pkgs.blueman "blueman-applet"}
