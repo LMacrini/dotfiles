@@ -78,18 +78,15 @@
     };
 
     hjem.users.lioma = let
-      autostart =
-        pkgs.writeShellScriptBin "autostart.sh"
-        # bash
-        ''
-          systemctl --user reset-failed
-          systemd-inhibit --who="mangowc config" \
-              --why="power button keybind" \
-              --what=handle-power-key \
-              --mode=block \
-              sleep infinity \
-              & echo $! > /tmp/.mangowc-systemd-inhibit
-        '';
+      autostart = pkgs.writeShellScriptBin "autostart.sh" ''
+        systemctl --user reset-failed
+        systemd-inhibit --who="mangowc config" \
+            --why="power button keybind" \
+            --what=handle-power-key \
+            --mode=block \
+            sleep infinity \
+            & echo $! > /tmp/.mangowc-systemd-inhibit
+      '';
 
       monitors =
         config.preferences.monitors
@@ -237,9 +234,7 @@
               cp ${f} $out
             ''
         )
-        <| pkgs.writeText "mango.conf"
-        # conf
-        ''
+        <| pkgs.writeText "mango.conf" ''
           exec-once = kitty
           exec-once = waybar
           exec-once = wpaperd
