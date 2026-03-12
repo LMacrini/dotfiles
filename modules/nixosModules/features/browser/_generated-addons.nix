@@ -66,6 +66,29 @@
       platforms = platforms.all;
     };
   };
+  "canvasblocker" = buildMozillaXpiAddon {
+    pname = "canvasblocker";
+    version = "1.12";
+    addonId = "CanvasBlocker@kkapsner.de";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4691016/canvasblocker-1.12.xpi";
+    sha256 = "0698d92c4bd2d190b2f4025613bf4bd3dba40910d58ab4cf1b32f36637a244c9";
+    meta = with lib; {
+      homepage = "https://github.com/kkapsner/CanvasBlocker/";
+      description = "Alters some JS APIs to prevent fingerprinting.";
+      license = licenses.mpl20;
+      mozPermissions = [
+        "<all_urls>"
+        "storage"
+        "tabs"
+        "webRequest"
+        "webRequestBlocking"
+        "contextualIdentities"
+        "cookies"
+        "privacy"
+      ];
+      platforms = platforms.all;
+    };
+  };
   "catppuccin-macchiato-pink" = buildMozillaXpiAddon {
     pname = "catppuccin-macchiato-pink";
     version = "1.1";

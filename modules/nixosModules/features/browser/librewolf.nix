@@ -108,10 +108,12 @@
               paths = with addons; [
                 bitwarden-password-manager
                 bonjourr-startpage
+                canvasblocker
                 catppuccin-macchiato-pink
                 dearrow
                 refined-github-
                 simple-tab-groups
+                sponsorblock
                 ublock-origin
               ];
             };

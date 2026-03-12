@@ -44,6 +44,8 @@
         packages = with pkgs; [
           nerd-fonts.jetbrains-mono
           nasin-nanpa-helvetica
+          noto-fonts
+          noto-fonts-cjk-sans
         ];
 
         fontconfig.defaultFonts = {
