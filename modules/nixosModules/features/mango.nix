@@ -54,7 +54,7 @@
         enable = true;
         settings = {
           screencast = {
-            chooser_cmd = "${lib.getExe self'.packages.rofi} -i";
+            chooser_cmd = "${lib.getExe self'.packages.rofi} -dmenu -i";
             chooser_type = "dmenu";
           };
         };
