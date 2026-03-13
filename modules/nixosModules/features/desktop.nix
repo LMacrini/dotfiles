@@ -127,7 +127,7 @@
 
             settings = {
               application-prefer-dark-theme = true;
-              cursor-theme = config.cursor.name;
+              cursor-theme-name = config.cursor.name;
               cursor-theme-size = config.cursor.size;
               icon-theme-name = config.iconTheme.name;
               theme-name = "adw-gtk3-dark";
