@@ -14,6 +14,9 @@
           map = [
             "kitty_mod+enter launch --cwd=current"
             "kitty_mod+t new_tab"
+
+            # 26.05
+            # "ctrl+a>a goto_session ~/sesh/"
           ];
         };
       }).wrapper;
