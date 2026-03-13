@@ -35,6 +35,8 @@
         abbr --add llt ls -l --tree
         abbr --add l ls -alh
 
+        abbr --add !tmp --position anywhere "(mktemp -d)"
+
         set fish_greeting
         bind \cz 'fg 2>/dev/null; commandline -f repaint'
 
@@ -81,7 +83,7 @@
           direnv hook fish | source
         end
 
-        if type -q jj
+        if type -q jj; and type -q git
           abbr --add git jj git
           abbr --add _git git
         end
