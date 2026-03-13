@@ -40,6 +40,17 @@
           <Multi_key> <q> <e> <d> : "∎" U250E # END OF PROOF
           <Multi_key> <l> <asciitilde> : "ɫ" U026B # LATIN SMALL LETTER L WITH MIDDLE TILDE
           <Multi_key> <asciitilde> <l> : "ɫ" U026B # LATIN SMALL LETTER L WITH MIDDLE TILDE
+
+          <Multi_key> <f> <n>			: "λ"	U03BB # GREEK SMALL LETTER LAMDA
+
+          <Multi_key> <M> <u>			: "Μ"	U039C # GREEK CAPITAL LETTER MU
+          <Multi_key> <m> <u>			: "μ"	U03BC # GREEK SMALL LETTER MU
+          <Multi_key> <N> <u>			: "Ν"	U039D # GREEK CAPITAL LETTER NU
+          <Multi_key> <n> <u>			: "ν"	U03BD # GREEK SMALL LETTER NU
+          <Multi_key> <P> <i>			: "Π"	U03A0 # GREEK CAPITAL LETTER PI
+          <Multi_key> <p> <i>			: "π"	U03C0 # GREEK SMALL LETTER PI
+          <Multi_key> <X> <i>			: "Ξ"	U039E # GREEK CAPITAL LETTER XI
+          <Multi_key> <x> <i>			: "ξ"	U03BE # GREEK SMALL LETTER XI
         '';
 
         rum.programs.direnv.enable = true;
