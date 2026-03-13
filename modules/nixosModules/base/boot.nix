@@ -1,13 +1,19 @@
-{self, ...}: {
+{
+  self,
+  lib,
+  ...
+}: {
   flake.nixosModules.base = {
     config,
     pkgs,
     ...
-  }: {
+  }: let
+    ifPlymouth = lib.mkIf config.boot.plymouth.enable;
+  in {
     boot = {
-      consoleLogLevel = 3;
-      initrd.verbose = false;
-      kernelParams = [
+      consoleLogLevel = ifPlymouth 3;
+      initrd.verbose = ifPlymouth false;
+      kernelParams = ifPlymouth [
         "quiet"
         "splash"
         "boot.shell_on_fail"
@@ -17,7 +23,7 @@
 
       loader = {
         efi.canTouchEfiVariables = true;
-        timeout = 1; # if the bootloader is ever systemd this can be set to 0
+        timeout = ifPlymouth <| lib.mkDefault 1; # if the bootloader is ever systemd this can be set to 0
 
         limine = {
           enable = true;
@@ -35,7 +41,7 @@
             };
           };
 
-          extraConfig = ''
+          extraConfig = ifPlymouth ''
             quiet: yes
           '';
         };
